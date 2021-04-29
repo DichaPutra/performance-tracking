@@ -14,7 +14,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     
     <!--Icon-->
-    <link rel="icon" href="{{ URL::asset('/favicon/favicon.png') }}" type="image/x-icon"/>
+    <link rel="icon" href="{{asset('/favicon/favicon.png')}}" type="image/x-icon"/>
     <!--<link rel="icon" href="/your_path_to_image/favicon.jpg">-->
 
     <!-- Fonts -->
