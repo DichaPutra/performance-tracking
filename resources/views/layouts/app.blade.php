@@ -7,10 +7,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Performance Tracking</title>
+    <!--<title>{{ config('app.name', 'Laravel') }}</title>-->
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    
+    <!--Icon-->
+    <link rel="icon" href="{{ URL::asset('/favicon/favicon.png') }}" type="image/x-icon"/>
+    <!--<link rel="icon" href="/your_path_to_image/favicon.jpg">-->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
