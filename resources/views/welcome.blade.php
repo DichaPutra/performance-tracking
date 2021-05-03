@@ -66,7 +66,7 @@
                         @if (Route::has('login'))
 
                         @auth
-                        <li><a class="nav-link scrollto" href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a></li>
+                        <li><a class="nav-link scrollto" href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Dashbard</a></li>
                         @else
                         <li><a class="nav-link scrollto" href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a></li>
 
