@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\admin\adminHomeController;
+use App\Http\Controllers\client\clientHomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,4 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// == Client Route ==
+Route::get('/client-home', [clientHomeController::class, 'index'])->name('client.home');
+
+
+// == Admin Route ==
+Route::get('/admin-home', [adminHomeController::class, 'index'])->name('admin.home')->middleware('AdminGuard');
