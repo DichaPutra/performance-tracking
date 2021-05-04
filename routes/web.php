@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 // == Client Route ==
-Route::get('/client-home', [clientHomeController::class, 'index'])->name('client.home');
+Route::get('/client-home', [clientHomeController::class, 'index'])->name('client.home')->middleware('ClientGuard');
 
 
 // == Admin Route ==
