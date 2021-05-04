@@ -16,14 +16,15 @@ class ClientGuard {
      * @return mixed
      */
     public function handle(Request $request, Closure $next) {
-        if (!auth()->user()->role) {
-            return abort(404);
-        }elseif (auth()->user()->role == 'client') {
+        if (!Auth::check()) {
+            return abort(401);
+        }
+        if (Auth::user()->role == 'client') {
             return $next($request);
-        } elseif (auth()->user()->role == 'admin') {
+        }
+        if (Auth::user()->role == 'admin') {
             return redirect()->route('admin.home');
         }
-        return abort(401);
     }
 
 }
