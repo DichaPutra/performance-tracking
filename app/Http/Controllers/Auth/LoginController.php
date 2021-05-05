@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller {
     /*
@@ -33,13 +35,11 @@ use AuthenticatesUsers;
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request) {
         $input = $request->all();
 
         $this->validate($request, [
@@ -47,21 +47,14 @@ use AuthenticatesUsers;
             'password' => 'required',
         ]);
 
-        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
-        {
-            if (auth()->user()->role == 'admin')
-            {
+        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            if (auth()->user()->role == 'admin') {
                 return redirect()->route('admin.home');
-            }
-            elseif (auth()->user()->role == 'client')
-            {
+            } elseif (auth()->user()->role == 'client') {
                 return redirect()->route('client.home');
             }
-        }
-        else
-        {
-            return redirect()->route('login')
-                            ->with('error', 'Email-Address And Password Are Wrong.');
+        } else {
+            return Redirect::back()->withErrors('These credentials do not match our records.');
         }
     }
 
