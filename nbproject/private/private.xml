@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/performance-tracking/app/Http/Middleware/AdminGuard.php</file>
-            <file>file:/D:/xampp/htdocs/performance-tracking/app/Http/Middleware/ClientGuard.php</file>
-            <file>file:/D:/xampp/htdocs/performance-tracking/app/Http/Controllers/Auth/RegisterController.php</file>
-            <file>file:/D:/xampp/htdocs/performance-tracking/routes/web.php</file>
-            <file>file:/D:/xampp/htdocs/performance-tracking/app/Http/Kernel.php</file>
-            <file>file:/D:/xampp/htdocs/performance-tracking/resources/views/layouts/app2.blade.php</file>
+            <file>file:/D:/xampp/htdocs/performance-tracking/app/Http/Controllers/Auth/LoginController.php</file>
+            <file>file:/D:/xampp/htdocs/performance-tracking/resources/views/auth/login.blade.php</file>
+            <file>file:/D:/xampp/htdocs/performance-tracking/resources/lang/en/auth.php</file>
+            <file>file:/D:/xampp/htdocs/performance-tracking/resources/views/auth/register.blade.php</file>
+            <file>file:/D:/xampp/htdocs/performance-tracking/resources/views/layouts/app.blade.php</file>
         </group>
     </open-files>
 </project-private>

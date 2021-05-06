@@ -1,11 +1,35 @@
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 <!-- Nav Item - Dashboard -->
-<li class="nav-item active">
-    <a class="nav-link" href="index.html">
+
+<!-- Divider -->
+<hr class="sidebar-divider">
+<!-- Heading -->
+<div class="sidebar-heading">
+    Main Function
+</div>
+
+<li class="nav-item @if($page=='clientHome')active @endif">
+    <a class="nav-link" href="{{route('client.home')}}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
+<li class="nav-item @if($page=='personil')active @endif">
+    <a class="nav-link" href="{{route('client.personil')}}">
+        <i class="fas fa-fw fa-user-alt"></i>
+        <span>Personil</span></a>
+</li>
+<li class="nav-item @if($page=='kpi')active @endif">
+    <a class="nav-link" href="{{route('client.kpi')}}">
+        <i class="fas fa-fw fa-chart-line"></i>
+        <span>KPI</span></a>
+</li>
+<li class="nav-item @if($page=='laporan')active @endif">
+    <a class="nav-link" href="{{route('client.laporan')}}">
+        <i class="fas fa-fw fa-chalkboard-teacher"></i>
+        <span>Laporan</span></a>
+</li>
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 <!-- Heading -->

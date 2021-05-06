@@ -1,5 +1,9 @@
 @extends('layouts.app2')
 
+@section('head')
+<?php $page = 'adminHome'?>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

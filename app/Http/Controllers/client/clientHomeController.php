@@ -9,7 +9,7 @@ class clientHomeController extends Controller {
 
     public function index()
     {
-        return view('client.clientHome');
+        return view('client.home');
     }
 
 }
