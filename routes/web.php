@@ -22,6 +22,7 @@ Route::get('/', function () {
 Auth::routes();
 
 // == Client Route ==
+//Route::get('/home', [clientHomeController::class, 'index'])->middleware('ClientGuard')->name('home');
 Route::get('/client-home', [clientHomeController::class, 'index'])->middleware('ClientGuard')->name('client.home');
 Route::get('/client-personil', function () {
     return view('client.personil');

@@ -29,7 +29,7 @@
             <!-- Sidebar -->
             <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
                 <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html" style="margin-left: -15px;">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}" style="margin-left: -15px;">
                     <div class="sidebar-brand-icon">
                         <img src="image/logo3.png" alt="" style="width: 50%">
                         <!--<i class="fas fa-laugh-wink"></i>-->
