@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\adminHomeController;
 use App\Http\Controllers\client\clientHomeController;
+use App\Http\Controllers\ChangePasswordController;
 
 /*
   |--------------------------------------------------------------------------
@@ -20,6 +21,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// == General Function ==
+Route::get('/change-password', [ChangePasswordController::class, 'index']);
+Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
 // == Client Route ==
 //Route::get('/home', [clientHomeController::class, 'index'])->middleware('ClientGuard')->name('home');

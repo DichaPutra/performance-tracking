@@ -27,7 +27,7 @@
 <li class="nav-item @if($page=='laporan')active @endif">
     <a class="nav-link" href="{{route('client.laporan')}}">
         <i class="fas fa-fw fa-chalkboard-teacher"></i>
-        <span>Laporan</span></a>
+        <span>Report</span></a>
 </li>
 
 <!-- Divider -->
@@ -35,8 +35,15 @@
 <div class="sidebar-heading">
     Account Management
 </div>
+<!--Change Password-->
+<li class="nav-item @if($page=='changepass')active @endif">
+    <a class="nav-link" href="{{route('change.password')}}">
+        <i class="fas fa-fw fa-lock"></i>
+        <span>Change Password</span></a>
+</li>
+
 <!-- Logout -->
-<li class="nav-item">
+<li class="nav-item" style="margin-top: -10px; margin-left: 4px;">
     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
         <i class="fas fa-sign-out-alt"></i>
         <span>{{ __('Logout') }}</span>
