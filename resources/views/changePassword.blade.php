@@ -10,7 +10,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Change Password</h1>
+        <h1 class="h3 mb-0 text-gray-800">Change Password </h1>
     </div>
 
     <div class="row">
@@ -21,7 +21,7 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Change Password</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Change Password Form</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">

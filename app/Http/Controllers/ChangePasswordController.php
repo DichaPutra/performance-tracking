@@ -21,7 +21,7 @@ class ChangePasswordController extends Controller {
 //        dd($request);
         $request->validate([
             'current_password' => ['required', new MatchOldPassword],
-            'new_password' => ['required'],
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
             'new_confirm_password' => ['same:new_password'],
         ]);
 
