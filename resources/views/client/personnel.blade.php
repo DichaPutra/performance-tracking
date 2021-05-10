@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('head')
-<?php $page = 'personil' ?>
+<?php $page = 'personnel' ?>
 @endsection
 
 @section('content')
@@ -9,15 +9,15 @@
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Personil</li>
+            <li class="breadcrumb-item active" aria-current="page">Personnel</li>
         </ol>
     </nav><br>
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user-alt"></i>  Personil</h1>
-        <a href="{{route('client.personil.addpersonil')}}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-plus fa-sm text-white-50"></i> Add Personil
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user-alt"></i>  Personnel</h1>
+        <a href="{{route('client.personnel.addpersonnel')}}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Add Personnel
         </a>
     </div>
 
@@ -29,7 +29,7 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">List Personil</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">List personnel</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -53,47 +53,47 @@
                                 <tr>
                                     <td>Tiger Nixon</td>
                                     <td>System Architect</td>
-                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Garrett Winters</td>
                                     <td>Accountant</td>
-                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Ashton Cox</td>
                                     <td>Junior Technical Author</td>
-                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Jena Gaines</td>
                                     <td>Office Manager</td>
-                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Quinn Flynn</td>
                                     <td>Support Lead</td>
-                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Charde Marshall</td>
                                     <td>Regional Director</td>
-                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Haley Kennedy</td>
                                     <td>Senior Marketing Designer</td>
-                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Tatyana Fitzpatrick</td>
                                     <td>Regional Director</td>
-                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Michael Silva</td>
                                     <td>Marketing Designer</td>
-                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>                              
                             </tbody>
                         </table>

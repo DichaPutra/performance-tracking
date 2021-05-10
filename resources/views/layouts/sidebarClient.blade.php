@@ -14,10 +14,10 @@
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
-<li class="nav-item @if($page=='personil')active @endif">
-    <a class="nav-link" href="{{route('client.personil')}}">
+<li class="nav-item @if($page=='personnel')active @endif">
+    <a class="nav-link" href="{{route('client.personnel')}}">
         <i class="fas fa-fw fa-user-alt"></i>
-        <span>Personil</span></a>
+        <span>Personnel</span></a>
 </li>
 <li class="nav-item @if($page=='kpi')active @endif">
     <a class="nav-link" href="{{route('client.kpi')}}">

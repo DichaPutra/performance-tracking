@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('head')
-<?php $page = 'personil' ?>
+<?php $page = 'personnel' ?>
 @endsection
 
 @section('content')
@@ -9,14 +9,14 @@
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Personil</li>
-            <li class="breadcrumb-item active" aria-current="page">Add Personil</li>
+            <li class="breadcrumb-item active" aria-current="page">Personnel</li>
+            <li class="breadcrumb-item active" aria-current="page">Add Personnel</li>
         </ol>
     </nav><br>
 
     <!-- Page Heading -->
 <!--    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user-alt"></i> Add Personil</h1>
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user-alt"></i> Add personnel</h1>
     </div>-->
 
     <!-- Content Row -->
@@ -24,7 +24,7 @@
         <!-- Card Header - Dropdown -->
         <div
             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Add Personil</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Add Personnel</h6>
         </div>
         <!-- Card Body -->
         <div class="card-body">

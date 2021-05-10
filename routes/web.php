@@ -33,21 +33,21 @@ Route::middleware([ClientGuard::class])->group(function () {
     // * Home *
     Route::get('/client-home', [clientHomeController::class, 'index'])->name('client.home');
     // * Personil *
-    Route::get('/client-personil', function () {
-        return view('client.personil');
-    })->name('client.personil');
+    Route::get('/client-personnel', function () {
+        return view('client.personnel');
+    })->name('client.personnel');
 
-    Route::get('/client-personil-addpersonil', function () {
-        return view('client.personil-addpersonil');
-    })->name('client.personil.addpersonil');
+    Route::get('/client-personnel-addpersonnel', function () {
+        return view('client.personnel-addpersonnel');
+    })->name('client.personnel.addpersonnel');
 
-    Route::get('/client-personil-detailpersonil', function () {
-        return view('client.personil-detailpersonil', ['edit' => '0']);
-    })->name('client.personil.detailpersonil');
+    Route::get('/client-personnel-detailpersonnel', function () {
+        return view('client.personnel-detailpersonnel', ['edit' => '0']);
+    })->name('client.personnel.detailpersonnel');
 
-    Route::get('/client-personil-editpersonil', function () {
-        return view('client.personil-detailpersonil', ['edit' => '1']);
-    })->name('client.personil.editpersonil');
+    Route::get('/client-personnel-editpersonnel', function () {
+        return view('client.personnel-detailpersonnel', ['edit' => '1']);
+    })->name('client.personnel.editpersonnel');
 
     // * KPI *
     Route::get('/client-kpi', function () {

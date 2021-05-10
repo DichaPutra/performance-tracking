@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('head')
-<?php $page = 'personil' ?>
+<?php $page = 'personnel' ?>
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Personil</li>
+            <li class="breadcrumb-item active" aria-current="page"> Personnel</li>
             @if($edit == 1)
             <li class="breadcrumb-item active" aria-current="page"> Edit</li>
             @else
@@ -32,7 +32,7 @@
             @if($edit == 0)
             <h6 class="m-0 font-weight-bold text-primary">Details</h6>
             <div class="float-right">
-                <a href="{{route('client.personil.editpersonil')}}"><button class="btn btn-sm btn-primary">Edit</button></a>
+                <a href="{{route('client.personnel.editpersonnel')}}"><button class="btn btn-sm btn-primary">Edit</button></a>
                 <a href="#" onclick="return confirm('All personnel related data will be deleted, Are you sure you want to delete this personnel? ');" ><button class="btn btn-sm btn-danger">Delete</button></a>
             </div>
             @else
@@ -126,7 +126,7 @@
             </div>
             @else
             <div class="float-right">
-                <a href="{{ route('client.personil') }}"><button type="button" class="btn btn-secondary">Back</button></a>
+                <a href="{{ route('client.personnel') }}"><button type="button" class="btn btn-secondary">Back</button></a>
             </div>
             @endif
         </div>
