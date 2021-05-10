@@ -7,19 +7,25 @@
 @section('content')
 <!-- Begin Page Content -->
 <div class="container-fluid">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Personil</li>
+        </ol>
+    </nav><br>
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user-alt"></i>  Personil</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-plus fa-sm text-white-50"></i> Add Personil</a>
+        <a href="{{route('client.personil.addpersonil')}}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Add Personil
+        </a>
     </div>
 
     <!-- Content Row -->
     <div class="row">
-        <!-- Area Chart -->
+        
         <div class="col-xl-12 col-lg-12">
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -47,47 +53,47 @@
                                 <tr>
                                     <td>Tiger Nixon</td>
                                     <td>System Architect</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">detil</button></a></td>
+                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Garrett Winters</td>
                                     <td>Accountant</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">detil</button></a></td>
+                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Ashton Cox</td>
                                     <td>Junior Technical Author</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">detil</button></a></td>
+                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Jena Gaines</td>
                                     <td>Office Manager</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">detil</button></a></td>
+                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Quinn Flynn</td>
                                     <td>Support Lead</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">detil</button></a></td>
+                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Charde Marshall</td>
                                     <td>Regional Director</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">detil</button></a></td>
+                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Haley Kennedy</td>
                                     <td>Senior Marketing Designer</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">detil</button></a></td>
+                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Tatyana Fitzpatrick</td>
                                     <td>Regional Director</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">detil</button></a></td>
+                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td>Michael Silva</td>
                                     <td>Marketing Designer</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">detil</button></a></td>
+                                    <td><a href="{{route('client.personil.detailpersonil')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>                              
                             </tbody>
                         </table>
