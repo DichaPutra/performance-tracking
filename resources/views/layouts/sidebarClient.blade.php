@@ -5,9 +5,9 @@
 <!-- Divider -->
 <hr class="sidebar-divider">
 <!-- Heading -->
-<div class="sidebar-heading">
+<!--<div class="sidebar-heading">
     Main Function
-</div>
+</div>-->
 
 <li class="nav-item @if($page=='clientHome')active @endif">
     <a class="nav-link" href="{{route('client.home')}}">
@@ -32,9 +32,9 @@
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
-<div class="sidebar-heading">
+<!--<div class="sidebar-heading">
     Account Management
-</div>
+</div>-->
 <!--Change Password-->
 <li class="nav-item @if($page=='changepass')active @endif">
     <a class="nav-link" href="{{route('change.password')}}">
