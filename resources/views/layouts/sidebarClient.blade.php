@@ -19,13 +19,31 @@
         <i class="fas fa-fw fa-user-alt"></i>
         <span>Personnel</span></a>
 </li>
+
 <li class="nav-item @if($page=='kpi')active @endif">
-    <a class="nav-link" href="{{route('client.kpi')}}">
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-chart-line"></i>
-        <span>KPI</span></a>
+        <span>Target</span>
+    </a>
+    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+         data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Set Targets:</h6>
+            <a class="collapse-item" href="{{route('client.target.strategicobjective')}}">Strategic Objective</a>
+            <a class="collapse-item" href="{{route('client.target.kpi')}}">KPI</a>
+            <a class="collapse-item" href="{{route('client.target.actionplan')}}">Action Plan</a>
+        </div>
+    </div>
 </li>
+
+<!--<li class="nav-item @if($page=='kpi')active @endif">
+    <a class="nav-link" href="{{route('client.target')}}">
+        <i class="fas fa-fw fa-chart-line"></i>
+        <span>Target</span></a>
+</li>-->
+
 <li class="nav-item @if($page=='laporan')active @endif">
-    <a class="nav-link" href="{{route('client.laporan')}}">
+    <a class="nav-link" href="{{route('client.report')}}">
         <i class="fas fa-fw fa-chalkboard-teacher"></i>
         <span>Report</span></a>
 </li>

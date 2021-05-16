@@ -49,15 +49,28 @@ Route::middleware([ClientGuard::class])->group(function () {
         return view('client.personnel-detailpersonnel', ['edit' => '1']);
     })->name('client.personnel.editpersonnel');
 
-    // * KPI *
-    Route::get('/client-kpi', function () {
-        return view('client.kpi');
-    })->name('client.kpi');
+    // * Targets *
+    Route::get('/client-target', function () {
+        return view('client.target');
+    })->name('client.target');
 
-    // * Laporan *
-    Route::get('/client-laporan', function () {
-        return view('client.laporan');
-    })->name('client.laporan');
+    Route::get('/client-target-strategicobjective', function () {
+        return view('client.target-strategicobjective');
+    })->name('client.target.strategicobjective');
+
+    Route::get('/client-target-kpi', function () {
+        return view('client.target-kpi');
+    })->name('client.target.kpi');
+
+    Route::get('/client-target-actionplan', function () {
+        echo 'action plan';
+//        return view('client.target');
+    })->name('client.target.actionplan');
+
+    // * Report *
+    Route::get('/client-report', function () {
+        return view('client.report');
+    })->name('client.report');
 });
 
 // == Admin Route ==
