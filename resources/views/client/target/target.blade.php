@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('head')
-<?php $page = 'kpi' ?>
+<?php $page = 'target' ?>
 @endsection
 
 @section('content')

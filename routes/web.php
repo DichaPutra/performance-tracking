@@ -32,40 +32,58 @@ Route::post('change-password', [ChangePasswordController::class, 'store'])->name
 Route::middleware([ClientGuard::class])->group(function () {
     // * Home *
     Route::get('/client-home', [clientHomeController::class, 'index'])->name('client.home');
-    // * Personil *
+    // * Personnel *
     Route::get('/client-personnel', function () {
-        return view('client.personnel');
+        return view('client.personnel.personnel');
     })->name('client.personnel');
 
     Route::get('/client-personnel-addpersonnel', function () {
-        return view('client.personnel-addpersonnel');
+        return view('client.personnel.addpersonnel');
     })->name('client.personnel.addpersonnel');
 
     Route::get('/client-personnel-detailpersonnel', function () {
-        return view('client.personnel-detailpersonnel', ['edit' => '0']);
+        return view('client.personnel.detailpersonnel', ['edit' => '0']);
     })->name('client.personnel.detailpersonnel');
 
     Route::get('/client-personnel-editpersonnel', function () {
-        return view('client.personnel-detailpersonnel', ['edit' => '1']);
+        return view('client.personnel.detailpersonnel', ['edit' => '1']);
     })->name('client.personnel.editpersonnel');
+
+    // * O K R *
+    Route::get('/client-okr-objective', function () {
+        return view('client.okr.objective');
+    })->name('client.okr.objective');
+    Route::get('/client-okr-keyresult', function () {
+        echo 'key result';
+        return view('client.okr.keyresult');
+    })->name('client.okr.keyresult');
 
     // * Targets *
     Route::get('/client-target', function () {
-        return view('client.target');
+        return view('client.target.target'); //XXXX
     })->name('client.target');
 
     Route::get('/client-target-strategicobjective', function () {
-        return view('client.target-strategicobjective');
+        return view('client.target.strategicobjective');
     })->name('client.target.strategicobjective');
 
     Route::get('/client-target-kpi', function () {
-        return view('client.target-kpi');
+        return view('client.target.kpi');
     })->name('client.target.kpi');
 
     Route::get('/client-target-actionplan', function () {
         echo 'action plan';
 //        return view('client.target');
     })->name('client.target.actionplan');
+
+    // ** KPI **
+    Route::get('/client-kpi', function () {
+        return view('client.kpi.kpi');
+    })->name('client.kpi');
+
+    Route::get('/client-kpi-details', function () {
+        return view('client.kpi.details');
+    })->name('client.kpi.details');
 
     // * Report *
     Route::get('/client-report', function () {

@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('head')
-<?php $page = 'kpi' ?>
+<?php $page = 'target' ?>
 @endsection
 
 @section('content')
@@ -52,11 +52,53 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    
+                                    <!-- **** Form Add SO **** -->
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Business Categories :</label>
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>Accounting & Tax Services</option>
+                                            <option>Arts, Culture & Entertainment</option>
+                                            <option>Auto Sales & Service</option>
+                                            <option>Banking & Finance</option>
+                                            <option>Business Services</option>
+                                            <option>Community Organizations</option>
+                                            <option>Dentists & Orthodontists</option>
+                                            <option>Education</option>
+                                            <option>Health & Wellness</option>
+                                            <option>Health Care</option>
+                                            <option>Home Improvement</option>
+                                            <option>Insurance</option>
+                                            <option>Internet & Web Services</option>
+                                            <option>Legal Services</option>
+                                            <option>Lodging & Travel</option>
+                                            <option>Marketing & Advertising</option>
+                                            <option>News & Media</option>
+                                            <option>Pet Services</option>
+                                            <option>Real Estate</option>
+                                            <option>Restaurants & Nightlife</option>
+                                            <option>Shopping & Retail</option>
+                                            <option>Sports & Recreation</option>
+                                            <option>Transportation</option>
+                                            <option>Utilities</option>
+                                            <option>Wedding, Events & Meetings</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect2">Strategic Objective :</label>
+                                        <select multiple class="form-control" id="exampleFormControlSelect2" size="10">
+                                            <option>Peningkatan Company Value</option>
+                                            <option>Optimalisasi Cash Flow</option>
+                                            <option>Efisiensi dan efektivitas biaya</option>
+                                            <option>Peningkatan Profit</option>
+                                            <option>Peningkatan Total Pendapatan</option>
+                                        </select>
+                                    </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save</button>
+                                    <button type="button" class="btn btn-primary">Add</button>
                                 </div>
                             </div>
                         </div>
@@ -72,34 +114,40 @@
                             <thead style="background-color: #F8F9FC;">
                                 <tr>
                                     <th style="width: 10%; text-align: center;">No</th>
-                                    <th>Strategic Objective</th>
+                                    <th style="width: 20%;">Strategic Objective</th>
+                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td style="text-align: center;">1</td>
-                                    <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</td>
+                                    <td>Peningkatan Company Value</td>
+                                    <td>Manajemen dari waktu ke waktu terus berusaha untuk meningkatkan kinerja perusahaan untuk meningkatkan nilai perusahaan sehingga harapan dari pemegang saham dan seluruh stakeholder yang lain dapat dipenuhi</td>
                                     <td style="text-align: center;"><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;">2</td>
-                                    <td>when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</td>
+                                    <td>Optimalisasi Cash Flow</td>
+                                    <td>Dalam mengelola perusahaan maka faktor cash flow menjadi kunci utama dalam keberlangsungan bisnis. Perusahaan boleh jadi memperoleh laba, namun jika tidak ada cash flow maka kegiatan usaha dapat berhenti. Cash flow yang baik dapat menjaga kepercayaan perusahaan terhadap pihak yang berkepentingan (kreditor, pemegang saham, karyawan) dengan selalu menjaga komitmen pembayaran tepat pada waktunya</td>
                                     <td style="text-align: center;"><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;">3</td>
-                                    <td>It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software</td>
+                                    <td>Efisiensi dan efektivitas biaya</td>
+                                    <td>Cerminan dari upaya manajemen dalam melakukan efisiensi biaya dan efektivitas biaya yang tercermin dari ukuran-ukuran keuangan yang dapat menggambarkan pertumbuhan biaya yang dapat dikendalikan dengan baik</td>
                                     <td style="text-align: center;"><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;">4</td>
-                                    <td>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,</td>
+                                    <td>Peningkatan Profit</td>
+                                    <td>Upaya manajemen dalam meningkatkan tingkat keuntungan</td>
                                     <td style="text-align: center;"><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;">5</td>
-                                    <td>a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage,</td>
+                                    <td>Peningkatan Total Pendapatan</td>
+                                    <td>Upaya manajemen dalam meningkatkan tingkat pendapatan dari seluruh usaha yang dilakukan oleh perusahaan baik berupa hasil penjualan seluruh produk serta pendapatan jasa.</td>
                                     <td style="text-align: center;"><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
                                 </tr>                           
                             </tbody>

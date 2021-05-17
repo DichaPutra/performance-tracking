@@ -20,12 +20,26 @@
         <span>Personnel</span></a>
 </li>
 
-<li class="nav-item @if($page=='kpi')active @endif">
-    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+<li class="nav-item @if($page=='okr')active @endif">
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseOKR" aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-chart-line"></i>
+        <span>OKR</span>
+    </a>
+    <div id="collapseOKR" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Set OKR:</h6>
+            <a class="collapse-item" href="{{route('client.okr.objective')}}">Objective</a>
+            <a class="collapse-item" href="{{route('client.okr.keyresult')}}">Key Result</a>
+        </div>
+    </div>
+</li>
+
+<li class="nav-item @if($page=='target')active @endif">
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTarget" aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-chart-line"></i>
         <span>Target</span>
     </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+    <div id="collapseTarget" class="collapse" aria-labelledby="headingUtilities"
          data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Set Targets:</h6>
@@ -34,6 +48,15 @@
             <a class="collapse-item" href="{{route('client.target.actionplan')}}">Action Plan</a>
         </div>
     </div>
+</li>
+
+
+
+<li class="nav-item @if($page=='kpi')active @endif">
+    <a class="nav-link" href="{{route('client.kpi')}}">
+        <i class="fas fa-fw fa-chart-line"></i>
+        <span>KPI (OPT-2)</span>
+    </a>
 </li>
 
 <!--<li class="nav-item @if($page=='kpi')active @endif">
@@ -50,9 +73,7 @@
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
-<!--<div class="sidebar-heading">
-    Account Management
-</div>-->
+
 <!--Change Password-->
 <li class="nav-item @if($page=='changepass')active @endif">
     <a class="nav-link" href="{{route('change.password')}}">
