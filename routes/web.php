@@ -72,8 +72,7 @@ Route::middleware([ClientGuard::class])->group(function () {
     })->name('client.target.kpi');
 
     Route::get('/client-target-actionplan', function () {
-        echo 'action plan';
-//        return view('client.target');
+        return view('client.target.actionplan');
     })->name('client.target.actionplan');
 
     // ** KPI **

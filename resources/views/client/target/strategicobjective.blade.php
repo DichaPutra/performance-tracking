@@ -116,7 +116,7 @@
                                     <th style="width: 10%; text-align: center;">No</th>
                                     <th style="width: 20%;">Strategic Objective</th>
                                     <th>Description</th>
-                                    <th>Action</th>
+                                    <th>Operation</th>
                                 </tr>
                             </thead>
                             <tbody>
