@@ -37,8 +37,6 @@
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">KPI</h6>
-
-                    <button class="btn btn-sm btn-primary"><i class="fas fa-plus"></i></button>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -50,6 +48,7 @@
                                     <th style="text-align: center;">No</th>
                                     <th>KPI</th>
                                     <th>Action Plan</th>
+                                    <th>Operation</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,36 +56,43 @@
                                     <td style="text-align: center;">1</td>
                                     <td>Return on Equity (ROE) - Tingkat pengembalian atas modal yang telah ditanamkan</td>
                                     <td style="text-align: center;"><a href="#">0</a></td>
+                                    <td style="text-align: center;"><a href="{{route('client.personnel.actionplandetail')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;">2</td>
                                     <td>Return on Investment (ROI) - Tingkat pengembalian atas investasi yang telah ditanamkan</td>
                                     <td style="text-align: center;"><a href="#">4</a></td>
+                                    <td style="text-align: center;"><a href="{{route('client.personnel.actionplandetail')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr> 
                                 <tr>
                                     <td style="text-align: center;">3</td>
                                     <td>Tingkat Kesehatan (Standar BUMN) - Kinerja berdasarkan atas sekumpulan indikator Keuangan,  Operasional dan Administratif sesuai standard yang ditentukan oleh BUMN. Indikator Keuangan  meliputi ROE, ROI, CASH RATIO, Current Ratio, Collection Periode, Perputaran Persediaan, Perputaran Total Asset, Rasio Modal Sendiri thd Total Aktiv Sedangkan indikator operasional adalah berkaitan dengan produktivitas tanaman, rendemen, % produk berkualitas tinggi serta penjualan langsung.</td>
                                     <td style="text-align: center;"><a href="#">6</a></td>
+                                    <td style="text-align: center;"><a href="{{route('client.personnel.actionplandetail')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr> 
                                 <tr>
                                     <td style="text-align: center;">4</td>
                                     <td>Cash Rasio - Kemampuan perusahaan dalam menyediakan uang tunai atau setara kas dibandingkan dengan tingkat kewajiban lancar (kurang dari setahun)</td>
                                     <td style="text-align: center;"><a href="#">6</a></td>
+                                    <td style="text-align: center;"><a href="{{route('client.personnel.actionplandetail')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr> 
                                 <tr>
                                     <td style="text-align: center;">5</td>
                                     <td>Current Ratio - Kemampuan perusahaan dalam menjaga aktiva lancar sehingga  kewajiban lancar (kurang dari setahun) selalu dapat terpenuhi </td>
                                     <td style="text-align: center;"><a href="#">6</a></td>
+                                    <td style="text-align: center;"><a href="{{route('client.personnel.actionplandetail')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;">6</td>
                                     <td>% Pertumbuhan Biaya - Pertumbuhan biaya antar periode mencerminkan apakah perusahaan semakin efisien atau tidak. Selama pertumbuhan biaya masih lebih kecil dibandingkan dengan pertumbuhan revenue maka dapat dikatakan perusahaan dapat mengelola kinerja secara lebih efisien.</td>
                                     <td style="text-align: center;"><a href="#">6</a></td>
+                                    <td style="text-align: center;"><a href="{{route('client.personnel.actionplandetail')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;">7</td>
                                     <td>Net Margin - Kemampuan perusahaan dalam mengelola biaya akan berdampak kepada net margin yang semakin tinggi</td>
                                     <td style="text-align: center;"><a href="#">6</a></td>
+                                    <td style="text-align: center;"><a href="{{route('client.personnel.actionplandetail')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                             </tbody>
                         </table>
