@@ -23,7 +23,7 @@
 
     <!-- Content Row -->
     <div class="row">
-        
+
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
@@ -37,62 +37,49 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead style="background-color: #F8F9FC;">
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Level</th>
                                     <th>Position</th>
+                                    <th>PIC Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot style="background-color: #F8F9FC;">
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Level</th>
                                     <th>Position</th>
+                                    <th>PIC Name</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 <tr>
+                                    <td style="background-color: #BDD7EE;">0. Corporate</td>
+                                    <td>Corporate</td>
                                     <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
                                     <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
+                                    <td style="background-color: #FEE599;">1. Division</td>
+                                    <td>Finance</td>
                                     <td>Garrett Winters</td>
-                                    <td>Accountant</td>
                                     <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
-                                    <td>Ashton Cox</td>
-                                    <td>Junior Technical Author</td>
-                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
+                                    <td style="background-color: #FEE599;">1. Division</td>
+                                    <td>Production</td>
                                     <td>Jena Gaines</td>
-                                    <td>Office Manager</td>
                                     <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
-                                    <td>Quinn Flynn</td>
-                                    <td>Support Lead</td>
-                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Charde Marshall</td>
-                                    <td>Regional Director</td>
-                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
+                                    <td style="background-color: #FEE599;">1. Division</td>
+                                    <td>Marketing</td>
                                     <td>Haley Kennedy</td>
-                                    <td>Senior Marketing Designer</td>
                                     <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
-                                    <td>Tatyana Fitzpatrick</td>
-                                    <td>Regional Director</td>
-                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
+                                    <td style="background-color: #FEE599;">1. Division</td>
+                                    <td>Inventory</td>
                                     <td>Michael Silva</td>
-                                    <td>Marketing Designer</td>
                                     <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>                              
                             </tbody>

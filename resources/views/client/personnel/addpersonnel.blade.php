@@ -15,9 +15,9 @@
     </nav><br>
 
     <!-- Page Heading -->
-<!--    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user-alt"></i> Add personnel</h1>
-    </div>-->
+    <!--    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user-alt"></i> Add personnel</h1>
+        </div>-->
 
     <!-- Content Row -->
     <div class="card shadow mb-4 animated--grow-in">
@@ -58,11 +58,23 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+
+                    <div class="form-group row">
+                        <label for="level" class="col-md-4 col-form-label text-md-right">Level</label>
+                        <div class="col-md-6">
+                            <select class="form-select form-control" aria-label="Default select example">
+                                <option value="0">0. Corporate</option>
+                                <option value="1">1. Division</option>
+                                <option value="2">2. Department</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
                         <div class="col-md-6">
                             <input type="text" class="form-control" list="pos">
                             <datalist id="pos">
+                                <option value="Corporate">
                                 <option value="Finance">
                                 <option value="Production">
                                 <option value="Marketing">
@@ -71,6 +83,8 @@
                             </datalist>
                         </div>
                     </div>
+
+
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">Company Name</label>
                         <div class="col-md-6">

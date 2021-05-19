@@ -49,19 +49,14 @@ Route::middleware([ClientGuard::class])->group(function () {
         return view('client.personnel.detailpersonnel', ['edit' => '1']);
     })->name('client.personnel.editpersonnel');
 
-    // * O K R *
-    Route::get('/client-okr-objective', function () {
-        return view('client.okr.objective');
-    })->name('client.okr.objective');
-    Route::get('/client-okr-keyresult', function () {
-        echo 'key result';
-        return view('client.okr.keyresult');
-    })->name('client.okr.keyresult');
-
     // * Targets *
     Route::get('/client-target', function () {
         return view('client.target.target'); //XXXX
     })->name('client.target');
+
+    Route::get('/client-target-details', function () {
+        return view('client.target.details'); //XXXX
+    })->name('client.target.details');
 
     Route::get('/client-target-strategicobjective', function () {
         return view('client.target.strategicobjective');

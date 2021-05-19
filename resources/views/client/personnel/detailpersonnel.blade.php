@@ -28,7 +28,7 @@
         <!-- Card Header - Dropdown -->
         <div
             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            
+
             @if($edit == 0)
             <h6 class="m-0 font-weight-bold text-primary">Details</h6>
             <div class="float-right">
@@ -87,13 +87,21 @@
                     @endif
                 </div>
                 <div class="col-md-6">
+
+                    <div class="form-group row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">Level</label>
+                        <div class="col-md-6">
+                            <input name="companyname"type="text" class="form-control" value="0. Corporate" readonly="">
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
                         <div class="col-md-6">
                             @if($edit==1)
-                            <input type="text" class="form-control" list="pos" value="Regional Director">
+                            <input type="text" class="form-control" list="pos" value="Corporate">
                             @else
-                            <input type="text" class="form-control" list="pos" value="Regional Director" disabled="">
+                            <input type="text" class="form-control" list="pos" value="Corporate" disabled="">
                             @endif
                             <datalist id="pos">
                                 <option value="Finance">
@@ -104,6 +112,7 @@
                             </datalist>
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">Company Name</label>
                         <div class="col-md-6">
