@@ -4,157 +4,13 @@
 <?php $page = 'laporan' ?>
 
 <style>
-    .progress{
-        width: 150px;
-        height: 150px;
-        line-height: 150px;
-        background: none;
-        margin: 0 auto;
-        box-shadow: none;
-        position: relative;
+    #container {
+        margin: 20px;
+        width: 200px;
+        height: 100px;
     }
-    .progress:after{
-        content: "";
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        border: 12px solid #fff;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    .progress > span{
-        width: 50%;
-        height: 100%;
-        overflow: hidden;
-        position: absolute;
-        top: 0;
-        z-index: 1;
-    }
-    .progress .progress-left{
-        left: 0;
-    }
-    .progress .progress-bar{
-        width: 100%;
-        height: 100%;
-        background: none;
-        border-width: 12px;
-        border-style: solid;
-        position: absolute;
-        top: 0;
-    }
-    .progress .progress-left .progress-bar{
-        left: 100%;
-        border-top-right-radius: 80px;
-        border-bottom-right-radius: 80px;
-        border-left: 0;
-        -webkit-transform-origin: center left;
-        transform-origin: center left;
-    }
-    .progress .progress-right{
-        right: 0;
-    }
-    .progress .progress-right .progress-bar{
-        left: -100%;
-        border-top-left-radius: 80px;
-        border-bottom-left-radius: 80px;
-        border-right: 0;
-        -webkit-transform-origin: center right;
-        transform-origin: center right;
-        animation: loading-1 1.8s linear forwards;
-    }
-    .progress .progress-value{
-        width: 90%;
-        height: 90%;
-        border-radius: 50%;
-        background: #44484b;
-        font-size: 24px;
-        color: #fff;
-        line-height: 135px;
-        text-align: center;
-        position: absolute;
-        top: 5%;
-        left: 5%;
-    }
-    .progress.blue .progress-bar{
-        border-color: #049dff;
-    }
-    .progress.blue .progress-left .progress-bar{
-        animation: loading-2 1.5s linear forwards 1.8s;
-    }
-    .progress.yellow .progress-bar{
-        border-color: #fdba04;
-    }
-    .progress.yellow .progress-left .progress-bar{
-        animation: loading-3 1s linear forwards 1.8s;
-    }
-    .progress.pink .progress-bar{
-        border-color: #ed687c;
-    }
-    .progress.pink .progress-left .progress-bar{
-        animation: loading-4 0.4s linear forwards 1.8s;
-    }
-    .progress.green .progress-bar{
-        border-color: #1abc9c;
-    }
-    .progress.green .progress-left .progress-bar{
-        animation: loading-5 1.2s linear forwards 1.8s;
-    }
-    @keyframes loading-1{
-        0%{
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-        100%{
-            -webkit-transform: rotate(180deg);
-            transform: rotate(180deg);
-        }
-    }
-    @keyframes loading-2{
-        0%{
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-        100%{
-            -webkit-transform: rotate(144deg);
-            transform: rotate(144deg);
-        }
-    }
-    @keyframes loading-3{
-        0%{
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-        100%{
-            -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
-        }
-    }
-    @keyframes loading-4{
-        0%{
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-        100%{
-            -webkit-transform: rotate(36deg);
-            transform: rotate(36deg);
-        }
-    }
-    @keyframes loading-5{
-        0%{
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-        100%{
-            -webkit-transform: rotate(126deg);
-            transform: rotate(126deg);
-        }
-    }
-    @media only screen and (max-width: 990px){
-        .progress{ margin-bottom: 20px; }
-    }
-
 </style>
+
 @endsection
 
 @section('content')
@@ -180,7 +36,8 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-
+                    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+                    <div class="float-right"id="container"></div>
                 </div>
             </div>
         </div>
@@ -219,19 +76,26 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-3 col-sm-6">
-                                <div class="progress yellow">
-                                    <span class="progress-left">
-                                        <span class="progress-bar"></span>
-                                    </span>
-                                    <span class="progress-right">
-                                        <span class="progress-bar"></span>
-                                    </span>
-                                    <div class="progress-value">75%</div>
-                                </div>
-                            </div>
+                    <div class="card-body">
+                        <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
+                        <div class="progress mb-4">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -245,6 +109,45 @@
 @endsection
 
 @section('script')
+<script src="js/progressbar.js"></script>
+<script>
+// progressbar.js@1.0.0 version is used
+// Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
+
+    var bar = new ProgressBar.SemiCircle(container, {
+        strokeWidth: 6,
+        color: '#FFEA82',
+        trailColor: '#eee',
+        trailWidth: 1,
+        easing: 'easeInOut',
+        duration: 1400,
+        svgStyle: null,
+        text: {
+            value: '',
+            alignToBottom: false
+        },
+        from: {color: '#FF0000'},
+        to: {color: '##00FF00'},
+        // Set default step function for all animate calls
+        step: (state, bar) => {
+            bar.path.setAttribute('stroke', state.color);
+            var value = Math.round(bar.value() * 100);
+            if (value === 0) {
+                bar.setText('');
+            } else {
+                bar.setText(value);
+            }
+
+            bar.text.style.color = state.color;
+        }
+    });
+    bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+    bar.text.style.fontSize = '2rem';
+
+    bar.animate({{0.6}});  // Number from 0.0 to 1.0
+</script>
+
+
 <script>
 // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
