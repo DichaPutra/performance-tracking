@@ -19,9 +19,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Report</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-chalkboard-teacher"></i> Performance Report</h1>
     </div>
 
     <!-- Content Row -->
@@ -109,6 +107,8 @@
 @endsection
 
 @section('script')
+
+<!--Progressbar JS-->
 <script src="js/progressbar.js"></script>
 <script>
 // progressbar.js@1.0.0 version is used
@@ -131,11 +131,11 @@
         // Set default step function for all animate calls
         step: (state, bar) => {
             bar.path.setAttribute('stroke', state.color);
-            var value = Math.round(bar.value() * 100);
+            var value = Math.round(bar.value() * 100 );
             if (value === 0) {
                 bar.setText('');
             } else {
-                bar.setText(value);
+                bar.setText(value + ' %');
             }
 
             bar.text.style.color = state.color;
@@ -144,10 +144,10 @@
     bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
     bar.text.style.fontSize = '2rem';
 
-    bar.animate({{0.6}});  // Number from 0.0 to 1.0
+    bar.animate({{0.7564}});  // Number from 0.0 to 1.0
 </script>
 
-
+<!--Line Chart JS--> 
 <script>
 // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
