@@ -52,6 +52,8 @@ use AuthenticatesUsers;
                 return redirect()->route('admin.home');
             } elseif (auth()->user()->role == 'client') {
                 return redirect()->route('client.home');
+            } elseif (auth()->user()->role == 'personnel') {
+                return redirect()->route('personnel.home');
             }
         } else {
             return Redirect::back()->withErrors('These credentials do not match our records.');

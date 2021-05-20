@@ -19,9 +19,11 @@ class ChangePasswordController extends Controller {
 
     public function store(Request $request) {
 //        dd($request);
+        echo "$request->new_passwor";
+        echo "$request->new_confirm_password";
         $request->validate([
             'current_password' => ['required', new MatchOldPassword],
-            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+            'new_password' => ['required', 'string', 'between:8,255'],
             'new_confirm_password' => ['same:new_password'],
         ]);
 

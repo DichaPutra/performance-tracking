@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ClientGuard {
+class PersonnelGuard {
 
     /**
      * Handle an incoming request.
@@ -19,14 +19,14 @@ class ClientGuard {
         if (!Auth::check()) {
             return abort(401);
         }
-        if (Auth::user()->role == 'client') {
+        if (Auth::user()->role == 'personnel') {
             return $next($request);
         }
         if (Auth::user()->role == 'admin') {
             return redirect()->route('admin.home');
         }
-        if (Auth::user()->role == 'personnel') {
-            return redirect()->route('personnel.home');
+        if (Auth::user()->role == 'client') {
+            return redirect()->route('client.home');
         }
     }
 

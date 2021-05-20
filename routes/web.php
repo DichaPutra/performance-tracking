@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\adminHomeController;
 use App\Http\Controllers\client\clientHomeController;
+use App\Http\Controllers\personnel\personnelHomeController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Middleware\ClientGuard;
 use App\Http\Middleware\AdminGuard;
-use App\Http\Middleware\PersonilGuard;
+use App\Http\Middleware\PersonnelGuard;
 
 /*
   |--------------------------------------------------------------------------
@@ -51,27 +52,28 @@ Route::middleware([ClientGuard::class])->group(function () {
 
     // * Targets *
     Route::get('/client-target', function () {
-        return view('client.target.target'); //XXXX
+        return view('client.target.target'); 
     })->name('client.target');
 
     Route::get('/client-target-details', function () {
-        return view('client.target.details'); //XXXX
+        return view('client.target.details'); 
     })->name('client.target.details');
-
+    
+    // Target 2
     Route::get('/client-target-strategicobjective', function () {
-        return view('client.target.strategicobjective');
+        return view('client.target2.strategicobjective');
     })->name('client.target.strategicobjective');
 
     Route::get('/client-target-kpi', function () {
-        return view('client.target.kpi');
+        return view('client.target2.kpi');
     })->name('client.target.kpi');
 
     Route::get('/client-target-actionplan', function () {
-        return view('client.target.actionplan');
+        return view('client.target2.actionplan');
     })->name('client.target.actionplan');
 
     Route::get('/client-target-actionplandetail', function () {
-        return view('client.target.actionplandetail');
+        return view('client.target2.actionplandetail');
     })->name('client.personnel.actionplandetail');
 
     // ** KPI **
@@ -91,3 +93,7 @@ Route::middleware([ClientGuard::class])->group(function () {
 
 // == Admin Route ==
 Route::get('/admin-home', [adminHomeController::class, 'index'])->name('admin.home')->middleware('AdminGuard');
+
+// == Personil Route ==
+Route::get('/personnel-home', [personnelHomeController::class, 'index'])->name('personnel.home')->middleware('PersonnelGuard');
+

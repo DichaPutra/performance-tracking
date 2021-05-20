@@ -25,6 +25,9 @@ class AdminGuard {
         if (Auth::user()->role == 'client') {
             return redirect()->route('client.home');
         }
+        if (Auth::user()->role == 'personnel') {
+            return redirect()->route('personnel.home');
+        }
     }
 
 }

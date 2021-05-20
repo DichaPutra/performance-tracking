@@ -44,8 +44,8 @@
                 @include('layouts.sidebarAdmin')
                 @elseif (Auth::user()->role == 'client')
                 @include('layouts.sidebarClient')
-                @elseif (Auth::user()->role == 'personil')
-                @include('layouts.sidebarPersonil')
+                @elseif (Auth::user()->role == 'personnel')
+                @include('layouts.sidebarPersonnel')
                 @endif
 
             </ul>

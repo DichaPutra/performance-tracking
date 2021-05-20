@@ -26,7 +26,7 @@
         <span>Target</span></a>
 </li>
 
-<li class="nav-item @if($page=='target')active @endif">
+<li class="nav-item @if($page=='target2')active @endif">
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTarget" aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-chart-line"></i>
         <span>Target</span>
