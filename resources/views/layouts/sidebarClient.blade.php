@@ -1,13 +1,9 @@
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
-<!-- Nav Item - Dashboard -->
 
 <!-- Divider -->
 <hr class="sidebar-divider">
-<!-- Heading -->
-<!--<div class="sidebar-heading">
-    Main Function
-</div>-->
+
 
 <li class="nav-item @if($page=='clientHome')active @endif">
     <a class="nav-link" href="{{route('client.home')}}">
@@ -20,13 +16,16 @@
         <span>Personnel</span></a>
 </li>
 
+<!-- Divider -->
+<hr class="sidebar-divider">
+
 <li class="nav-item @if($page=='target')active @endif">
     <a class="nav-link" href="{{route('client.target')}}">
         <i class="fas fa-fw fa-bullseye"></i>
         <span>Target</span></a>
 </li>
 
-<li class="nav-item @if($page=='target2')active @endif">
+<!--<li class="nav-item @if($page=='target2')active @endif">
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTarget" aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-chart-line"></i>
         <span>Target</span>
@@ -42,41 +41,17 @@
     </div>
 </li>
 
-<!--<li class="nav-item @if($page=='okr')active @endif">
-    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseOKR" aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-chart-line"></i>
-        <span>OKR</span>
-    </a>
-    <div id="collapseOKR" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Set OKR:</h6>
-            <a class="collapse-item" href="#">Objective</a>
-            <a class="collapse-item" href="#">Key Result</a>
-        </div>
-    </div>
-</li>-->
-
-
-
-
-
 <li class="nav-item @if($page=='kpi')active @endif">
     <a class="nav-link" href="{{route('client.kpi')}}">
         <i class="fas fa-fw fa-chart-line"></i>
         <span>KPI (alt)</span>
     </a>
-</li>
-
-<!--<li class="nav-item @if($page=='kpi')active @endif">
-    <a class="nav-link" href="{{route('client.target')}}">
-        <i class="fas fa-fw fa-chart-line"></i>
-        <span>Target</span></a>
 </li>-->
 
 <li class="nav-item @if($page=='laporan')active @endif">
-    <a class="nav-link" href="{{route('client.report')}}">
+    <a class="nav-link" href="{{route('client.report.viewreport')}}">
         <i class="fas fa-fw fa-chalkboard-teacher"></i>
-        <span>Report</span></a>
+        <span>Performance Report</span></a>
 </li>
 
 <!-- Divider -->

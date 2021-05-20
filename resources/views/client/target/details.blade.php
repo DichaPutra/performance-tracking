@@ -209,11 +209,10 @@
                         <!-- ========== Tab 2 KPI ========== -->
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <br>
-                                                        <!-- Card Header - Dropdown -->
+                            <!-- Card Header - Dropdown -->
                             <div class="card-header">
                                 <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">KPI</h5>
                             </div><br>
-                                                        
                             <!--KPI per SO-->
                             <div id="accordion">
                                 <!--Card 1-->

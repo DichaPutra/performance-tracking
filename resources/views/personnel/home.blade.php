@@ -1,7 +1,7 @@
 @extends('layouts.app2')
 
 @section('head')
-<?php $page = 'adminHome'?>
+<?php $page = 'dashboard'?>
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    anda adalah admin
+                    anda adalah personnel
                     {{ __('You are logged in!') }}
                 </div>
             </div>

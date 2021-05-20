@@ -9,21 +9,21 @@
 </div>
 
 <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
 
 <!-- Nav Item - Charts -->
 <li class="nav-item">
-    <a class="nav-link" href="charts.html">
+    <a class="nav-link" href="">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Registrasi</span></a>
 </li>
 
 <!-- Nav Item - Charts -->
 <li class="nav-item">
-    <a class="nav-link" href="charts.html">
+    <a class="nav-link" href="">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>KPI Library</span></a>
 </li>
