@@ -48,8 +48,14 @@
     </a>
 </li>-->
 
-<li class="nav-item @if($page=='laporan')active @endif">
+<!--<li class="nav-item @if($page=='laporan')active @endif">
     <a class="nav-link" href="{{route('client.report.viewreport')}}">
+        <i class="fas fa-fw fa-chalkboard-teacher"></i>
+        <span>Performance Report</span></a>
+</li>-->
+
+<li class="nav-item @if($page=='performancereport')active @endif">
+    <a class="nav-link" href="{{route('client.performancereport')}}">
         <i class="fas fa-fw fa-chalkboard-teacher"></i>
         <span>Performance Report</span></a>
 </li>

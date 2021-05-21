@@ -52,13 +52,13 @@ Route::middleware([ClientGuard::class])->group(function () {
 
     // * Targets *
     Route::get('/client-target', function () {
-        return view('client.target.target'); 
+        return view('client.target.target');
     })->name('client.target');
 
     Route::get('/client-target-details', function () {
-        return view('client.target.details'); 
+        return view('client.target.details');
     })->name('client.target.details');
-    
+
     // Target 2
     Route::get('/client-target-strategicobjective', function () {
         return view('client.target2.strategicobjective');
@@ -89,6 +89,14 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::get('/client-report-viewreport', function () {
         return view('client.report.viewreport');
     })->name('client.report.viewreport');
+
+    // * Performance Report *
+    Route::get('/client-performancereport', function () {
+        return view('client.performancereport.performancereport');
+    })->name('client.performancereport');
+    Route::get('/client-performancereport-details', function () {
+        return view('client.performancereport.details');
+    })->name('client.performancereport.details');
 });
 
 // == Admin Route ==

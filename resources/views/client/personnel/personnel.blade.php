@@ -40,7 +40,7 @@
                                     <th>Level</th>
                                     <th>Position</th>
                                     <th>PIC Name</th>
-                                    <th>Action</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tfoot style="background-color: #F8F9FC;">
@@ -48,7 +48,7 @@
                                     <th>Level</th>
                                     <th>Position</th>
                                     <th>PIC Name</th>
-                                    <th>Action</th>
+                                    <th></th>
                                 </tr>
                             </tfoot>
                             <tbody>
