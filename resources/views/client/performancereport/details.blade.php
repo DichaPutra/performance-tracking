@@ -5,9 +5,9 @@
 
 <style>
     #container {
-        margin: 20px;
-        width: 200px;
-        height: 100px;
+        margin: 30px;
+        width: 250px;
+        height: 125px;
     }
 </style>
 
@@ -95,7 +95,6 @@
 
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary" style="text-align: center;"> </h6>
                                 <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Performance Report</h5>
                                 <!-- Button trigger modal -->
                                 <select class="form-control form-control-sm float-right" style="width: 20%;">
@@ -103,7 +102,7 @@
                                     <option>February</option>
                                     <option>March</option>
                                     <option>April</option>
-                                    <option>May</option>
+                                    <option selected="">May</option>
                                 </select>
                             </div>
 
@@ -111,9 +110,13 @@
                             <!-- Card Body -->
                             <div class="card-body">
 
+                                <div class="text-center"><b>Overall Performance</b> <br>May 2021</div>
                                 <!--Performance Chart--> 
-                                <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
-                                <div class="float-none" id="container"></div>
+                                <div class="d-flex justify-content-center">
+                                    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900" rel="stylesheet" type="text/css">
+                                    <div class="float-none" id="container"></div>
+                                </div><br>
+
 
                                 <!-- Content Row -->
                                 <div class="table-responsive">
@@ -123,6 +126,7 @@
                                                 <th style="width: 8%; text-align: center;">No</th>
                                                 <th style="width: 52%;">Strategic Objective</th>
                                                 <th style="width: 40%;">Performance</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -138,6 +142,7 @@
                                                         <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                 </td>
+                                                <td style="text-align:center;"><a href="{{route('client.performancereport.kpi')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                             </tr>
                                             <tr>
                                                 <td style="text-align: center;">2</td>
@@ -151,6 +156,7 @@
                                                         <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                 </td>
+                                                <td style="text-align:center;"><a href="{{route('client.performancereport.kpi')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                             </tr>
                                             <tr>
                                                 <td style="text-align: center;">3</td>
@@ -163,6 +169,7 @@
                                                         <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>    
                                                 </td>
+                                                <td style="text-align:center;"><a href="{{route('client.performancereport.kpi')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                             </tr>
                                             <tr>
                                                 <td style="text-align: center;">4</td>
@@ -175,6 +182,7 @@
                                                         <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>    
                                                 </td>
+                                                <td style="text-align:center;"><a href="{{route('client.performancereport.kpi')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                             </tr>
                                             <tr>
                                                 <td style="text-align: center;">5</td>
@@ -188,6 +196,7 @@
                                                         <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>    
                                                 </td>
+                                                <td style="text-align:center;"><a href="{{route('client.performancereport.kpi')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                             </tr>                           
                                         </tbody>
                                     </table>
@@ -241,36 +250,36 @@
 // progressbar.js@1.0.0 version is used
 // Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
 
-    var bar = new ProgressBar.SemiCircle(container, {
-    strokeWidth: 6,
-            color: '#FFEA82',
-            trailColor: '#eee',
-            trailWidth: 1,
-            easing: 'easeInOut',
-            duration: 1400,
-            svgStyle: null,
-            text: {
-            value: '',
-                    alignToBottom: false
-            },
-            from: {color: '#FF0000'},
-            to: {color: '##00FF00'},
-            // Set default step function for all animate calls
-            step: (state, bar) => {
-    bar.path.setAttribute('stroke', state.color);
-    var value = Math.round(bar.value() * 100);
-    if (value === 0) {
-    bar.setText('');
-    } else {
-    bar.setText(value + ' %');
-    }
+var bar = new ProgressBar.SemiCircle(container, {
+strokeWidth: 6,
+        color: '#FFEA82',
+        trailColor: '#eee',
+        trailWidth: 1,
+        easing: 'easeInOut',
+        duration: 1400,
+        svgStyle: null,
+        text: {
+        value: '',
+                alignToBottom: false
+        },
+        from: {color: '#FF0000'},
+        to: {color: '##00FF00'},
+        // Set default step function for all animate calls
+        step: (state, bar) => {
+bar.path.setAttribute('stroke', state.color);
+var value = Math.round(bar.value() * 100);
+if (value === 0) {
+bar.setText('');
+} else {
+bar.setText(value + ' %');
+}
 
-    bar.text.style.color = state.color;
-    }
-    });
-    bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-    bar.text.style.fontSize = '2rem';
-    bar.animate({{0.7564}}); // Number from 0.0 to 1.0
+bar.text.style.color = state.color;
+}
+});
+bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+bar.text.style.fontSize = '2rem';
+bar.animate({{0.7564}}); // Number from 0.0 to 1.0
 </script>
 
 <!--Line Chart JS--> 

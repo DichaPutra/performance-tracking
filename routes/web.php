@@ -97,6 +97,9 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::get('/client-performancereport-details', function () {
         return view('client.performancereport.details');
     })->name('client.performancereport.details');
+    Route::get('/client-performancereport-kpi', function () {
+        return view('client.performancereport.kpi');
+    })->name('client.performancereport.kpi');
 });
 
 // == Admin Route ==

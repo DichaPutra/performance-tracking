@@ -31,7 +31,7 @@
                         <option>February</option>
                         <option>March</option>
                         <option>April</option>
-                        <option>May</option>
+                        <option selected="">May</option>
                     </select>
                 </div>
                 <!-- Card Body -->
