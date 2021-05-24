@@ -41,16 +41,6 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tfoot style="background-color: #F8F9FC;">
-                                <tr>
-                                    <th>Level</th>
-                                    <th>Position</th>
-                                    <th>PIC Name</th>
-                                    <th>Strategic Objective</th>
-                                    <th>KPI</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
                             <tbody>
                                 <tr>
                                     <td style="background-color: #BDD7EE;">0. Corporate</td>
