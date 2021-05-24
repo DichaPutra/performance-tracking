@@ -50,7 +50,7 @@ Route::middleware([ClientGuard::class])->group(function () {
         return view('client.personnel.detailpersonnel', ['edit' => '1']);
     })->name('client.personnel.editpersonnel');
 
-    // * Targets *
+    // * Target * 
     Route::get('/client-target', function () {
         return view('client.target.target');
     })->name('client.target');
@@ -59,7 +59,7 @@ Route::middleware([ClientGuard::class])->group(function () {
         return view('client.target.details');
     })->name('client.target.details');
 
-    // Target 2
+    // Target 2 (x)
     Route::get('/client-target-strategicobjective', function () {
         return view('client.target2.strategicobjective');
     })->name('client.target.strategicobjective');
@@ -76,7 +76,7 @@ Route::middleware([ClientGuard::class])->group(function () {
         return view('client.target2.actionplandetail');
     })->name('client.personnel.actionplandetail');
 
-    // ** KPI **
+    // ** KPI ** (X)
     Route::get('/client-kpi', function () {
         return view('client.kpi.kpi');
     })->name('client.kpi');
@@ -85,7 +85,7 @@ Route::middleware([ClientGuard::class])->group(function () {
         return view('client.kpi.details');
     })->name('client.kpi.details');
 
-    // * Report *
+    // * Report * (X)
     Route::get('/client-report-viewreport', function () {
         return view('client.report.viewreport');
     })->name('client.report.viewreport');
@@ -100,6 +100,20 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::get('/client-performancereport-kpi', function () {
         return view('client.performancereport.kpi');
     })->name('client.performancereport.kpi');
+
+    // * Initiatives *
+    Route::get('/client-initiative-personnel', function () {
+        return view('client.initiative.personnel');
+    })->name('client.initiative.personnel');
+    Route::get('/client-initiative-kpi', function () {
+        return view('client.initiative.kpi');
+    })->name('client.initiative.kpi');
+    Route::get('/client-initiative-initiative', function () {
+        return view('client.initiative.initiative');
+    })->name('client.initiative.initiative');
+    Route::get('/client-initiative-actionplan', function () {
+        return view('client.initiative.actionplan');
+    })->name('client.initiative.actionplan');
 });
 
 // == Admin Route ==
