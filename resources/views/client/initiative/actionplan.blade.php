@@ -59,17 +59,80 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-md-right">KPI</label>
+                                <div class="col-md-6">
+                                    <textarea class="form-control" rows="4" readonly="">Cash Rasio - Kemampuan perusahaan dalam menyediakan uang tunai atau setara kas dibandingkan dengan tingkat kewajiban lancar (kurang dari setahun)</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-md-right">Initiative</label>
+                                <div class="col-md-6">
+                                    <textarea class="form-control" rows="4" readonly="">Initiatives description 1</textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!--Card 1-->
+            <!--Card 2-->
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Action Plan</h6>
+                    <button class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#modalAdd"><i class="fas fa-plus"></i></button>
                 </div>
+
+                <!-- Modal Add-->
+                <div class="modal fade bd-example-modal-lg" id="modalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add Strategic Objective </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- **** Form Add SO **** -->
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Business Categories :</label>
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>Accounting & Tax Services</option>
+                                        <option>Arts, Culture & Entertainment</option>
+                                        <option>Auto Sales & Service</option>
+                                        <option>Banking & Finance</option>
+                                        <option>Business Services</option>
+                                        <option>Community Organizations</option>
+                                        <option>Dentists & Orthodontists</option>
+                                        <option>Education</option>
+                                        <option>Health & Wellness</option>
+                                        <option>Health Care</option>
+                                        <option>Home Improvement</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect2">Strategic Objective :</label>
+                                    <select multiple class="form-control" id="exampleFormControlSelect2" size="10">
+                                        <option>Peningkatan Company Value</option>
+                                        <option>Optimalisasi Cash Flow</option>
+                                        <option>Efisiensi dan efektivitas biaya</option>
+                                        <option>Peningkatan Profit</option>
+                                        <option>Peningkatan Total Pendapatan</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="row">
@@ -78,28 +141,44 @@
                                 <tr>
                                     <th style="text-align: center;">No</th>
                                     <th>Action Plan</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td style="text-align: center;">1</td>
                                     <td>Return on Equity (ROE) - Tingkat pengembalian atas modal yang telah ditanamkan</td>
+                                    <td>
+                                        <a href="#" onclick="return confirm('Are you sure you want to delete this Action Plan ?');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;">2</td>
                                     <td>Return on Investment (ROI) - Tingkat pengembalian atas investasi yang telah ditanamkan</td>
+                                    <td>
+                                        <a href="#" onclick="return confirm('Are you sure you want to delete this Action Plan ?');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                                    </td>
                                 </tr> 
                                 <tr>
                                     <td style="text-align: center;">3</td>
                                     <td>Tingkat Kesehatan (Standar BUMN) - Kinerja berdasarkan atas sekumpulan indikator Keuangan,  Operasional dan Administratif sesuai standard yang ditentukan oleh BUMN. Indikator Keuangan  meliputi ROE, ROI, CASH RATIO, Current Ratio, Collection Periode, Perputaran Persediaan, Perputaran Total Asset, Rasio Modal Sendiri thd Total Aktiv Sedangkan indikator operasional adalah berkaitan dengan produktivitas tanaman, rendemen, % produk berkualitas tinggi serta penjualan langsung.</td>
+                                    <td>
+                                        <a href="#" onclick="return confirm('Are you sure you want to delete this Action Plan ?');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                                    </td>
                                 </tr> 
                                 <tr>
                                     <td style="text-align: center;">4</td>
                                     <td>Cash Rasio - Kemampuan perusahaan dalam menyediakan uang tunai atau setara kas dibandingkan dengan tingkat kewajiban lancar (kurang dari setahun)</td>
+                                    <td>
+                                        <a href="#" onclick="return confirm('Are you sure you want to delete this Action Plan ?');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                                    </td>
                                 </tr> 
                                 <tr>
                                     <td style="text-align: center;">5</td>
                                     <td>Current Ratio - Kemampuan perusahaan dalam menjaga aktiva lancar sehingga  kewajiban lancar (kurang dari setahun) selalu dapat terpenuhi </td>
+                                    <td>
+                                        <a href="#" onclick="return confirm('Are you sure you want to delete this Action Plan ?');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
