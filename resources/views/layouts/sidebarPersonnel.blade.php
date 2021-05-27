@@ -11,6 +11,21 @@
         <span>Dashboard</span></a>
 </li>
 
+<li class="nav-item @if($page=='performancereport')active @endif">
+    <a class="nav-link" href="{{route('personnel.performancereport')}}">
+        <i class="fas fa-fw fa-chalkboard-teacher"></i>
+        <span>Performance Report</span></a>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block">
+
+<li class="nav-item @if($page=='initiative')active @endif">
+    <a class="nav-link" href="{{route('personnel.initiative.personnel')}}">
+        <i class="fas fa-fw fa-lightbulb"></i>
+        <span>Initiative</span></a>
+</li>
+
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
 

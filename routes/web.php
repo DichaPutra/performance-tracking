@@ -29,6 +29,9 @@ Auth::routes();
 Route::get('/change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
+// == Admin Route ==
+Route::get('/admin-home', [adminHomeController::class, 'index'])->name('admin.home')->middleware('AdminGuard');
+
 // == Client Route ==
 Route::middleware([ClientGuard::class])->group(function () {
     // * Home *
@@ -116,9 +119,33 @@ Route::middleware([ClientGuard::class])->group(function () {
     })->name('client.initiative.actionplan');
 });
 
-// == Admin Route ==
-Route::get('/admin-home', [adminHomeController::class, 'index'])->name('admin.home')->middleware('AdminGuard');
+// == Personnel Route ==
+Route::middleware([PersonnelGuard::class])->group(function () {
+    Route::get('/personnel-home', [personnelHomeController::class, 'index'])->name('personnel.home')->middleware('PersonnelGuard');
 
-// == Personil Route ==
-Route::get('/personnel-home', [personnelHomeController::class, 'index'])->name('personnel.home')->middleware('PersonnelGuard');
+    // * Performance Report *
+    Route::get('/personnel-performancereport', function () {
+        return view('personnel.performancereport.performancereport');
+    })->name('personnel.performancereport');
+    Route::get('/personnel-performancereport-details', function () {
+        return view('personnel.performancereport.details');
+    })->name('personnel.performancereport.details');
+    Route::get('/personnel-performancereport-kpi', function () {
+        return view('personnel.performancereport.kpi');
+    })->name('personnel.performancereport.kpi');
+
+    // * Initiatives *
+    Route::get('/personnel-initiative-personnel', function () {
+        return view('personnel.initiative.personnel');
+    })->name('personnel.initiative.personnel');
+    Route::get('/personnel-initiative-kpi', function () {
+        return view('personnel.initiative.kpi');
+    })->name('personnel.initiative.kpi');
+    Route::get('/personnel-initiative-initiative', function () {
+        return view('personnel.initiative.initiative');
+    })->name('personnel.initiative.initiative');
+    Route::get('/personnel-initiative-actionplan', function () {
+        return view('personnel.initiative.actionplan');
+    })->name('personnel.initiative.actionplan');
+});
 
