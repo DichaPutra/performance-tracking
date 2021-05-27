@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <!--Card 1-->
+            <!--Card 2-->
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
                 <div
@@ -115,6 +115,15 @@
                         </table>
 
                     </div>
+                </div>
+            </div>
+
+            <!--Card 3-->
+            <div class="card shadow mb-4 animated--grow-in">
+                <!-- Card Header - Dropdown -->
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Chat</h6>
                 </div>
             </div>
 
