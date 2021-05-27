@@ -58,17 +58,6 @@
                             </tfoot>
                             <tbody>
                                 <tr>
-                                    <td style="background-color: #BDD7EE;">0. Corporate</td>
-                                    <td>Corporate</td>
-                                    <td>Tiger Nixon</td>
-                                    <td style="text-align:center;">
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">90%</div>
-                                        </div>
-                                    </td>
-                                    <td style="text-align:center;"><a href="{{route('personnel.performancereport.details')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
                                     <td style="background-color: #FEE599;">1. Division</td>
                                     <td>Finance</td>
                                     <td>Garrett Winters</td>
@@ -78,40 +67,7 @@
                                         </div>
                                     </td>
                                     <td style="text-align:center;"><a href="{{route('personnel.performancereport.details')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td style="background-color: #FEE599;">1. Division</td>
-                                    <td>Production</td>
-                                    <td>Jena Gaines</td>
-                                    <td style="text-align:center;">
-                                        <div class="progress">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">40%</div>
-                                        </div>
-                                    </td>
-                                    <td style="text-align:center;"><a href="{{route('personnel.performancereport.details')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td style="background-color: #FEE599;">1. Division</td>
-                                    <td>Marketing</td>
-                                    <td>Haley Kennedy</td>
-                                    <td style="text-align:center;">
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">90%</div>
-                                        </div>
-                                    </td>
-                                    <td style="text-align:center;"><a href="{{route('personnel.performancereport.details')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td style="background-color: #FEE599;">1. Division</td>
-                                    <td>Inventory</td>
-                                    <td>Michael Silva</td>
-                                    <td style="text-align:center;">
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">90%</div>
-                                        </div>
-                                    </td>
-                                    <td style="text-align:center;"><a href="{{route('personnel.performancereport.details')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>                              
+                                </tr>                            
                             </tbody>
                         </table>
                     </div>

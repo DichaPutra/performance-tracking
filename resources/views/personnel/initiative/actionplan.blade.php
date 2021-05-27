@@ -211,7 +211,7 @@
                                 <div class="text-justify">
                                     <div class="well">
                                         <br>
-                                        <h4>What is on your mind?</h4>
+                                        <!--<h4>What is on your mind?</h4>-->
                                         <textarea class="form-control" rows="2"></textarea>
                                         <a href="#" class="btn btn-primary btn-sm float-right" style="margin-top: 10px">Submit</a>
 

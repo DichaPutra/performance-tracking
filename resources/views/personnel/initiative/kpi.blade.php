@@ -85,31 +85,31 @@
                                     <td style="text-align: center;">1</td>
                                     <td>Return on Equity (ROE) - Tingkat pengembalian atas modal yang telah ditanamkan</td>
                                     <td style="text-align: center;">5</td>
-                                    <td><a href="{{route('client.initiative.initiative')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('personnel.initiative.initiative')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 <tr>
                                     <td style="text-align: center;">2</td>
                                     <td>Return on Investment (ROI) - Tingkat pengembalian atas investasi yang telah ditanamkan</td>
                                     <td style="text-align: center;">3</td>
-                                    <td><a href="{{route('client.initiative.initiative')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('personnel.initiative.initiative')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr> 
                                 <tr>
                                     <td style="text-align: center;">3</td>
                                     <td>Tingkat Kesehatan (Standar BUMN) - Kinerja berdasarkan atas sekumpulan indikator Keuangan,  Operasional dan Administratif sesuai standard yang ditentukan oleh BUMN. Indikator Keuangan  meliputi ROE, ROI, CASH RATIO, Current Ratio, Collection Periode, Perputaran Persediaan, Perputaran Total Asset, Rasio Modal Sendiri thd Total Aktiv Sedangkan indikator operasional adalah berkaitan dengan produktivitas tanaman, rendemen, % produk berkualitas tinggi serta penjualan langsung.</td>
                                     <td style="text-align: center;">2</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('personnel.initiative.initiative')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr> 
                                 <tr>
                                     <td style="text-align: center;">4</td>
                                     <td>Cash Rasio - Kemampuan perusahaan dalam menyediakan uang tunai atau setara kas dibandingkan dengan tingkat kewajiban lancar (kurang dari setahun)</td>
                                     <td style="text-align: center;">5</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('personnel.initiative.initiative')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr> 
                                 <tr>
                                     <td style="text-align: center;">5</td>
                                     <td>Current Ratio - Kemampuan perusahaan dalam menjaga aktiva lancar sehingga  kewajiban lancar (kurang dari setahun) selalu dapat terpenuhi </td>
                                     <td style="text-align: center;">3</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td><a href="{{route('personnel.initiative.initiative')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                             </tbody>
                         </table>
