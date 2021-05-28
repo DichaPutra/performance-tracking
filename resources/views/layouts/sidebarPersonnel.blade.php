@@ -11,6 +11,12 @@
         <span>Dashboard</span></a>
 </li>
 
+<li class="nav-item @if($page=='target')active @endif">
+    <a class="nav-link" href="{{route('personnel.capaian')}}">
+        <i class="fas fa-fw fa-chart-line"></i>
+        <span>Capaian</span></a>
+</li>
+
 <li class="nav-item @if($page=='performancereport')active @endif">
     <a class="nav-link" href="{{route('personnel.performancereport')}}">
         <i class="fas fa-fw fa-chalkboard-teacher"></i>

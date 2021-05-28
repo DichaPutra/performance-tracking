@@ -36,6 +36,7 @@ Route::get('/admin-home', [adminHomeController::class, 'index'])->name('admin.ho
 Route::middleware([ClientGuard::class])->group(function () {
     // * Home *
     Route::get('/client-home', [clientHomeController::class, 'index'])->name('client.home');
+
     // * Personnel *
     Route::get('/client-personnel', function () {
         return view('client.personnel.personnel');
@@ -122,6 +123,11 @@ Route::middleware([ClientGuard::class])->group(function () {
 // == Personnel Route ==
 Route::middleware([PersonnelGuard::class])->group(function () {
     Route::get('/personnel-home', [personnelHomeController::class, 'index'])->name('personnel.home')->middleware('PersonnelGuard');
+
+    // * Capaian *
+    Route::get('/personnel-capaian', function () {
+        return view('personnel.capaian.capaian');
+    })->name('personnel.capaian');
 
     // * Performance Report *
     Route::get('/personnel-performancereport', function () {
