@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\adminHomeController;
 use App\Http\Controllers\client\clientHomeController;
 use App\Http\Controllers\personnel\personnelHomeController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\client\personnelController;
 use App\Http\Middleware\ClientGuard;
 use App\Http\Middleware\AdminGuard;
 use App\Http\Middleware\PersonnelGuard;
@@ -25,36 +26,28 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-// == General Function ==
+// == GENERAL FUNCTION ==
 Route::get('/change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
-// == Admin Route ==
+// == ADMIN ROUTE ==
 Route::get('/admin-home', [adminHomeController::class, 'index'])->name('admin.home')->middleware('AdminGuard');
 
-// == Client Route ==
+// == CLIENT ROUTE ==
 Route::middleware([ClientGuard::class])->group(function () {
     // * Home *
     Route::get('/client-home', [clientHomeController::class, 'index'])->name('client.home');
 
-    // * Personnel *
-    Route::get('/client-personnel', function () {
-        return view('client.personnel.personnel');
-    })->name('client.personnel');
+    // ** Personnel **
+    //->page
+    Route::get('/client-personnel', [personnelController::class, 'index'])->name('client.personnel');
+    Route::get('/client-personnel-addpersonnel', [personnelController::class, 'addpersonnel'])->name('client.personnel.addpersonnel');
+    Route::get('/client-personnel-detailpersonnel', [personnelController::class, 'detailpersonnel'])->name('client.personnel.detailpersonnel');
+    Route::get('/client-personnel-editpersonnel', [personnelController::class, 'editpersonnel'])->name('client.personnel.editpersonnel');
+    //->logic
+    Route::post('/client-personnel-addpersonnel', [personnelController::class, 'store'])->name('client.personnel.store');
 
-    Route::get('/client-personnel-addpersonnel', function () {
-        return view('client.personnel.addpersonnel');
-    })->name('client.personnel.addpersonnel');
-
-    Route::get('/client-personnel-detailpersonnel', function () {
-        return view('client.personnel.detailpersonnel', ['edit' => '0']);
-    })->name('client.personnel.detailpersonnel');
-
-    Route::get('/client-personnel-editpersonnel', function () {
-        return view('client.personnel.detailpersonnel', ['edit' => '1']);
-    })->name('client.personnel.editpersonnel');
-
-    // * Target * 
+    // ** Target ** 
     Route::get('/client-target', function () {
         return view('client.target.target');
     })->name('client.target');
@@ -120,7 +113,7 @@ Route::middleware([ClientGuard::class])->group(function () {
     })->name('client.initiative.actionplan');
 });
 
-// == Personnel Route ==
+// == PERSONNEL ROUTE ==
 Route::middleware([PersonnelGuard::class])->group(function () {
     Route::get('/personnel-home', [personnelHomeController::class, 'index'])->name('personnel.home')->middleware('PersonnelGuard');
 

@@ -59,16 +59,34 @@
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
-                        </div>
+                        </div> 
+
+                        <!--Line HR-->
+                        <hr>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Company Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control @error('company_name') is-invalid @enderror" name="company_name" required>
+                            </div>
+                        </div> 
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Company Address') }}</label>
+                            <div class="col-md-6">
+                                <textarea class="form-control @error('company_address') is-invalid @enderror" rows="4" name="company_address"></textarea>
+                            </div>
+                        </div> 
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
-<!--                                <a class="btn btn-link" href="{{ route('login') }}">
-                                    {{ __('Already have an account? Sign in') }}
-                                </a>-->
+                                <!--                                <a class="btn btn-link" href="{{ route('login') }}">
+                                                                    {{ __('Already have an account? Sign in') }}
+                                                                </a>-->
                             </div>
                         </div>
                     </form>

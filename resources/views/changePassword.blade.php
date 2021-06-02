@@ -36,14 +36,19 @@
                             {{ session('success') }}
                         </div>
                         @endif
-                        @foreach ($errors->all() as $error)
+
+                        @if($errors->all() != NULL)
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
-                            {{ $error }}
+                            </button><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach 
+                            </ul>
                         </div>
-                        @endforeach 
+                        @endif
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Current Password</label>

@@ -28,82 +28,98 @@
         </div>
         <!-- Card Body -->
         <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group row">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
-                        <div class="col-md-6">
-                            <input id="name" type="text" class="form-control " name="name" value="" required="" autocomplete="name" autofocus="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control " name="email" value="" required="" autocomplete="email">
-                        </div>
-                    </div>
+            @if($errors->all() != NULL)
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach 
+                </ul>
+            </div>
+            @endif
 
-                    <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                        <div class="col-md-6">
-                            <input id="password" type="password" class="form-control " name="password" required="" autocomplete="new-password">
+            <form method="POST" action="{{route('client.personnel.store')}}" >
+                <div class="row">
+                    @csrf
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control " name="name" value="" required="" autocomplete="name" autofocus="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control " name="email" value="" required="" autocomplete="email">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control " name="password" required="" autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="" autocomplete="new-password">
+                            </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
 
-                    <div class="form-group row">
-                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
-                        <div class="col-md-6">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="" autocomplete="new-password">
+                        <div class="form-group row">
+                            <label for="level" class="col-md-4 col-form-label text-md-right">Level</label>
+                            <div class="col-md-6">
+                                <select name="level" class="form-select form-control" aria-label="Default select example">
+                                    <option value="0">0. Corporate</option>
+                                    <option value="1">1. Division</option>
+                                    <option value="2">2. Department</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
+                            <div class="col-md-6">
+                                <input name="position"type="text" class="form-control" list="pos">
+                                <datalist id="pos">
+                                    <option value="Corporate">
+                                    <option value="Finance">
+                                    <option value="Production">
+                                    <option value="Marketing">
+                                    <option value="Purchasing">
+                                    <option value="Inventory">
+                                </datalist>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Company Name</label>
+                            <div class="col-md-6">
+                                <input name="company_name"type="text" class="form-control" value="{{Auth::user()->company_name}}" readonly="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Company  Address</label>
+                            <div class="col-md-6">
+                                <textarea name="company_address"class="form-control" rows="4" readonly="">{{Auth::user()->company_address}}</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-
-                    <div class="form-group row">
-                        <label for="level" class="col-md-4 col-form-label text-md-right">Level</label>
-                        <div class="col-md-6">
-                            <select class="form-select form-control" aria-label="Default select example">
-                                <option value="0">0. Corporate</option>
-                                <option value="1">1. Division</option>
-                                <option value="2">2. Department</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" list="pos">
-                            <datalist id="pos">
-                                <option value="Corporate">
-                                <option value="Finance">
-                                <option value="Production">
-                                <option value="Marketing">
-                                <option value="Purchasing">
-                                <option value="Inventory">
-                            </datalist>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">Company Name</label>
-                        <div class="col-md-6">
-                            <input name="companyname"type="text" class="form-control" value="PT Bintang Jaya Abadi" readonly="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">Company  Address</label>
-                        <div class="col-md-6">
-                            <textarea class="form-control" rows="4" readonly="">Jl. Pati Unus No.33, RT.7/RW.8, Kuningan, Gunung, Kec. Kby. Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12120</textarea>
-                        </div>
-                    </div>
+                <hr>
+                <div class="float-right">
+                    <a href="{{ URL::previous() }}"><button type="button" class="btn btn-secondary">Cancel</button></a>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
-            </div>
-            <hr>
-            <div class="float-right">
-                <a href="{{ URL::previous() }}"><button type="button" class="btn btn-secondary">Cancel</button></a>
-                <button type="button" class="btn btn-primary">Save</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>

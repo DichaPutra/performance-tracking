@@ -25,8 +25,12 @@ class CreateUsersTable extends Migration
             $table->string('sub_plan')->nullable();
             $table->time('expire_at')->nullable();
             $table->boolean('is_active')->nullable();
-            $table->string('nama_perusahaan')->nullable();
-            $table->string('alamat_perusahaan')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('company_address')->nullable();
+            $table->bigInteger('client_parent')->nullable();
+            $table->string('level')->nullable();
+            $table->string('position')->nullable();
+            
         });
     }
 
