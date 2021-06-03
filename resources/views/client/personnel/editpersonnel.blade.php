@@ -30,11 +30,8 @@ function levelName($level) {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page"> Personnel</li>
-            @if($edit == 1)
             <li class="breadcrumb-item active" aria-current="page"> Edit</li>
-            @else
-            <li class="breadcrumb-item active" aria-current="page"> Details</li>
-            @endif
+
         </ol>
     </nav><br>
 
@@ -48,47 +45,23 @@ function levelName($level) {
         <!-- Card Header - Dropdown -->
         <div
             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-
-            @if($edit == 0)
-            <h6 class="m-0 font-weight-bold text-primary">Details</h6>
-            <div class="float-right">
-                <a href="{{route('client.personnel.editpersonnel', ['idpersonnel'=>$data->id])}}"><button class="btn btn-sm btn-primary">Edit</button></a>
-                <a href="#" onclick="return confirm('All personnel related data will be deleted, Are you sure you want to delete this personnel? ');" ><button class="btn btn-sm btn-danger">Delete</button></a>
-            </div>
-            @else
             <h6 class="m-0 font-weight-bold text-primary">Edit</h6>
-            @endif
+
         </div>
         <!-- Card Body -->
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    @if($edit == 0)
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                         <div class="col-md-6">
-                            <input id="name" type="text" class="form-control " name="name" value="{{$data->name}}" required="" autocomplete="name" autofocus="" disabled="">
+                            <input id="name" type="text" class="form-control " name="name" value="xxxxxxx" required="" autocomplete="name" autofocus="">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control " name="email" value="{{$data->email}}" required="" autocomplete="email" disabled="">
-                        </div>
-                    </div>
-                    @endif
-
-                    @if($edit == 1)
-                    <div class="form-group row">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
-                        <div class="col-md-6">
-                            <input id="name" type="text" class="form-control " name="name" value="{{$data->name}}" required="" autocomplete="name" autofocus="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control " name="email" value="{{$data->email}}" required="" autocomplete="email">
+                            <input id="email" type="email" class="form-control " name="email" value="xxxxxxx" required="" autocomplete="email">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -104,25 +77,20 @@ function levelName($level) {
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="" autocomplete="new-password">
                         </div>
                     </div>
-                    @endif
                 </div>
                 <div class="col-md-6">
 
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">Level</label>
                         <div class="col-md-6">
-                            <input name="companyname"type="text" class="form-control" value="{{levelName($data->level)}}" readonly="">
+                            <input name="companyname"type="text" class="form-control" value="xxxxx" readonly="">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
                         <div class="col-md-6">
-                            @if($edit==1)
-                            <input type="text" class="form-control" list="pos" value="{{$data->position}}">
-                            @else
-                            <input type="text" class="form-control" list="pos" value="{{$data->position}}" disabled="">
-                            @endif
+                            <input type="text" class="form-control" list="pos" value="xxxxxxx">
                             <datalist id="pos">
                                 <option value="Finance">
                                 <option value="Production">
@@ -136,28 +104,22 @@ function levelName($level) {
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">Company Name</label>
                         <div class="col-md-6">
-                            <input name="companyname"type="text" class="form-control" value="{{$data->company_name}}" readonly="">
+                            <input name="companyname"type="text" class="form-control" value="company_name" readonly="">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-md-4 col-form-label text-md-right">Company  Address</label>
                         <div class="col-md-6">
-                            <textarea class="form-control" rows="4" readonly="">{{$data->company_address}}</textarea>
+                            <textarea class="form-control" rows="4" readonly="">company_address</textarea>
                         </div>
                     </div>
                 </div>
             </div>
             <hr>
-            @if($edit == 1)
             <div class="float-right">
                 <a href="{{ URL::previous() }}"><button type="button" class="btn btn-secondary">Cancel</button></a>
                 <button type="button" class="btn btn-primary">Save</button>
             </div>
-            @else
-            <div class="float-right">
-                <a href="{{ route('client.personnel') }}"><button type="button" class="btn btn-secondary">Back</button></a>
-            </div>
-            @endif
         </div>
     </div>
 </div>

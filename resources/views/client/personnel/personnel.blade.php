@@ -5,6 +5,40 @@
 @endsection
 
 @section('content')
+
+<!-- PHP Part-->
+<?php
+
+function color($level) {
+    switch ($level) {
+        case 0:
+            return "#BDD7EE";
+            break;
+        case 1:
+            return "#FEE599";
+            break;
+        case 2:
+            return "#C5E0B3";
+            break;
+    }
+}
+
+function levelName($level) {
+    switch ($level) {
+        case 0:
+            return "0. Corporate";
+            break;
+        case 1:
+            return "1. Division";
+            break;
+        case 2:
+            return "2. Departement";
+            break;
+    }
+}
+?>
+<!--end of PHP part-->
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
@@ -31,7 +65,6 @@
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">List personnel</h6>
                 </div>
-
 
                 <!-- Card Body -->
                 <div class="card-body">
@@ -64,47 +97,23 @@
                                 </tr>
                             </tfoot>
                             <tbody>
+                                @foreach($user as $user)
                                 <tr>
-                                    <td style="background-color: #BDD7EE;">0. Corporate</td>
-                                    <td>Corporate</td>
-                                    <td>Tiger Nixon</td>
-                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td style="background-color: {{color($user->level)}};">{{levelName($user->level)}}</td>
+                                    <td>{{$user->position}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td><a href="{{route('client.personnel.detailpersonnel', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
-                                <tr>
-                                    <td style="background-color: #FEE599;">1. Division</td>
-                                    <td>Finance</td>
-                                    <td>Garrett Winters</td>
-                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td style="background-color: #FEE599;">1. Division</td>
-                                    <td>Production</td>
-                                    <td>Jena Gaines</td>
-                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td style="background-color: #FEE599;">1. Division</td>
-                                    <td>Marketing</td>
-                                    <td>Haley Kennedy</td>
-                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td style="background-color: #FEE599;">1. Division</td>
-                                    <td>Inventory</td>
-                                    <td>Michael Silva</td>
-                                    <td><a href="{{route('client.personnel.detailpersonnel')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>                              
+                                @endforeach                            
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
 </div>
-
 @endsection
 
 @section('script')

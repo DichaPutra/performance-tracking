@@ -12,19 +12,24 @@ use Illuminate\Support\Facades\Auth;
 class personnelController extends Controller {
 
     public function index() {
-        return view('client.personnel.personnel');
+        $user = User::all()->where('client_parent', Auth::user()->id);
+        return view('client.personnel.personnel', ['user' => $user]);
     }
 
     public function addpersonnel() {
         return view('client.personnel.addpersonnel');
     }
 
-    public function detailpersonnel() {
-        return view('client.personnel.detailpersonnel', ['edit' => '0']);
+    public function detailpersonnel(Request $request) {
+        $idpersonnel = $request->idpersonnel;
+        $data = User::where('id', $idpersonnel)->first();
+        return view('client.personnel.detailpersonnel', ['edit' => '0', 'data' => $data]);
     }
 
-    public function editpersonnel() {
-        return view('client.personnel.detailpersonnel', ['edit' => '1']);
+    public function editpersonnel(Request $request) {
+        $idpersonnel = $request->idpersonnel;
+        $data = User::where('id', $idpersonnel)->first();
+        return view('client.personnel.detailpersonnel', ['edit' => '1', 'data' => $data]);
     }
 
     public function store(Request $request) {
@@ -54,7 +59,7 @@ class personnelController extends Controller {
             'level' => $request->level,
             'position' => $request->position
         ]);
-        
+
         return redirect('client-personnel')->with('message', 'Success ! Your personnel has been added');
     }
 
