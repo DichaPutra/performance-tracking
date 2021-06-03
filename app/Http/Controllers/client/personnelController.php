@@ -5,9 +5,9 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class personnelController extends Controller {
 
@@ -61,6 +61,61 @@ class personnelController extends Controller {
         ]);
 
         return redirect('client-personnel')->with('message', 'Success ! Your personnel has been added');
+    }
+
+    public function update(Request $request) {
+        //get data prev
+        $dataprev = User::where('id', $request->id)->first();
+
+        //if email not change
+        if ($dataprev->email == $request->email) {
+            if ($request->password != NULL) {
+                $validator = Validator::make($request->all(), [
+                            'name' => ['required', 'string', 'max:255'],
+                            'password' => ['required', 'string', 'min:8', 'confirmed'],
+                            'position' => ['required', 'string']
+                ]);
+            } else {
+                $validator = Validator::make($request->all(), [
+                            'name' => ['required', 'string', 'max:255'],
+                            'position' => ['required', 'string']
+                ]);
+            }
+        } else {
+            if ($request->password != NULL) {
+                $validator = Validator::make($request->all(), [
+                            'name' => ['required', 'string', 'max:255'],
+                            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                            'password' => ['required', 'string', 'min:8', 'confirmed'],
+                            'position' => ['required', 'string']
+                ]);
+            } else {
+                $validator = Validator::make($request->all(), [
+                            'name' => ['required', 'string', 'max:255'],
+                            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                            'position' => ['required', 'string']
+                ]);
+            }
+        }
+
+        // Redirect Validator
+        if ($validator->fails()) {
+            return redirect()->back()
+                            ->withErrors($validator)
+                            ->withInput();
+        }
+
+        // Update Data
+        $user = User::where('id', $request->id)->first();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password != NULL) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->position = $request->position;
+        $user->save();
+
+        return redirect()->route('client.personnel.detailpersonnel',['idpersonnel'=>$request->id])->with('success', 'Success ! Personnel data has been updated ');
     }
 
 }

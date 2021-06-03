@@ -46,6 +46,7 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::get('/client-personnel-editpersonnel', [personnelController::class, 'editpersonnel'])->name('client.personnel.editpersonnel');
     //->logic
     Route::post('/client-personnel-addpersonnel', [personnelController::class, 'store'])->name('client.personnel.store');
+    Route::post('/client-personnel-updatepersonnel', [personnelController::class, 'update'])->name('client.personnel.update');
 
     // ** Target ** 
     Route::get('/client-target', function () {
