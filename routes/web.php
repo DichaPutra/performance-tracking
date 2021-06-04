@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// Controller
 use App\Http\Controllers\admin\adminHomeController;
 use App\Http\Controllers\client\clientHomeController;
 use App\Http\Controllers\personnel\personnelHomeController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\client\personnelController;
+use App\Http\Controllers\client\targetController;
+// Middleware
 use App\Http\Middleware\ClientGuard;
 use App\Http\Middleware\AdminGuard;
 use App\Http\Middleware\PersonnelGuard;
@@ -49,13 +52,9 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::post('/client-personnel-updatepersonnel', [personnelController::class, 'update'])->name('client.personnel.update');
 
     // ** Target ** 
-    Route::get('/client-target', function () {
-        return view('client.target.target');
-    })->name('client.target');
+    Route::get('/client-target', [targetController::class, 'index'])->name('client.target');
 
-    Route::get('/client-target-details', function () {
-        return view('client.target.details');
-    })->name('client.target.details');
+    Route::get('/client-target-details', [targetController::class, 'details'])->name('client.target.details');
 
     // Target 2 (x)
     Route::get('/client-target-strategicobjective', function () {
