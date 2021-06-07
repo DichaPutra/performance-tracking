@@ -53,7 +53,6 @@ Route::middleware([ClientGuard::class])->group(function () {
 
     // ** Target ** 
     Route::get('/client-target', [targetController::class, 'index'])->name('client.target');
-
     Route::get('/client-target-details', [targetController::class, 'details'])->name('client.target.details');
 
     // Target 2 (x)

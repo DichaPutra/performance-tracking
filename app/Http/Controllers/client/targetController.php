@@ -17,7 +17,12 @@ class targetController extends Controller {
 
     public function details(Request $request) {
         $data = User::where('id', $request->idpersonnel)->first();
-//        dd($data);
+
+        // guard (jika )
+        if ($data->client_parent != Auth::user()->id) {
+            return abort(403);
+        }
+
         return view('client.target.details', ['data' => $data]);
     }
 
