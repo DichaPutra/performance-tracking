@@ -25,8 +25,7 @@
         <!-- Custom styles for this template-->
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
         @yield('head')
-        @LivewireStyles
-
+        @livewireStyles
     </head>
     <body id="page-top">
         <!-- Page Wrapper -->
@@ -175,7 +174,7 @@ if ($(window).width() > 514) {
         </script>
 
         @yield('script')
-        @LivewireScripts
+        @livewireScripts
 
     </body>
 </html>

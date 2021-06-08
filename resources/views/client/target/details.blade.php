@@ -101,7 +101,10 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- **** Form Add SO **** -->
-                                                <div class="form-group">
+                                                @livewire('target')
+
+
+<!--                                                <div class="form-group">
                                                     <label for="exampleFormControlSelect1">Business Categories :</label>
                                                     <select class="form-control" id="exampleFormControlSelect1">
                                                         <option>Accounting & Tax Services</option>
@@ -141,7 +144,7 @@
                                                         <option>Peningkatan Profit</option>
                                                         <option>Peningkatan Total Pendapatan</option>
                                                     </select>
-                                                </div>
+                                                </div>-->
 
                                             </div>
                                             <div class="modal-footer">
