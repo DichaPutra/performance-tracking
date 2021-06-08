@@ -16,7 +16,7 @@
     <div>
         <div class="form-group">
             <label for="exampleFormControlSelect1">Strategic Objective :</label>
-            <select name="Category" wire:model="selectedSo" class="form-control" size="10">
+            <select name="Category" wire:model="selectedCategory"class="form-control" size="10">
                 @foreach($so as $so)
                 <option value='{{ $so->id }}'>{{ $so->so }}</option>
                 @endforeach
