@@ -26,4 +26,16 @@ class targetController extends Controller {
         return view('client.target.details', ['data' => $data]);
     }
 
+    public function addSo(Request $request) {
+        //dd($request);
+        if ($request->so_custom == null) {
+            list($idcategory, $category) = explode('-', $request->category);
+            list($idso, $so) = explode('-', $request->SO);
+            echo "id : $idcategory | cat: $category <br>";
+            echo "idso : $idso | so : $so";
+        } else {
+            echo $request->so_custom;
+        }
+    }
+
 }

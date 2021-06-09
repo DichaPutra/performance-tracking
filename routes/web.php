@@ -42,32 +42,32 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::get('/client-home', [clientHomeController::class, 'index'])->name('client.home');
 
     // ** Personnel **
-    //->page
+    // -> page
     Route::get('/client-personnel', [personnelController::class, 'index'])->name('client.personnel');
     Route::get('/client-personnel-addpersonnel', [personnelController::class, 'addpersonnel'])->name('client.personnel.addpersonnel');
     Route::get('/client-personnel-detailpersonnel', [personnelController::class, 'detailpersonnel'])->name('client.personnel.detailpersonnel');
     Route::get('/client-personnel-editpersonnel', [personnelController::class, 'editpersonnel'])->name('client.personnel.editpersonnel');
-    //->logic
+    // -> logic
     Route::post('/client-personnel-addpersonnel', [personnelController::class, 'store'])->name('client.personnel.store');
     Route::post('/client-personnel-updatepersonnel', [personnelController::class, 'update'])->name('client.personnel.update');
 
     // ** Target ** 
+    // -> page
     Route::get('/client-target', [targetController::class, 'index'])->name('client.target');
     Route::get('/client-target-details', [targetController::class, 'details'])->name('client.target.details');
+    // -> logic
+    Route::post('/client-target-addso',[targetController::class, 'addSo'])->name('client.target.addso');
 
     // Target 2 (x)
     Route::get('/client-target-strategicobjective', function () {
         return view('client.target2.strategicobjective');
     })->name('client.target.strategicobjective');
-
     Route::get('/client-target-kpi', function () {
         return view('client.target2.kpi');
     })->name('client.target.kpi');
-
     Route::get('/client-target-actionplan', function () {
         return view('client.target2.actionplan');
     })->name('client.target.actionplan');
-
     Route::get('/client-target-actionplandetail', function () {
         return view('client.target2.actionplandetail');
     })->name('client.personnel.actionplandetail');
@@ -76,7 +76,6 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::get('/client-kpi', function () {
         return view('client.kpi.kpi');
     })->name('client.kpi');
-
     Route::get('/client-kpi-details', function () {
         return view('client.kpi.details');
     })->name('client.kpi.details');
@@ -86,7 +85,7 @@ Route::middleware([ClientGuard::class])->group(function () {
         return view('client.report.viewreport');
     })->name('client.report.viewreport');
 
-    // * Performance Report *
+    // ** Performance Report **
     Route::get('/client-performancereport', function () {
         return view('client.performancereport.performancereport');
     })->name('client.performancereport');
@@ -97,7 +96,7 @@ Route::middleware([ClientGuard::class])->group(function () {
         return view('client.performancereport.kpi');
     })->name('client.performancereport.kpi');
 
-    // * Initiatives *
+    // ** Initiatives **
     Route::get('/client-initiative-personnel', function () {
         return view('client.initiative.personnel');
     })->name('client.initiative.personnel');
