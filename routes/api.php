@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\client\targetApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/getCountSO/{id}', [targetApiController::class , 'getCountSO']);
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

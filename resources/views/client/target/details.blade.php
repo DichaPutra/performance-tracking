@@ -156,7 +156,7 @@
                                 </div>
 
                                 <!-- Content Row -->
-                                <div class="table-responsive">
+<!--                                <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead style="background-color: #F8F9FC;">
                                             <tr>
@@ -199,7 +199,7 @@
                                             </tr>                           
                                         </tbody>
                                     </table>
-                                </div>
+                                </div>-->
                             </div>
 
 
@@ -339,128 +339,7 @@
                                     </div>
                                 </div>
 
-                                <!--Card 3-->
-                                <div class="card">
-                                    <!--Accordion head-->
-                                    <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" style="background-color: #FEE599">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                <b>Objective :</b> Efisiensi dan efektivitas biaya
-                                            </button>
-                                            <button class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i></button>
-                                        </h5>
-                                    </div>
-                                    <!--Content Collabse--> 
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                    <thead style="background-color: #F8F9FC;">
-                                                        <tr>
-                                                            <th style="text-align: center;">No</th>
-                                                            <th>KPI</th>
-                                                            <th>Unit of Measurement</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td style="text-align: center;">1</td>
-                                                            <td>% Pertumbuhan Biaya - Pertumbuhan biaya antar periode mencerminkan apakah perusahaan semakin efisien atau tidak. Selama pertumbuhan biaya masih lebih kecil dibandingkan dengan pertumbuhan revenue maka dapat dikatakan perusahaan dapat mengelola kinerja secara lebih efisien.</td>
-                                                            <td style="text-align: center;">%</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: center;">2</td>
-                                                            <td>Net Margin - Kemampuan perusahaan dalam mengelola biaya akan berdampak kepada net margin yang semakin tinggi</td>
-                                                            <td style="text-align: center;">%</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <!--Card 4-->
-                                <div class="card">
-                                    <!--Accordion head-->
-                                    <div class="card-header" id="heading4" data-toggle="collapse" data-target="#collapse4" style="background-color: #FEE599">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                                <b>Objective :</b> Peningkatan Profit
-                                            </button>
-                                            <button class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i></button>
-                                        </h5>
-                                    </div>
-                                    <!--Content Collabse--> 
-                                    <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                    <thead style="background-color: #F8F9FC;">
-                                                        <tr>
-                                                            <th style="text-align: center;">No</th>
-                                                            <th>KPI</th>
-                                                            <th>Unit of Measurement</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td style="text-align: center;">1</td>
-                                                            <td>% Pertumbuhan Biaya - Pertumbuhan biaya antar periode mencerminkan apakah perusahaan semakin efisien atau tidak. Selama pertumbuhan biaya masih lebih kecil dibandingkan dengan pertumbuhan revenue maka dapat dikatakan perusahaan dapat mengelola kinerja secara lebih efisien.</td>
-                                                            <td style="text-align: center;">%</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: center;">2</td>
-                                                            <td>Net Margin - Kemampuan perusahaan dalam mengelola biaya akan berdampak kepada net margin yang semakin tinggi</td>
-                                                            <td style="text-align: center;">%</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!--Card 5-->
-                                <div class="card">
-                                    <!--Accordion head-->
-                                    <div class="card-header" id="heading5" data-toggle="collapse" data-target="#collapse5" style="background-color: #FEE599">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                                                <b>Objective :</b> Peningkatan Total Pendapatan
-                                            </button>
-                                            <button class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i></button>
-                                        </h5>
-                                    </div>
-                                    <!--Content Collabse--> 
-                                    <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                    <thead style="background-color: #F8F9FC;">
-                                                        <tr>
-                                                            <th style="text-align: center;">No</th>
-                                                            <th>KPI</th>
-                                                            <th>Unit of Measurement</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td style="text-align: center;">1</td>
-                                                            <td>% Pertumbuhan Biaya - Pertumbuhan biaya antar periode mencerminkan apakah perusahaan semakin efisien atau tidak. Selama pertumbuhan biaya masih lebih kecil dibandingkan dengan pertumbuhan revenue maka dapat dikatakan perusahaan dapat mengelola kinerja secara lebih efisien.</td>
-                                                            <td style="text-align: center;">%</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="text-align: center;">2</td>
-                                                            <td>Net Margin - Kemampuan perusahaan dalam mengelola biaya akan berdampak kepada net margin yang semakin tinggi</td>
-                                                            <td style="text-align: center;">%</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
                             </div>
                         </div>
