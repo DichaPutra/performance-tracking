@@ -57,7 +57,7 @@
                             <div class="form-group row">
                                 <label for="position" class="col-md-4 col-form-label text-md-right">Number of SO</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" list="pos" value="5" disabled="">
+                                    <input type="text" class="form-control" list="pos" value="{{getCountSO($data->id)}}" disabled="">
                                 </div>
                             </div>
                             <div class="form-group row">

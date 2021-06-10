@@ -1,6 +1,8 @@
 <!-- PHP Part-->
 <?php
 
+use App\Models\target_so;
+
 // Color Function For Level and Name
 function color($level) {
     switch ($level) {
@@ -29,5 +31,15 @@ function levelName($level) {
             break;
     }
 }
+
+function getCountSO($id_user) {
+    $count = target_so::where('id_user', $id_user)->count();
+    return $count;
+}
+
+function getCountKPI($id_user) {
+
+}
 ?>
+
 <!--end of PHP part-->

@@ -13,6 +13,8 @@ class targetController extends Controller {
     public function index() {// ** Memunculkan semua list personnel  
         // Homepage Target
         $user = User::all()->where('client_parent', Auth::user()->id);
+        
+        //$user = User::select(DB::raw('count(*) as so_count, status'))->where('client_parent', Auth::user()->id);
         return view('client.target.target', ['user' => $user]);
     }
 
