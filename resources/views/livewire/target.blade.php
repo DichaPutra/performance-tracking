@@ -5,8 +5,8 @@
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Business Categories :</label>
                 <select name="category" wire:model="selectedCategory" class="form-control" required="">
-                    @if (is_null($selectedCategory))<option value=''>Choose a categories</option>@endif
-                    @foreach($categories as $bc)
+                    <option value=''>Choose a categories</option>
+                    @foreach($category as $bc)
                     <option value='{{ $bc->id }}-{{ $bc->category }}'>{{ $bc->category }}</option>
                     @endforeach
                 </select>

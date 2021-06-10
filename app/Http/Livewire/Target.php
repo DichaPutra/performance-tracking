@@ -8,14 +8,13 @@ use Livewire\Component;
 
 class Target extends Component {
 
-    public $categories;
+    public $category;
+    public $selectedCategory;
     public $so;
-    public $selectedCategory = NULL;
-    public $selectedSo = NULL;
+    public $selectedSo;
 
     public function mount() {
-        $this->categories = business_categories::all();
-        $this->so = collect();
+        $this->category = business_categories::all();
     }
 
     public function render() {
@@ -23,8 +22,10 @@ class Target extends Component {
     }
 
     public function updatedSelectedCategory($category) {
-        $this->so = so_library::where('id_business_categories',$category)->get();
-        $this->selectedSo = NULL;
+        $this->so = so_library::where('id_business_categories', $category)->get();
+        if (!$this->so) {
+            $this->selectedCategory == NULL;
+        }
     }
 
 }
