@@ -101,56 +101,20 @@
                                             </div>
                                             <div class="modal-body">
                                                 <!-- **** Form Add SO **** -->
-                                                @livewire('target')
 
+                                                <form method="POST" action="{{route('client.target.addso')}}">
+                                                    @csrf
+                                                    <input type="hidden" name="userid" value="{{$data->id}}">
 
-<!--                                                <div class="form-group">
-                                                    <label for="exampleFormControlSelect1">Business Categories :</label>
-                                                    <select class="form-control" id="exampleFormControlSelect1">
-                                                        <option>Accounting & Tax Services</option>
-                                                        <option>Arts, Culture & Entertainment</option>
-                                                        <option>Auto Sales & Service</option>
-                                                        <option>Banking & Finance</option>
-                                                        <option>Business Services</option>
-                                                        <option>Community Organizations</option>
-                                                        <option>Dentists & Orthodontists</option>
-                                                        <option>Education</option>
-                                                        <option>Health & Wellness</option>
-                                                        <option>Health Care</option>
-                                                        <option>Home Improvement</option>
-                                                        <option>Insurance</option>
-                                                        <option>Internet & Web Services</option>
-                                                        <option>Legal Services</option>
-                                                        <option>Lodging & Travel</option>
-                                                        <option>Marketing & Advertising</option>
-                                                        <option>News & Media</option>
-                                                        <option>Pet Services</option>
-                                                        <option>Real Estate</option>
-                                                        <option>Restaurants & Nightlife</option>
-                                                        <option>Shopping & Retail</option>
-                                                        <option>Sports & Recreation</option>
-                                                        <option>Transportation</option>
-                                                        <option>Utilities</option>
-                                                        <option>Wedding, Events & Meetings</option>
-                                                    </select>
-                                                </div>
+                                                    @livewire('target', ['userid'=>$data->id])
 
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlSelect2">Strategic Objective :</label>
-                                                    <select multiple class="form-control" id="exampleFormControlSelect2" size="10">
-                                                        <option>Peningkatan Company Value</option>
-                                                        <option>Optimalisasi Cash Flow</option>
-                                                        <option>Efisiensi dan efektivitas biaya</option>
-                                                        <option>Peningkatan Profit</option>
-                                                        <option>Peningkatan Total Pendapatan</option>
-                                                    </select>
-                                                </div>-->
-
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <input type="submit" class="btn btn-primary" value="Add">
+                                                    </div>
+                                                </form>
                                             </div>
-<!--                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Add</button>
-                                            </div>-->
+
                                         </div>
                                     </div>
                                 </div>
@@ -159,6 +123,38 @@
 
                             <!-- Card Body -->
                             <div class="card-body">
+                                <!--Success Message--> 
+                                @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ session('success') }}
+                                </div>
+                                @endif
+
+                                <!-- Content Row -->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead style="background-color: #F8F9FC;">
+                                            <tr>
+                                                <th style="width: 10%; text-align: center;">No</th>
+                                                <th>Strategic Objective</th>
+                                                <th style="width: 20%;">Operation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($dataso as $so)
+                                            <tr>
+                                                <td style="text-align: center;">{{ $loop->iteration }}</td>
+                                                <td>{{$so->so}}</td>
+                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
+                                            </tr>  
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
                                 <!-- Content Row -->
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

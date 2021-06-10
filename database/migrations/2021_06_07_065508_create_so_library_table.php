@@ -24,7 +24,10 @@ class CreateSoLibraryTable extends Migration {
                 [
                     ['id_business_categories' => '1', 'so' => 'Memperluas Jangkauan Distribusi'],
                     ['id_business_categories' => '1', 'so' => 'Meningkatkan efisiensi biaya gudang'],
-                    ['id_business_categories' => '1', 'so' => 'Mengadopsi Teknologi SCM 4.0 untuk mencapai keunggulan bersaing']
+                    ['id_business_categories' => '1', 'so' => 'Mengadopsi Teknologi SCM 4.0 untuk mencapai keunggulan bersaing'],
+                    ['id_business_categories' => '2', 'so' => 'Strategic Objective Banking 1'],
+                    ['id_business_categories' => '2', 'so' => 'Strategic Objective Banking 2'],
+                    ['id_business_categories' => '2', 'so' => 'Strategic Objective Banking 3'],
                 ]
         );
     }

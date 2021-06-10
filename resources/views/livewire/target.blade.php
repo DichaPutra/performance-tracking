@@ -1,7 +1,6 @@
 <div>
     <!--LIVEWIRE Target-->
-    <form method="POST" action="{{route('client.target.addso')}}">
-        @csrf
+
         <div>
             <div class="form-group">
                 <label for="exampleFormControlSelect1">Business Categories :</label>
@@ -39,11 +38,7 @@
         @endif
         @endif
 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <input type="submit" class="btn btn-primary" value="Add">
-        </div>
-    </form>
+
 
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
 </div>
