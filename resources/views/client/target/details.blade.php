@@ -106,7 +106,7 @@
                                                     @csrf
                                                     <input type="hidden" name="userid" value="{{$data->id}}">
 
-                                                    @livewire('target', ['userid'=>$data->id])
+                                                    @livewire('target')
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -138,7 +138,7 @@
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead style="background-color: #F8F9FC;">
                                             <tr>
-                                                <th style="width: 10%; text-align: center;">No</th>
+                                                <th style="width: 5%; text-align: center;">No</th>
                                                 <th>Strategic Objective</th>
                                                 <th style="width: 20%;">Operation</th>
                                             </tr>
@@ -146,7 +146,7 @@
                                         <tbody>
                                             @foreach ($dataso as $so)
                                             <tr>
-                                                <td style="text-align: center;">{{ $loop->iteration }}</td>
+                                                <td style="width: 5%; text-align: center;">{{ $loop->iteration }}</td>
                                                 <td>{{$so->so}}</td>
                                                 <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
                                             </tr>  
@@ -156,50 +156,50 @@
                                 </div>
 
                                 <!-- Content Row -->
-<!--                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead style="background-color: #F8F9FC;">
-                                            <tr>
-                                                <th style="width: 10%; text-align: center;">No</th>
-                                                <th style="width: 20%;">Strategic Objective</th>
-                                                <th>Description</th>
-                                                <th>Operation</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="text-align: center;">1</td>
-                                                <td>Peningkatan Company Value</td>
-                                                <td>Manajemen dari waktu ke waktu terus berusaha untuk meningkatkan kinerja perusahaan untuk meningkatkan nilai perusahaan sehingga harapan dari pemegang saham dan seluruh stakeholder yang lain dapat dipenuhi</td>
-                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center;">2</td>
-                                                <td>Optimalisasi Cash Flow</td>
-                                                <td>Dalam mengelola perusahaan maka faktor cash flow menjadi kunci utama dalam keberlangsungan bisnis. Perusahaan boleh jadi memperoleh laba, namun jika tidak ada cash flow maka kegiatan usaha dapat berhenti. Cash flow yang baik dapat menjaga kepercayaan perusahaan terhadap pihak yang berkepentingan (kreditor, pemegang saham, karyawan) dengan selalu menjaga komitmen pembayaran tepat pada waktunya</td>
-                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center;">3</td>
-                                                <td>Efisiensi dan efektivitas biaya</td>
-                                                <td>Cerminan dari upaya manajemen dalam melakukan efisiensi biaya dan efektivitas biaya yang tercermin dari ukuran-ukuran keuangan yang dapat menggambarkan pertumbuhan biaya yang dapat dikendalikan dengan baik</td>
-                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center;">4</td>
-                                                <td>Peningkatan Profit</td>
-                                                <td>Upaya manajemen dalam meningkatkan tingkat keuntungan</td>
-                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-align: center;">5</td>
-                                                <td>Peningkatan Total Pendapatan</td>
-                                                <td>Upaya manajemen dalam meningkatkan tingkat pendapatan dari seluruh usaha yang dilakukan oleh perusahaan baik berupa hasil penjualan seluruh produk serta pendapatan jasa.</td>
-                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
-                                            </tr>                           
-                                        </tbody>
-                                    </table>
-                                </div>-->
+                                <!--                                <div class="table-responsive">
+                                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                                        <thead style="background-color: #F8F9FC;">
+                                                                            <tr>
+                                                                                <th style="width: 10%; text-align: center;">No</th>
+                                                                                <th style="width: 20%;">Strategic Objective</th>
+                                                                                <th>Description</th>
+                                                                                <th>Operation</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="text-align: center;">1</td>
+                                                                                <td>Peningkatan Company Value</td>
+                                                                                <td>Manajemen dari waktu ke waktu terus berusaha untuk meningkatkan kinerja perusahaan untuk meningkatkan nilai perusahaan sehingga harapan dari pemegang saham dan seluruh stakeholder yang lain dapat dipenuhi</td>
+                                                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align: center;">2</td>
+                                                                                <td>Optimalisasi Cash Flow</td>
+                                                                                <td>Dalam mengelola perusahaan maka faktor cash flow menjadi kunci utama dalam keberlangsungan bisnis. Perusahaan boleh jadi memperoleh laba, namun jika tidak ada cash flow maka kegiatan usaha dapat berhenti. Cash flow yang baik dapat menjaga kepercayaan perusahaan terhadap pihak yang berkepentingan (kreditor, pemegang saham, karyawan) dengan selalu menjaga komitmen pembayaran tepat pada waktunya</td>
+                                                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align: center;">3</td>
+                                                                                <td>Efisiensi dan efektivitas biaya</td>
+                                                                                <td>Cerminan dari upaya manajemen dalam melakukan efisiensi biaya dan efektivitas biaya yang tercermin dari ukuran-ukuran keuangan yang dapat menggambarkan pertumbuhan biaya yang dapat dikendalikan dengan baik</td>
+                                                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align: center;">4</td>
+                                                                                <td>Peningkatan Profit</td>
+                                                                                <td>Upaya manajemen dalam meningkatkan tingkat keuntungan</td>
+                                                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="text-align: center;">5</td>
+                                                                                <td>Peningkatan Total Pendapatan</td>
+                                                                                <td>Upaya manajemen dalam meningkatkan tingkat pendapatan dari seluruh usaha yang dilakukan oleh perusahaan baik berupa hasil penjualan seluruh produk serta pendapatan jasa.</td>
+                                                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
+                                                                            </tr>                           
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>-->
                             </div>
 
 
@@ -214,6 +214,41 @@
                             <div class="card-header">
                                 <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">KPI</h5>
                             </div><br>
+
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="tableKPI" width="100%" cellspacing="0">
+                                    <thead style="background-color: #F8F9FC;">
+                                        <tr>
+                                            <th style="width: 3%; text-align: center;">No </th>
+                                            <th>Strategic Objective</th>
+                                            <th>KPI</th>
+                                            <th>Unit of Measurement</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 3%; text-align: center;">1</td>
+                                            <td>Memperluas Jangkauan Distribusi</td>
+                                            <td>Return on Equity (ROE) - Tingkat pengembalian atas modal yang telah ditanamkan</td>
+                                            <td style="text-align: center;">%</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 3%; text-align: center;">2</td>
+                                            <td>Mengadopsi Teknologi SCM 4.0 untuk mencapai keunggulan bersaing</td>
+                                            <td>Return on Investment (ROI) - Tingkat pengembalian atas investasi yang telah ditanamkan</td>
+                                            <td style="text-align: center;">%</td>
+                                        </tr> 
+                                        <tr>
+                                            <td style="width: 3%; text-align: center;">3</td>
+                                            <td>Memperluas Jangkauan Distribusi</td>
+                                            <td>Tingkat Kesehatan (Standar BUMN) - Kinerja berdasarkan atas sekumpulan indikator Keuangan,  Operasional dan Administratif sesuai standard yang ditentukan oleh BUMN. Indikator Keuangan  meliputi ROE, ROI, CASH RATIO, Current Ratio, Collection Periode, Perputaran Persediaan, Perputaran Total Asset, Rasio Modal Sendiri thd Total Aktiv Sedangkan indikator operasional adalah berkaitan dengan produktivitas tanaman, rendemen, % produk berkualitas tinggi serta penjualan langsung.</td>
+                                            <td style="text-align: center;">Score</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><br>
+
                             <!--KPI per SO-->
                             <div id="accordion">
                                 <!--Card 1-->
@@ -263,14 +298,17 @@
                                         </div>
                                     </div>
 
+
+
                                     <!--Content Collabse--> 
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <table class="table table-bordered" id="table" width="100%" cellspacing="0">
                                                     <thead style="background-color: #F8F9FC;">
                                                         <tr>
                                                             <th style="text-align: center;">No</th>
+                                                            <th>Strategic Objective</th>
                                                             <th>KPI</th>
                                                             <th>Unit of Measurement</th>
                                                         </tr>
@@ -278,19 +316,22 @@
                                                     <tbody>
                                                         <tr>
                                                             <td style="text-align: center;">1</td>
+                                                            <td>Memperluas Jangkauan Distribusi</td>
                                                             <td>Return on Equity (ROE) - Tingkat pengembalian atas modal yang telah ditanamkan</td>
                                                             <td style="text-align: center;">%</td>
                                                         </tr>
                                                         <tr>
                                                             <td style="text-align: center;">2</td>
+                                                            <td>Mengadopsi Teknologi SCM 4.0 untuk mencapai keunggulan bersaing</td>
                                                             <td>Return on Investment (ROI) - Tingkat pengembalian atas investasi yang telah ditanamkan</td>
                                                             <td style="text-align: center;">%</td>
                                                         </tr> 
                                                         <tr>
                                                             <td style="text-align: center;">3</td>
+                                                            <td>Memperluas Jangkauan Distribusi</td>
                                                             <td>Tingkat Kesehatan (Standar BUMN) - Kinerja berdasarkan atas sekumpulan indikator Keuangan,  Operasional dan Administratif sesuai standard yang ditentukan oleh BUMN. Indikator Keuangan  meliputi ROE, ROI, CASH RATIO, Current Ratio, Collection Periode, Perputaran Persediaan, Perputaran Total Asset, Rasio Modal Sendiri thd Total Aktiv Sedangkan indikator operasional adalah berkaitan dengan produktivitas tanaman, rendemen, % produk berkualitas tinggi serta penjualan langsung.</td>
                                                             <td style="text-align: center;">Score</td>
-                                                        </tr> 
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -362,6 +403,13 @@
 <script>
     $(document).ready(function () {
         $('#dataTable').DataTable({
+            "paging": false,
+            "searching": false,
+        });
+    });
+
+    $(document).ready(function () {
+        $('#tableKPI').DataTable({
             "paging": false,
             "searching": false,
         });

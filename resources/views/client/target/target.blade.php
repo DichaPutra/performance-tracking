@@ -60,7 +60,7 @@
                                     <td>{{$user->position}}</td>
                                     <td>{{$user->name}}</td>
                                     <td style="text-align:center;">{{getCountSO($user->id)}}</td>
-                                    <td style="text-align:center;">15</td>
+                                    <td style="text-align:center;">{{getCountKPI($user->id)}}</td>
                                     <td><a href="{{route('client.target.details', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 @endforeach                            
