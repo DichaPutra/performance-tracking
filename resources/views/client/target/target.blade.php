@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@include('client.otherelement')
+@include('client.otherelement')<!--berisikan function di view-->
 
 @section('head')
 <?php $page = 'target' ?>
@@ -59,7 +59,7 @@
                                     <td style="background-color: {{color($user->level)}};">{{levelName($user->level)}}</td>
                                     <td>{{$user->position}}</td>
                                     <td>{{$user->name}}</td>
-                                    <td style="text-align:center;">5</td>
+                                    <td style="text-align:center;">{{getCountSO($user->id)}}</td>
                                     <td style="text-align:center;">15</td>
                                     <td><a href="{{route('client.target.details', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>

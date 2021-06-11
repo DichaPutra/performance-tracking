@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@include('client.otherelement')
+@include('client.otherelement')<!--berisikan function di view-->
 
 @section('head')
 <?php $page = 'target' ?>

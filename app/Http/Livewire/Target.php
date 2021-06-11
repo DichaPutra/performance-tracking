@@ -22,10 +22,14 @@ class Target extends Component {
     }
 
     public function updatedSelectedCategory($category) {
-        $this->so = so_library::where('id_business_categories', $category)->get();
-        if (!$this->so) {
-            $this->selectedCategory == NULL;
+        if (so_library::where('id_business_categories', $category)->exists()) {
+            $this->so = so_library::where('id_business_categories', $category)->get();
+        } else {
+            $this->so = null;
         }
+//        if (!$this->so) {
+//            $this->selectedCategory == NULL;
+//        }
     }
 
 }
