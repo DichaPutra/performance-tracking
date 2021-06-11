@@ -63,7 +63,7 @@
                             <div class="form-group row">
                                 <label for="position" class="col-md-4 col-form-label text-md-right">Number of KPI</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" list="pos" value="15" disabled="">
+                                    <input type="text" class="form-control" list="pos" value="{{getCountKPI($data->id)}}" disabled="">
                                 </div>
                             </div>
                         </div>
