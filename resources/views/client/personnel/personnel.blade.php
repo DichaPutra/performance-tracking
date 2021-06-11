@@ -56,14 +56,14 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tfoot style="background-color: #F8F9FC;">
+<!--                            <tfoot style="background-color: #F8F9FC;">
                                 <tr>
                                     <th>Level</th>
                                     <th>Position</th>
                                     <th>PIC Name</th>
                                     <th></th>
                                 </tr>
-                            </tfoot>
+                            </tfoot>-->
                             <tbody>
                                 @foreach($user as $user)
                                 <tr>
