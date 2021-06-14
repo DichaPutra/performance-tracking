@@ -79,7 +79,7 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <!-- ========= Tab 1 Strategic Objective =========== -->
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="tab-pane fade @if($tab=='so') show active @endif" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <br>
 
                             <!-- Card Header - Dropdown -->
@@ -199,12 +199,47 @@
 
 
                         <!-- ========== Tab 2 KPI ========== -->
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane fade @if($tab=='kpi') show active @endif" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <br>
+
                             <!-- Card Header - Dropdown -->
-                            <div class="card-header">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary" style="text-align: center;"> </h6>
                                 <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">KPI</h5>
-                            </div><br>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAddKPI">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+
+                                <!-- Modal Add-->
+                                <div class="modal fade bd-example-modal-lg" id="modalAddKPI" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Add KPI </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- **** Form Add SO **** -->
+
+                                                <form method="POST" action="{{route('client.target.addso')}}">
+                                                    @csrf
+                                                    <input type="hidden" name="userid" value="{{$data->id}}">
+                                                    
+                                                    @livewire('targetkpi', ['id_personnel' => $data->id])
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <input type="submit" class="btn btn-primary" value="Add">
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <br>
+                           
 
 
                             <div class="table-responsive">
@@ -214,7 +249,7 @@
                                             <th style="width: 3%; text-align: center;">No </th>
                                             <th>Strategic Objective</th>
                                             <th>KPI</th>
-                                            <th>Unit of Measurement</th>
+                                            <th>Measurement Unit</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -222,29 +257,29 @@
                                             <td style="width: 3%; text-align: center;">1</td>
                                             <td>Memperluas Jangkauan Distribusi</td>
                                             <td>Return on Equity (ROE) - Tingkat pengembalian atas modal yang telah ditanamkan</td>
-                                            <td style="text-align: center;">%</td>
+                                            <td style="text-align: center; width: 10%;">%</td>
                                         </tr>
                                         <tr>
                                             <td style="width: 3%; text-align: center;">2</td>
                                             <td>Mengadopsi Teknologi SCM 4.0 untuk mencapai keunggulan bersaing</td>
                                             <td>Return on Investment (ROI) - Tingkat pengembalian atas investasi yang telah ditanamkan</td>
-                                            <td style="text-align: center;">%</td>
+                                            <td style="text-align: center; width: 10%;">%</td>
                                         </tr> 
                                         <tr>
                                             <td style="width: 3%; text-align: center;">3</td>
                                             <td>Memperluas Jangkauan Distribusi</td>
                                             <td>Tingkat Kesehatan (Standar BUMN) - Kinerja berdasarkan atas sekumpulan indikator Keuangan,  Operasional dan Administratif sesuai standard yang ditentukan oleh BUMN. Indikator Keuangan  meliputi ROE, ROI, CASH RATIO, Current Ratio, Collection Periode, Perputaran Persediaan, Perputaran Total Asset, Rasio Modal Sendiri thd Total Aktiv Sedangkan indikator operasional adalah berkaitan dengan produktivitas tanaman, rendemen, % produk berkualitas tinggi serta penjualan langsung.</td>
-                                            <td style="text-align: center;">Score</td>
+                                            <td style="text-align: center; width: 10%;">Score</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div><br>
 
                             <!--KPI per SO-->
-                            <div id="accordion">
-                                <!--Card 1-->
+<!--                            <div id="accordion">
+                                Card 1
                                 <div class="card">
-                                    <!--Accordion head-->
+                                    Accordion head
                                     <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" style="background-color: #FEE599">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -254,7 +289,7 @@
                                         </h5>
                                     </div>
 
-                                    <!-- Modal Add-->
+                                     Modal Add
                                     <div class="modal fade bd-example-modal-lg" id="modalAdd1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
@@ -263,7 +298,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <!-- **** Form Add SO **** -->
+                                                     **** Form Add SO **** 
                                                     <div class="form-group">
                                                         <label for="exampleFormControlSelect1">Strategic Objective :</label>
                                                         <input type="text" value="Peningkatan Company Value" class="form-control" readonly="">
@@ -291,7 +326,7 @@
 
 
 
-                                    <!--Content Collabse--> 
+                                    Content Collabse 
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                         <div class="card-body">
                                             <div class="table-responsive">
@@ -330,9 +365,9 @@
                                     </div>
                                 </div>
 
-                                <!--Card 2-->
+                                Card 2
                                 <div class="card">
-                                    <!--Accordion head-->
+                                    Accordion head
                                     <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" style="background-color: #FEE599">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -341,7 +376,7 @@
                                             <button class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i></button>
                                         </h5>
                                     </div>
-                                    <!--Content Collabse--> 
+                                    Content Collabse 
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                         <div class="card-body">
                                             <div class="table-responsive">
@@ -373,7 +408,8 @@
 
 
 
-                            </div>
+                            </div>-->
+                            
                         </div>
                         <!--end of tab 2-->
                     </div>

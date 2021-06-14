@@ -32,8 +32,11 @@ class targetController extends Controller {
         // get data SO by ID
         $dataso = target_so::where('id_user', $request->idpersonnel)->get();
 
+        //default tab
+        $tab = 'so';
+
         // pass to view
-        return view('client.target.details', ['data' => $data, 'dataso' => $dataso]);
+        return view('client.target.details', ['data' => $data, 'dataso' => $dataso, 'tab' => $tab]);
     }
 
     public function addSo(Request $request) {// ** Fungsi Store SO ke database
@@ -52,8 +55,11 @@ class targetController extends Controller {
             $sodb->so = $so;
             $sodb->save();
 
+            //default tab
+            $tab = 'so';
+
             //redirect with succes message
-            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your strategic objective has been added');
+            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tab' => $tab])->with('success', 'Success ! Your strategic objective has been added');
         } else {
             // SO Custom
             $so = $request->so_custom;
@@ -65,8 +71,11 @@ class targetController extends Controller {
             $sodb->so = $so;
             $sodb->save();
 
+            //default tab
+            $tab = 'so';
+
             //redirect with succes message
-            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your strategic objective has been added');
+            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tab' => $tab])->with('success', 'Success ! Your strategic objective has been added');
         }
     }
 
@@ -75,9 +84,12 @@ class targetController extends Controller {
         $soupdate = target_so::find($request->idtargetso);
         $soupdate->so = $request->so;
         $soupdate->save();
-        
+
+        //default tab
+        $tab = 'so';
+
         //redirect with succes message
-        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your strategic objective has been edited');
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tab' => $tab])->with('success', 'Success ! Your strategic objective has been edited');
     }
 
 }
