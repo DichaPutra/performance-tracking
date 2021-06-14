@@ -57,6 +57,7 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::get('/client-target-details', [targetController::class, 'details'])->name('client.target.details');
     // -> logic
     Route::post('/client-target-addso',[targetController::class, 'addSo'])->name('client.target.addso');
+    Route::post('/client-target-editso',[targetController::class, 'editSo'])->name('client.target.editso');
 
     // Target 2 (x)
     Route::get('/client-target-strategicobjective', function () {

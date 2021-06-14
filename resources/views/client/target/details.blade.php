@@ -140,66 +140,57 @@
                                             <tr>
                                                 <th style="width: 5%; text-align: center;">No</th>
                                                 <th>Strategic Objective</th>
-                                                <th style="width: 20%;">Operation</th>
+                                                <th style="width: 10%; text-align: center;">Operation</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($dataso as $so)
                                             <tr>
                                                 <td style="width: 5%; text-align: center;">{{ $loop->iteration }}</td>
-                                                <td>{{$so->so}}</td>
-                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
-                                            </tr>  
-                                            @endforeach
+                                                <td>
+                                                    {{$so->so}}
+                                                    @if($so->id_so == null)
+                                                    <span class="badge badge-secondary float-right"><i class="fa fa-user"></i> Custom</span>
+                                                    @endif
+                                                </td>
+                                                <td style="width: 10%;text-align: center;">
+                                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit{{$so->id}}">
+                                                        <i class="fas fa-pen"></i>
+                                                    </button>
+                                                    <a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                                                </td>
+                                            </tr>
+
+                                            <!--modal edit-->
+                                        <div class="modal fade bd-example-modal-lg" id="modalEdit{{$so->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Strategic Objective</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST" action="{{route('client.target.editso')}}">
+                                                            @csrf
+                                                            <input type="hidden" name="userid" value="{{$data->id}}">
+                                                            <input type="hidden" name="idtargetso" value="{{$so->id}}">
+                                                            <input type="text" name="so" value="{{$so->so}}" class="form-control" >
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <input type="submit" class="btn btn-primary" value="Edit">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-
-                                <!-- Content Row -->
-                                <!--                                <div class="table-responsive">
-                                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                                        <thead style="background-color: #F8F9FC;">
-                                                                            <tr>
-                                                                                <th style="width: 10%; text-align: center;">No</th>
-                                                                                <th style="width: 20%;">Strategic Objective</th>
-                                                                                <th>Description</th>
-                                                                                <th>Operation</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td style="text-align: center;">1</td>
-                                                                                <td>Peningkatan Company Value</td>
-                                                                                <td>Manajemen dari waktu ke waktu terus berusaha untuk meningkatkan kinerja perusahaan untuk meningkatkan nilai perusahaan sehingga harapan dari pemegang saham dan seluruh stakeholder yang lain dapat dipenuhi</td>
-                                                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center;">2</td>
-                                                                                <td>Optimalisasi Cash Flow</td>
-                                                                                <td>Dalam mengelola perusahaan maka faktor cash flow menjadi kunci utama dalam keberlangsungan bisnis. Perusahaan boleh jadi memperoleh laba, namun jika tidak ada cash flow maka kegiatan usaha dapat berhenti. Cash flow yang baik dapat menjaga kepercayaan perusahaan terhadap pihak yang berkepentingan (kreditor, pemegang saham, karyawan) dengan selalu menjaga komitmen pembayaran tepat pada waktunya</td>
-                                                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center;">3</td>
-                                                                                <td>Efisiensi dan efektivitas biaya</td>
-                                                                                <td>Cerminan dari upaya manajemen dalam melakukan efisiensi biaya dan efektivitas biaya yang tercermin dari ukuran-ukuran keuangan yang dapat menggambarkan pertumbuhan biaya yang dapat dikendalikan dengan baik</td>
-                                                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center;">4</td>
-                                                                                <td>Peningkatan Profit</td>
-                                                                                <td>Upaya manajemen dalam meningkatkan tingkat keuntungan</td>
-                                                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td style="text-align: center;">5</td>
-                                                                                <td>Peningkatan Total Pendapatan</td>
-                                                                                <td>Upaya manajemen dalam meningkatkan tingkat pendapatan dari seluruh usaha yang dilakukan oleh perusahaan baik berupa hasil penjualan seluruh produk serta pendapatan jasa.</td>
-                                                                                <td style="text-align: center;"><a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a></td>
-                                                                            </tr>                           
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>-->
                             </div>
 
 

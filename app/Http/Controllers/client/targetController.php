@@ -13,7 +13,7 @@ class targetController extends Controller {
     public function index() {// ** Memunculkan semua list personnel  
         // Homepage Target
         $user = User::all()->where('client_parent', Auth::user()->id);
-        
+
         //$user = User::select(DB::raw('count(*) as so_count, status'))->where('client_parent', Auth::user()->id);
         return view('client.target.target', ['user' => $user]);
     }
@@ -68,6 +68,16 @@ class targetController extends Controller {
             //redirect with succes message
             return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your strategic objective has been added');
         }
+    }
+
+    public function editSO(Request $request) {
+        //update eloquent
+        $soupdate = target_so::find($request->idtargetso);
+        $soupdate->so = $request->so;
+        $soupdate->save();
+        
+        //redirect with succes message
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your strategic objective has been edited');
     }
 
 }
