@@ -106,7 +106,7 @@
                                                     @csrf
                                                     <input type="hidden" name="userid" value="{{$data->id}}">
 
-                                                    @livewire('target')
+                                                    @livewire('target') 
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

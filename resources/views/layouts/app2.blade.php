@@ -25,7 +25,7 @@
         <!-- Custom styles for this template-->
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
         @yield('head')
-        @livewireStyles
+        @livewireStyles 
     </head>
     <body id="page-top">
         <!-- Page Wrapper -->
@@ -172,9 +172,7 @@ if ($(window).width() > 514) {
     $('#accordionSidebar').addClass('toggled');
 }
         </script>
-
         @yield('script')
-        @livewireScripts
-
+        @livewireScripts 
     </body>
 </html>
