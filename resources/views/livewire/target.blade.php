@@ -16,7 +16,7 @@
     @if (!is_null($selectedCategory))
     <div>
         <div class="form-group">
-            <label>Strategic Objective :</label>
+            <label>Strategic Objective Library:</label>
             <select name="SO" wire:model="selectedSo"class="form-control" size="10" required="">
                 @if ($so != null)
                 

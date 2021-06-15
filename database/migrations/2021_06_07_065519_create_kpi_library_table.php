@@ -17,7 +17,19 @@ class CreateKpiLibraryTable extends Migration {
             $table->unsignedBigInteger('id_so');
             $table->foreign('id_so')->references('id')->on('so_library');
             $table->string('kpi');
+            $table->string('measurement');
         });
+
+        //insert
+        DB::table('kpi_library')->insert(
+                [
+                    //measurement = rating , rangking, absolute number, index, percentages
+                    ['id_so' => '1', 'kpi' => 'Jumlah Wilayah Terlayani', 'measurement' => 'absolute number'],
+                    ['id_so' => '2', 'kpi' => 'Biaya gudang per m2/bulan', 'measurement' => 'absolute number'],
+                    ['id_so' => '3', 'kpi' => '% proses bisnis pelanggan yang terlayani dengan smartphone', 'measurement' => 'percentages'],
+                    
+                ]
+        );
     }
 
     /**

@@ -10,10 +10,11 @@ use App\Models\kpi_library;
 class Targetkpi extends Component {
 
     public $id_personnel;
-    public $so;
-    public $selectedSo;
-    public $kpi;
-    public $selectedKpi;
+    public $so; //series object of SO
+    public $selectedSo; // ID 
+    public $kpi; // series object of KPI 
+    public $selectedKpi; // ID
+    public $kpidata;
 
     public function mount() {
         $this->so = target_so::where('id_user', $this->id_personnel)->get();
@@ -27,11 +28,14 @@ class Targetkpi extends Component {
         if (kpi_library::where('id_so', $this->selectedSo)->exists()) {
             $this->kpi = kpi_library::where('id_so', $this->selectedSo)->get();
         } else {
-            $this->kpi = null;    
+            $this->kpi = 'nokpilibrary';
         }
         $this->selectedKpi = null;
     }
-    
+
+    public function updatedSelectedKpi() {
+        $this->kpidata = kpi_library::where('id', $this->selectedKpi)->first();
+    }
 
 //    public function updatedSelectedCategory($category) {
 //        if (so_library::where('id_business_categories', $category)->exists()) {
