@@ -27,6 +27,8 @@ class Target extends Component {
         } else {
             $this->so = null;
         }
+        
+        $this->selectedSo = null;
 //        if (!$this->so) {
 //            $this->selectedCategory == NULL;
 //        }

@@ -26,7 +26,7 @@
                 <option value="0"">- Other</option>
 
                 @else
-                <option value=''>No Data</option>
+                <option value='' disabled="">No Data</option>
                 @endif
             </select>
         </div>
