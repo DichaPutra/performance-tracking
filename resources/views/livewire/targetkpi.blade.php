@@ -38,11 +38,26 @@
     <div>
         <div class="form-group">
             <label>Custom KPI :</label>
-            <input name="customKpi" type="text" class="form-control" required="">
-            <label>Target :</label>
-            <input name="target" type="number" class="form-control" required="">
-            <label>Measurement Unit :</label>
-            <input name="measurementUnit" type="text" class="form-control" required="">
+            <input name="customKpi" type="text" class="form-control" required=""><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Target :</label>
+                    <input name="target" type="number" class="form-control" required="">
+                </div>
+                <div class="col-md-6">
+                    <label>Measurement Unit :</label>
+                    <select class="form-control">
+                        <option value=" " hidden>select...</option>
+                        <option value="rating">Rating</option>
+                        <option value="rangking">Rangking</option>
+                        <option value="absolute number">Absolute Number</option>
+                        <option value="index">Index</option>
+                        <option value="percentages">Percentages</option>
+                    </select>
+
+                    <!--<input name="measurementUnit" type="text" class="form-control" required="">-->
+                </div>
+            </div>
         </div>
     </div>
 
