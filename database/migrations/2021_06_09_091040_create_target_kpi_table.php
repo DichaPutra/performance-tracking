@@ -19,6 +19,9 @@ class CreateTargetKpiTable extends Migration {
             $table->unsignedBigInteger('id_kpi');
             //$table->foreign('id_kpi')->references('id')->on('kpi_library');
             $table->string('kpi');
+            $table->string('measurement');
+            $table->bigInteger('target');
+            $table->bigInteger('weight');
             $table->timestamps();
         });
     }

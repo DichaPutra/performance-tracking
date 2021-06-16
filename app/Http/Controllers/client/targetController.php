@@ -92,4 +92,8 @@ class targetController extends Controller {
         return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tab' => $tab])->with('success', 'Success ! Your strategic objective has been edited');
     }
 
+    public function addKpi(Request $request) {
+        
+    }
+
 }

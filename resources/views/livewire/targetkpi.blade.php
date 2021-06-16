@@ -38,13 +38,9 @@
     <div>
         <div class="form-group">
             <label>Custom KPI :</label>
-            <input name="customKpi" type="text" class="form-control" required=""><br>
+            <input name="customKpi" type="text" class="form-control" required="" placeholder="Input your custom KPI description here..."><br>
             <div class="row">
-                <div class="col-md-6">
-                    <label>Target :</label>
-                    <input name="target" type="number" class="form-control" required="">
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label>Measurement Unit :</label>
                     <select class="form-control">
                         <option value=" " hidden>select...</option>
@@ -54,9 +50,26 @@
                         <option value="index">Index</option>
                         <option value="percentages">Percentages</option>
                     </select>
-
-                    <!--<input name="measurementUnit" type="text" class="form-control" required="">-->
                 </div>
+                
+                <div class="col-md-4">
+                    <label>Target :</label>
+                    <input name="target" type="number" class="form-control" required="" placeholder="Input your target here...">
+                </div>
+
+                <div class="col-md-4">
+                    <label>Weight :</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">%</div>
+                        </div>
+                        <input type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+
             </div>
         </div>
     </div>
@@ -67,13 +80,22 @@
     <div>
         <div class="form-group">
             <div class="row">
-                <div class="col-md-6">
-                    <label>Target :</label>
-                    <input name="target" type="number" class="form-control" required="">
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label>Measurement Unit :</label>
                     <input name="target" value="{{$kpidata->measurement}}" type="text" class="form-control" readonly="">
+                </div>
+                <div class="col-md-4">
+                    <label>Target :</label>
+                    <input name="target" type="number" class="form-control" required="" placeholder="Input your target here...">
+                </div>
+                <div class="col-md-4">
+                    <label>Weight :</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">%</div>
+                        </div>
+                        <input type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
+                    </div>
                 </div>
             </div>
         </div>

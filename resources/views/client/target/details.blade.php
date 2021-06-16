@@ -220,9 +220,9 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <!-- **** Form Add SO **** -->
+                                                <!-- **** Form Add KPI **** -->
 
-                                                <form method="POST" action="{{route('client.target.addso')}}">
+                                                <form method="POST" action="{{route('client.target.addKpi')}}">
                                                     @csrf
                                                     <input type="hidden" name="userid" value="{{$data->id}}">
                                                     
