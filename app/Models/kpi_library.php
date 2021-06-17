@@ -11,7 +11,7 @@ class kpi_library extends Model {
 
     protected $table = 'kpi_library';
     protected $fillable = [
-        'id_so', 'kpi'
+        'id_so', 'kpi', 'measurement', 'polarization'
     ];
 
 }

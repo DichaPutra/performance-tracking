@@ -4,8 +4,8 @@
 
     <div>
         <div class="form-group">
-            <label for="exampleFormControlSelect1">Strategic Objective :</label>
-            <select name="so" wire:model="selectedSo" class="form-control" required="">
+            <label for="exampleFormControlSelect1"><b>Strategic Objective :</b></label>
+            <select name="id_target_so" wire:model="selectedSo" class="form-control" required="">
                 <option hidden>Choose a categories</option>
                 @foreach($so as $so)
                 <option value='{{ $so->id }}'>{{ $so->so }}</option>
@@ -17,8 +17,8 @@
     @if ($selectedSo != null)
     <div>
         <div class="form-group">
-            <label>KPI Library :</label>
-            <select name="kpi" wire:model="selectedKpi"class="form-control" size="5" required="">
+            <label><b>KPI Library :</b></label>
+            <select name="id_kpi_library" wire:model="selectedKpi"class="form-control" size="5" >
                 @if ($kpi != null && $kpi != 'nokpilibrary' )
 
                 @foreach($kpi as $kpi)
@@ -37,12 +37,12 @@
     @if ($selectedKpi == '0' || $kpi == 'nokpilibrary')
     <div>
         <div class="form-group">
-            <label>Custom KPI :</label>
+            <label><b>Custom KPI :</b></label>
             <input name="customKpi" type="text" class="form-control" required="" placeholder="Input your custom KPI description here..."><br>
             <div class="row">
-                <div class="col-md-4">
-                    <label>Measurement Unit :</label>
-                    <select class="form-control">
+                <div class="col-md-6">
+                    <label><b>Measurement Unit :</b></label>
+                    <select name="measurement" class="form-control">
                         <option value=" " hidden>select...</option>
                         <option value="rating">Rating</option>
                         <option value="rangking">Rangking</option>
@@ -51,26 +51,35 @@
                         <option value="percentages">Percentages</option>
                     </select>
                 </div>
-                
-                <div class="col-md-4">
-                    <label>Target :</label>
+
+                <div class="col-md-6">
+                    <label><b>Polarization :</b></label>
+                    <select name="polarization" class="form-control">
+                        <option value=" " hidden>select...</option>
+                        <option value="maximize">Maximize</option>
+                        <option value="minimize">Minimize</option>
+                    </select>
+                </div>
+            </div> 
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <label><b>Target :</b></label>
                     <input name="target" type="number" class="form-control" required="" placeholder="Input your target here...">
                 </div>
-
-                <div class="col-md-4">
-                    <label>Weight :</label>
+                <div class="col-md-6">
+                    <label><b>Weight :</b></label>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">%</div>
                         </div>
-                        <input type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
+                        <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
                     </div>
                 </div>
             </div>
-            <div class="col-auto">
+<!--            <div class="col-auto">
                 <label class="sr-only" for="inlineFormInputGroup">Username</label>
-
-            </div>
+            </div>-->
         </div>
     </div>
 
@@ -80,21 +89,30 @@
     <div>
         <div class="form-group">
             <div class="row">
-                <div class="col-md-4">
-                    <label>Measurement Unit :</label>
-                    <input name="target" value="{{$kpidata->measurement}}" type="text" class="form-control" readonly="">
+                <div class="col-md-6">
+                    <label><b>Measurement Unit :</b></label>
+                    <input name="" value="{{$kpidata->measurement}}" type="text" class="form-control" readonly="">
+                    <input name="measurement" value="{{$kpidata->measurement}}" type="hidden" class="form-control" readonly="">
                 </div>
-                <div class="col-md-4">
-                    <label>Target :</label>
+                <div class="col-md-6">
+                    <label><b>Polarization :</b></label>
+                    <input name="" value="{{$kpidata->polarization}}" type="text" class="form-control" readonly="">
+                    <input name="polarization" value="{{$kpidata->polarization}}" type="hidden" class="form-control" readonly="">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <label><b>Target :</b></label>
                     <input name="target" type="number" class="form-control" required="" placeholder="Input your target here...">
                 </div>
-                <div class="col-md-4">
-                    <label>Weight :</label>
+                <div class="col-md-6">
+                    <label><b>Weight :</b></label>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">%</div>
                         </div>
-                        <input type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
+                        <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
                     </div>
                 </div>
             </div>

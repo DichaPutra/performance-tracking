@@ -16,12 +16,15 @@ class CreateTargetKpiTable extends Migration {
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedBigInteger('id_kpi');
-            //$table->foreign('id_kpi')->references('id')->on('kpi_library');
+            $table->unsignedBigInteger('id_target_so');
+            $table->foreign('id_target_so')->references('id')->on('target_so');
+            $table->unsignedBigInteger('id_kpi_library')->nullable();
+            //$table->foreign('id_kpi_library')->references('id')->on('kpi_library');
             $table->string('kpi');
-            $table->string('measurement');
+            $table->string('measurement'); //measurement = rating , rangking, absolute number, index, percentages
             $table->bigInteger('target');
             $table->bigInteger('weight');
+            $table->string('polarization');
             $table->timestamps();
         });
     }

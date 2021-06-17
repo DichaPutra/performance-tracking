@@ -16,7 +16,7 @@ class CreateTargetSoTable extends Migration {
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->unsignedBigInteger('id_so')->nullable();
+            $table->unsignedBigInteger('id_so_library')->nullable();
             //$table->foreign('id_so')->references('id')->on('so_library');
             $table->string('so');
             $table->timestamps();

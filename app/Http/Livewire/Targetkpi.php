@@ -25,8 +25,8 @@ class Targetkpi extends Component {
     }
 
     public function updatedSelectedSo() {
-        if (kpi_library::where('id_so', $this->selectedSo)->exists()) {
-            $this->kpi = kpi_library::where('id_so', $this->selectedSo)->get();
+        if (kpi_library::where('id_so_library', $this->selectedSo)->exists()) {
+            $this->kpi = kpi_library::where('id_so_library', $this->selectedSo)->get();
         } else {
             $this->kpi = 'nokpilibrary';
         }
