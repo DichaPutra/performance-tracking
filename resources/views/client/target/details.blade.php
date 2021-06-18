@@ -184,7 +184,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                         @endforeach
                                         </tbody>
                                     </table>
@@ -237,39 +236,44 @@
                                     </div>
                                 </div>
                             </div> <br>
-                            
+
                             <!-- Card Body -->
                             <div class="card-body">
 
                                 <!--Content Row-->
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" id="tableKPI" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="" width="100%" cellspacing="0">
                                         <thead style="background-color: #F8F9FC;">
                                             <tr>
                                                 <th style="width: 3%; text-align: center;">No </th>
-                                                <th>Strategic Objective</th>
-                                                <th>KPI</th>
-                                                <th>Measurement Unit</th>
+                                                <th style="text-align: center;">Strategic Objective</th>
+                                                <th style="text-align: center;">KPI</th>
+                                                <th style="width: 10%; text-align: center;">Target</th>
+                                                <th style="width: 10%; text-align: center;">Weight</th>
+                                                <th style="width: 10%; text-align: center;">Operation</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php $totalWeight = 0 ?>
+                                            @foreach ($datakpi as $kpi)
                                             <tr>
-                                                <td style="width: 3%; text-align: center;">1</td>
-                                                <td>Memperluas Jangkauan Distribusi</td>
-                                                <td>Return on Equity (ROE) - Tingkat pengembalian atas modal yang telah ditanamkan</td>
-                                                <td style="text-align: center; width: 10%;">%</td>
+                                                <td style="width: 3%; text-align: center;">{{ $loop->iteration }}</td>
+                                                <td>{{$kpi->so}}</td>
+                                                <td>{{$kpi->kpi}}</td>
+                                                <td style="width: 10%; text-align: center;">{{$kpi->target}}</td>
+                                                <td style="width: 10%; text-align: center;">{{$kpi->weight}} % <?php $totalWeight += $kpi->weight; ?></td>
+                                                <td style="width: 10%;text-align: center;">
+                                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#xxxx">
+                                                        <i class="fas fa-pen"></i>
+                                                    </button>
+                                                    <a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                                                </td>
                                             </tr>
+                                            @endforeach
                                             <tr>
-                                                <td style="width: 3%; text-align: center;">2</td>
-                                                <td>Mengadopsi Teknologi SCM 4.0 untuk mencapai keunggulan bersaing</td>
-                                                <td>Return on Investment (ROI) - Tingkat pengembalian atas investasi yang telah ditanamkan</td>
-                                                <td style="text-align: center; width: 10%;">%</td>
-                                            </tr> 
-                                            <tr>
-                                                <td style="width: 3%; text-align: center;">3</td>
-                                                <td>Memperluas Jangkauan Distribusi</td>
-                                                <td>Tingkat Kesehatan (Standar BUMN) - Kinerja berdasarkan atas sekumpulan indikator Keuangan,  Operasional dan Administratif sesuai standard yang ditentukan oleh BUMN. Indikator Keuangan  meliputi ROE, ROI, CASH RATIO, Current Ratio, Collection Periode, Perputaran Persediaan, Perputaran Total Asset, Rasio Modal Sendiri thd Total Aktiv Sedangkan indikator operasional adalah berkaitan dengan produktivitas tanaman, rendemen, % produk berkualitas tinggi serta penjualan langsung.</td>
-                                                <td style="text-align: center; width: 10%;">Score</td>
+                                                <td colspan="4"></td>
+                                                <td style="text-align: center;">{{$totalWeight}} %</td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </table>

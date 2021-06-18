@@ -8,6 +8,7 @@ use App\Models\target_so;
 use App\Models\target_kpi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class targetController extends Controller {
 
@@ -32,9 +33,12 @@ class targetController extends Controller {
 
         // get data SO by ID
         $dataso = target_so::where('id_user', $request->idpersonnel)->get();
+        
+        //get data KPI by ID
+        $datakpi = DB::select("SELECT * FROM target_kpi a, target_so b WHERE a.id_target_so = b.id AND a.id_user = $request->idpersonnel ORDER BY b.so ASC");
 
         // pass to view
-        return view('client.target.details', ['data' => $data, 'dataso' => $dataso]);
+        return view('client.target.details', ['data' => $data, 'dataso' => $dataso, 'datakpi' => $datakpi]);
     }
 
     public function addSo(Request $request) {// ** Fungsi Store SO ke database
@@ -84,15 +88,16 @@ class targetController extends Controller {
         // 2. SO Library KPI Custom  ( kpi = 0 , customKpi != null)
         // 3. SO Custom KPI Custom ( no kpi var)
         //dd($request->all());
-        //$userid = $request->userid;
-        //var_dump($request->kpi);
-//        if (is_null($request->customKpi)) {
-//            echo "kondisi ke 1 | 1. SO Library KPI Library";
-//        } elseif ($request->kpi == '0') {
-//            echo "kondisi ke 2 | 2. SO Library KPI Custom";
-//        } elseif (is_null($request->kpi)) {
-//            echo "kondisi ke 3 | 3. SO Custom KPI Custom";
-//        }
+
+        //        if (is_null($request->customKpi)) {
+        //            echo "kondisi ke 1 | 1. SO Library KPI Library";
+        //        } elseif ($request->kpi == '0') {
+        //            echo "kondisi ke 2 | 2. SO Library KPI Custom";
+        //        } elseif (is_null($request->kpi)) {
+        //            echo "kondisi ke 3 | 3. SO Custom KPI Custom";
+        //        }
+
+        
         //insert db Target KPI data
         $kpidb = new target_kpi;
         $kpidb->id_user = $request->userid;
