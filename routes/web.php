@@ -8,6 +8,8 @@ use App\Http\Controllers\personnel\personnelHomeController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\client\personnelController;
 use App\Http\Controllers\client\targetController;
+use App\Http\Controllers\client\initiativeController;
+
 // Middleware
 use App\Http\Middleware\ClientGuard;
 use App\Http\Middleware\AdminGuard;
@@ -99,9 +101,7 @@ Route::middleware([ClientGuard::class])->group(function () {
     })->name('client.performancereport.kpi');
 
     // ** Initiatives **
-    Route::get('/client-initiative-personnel', function () {
-        return view('client.initiative.personnel');
-    })->name('client.initiative.personnel');
+    Route::get('/client-initiative-personnel', [initiativeController::class, 'index'])->name('client.initiative.personnel');
     Route::get('/client-initiative-kpi', function () {
         return view('client.initiative.kpi');
     })->name('client.initiative.kpi');
