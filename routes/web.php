@@ -9,7 +9,6 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\client\personnelController;
 use App\Http\Controllers\client\targetController;
 use App\Http\Controllers\client\initiativeController;
-
 // Middleware
 use App\Http\Middleware\ClientGuard;
 use App\Http\Middleware\AdminGuard;
@@ -58,9 +57,10 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::get('/client-target', [targetController::class, 'index'])->name('client.target');
     Route::get('/client-target-details', [targetController::class, 'details'])->name('client.target.details');
     // -> logic
-    Route::post('/client-target-addso',[targetController::class, 'addSo'])->name('client.target.addso');
-    Route::post('/client-target-editso',[targetController::class, 'editSo'])->name('client.target.editso');
-    Route::post('/client-target-addkpi',[targetController::class, 'addKpi'])->name('client.target.addKpi');
+    Route::post('/client-target-addso', [targetController::class, 'addSo'])->name('client.target.addso');
+    Route::post('/client-target-editso', [targetController::class, 'editSo'])->name('client.target.editso');
+    Route::post('/client-target-addkpi', [targetController::class, 'addKpi'])->name('client.target.addkpi');
+    Route::post('/client-target-editkpi', [targetController::class, 'editKpi'])->name('client.target.editkpi');
 
     // Target 2 (x)
     Route::get('/client-target-strategicobjective', function () {

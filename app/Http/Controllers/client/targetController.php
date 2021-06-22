@@ -33,10 +33,16 @@ class targetController extends Controller {
 
         // get data SO by ID
         $dataso = target_so::where('id_user', $request->idpersonnel)->get();
-        
-        //get data KPI by ID
-        $datakpi = DB::select("SELECT * FROM target_kpi a, target_so b WHERE a.id_target_so = b.id AND a.id_user = $request->idpersonnel ORDER BY b.so ASC");
 
+        //get data KPI by ID
+        $datakpi = DB::table('target_kpi')
+                ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
+                ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
+                ->where('target_kpi.id_user',$request->idpersonnel)
+                ->orderBy('target_kpi.id_target_so', 'asc')
+                ->get();
+
+        //$datakpi = DB::select("SELECT * FROM target_kpi a, target_so b WHERE a.id_target_so = b.id AND a.id_user = $request->idpersonnel ORDER BY b.so ASC");
         // pass to view
         return view('client.target.details', ['data' => $data, 'dataso' => $dataso, 'datakpi' => $datakpi]);
     }
@@ -87,17 +93,7 @@ class targetController extends Controller {
         // 1. SO Library KPI Library ( no customKpi var)
         // 2. SO Library KPI Custom  ( kpi = 0 , customKpi != null)
         // 3. SO Custom KPI Custom ( no kpi var)
-        //dd($request->all());
 
-        //        if (is_null($request->customKpi)) {
-        //            echo "kondisi ke 1 | 1. SO Library KPI Library";
-        //        } elseif ($request->kpi == '0') {
-        //            echo "kondisi ke 2 | 2. SO Library KPI Custom";
-        //        } elseif (is_null($request->kpi)) {
-        //            echo "kondisi ke 3 | 3. SO Custom KPI Custom";
-        //        }
-
-        
         //insert db Target KPI data
         $kpidb = new target_kpi;
         $kpidb->id_user = $request->userid;
@@ -120,7 +116,23 @@ class targetController extends Controller {
         $kpidb->save();
 
         //redirect with succes message
-        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your kpi has been added');
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your kpi has been added')->with('tab','kpi');
+    }
+
+    public function editKPI(Request $request) {
+        //dd($request);
+
+        //update eloquent
+        $kpiupdate = target_kpi::find($request->idtargetkpi);
+        $kpiupdate->kpi = $request->kpiedit;
+        $kpiupdate->target = $request->targetedit;
+        $kpiupdate->weight = $request->weightedit;
+        $kpiupdate->save();
+
+        //redirect with succes message
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your kpi has been edited')->with('tab','kpi');
+
+        //echo 'edit KPI';
     }
 
 }

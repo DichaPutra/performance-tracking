@@ -71,15 +71,15 @@
 
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Strategic Objective</button>
+                            <button class="nav-link @if(is_null(session('tab'))) active @endif" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Strategic Objective</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">KPI</button>
+                            <button class="nav-link @if(session('tab') == 'kpi') active @endif" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">KPI</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <!-- ========= Tab 1 Strategic Objective =========== -->
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="tab-pane fade @if(is_null(session('tab')))show active @endif" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <br>
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -123,12 +123,14 @@
                             <div class="card-body">
                                 <!--Success Message--> 
                                 @if ( (session('success')))
+                                @if(is_null(session('tab')))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     {{ session('success') }}
                                 </div>
+                                @endif
                                 @endif
 
                                 <!-- Content Row -->
@@ -196,7 +198,7 @@
 
 
                         <!-- ========== Tab 2 KPI ========== -->
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="tab-pane fade @if(session('tab') == 'kpi') show active @endif" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <br>
 
                             <!-- Card Header - Dropdown -->
@@ -219,7 +221,7 @@
                                             <div class="modal-body">
                                                 <!-- **** Form Add KPI **** -->
 
-                                                <form method="POST" action="{{route('client.target.addKpi')}}">
+                                                <form method="POST" action="{{route('client.target.addkpi')}}">
                                                     @csrf
                                                     <input type="hidden" name="userid" value="{{$data->id}}">
 
@@ -240,6 +242,19 @@
                             <!-- Card Body -->
                             <div class="card-body">
 
+                                <!--Success Message--> 
+                                @if ( (session('success')))
+                                @if(session('tab') == 'kpi')
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ session('success') }}
+                                </div>
+                                @endif
+                                @endif
+
+
                                 <!--Content Row-->
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="" width="100%" cellspacing="0">
@@ -258,162 +273,82 @@
                                             @foreach ($datakpi as $kpi)
                                             <tr>
                                                 <td style="width: 3%; text-align: center;">{{ $loop->iteration }}</td>
-                                                <td>{{$kpi->so}}</td>
-                                                <td>{{$kpi->kpi}}</td>
+                                                <td>
+                                                    {{$kpi->so}}
+                                                    @if($kpi->id_so_library == null)
+                                                    <span class="badge badge-secondary float-right"><i class="fa fa-user"></i> </span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    {{$kpi->kpi}}
+                                                    @if($kpi->id_kpi_library == null)
+                                                    <span class="badge badge-secondary float-right"><i class="fa fa-user"></i> </span>
+                                                    @endif
+                                                </td>
                                                 <td style="width: 10%; text-align: center;">{{$kpi->target}}</td>
                                                 <td style="width: 10%; text-align: center;">{{$kpi->weight}} % <?php $totalWeight += $kpi->weight; ?></td>
                                                 <td style="width: 10%;text-align: center;">
-                                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#xxxx">
+                                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditKPI{{ $loop->iteration }}">
                                                         <i class="fas fa-pen"></i>
                                                     </button>
                                                     <a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
                                                 </td>
                                             </tr>
-                                            @endforeach
-                                            <tr>
-                                                <td colspan="4"></td>
-                                                <td style="text-align: center;">{{$totalWeight}} %</td>
-                                                <td></td>
-                                            </tr>
+                                            <!--modal edit-->
+                                        <div class="modal fade bd-example-modal-lg" id="modalEditKPI{{ $loop->iteration }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Strategic Objective</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST" action="{{route('client.target.editkpi')}}">
+                                                            @csrf
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <input type="hidden" name="userid" value="{{$data->id}}">
+                                                                    <input type="hidden" name="idtargetkpi" value="{{$kpi->id}}">
+                                                                    <label>KPI :</label>
+                                                                    <input type="text" name="kpiedit" value="{{$kpi->kpi}}" class="form-control" >
+                                                                </div>
+                                                            </div><br>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label>Target :</label>
+                                                                    <input type="text" name="targetedit" value="{{$kpi->target}}" class="form-control" >
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>Weight :</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="text" name="weightedit" value="{{$kpi->weight}}" class="form-control" >
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div> <br>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <input type="submit" class="btn btn-primary" value="Edit">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        <tr>
+                                            <td colspan="4"></td>
+                                            <td style="text-align: center;">{{$totalWeight}} %</td>
+                                            <td></td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div><br>
                             </div>
-
-                            <!--KPI per SO-->
-                            <!--                            <div id="accordion">
-                                                            Card 1
-                                                            <div class="card">
-                                                                Accordion head
-                                                                <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" style="background-color: #FEE599">
-                                                                    <h5 class="mb-0">
-                                                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                            <b>Objective :</b> Peningkatan Company Value
-                                                                        </button>
-                                                                        <button class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#modalAdd1"><i class="fas fa-plus"></i></button>
-                                                                    </h5>
-                                                                </div>
-                            
-                                                                 Modal Add
-                                                                <div class="modal fade bd-example-modal-lg" id="modalAdd1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-lg">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title" id="exampleModalLabel">Add KPI </h5>
-                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                            </div>
-                                                                            <div class="modal-body">
-                                                                                 **** Form Add SO **** 
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleFormControlSelect1">Strategic Objective :</label>
-                                                                                    <input type="text" value="Peningkatan Company Value" class="form-control" readonly="">
-                                                                                </div><br>
-                            
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleFormControlSelect2">Key Performance Indicator :</label>
-                                                                                    <select class="form-control" id="exampleFormControlSelect2" size="10">
-                                                                                        <option>Peningkatan Company Value</option>
-                                                                                        <option>Optimalisasi Cash Flow</option>
-                                                                                        <option>Efisiensi dan efektivitas biaya</option>
-                                                                                        <option>Peningkatan Profit</option>
-                                                                                        <option>Peningkatan Total Pendapatan</option>
-                                                                                    </select>
-                                                                                </div>
-                            
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                                <button type="button" class="btn btn-primary">Add</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                            
-                            
-                            
-                                                                Content Collabse 
-                                                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                                                    <div class="card-body">
-                                                                        <div class="table-responsive">
-                                                                            <table class="table table-bordered" id="table" width="100%" cellspacing="0">
-                                                                                <thead style="background-color: #F8F9FC;">
-                                                                                    <tr>
-                                                                                        <th style="text-align: center;">No</th>
-                                                                                        <th>Strategic Objective</th>
-                                                                                        <th>KPI</th>
-                                                                                        <th>Unit of Measurement</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td style="text-align: center;">1</td>
-                                                                                        <td>Memperluas Jangkauan Distribusi</td>
-                                                                                        <td>Return on Equity (ROE) - Tingkat pengembalian atas modal yang telah ditanamkan</td>
-                                                                                        <td style="text-align: center;">%</td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <td style="text-align: center;">2</td>
-                                                                                        <td>Mengadopsi Teknologi SCM 4.0 untuk mencapai keunggulan bersaing</td>
-                                                                                        <td>Return on Investment (ROI) - Tingkat pengembalian atas investasi yang telah ditanamkan</td>
-                                                                                        <td style="text-align: center;">%</td>
-                                                                                    </tr> 
-                                                                                    <tr>
-                                                                                        <td style="text-align: center;">3</td>
-                                                                                        <td>Memperluas Jangkauan Distribusi</td>
-                                                                                        <td>Tingkat Kesehatan (Standar BUMN) - Kinerja berdasarkan atas sekumpulan indikator Keuangan,  Operasional dan Administratif sesuai standard yang ditentukan oleh BUMN. Indikator Keuangan  meliputi ROE, ROI, CASH RATIO, Current Ratio, Collection Periode, Perputaran Persediaan, Perputaran Total Asset, Rasio Modal Sendiri thd Total Aktiv Sedangkan indikator operasional adalah berkaitan dengan produktivitas tanaman, rendemen, % produk berkualitas tinggi serta penjualan langsung.</td>
-                                                                                        <td style="text-align: center;">Score</td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                            
-                                                            Card 2
-                                                            <div class="card">
-                                                                Accordion head
-                                                                <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" style="background-color: #FEE599">
-                                                                    <h5 class="mb-0">
-                                                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                                            <b>Objective :</b> Optimalisasi Cash Flow
-                                                                        </button>
-                                                                        <button class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i></button>
-                                                                    </h5>
-                                                                </div>
-                                                                Content Collabse 
-                                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                                                    <div class="card-body">
-                                                                        <div class="table-responsive">
-                                                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                                                                <thead style="background-color: #F8F9FC;">
-                                                                                    <tr>
-                                                                                        <th style="text-align: center;">No</th>
-                                                                                        <th>KPI</th>
-                                                                                        <th>Unit of Measurement</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                    <tr>
-                                                                                        <td style="text-align: center;">1</td>
-                                                                                        <td>Cash Rasio - Kemampuan perusahaan dalam menyediakan uang tunai atau setara kas dibandingkan dengan tingkat kewajiban lancar (kurang dari setahun)</td>
-                                                                                        <td style="text-align: center;">%</td>
-                                                                                    </tr> 
-                                                                                    <tr>
-                                                                                        <td style="text-align: center;">2</td>
-                                                                                        <td>Current Ratio - Kemampuan perusahaan dalam menjaga aktiva lancar sehingga  kewajiban lancar (kurang dari setahun) selalu dapat terpenuhi </td>
-                                                                                        <td style="text-align: center;">%</td>
-                                                                                    </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                            
-                            
-                            
-                                                        </div>-->
 
                         </div>
                         <!--end of tab 2-->

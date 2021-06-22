@@ -69,17 +69,17 @@
                 </div>
                 <div class="col-md-6">
                     <label><b>Weight :</b></label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">%</div>
-                        </div>
+                    <div class="input-group mb-3">
                         <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">%</span>
+                        </div>
                     </div>
                 </div>
             </div>
-<!--            <div class="col-auto">
-                <label class="sr-only" for="inlineFormInputGroup">Username</label>
-            </div>-->
+            <!--            <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                        </div>-->
         </div>
     </div>
 
@@ -108,11 +108,12 @@
                 </div>
                 <div class="col-md-6">
                     <label><b>Weight :</b></label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">%</div>
-                        </div>
+                    <label><b>Weight :</b></label>
+                    <div class="input-group mb-3">
                         <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">%</span>
+                        </div>
                     </div>
                 </div>
             </div>
