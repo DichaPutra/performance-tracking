@@ -1,5 +1,7 @@
 @extends('layouts.app2')
 
+@include('client.otherelement')<!--berisikan function di view-->
+
 @section('head')
 <?php $page = 'initiative' ?>
 @endsection
@@ -42,46 +44,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($user as $user )
                                 <tr>
-                                    <td style="background-color: #BDD7EE;">0. Corporate</td>
-                                    <td>Corporate</td>
-                                    <td>Tiger Nixon</td>
-                                    <td style="text-align:center;">5</td>
-                                    <td style="text-align:center;">15</td>
+                                    <td style="background-color: {{color($user->level)}};">{{levelName($user->level)}}</td>
+                                    <td>{{$user->position}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td style="text-align:center;">{{getCountKPI($user->id)}}</td>
+                                    <td style="text-align:center;">0</td>
                                     <td><a href="{{route('client.initiative.kpi')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
-                                <tr>
-                                    <td style="background-color: #FEE599;">1. Division</td>
-                                    <td>Finance</td>
-                                    <td>Garrett Winters</td>
-                                    <td style="text-align:center;">3</td>
-                                    <td style="text-align:center;">12</td>
-                                    <td><a href="{{route('client.initiative.kpi')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td style="background-color: #FEE599;">1. Division</td>
-                                    <td>Production</td>
-                                    <td>Jena Gaines</td>
-                                    <td style="text-align:center;">2</td>
-                                    <td style="text-align:center;">8</td>
-                                    <td><a href="{{route('client.initiative.kpi')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td style="background-color: #FEE599;">1. Division</td>
-                                    <td>Marketing</td>
-                                    <td>Haley Kennedy</td>
-                                    <td style="text-align:center;">4</td>
-                                    <td style="text-align:center;">13</td>
-                                    <td><a href="{{route('client.initiative.kpi')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td style="background-color: #FEE599;">1. Division</td>
-                                    <td>Inventory</td>
-                                    <td>Michael Silva</td>
-                                    <td style="text-align:center;">4</td>
-                                    <td style="text-align:center;">13</td>
-                                    <td><a href="{{route('client.initiative.kpi')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>                              
+                                @endforeach                             
                             </tbody>
                         </table>
                     </div>

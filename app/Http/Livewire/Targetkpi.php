@@ -25,8 +25,13 @@ class Targetkpi extends Component {
     }
 
     public function updatedSelectedSo() {
-        if (kpi_library::where('id_so_library', $this->selectedSo)->exists()) {
-            $this->kpi = kpi_library::where('id_so_library', $this->selectedSo)->get();
+        
+        // ambil id_so_library data dari tabel target_so
+        $targetso = target_so::where('id', $this->selectedSo)->first();
+        $idsolibrary = $targetso->id_so_library;
+        
+        if (!is_null($idsolibrary)) {
+            $this->kpi = kpi_library::where('id_so_library', $idsolibrary)->get();
         } else {
             $this->kpi = 'nokpilibrary';
         }
