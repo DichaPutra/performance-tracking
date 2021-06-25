@@ -64,9 +64,15 @@
             <br>
             <div class="row">
                 <div class="col-md-6">
+                    <label><b>Unit / Satuan :</b></label>
+                    <input name="unit" type="text" value="" class="form-control" placeholder="Input your unit here...">
+                </div>
+                <div class="col-md-6">
                     <label><b>Target :</b></label>
                     <input name="target" type="number" class="form-control" required="" placeholder="Input your target here...">
                 </div>
+            </div><br>
+            <div class="row">
                 <div class="col-md-6">
                     <label><b>Weight :</b></label>
                     <div class="input-group mb-3">
@@ -103,11 +109,16 @@
             <br>
             <div class="row">
                 <div class="col-md-6">
+                    <label><b>Unit / Satuan :</b></label>
+                    <input name="unit" type="text" value="{{$kpidata->unit}}" class="form-control" readonly="">
+                </div>
+                <div class="col-md-6">
                     <label><b>Target :</b></label>
                     <input name="target" type="number" class="form-control" required="" placeholder="Input your target here...">
                 </div>
+            </div><br>
+            <div class="row">
                 <div class="col-md-6">
-                    <label><b>Weight :</b></label>
                     <label><b>Weight :</b></label>
                     <div class="input-group mb-3">
                         <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">

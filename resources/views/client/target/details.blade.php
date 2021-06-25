@@ -263,6 +263,7 @@
                                                 <th style="width: 3%; text-align: center;">No </th>
                                                 <th style="text-align: center;">Strategic Objective</th>
                                                 <th style="text-align: center;">KPI</th>
+                                                <th style="width: 10%; text-align: center;">Unit/Satuan</th>
                                                 <th style="width: 10%; text-align: center;">Target</th>
                                                 <th style="width: 10%; text-align: center;">Weight</th>
                                                 <th style="width: 10%; text-align: center;">Operation</th>
@@ -285,6 +286,7 @@
                                                     <span class="badge badge-secondary float-right"><i class="fa fa-user"></i> </span>
                                                     @endif
                                                 </td>
+                                                <td style="width: 10%; text-align: center;">{{$kpi->unit}}</td>
                                                 <td style="width: 10%; text-align: center;">{{$kpi->target}}</td>
                                                 <td style="width: 10%; text-align: center;">{{$kpi->weight}} % <?php $totalWeight += $kpi->weight; ?></td>
                                                 <td style="width: 10%;text-align: center;">
@@ -341,7 +343,7 @@
                                         </div>
                                         @endforeach
                                         <tr>
-                                            <td colspan="4"></td>
+                                            <td colspan="5" style="text-align: center;"><b>Total Weight</b></td>
                                             <td style="text-align: center;">{{$totalWeight}} %</td>
                                             <td></td>
                                         </tr>

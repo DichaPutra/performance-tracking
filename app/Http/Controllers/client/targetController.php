@@ -109,6 +109,7 @@ class targetController extends Controller {
             $kpidb->id_kpi_library = null;
             $kpidb->kpi = $request->customKpi;
         }
+        $kpidb->unit = $request->unit;
         $kpidb->measurement = $request->measurement;
         $kpidb->polarization = $request->polarization;
         $kpidb->target = $request->target;
