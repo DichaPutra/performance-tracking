@@ -27,7 +27,7 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">List personnel</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Personnel</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -38,8 +38,8 @@
                                     <th>Level</th>      
                                     <th>Position</th>
                                     <th>PIC Name</th>
-                                    <th>KPI</th>
-                                    <th>Strategic Initiative</th>
+                                    <th style="text-align: center; width: 10%">KPI</th>
+                                    <th style="text-align: center; width: 10%">Strategic Initiative</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -49,9 +49,9 @@
                                     <td style="background-color: {{color($user->level)}};">{{levelName($user->level)}}</td>
                                     <td>{{$user->position}}</td>
                                     <td>{{$user->name}}</td>
-                                    <td style="text-align:center;">{{getCountKPI($user->id)}}</td>
-                                    <td style="text-align:center;">0</td>
-                                    <td><a href="{{route('client.initiative.kpi')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td style="text-align:center; width: 10%;">{{getCountKPI($user->id)}}</td>
+                                    <td style="text-align:center; width: 10%;">{{getCountSI($user->id)}}</td>
+                                    <td style="text-align: center;"><a href="{{route('client.initiative.kpi', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 @endforeach                             
                             </tbody>

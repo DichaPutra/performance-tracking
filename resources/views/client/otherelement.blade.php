@@ -3,7 +3,7 @@
 
 use App\Models\target_so;
 use App\Models\target_kpi;
-
+use App\Models\target_si;
 
 // Color Function For Level and Name
 function color($level) {
@@ -42,6 +42,11 @@ function getCountSO($id_user) {
 function getCountKPI($id_user) {
     $count = target_kpi::where('id_user', $id_user)->count();
     return $count;
+}
+
+function getCountSI($id_user) {
+    $cout = target_si::where('id_user', $id_user)->count();
+    return $cout;
 }
 ?>
 

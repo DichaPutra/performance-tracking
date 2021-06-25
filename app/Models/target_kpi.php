@@ -11,7 +11,7 @@ class target_kpi extends Model {
 
     protected $table = 'target_kpi';
     protected $fillable = [
-        'id_user', 'id_kpi', 'kpi', 'measurement', 'target', 'weight', 'polarization'
+        'id_user', 'id_target_so', 'id_kpi_library', 'kpi', 'unit', 'measurement', 'target', 'weight', 'polarization'
     ];
 
 }

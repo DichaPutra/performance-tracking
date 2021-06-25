@@ -102,12 +102,8 @@ Route::middleware([ClientGuard::class])->group(function () {
 
     // ** Initiatives **
     Route::get('/client-initiative-personnel', [initiativeController::class, 'index'])->name('client.initiative.personnel');
-    Route::get('/client-initiative-kpi', function () {
-        return view('client.initiative.kpi');
-    })->name('client.initiative.kpi');
-    Route::get('/client-initiative-initiative', function () {
-        return view('client.initiative.initiative');
-    })->name('client.initiative.initiative');
+    Route::get('/client-initiative-kpi', [initiativeController::class, 'kpi'])->name('client.initiative.kpi');
+    Route::get('/client-initiative-initiative', [initiativeController::class, 'initiative'])->name('client.initiative.initiative');
     Route::get('/client-initiative-actionplan', function () {
         return view('client.initiative.actionplan');
     })->name('client.initiative.actionplan');

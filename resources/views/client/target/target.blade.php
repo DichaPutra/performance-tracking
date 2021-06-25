@@ -38,21 +38,11 @@
                                     <th>Level</th>      
                                     <th>Position</th>
                                     <th>PIC Name</th>
-                                    <th>Strategic Objective</th>
-                                    <th>KPI</th>
+                                    <th style="text-align: center;">Strategic Objective</th>
+                                    <th style="text-align: center;">KPI</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tfoot style="background-color: #F8F9FC;">
-                                <tr>
-                                    <th>Level</th>
-                                    <th>Position</th>
-                                    <th>PIC Name</th>
-                                    <th>Strategic Objective</th>
-                                    <th>KPI</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
                             <tbody>
                                 @foreach($user as $user)
                                 <tr>
@@ -61,7 +51,7 @@
                                     <td>{{$user->name}}</td>
                                     <td style="text-align:center;">{{getCountSO($user->id)}}</td>
                                     <td style="text-align:center;">{{getCountKPI($user->id)}}</td>
-                                    <td><a href="{{route('client.target.details', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td style="text-align: center;"><a href="{{route('client.target.details', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 @endforeach                            
                             </tbody>

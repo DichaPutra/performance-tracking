@@ -1,5 +1,7 @@
 @extends('layouts.app2')
 
+@include('client.otherelement')<!--berisikan function di view-->
+
 @section('head')
 <?php $page = 'initiative' ?>
 
@@ -17,6 +19,11 @@
         </ol>
     </nav><br>
 
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-lightbulb"></i>  Initiative</h1>
+    </div> 
+
     <!-- Content Row -->
     <div class="row">
         <div class="col-xl-12 col-lg-12">
@@ -26,7 +33,7 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Details</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Personnel</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -35,25 +42,25 @@
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Level</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control " name="name" value="0. Corporate" required="" autocomplete="name" autofocus="" disabled="">
+                                    <input id="name" type="text" class="form-control " name="name" value="{{levelName($data->level)}}" required="" autocomplete="name" autofocus="" disabled="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" list="pos" value="Corporate" disabled="">
+                                    <input type="text" class="form-control" list="pos" value="{{$data->position}}" disabled="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">PIC Name</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control " name="name" value="Charde Marshall" required="" autocomplete="name" autofocus="" disabled="">
+                                    <input id="name" type="text" class="form-control " name="name" value="{{$data->name}}" required="" autocomplete="name" autofocus="" disabled="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control " name="email" value="chardemarshall@mail.com" required="" autocomplete="email" disabled="">
+                                    <input id="email" type="email" class="form-control " name="email" value="{{$data->email}}" required="" autocomplete="email" disabled="">
                                 </div>
                             </div>
                         </div>
