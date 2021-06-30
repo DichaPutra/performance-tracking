@@ -4,8 +4,10 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\target_kpi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class initiativeController extends Controller {
 
@@ -18,7 +20,7 @@ class initiativeController extends Controller {
     }
 
     function kpi(Request $request) {
-        //var_dump($request->idpersonnel);
+        //Mengambil detail data personnel
         $data = User::where('id', $request->idpersonnel)->first();
 
         // guard (jika user yang dilihat bukan personnelnya)
@@ -28,11 +30,21 @@ class initiativeController extends Controller {
         if ($data->client_parent != Auth::user()->id) {
             return abort(403);
         }
+        
+        // get all kpi data by personnel 
+        //$datakpi = target_kpi::where('id_user', $request->idpersonnel)->get();
+        $datakpi = DB::table('target_kpi')
+                ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
+                ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
+                ->where('target_kpi.id_user',$request->idpersonnel)
+                ->orderBy('target_kpi.id_target_so', 'asc')
+                ->get();
 
-        return view('client.initiative.kpi', ['data' => $data]);
+        return view('client.initiative.kpi', ['data' => $data, 'datakpi' => $datakpi]);
     }
 
-    function initiative() {
+    function initiative(Request $request) {
+        dd($request);
         return view('client.initiative.initiative');
     }
 

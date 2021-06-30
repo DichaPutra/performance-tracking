@@ -82,42 +82,29 @@
                             <thead style="background-color: #F8F9FC;">
                                 <tr>
                                     <th style="text-align: center;">No</th>
+                                    <th>SO</th>
                                     <th>KPI</th>
                                     <th>Initiative</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($datakpi as $datakpi)
                                 <tr>
+                                    <td style="text-align: center;">{{ $loop->iteration }}</td>
+                                    <td>{{$datakpi->so}}</td>
+                                    <td>{{$datakpi->kpi}}</td>
+                                    <td style="text-align: center;">5</td>
+                                    <td><a href="{{route('client.initiative.initiative',['idpersonnel' => $data->id , 'idkpi' => $datakpi->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                </tr>
+                                @endforeach
+                                <!--<tr>
                                     <td style="text-align: center;">1</td>
                                     <td>Return on Equity (ROE) - Tingkat pengembalian atas modal yang telah ditanamkan</td>
                                     <td style="text-align: center;">5</td>
                                     <td><a href="{{route('client.initiative.initiative')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: center;">2</td>
-                                    <td>Return on Investment (ROI) - Tingkat pengembalian atas investasi yang telah ditanamkan</td>
-                                    <td style="text-align: center;">3</td>
-                                    <td><a href="{{route('client.initiative.initiative')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr> 
-                                <tr>
-                                    <td style="text-align: center;">3</td>
-                                    <td>Tingkat Kesehatan (Standar BUMN) - Kinerja berdasarkan atas sekumpulan indikator Keuangan,  Operasional dan Administratif sesuai standard yang ditentukan oleh BUMN. Indikator Keuangan  meliputi ROE, ROI, CASH RATIO, Current Ratio, Collection Periode, Perputaran Persediaan, Perputaran Total Asset, Rasio Modal Sendiri thd Total Aktiv Sedangkan indikator operasional adalah berkaitan dengan produktivitas tanaman, rendemen, % produk berkualitas tinggi serta penjualan langsung.</td>
-                                    <td style="text-align: center;">2</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr> 
-                                <tr>
-                                    <td style="text-align: center;">4</td>
-                                    <td>Cash Rasio - Kemampuan perusahaan dalam menyediakan uang tunai atau setara kas dibandingkan dengan tingkat kewajiban lancar (kurang dari setahun)</td>
-                                    <td style="text-align: center;">5</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr> 
-                                <tr>
-                                    <td style="text-align: center;">5</td>
-                                    <td>Current Ratio - Kemampuan perusahaan dalam menjaga aktiva lancar sehingga  kewajiban lancar (kurang dari setahun) selalu dapat terpenuhi </td>
-                                    <td style="text-align: center;">3</td>
-                                    <td><a href="#"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>
+                                </tr>-->
+
                             </tbody>
                         </table>
 
@@ -126,13 +113,13 @@
             </div>
 
             <!--Card 3-->
-            <div class="card shadow mb-4 animated--grow-in">
-                <!-- Card Header - Dropdown -->
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Chat</h6>
-                </div>
-            </div>
+            <!--            <div class="card shadow mb-4 animated--grow-in">
+                             Card Header - Dropdown 
+                            <div
+                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Chat</h6>
+                            </div>
+                        </div>-->
 
         </div>
     </div>
