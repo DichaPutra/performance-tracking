@@ -82,10 +82,10 @@
                             <thead style="background-color: #F8F9FC;">
                                 <tr>
                                     <th style="text-align: center;">No</th>
-                                    <th>SO</th>
-                                    <th>KPI</th>
-                                    <th>Initiative</th>
-                                    <th></th>
+                                    <th style="text-align: center;">SO</th>
+                                    <th style="text-align: center;">KPI</th>
+                                    <th style="text-align: center;">Initiative</th>
+                                    <th style="text-align: center;"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,33 +94,15 @@
                                     <td style="text-align: center;">{{ $loop->iteration }}</td>
                                     <td>{{$datakpi->so}}</td>
                                     <td>{{$datakpi->kpi}}</td>
-                                    <td style="text-align: center;">5</td>
-                                    <td><a href="{{route('client.initiative.initiative',['idpersonnel' => $data->id , 'idkpi' => $datakpi->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td style="text-align: center;">{{getCountSI ($data->id)}}</td>
+                                    <td style="text-align: center;"><a href="{{route('client.initiative.initiative',['idpersonnel' => $data->id , 'idkpi' => $datakpi->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 @endforeach
-                                <!--<tr>
-                                    <td style="text-align: center;">1</td>
-                                    <td>Return on Equity (ROE) - Tingkat pengembalian atas modal yang telah ditanamkan</td>
-                                    <td style="text-align: center;">5</td>
-                                    <td><a href="{{route('client.initiative.initiative')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
-                                </tr>-->
-
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
-
-            <!--Card 3-->
-            <!--            <div class="card shadow mb-4 animated--grow-in">
-                             Card Header - Dropdown 
-                            <div
-                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Chat</h6>
-                            </div>
-                        </div>-->
-
         </div>
     </div>
     <!-- /.container-fluid -->
@@ -128,9 +110,9 @@
     @endsection
 
     @section('script')
-    <script>
+<!--    <script>
         $(document).ready(function () {
             $('#dataTable').DataTable();
         });
-    </script>
+    </script>-->
     @endsection
