@@ -50,9 +50,8 @@ class initiativeController extends Controller {
 
     function initiative(Request $request)
     {
-        
-//        dd($request);
-        
+
+        //dd($request);
         //Mengambil detail data personnel
         $data = User::where('id', $request->idpersonnel)->first();
 
@@ -72,12 +71,17 @@ class initiativeController extends Controller {
                 ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
                 ->where('target_kpi.id', $request->idkpi)
                 ->first();
-        
+
         // get data Target Strategic Inititives
         $datasi = target_si::where('id_target_kpi', $request->idkpi)->get();
 
-        
+
         return view('client.initiative.initiative', ['data' => $data, 'datakpi' => $datakpi, 'datasi' => $datasi]);
+    }
+
+    function addInitiative(Request $request)
+    {
+        dd($request);
     }
 
 }

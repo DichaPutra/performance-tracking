@@ -61,36 +61,6 @@
     </a>
 </li>
 
-<!--NOT USE Anymore-->
-<!--<li class="nav-item @if($page=='target2')active @endif">
-    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTarget" aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-chart-line"></i>
-        <span>Target</span>
-    </a>
-    <div id="collapseTarget" class="collapse" aria-labelledby="headingUtilities"
-         data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Set Targets:</h6>
-            <a class="collapse-item" href="{{route('client.target.strategicobjective')}}">Strategic Objective</a>
-            <a class="collapse-item" href="{{route('client.target.kpi')}}">KPI</a>
-            <a class="collapse-item" href="{{route('client.target.actionplan')}}">Action Plan</a>
-        </div>
-    </div>
-</li>
-
-<li class="nav-item @if($page=='kpi')active @endif">
-    <a class="nav-link" href="{{route('client.kpi')}}">
-        <i class="fas fa-fw fa-chart-line"></i>
-        <span>KPI (alt)</span>
-    </a>
-</li>-->
-
-<!--<li class="nav-item @if($page=='laporan')active @endif">
-    <a class="nav-link" href="{{route('client.report.viewreport')}}">
-        <i class="fas fa-fw fa-chalkboard-teacher"></i>
-        <span>Performance Report</span></a>
-</li>-->
-
 <!--Minimize Sidebar-->
 <div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>

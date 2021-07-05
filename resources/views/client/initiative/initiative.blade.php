@@ -86,7 +86,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="row">
+                    <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead style="background-color: #F8F9FC;">
                                 <tr>
@@ -123,31 +123,20 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add Strategic Objective </h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Add Strategic Initiative </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <!-- **** Form Add SO **** -->
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Business Categories :</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>Accounting & Tax Services</option>
-                                        <option>Arts, Culture & Entertainment</option>
-                                    </select>
-                                </div>
+                                <form method="POST" action="{{route('client.initiative.addinitiative')}}">
+                                    @csrf
 
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect2">Strategic Objective :</label>
-                                    <select multiple class="form-control" id="exampleFormControlSelect2" size="10">
-                                        <option>Peningkatan Company Value</option>
-                                        <option>Optimalisasi Cash Flow</option>
-                                    </select>
-                                </div>
+                                    @livewire('addinitiative', ['id_user' => $data->id , 'id_target_kpi' => $datakpi->id, 'id_kpi_library' => $datakpi->id_kpi_library]);
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Add</button>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Add</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

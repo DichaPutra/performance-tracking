@@ -77,7 +77,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="row">
+                    <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead style="background-color: #F8F9FC;">
                                 <tr>
@@ -92,8 +92,18 @@
                                 @foreach ($datakpi as $datakpi)
                                 <tr>
                                     <td style="text-align: center;">{{ $loop->iteration }}</td>
-                                    <td>{{$datakpi->so}}</td>
-                                    <td>{{$datakpi->kpi}}</td>
+                                    <td>
+                                        {{$datakpi->so}}
+                                        @if($datakpi->id_so_library == null)
+                                        <span class="badge badge-secondary float-right"><i class="fa fa-user"></i> </span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{$datakpi->kpi}}
+                                        @if($datakpi->id_kpi_library == null)
+                                        <span class="badge badge-secondary float-right"><i class="fa fa-user"></i> </span>
+                                        @endif
+                                    </td>
                                     <td style="text-align: center;">{{getCountSI ($data->id)}}</td>
                                     <td style="text-align: center;"><a href="{{route('client.initiative.initiative',['idpersonnel' => $data->id , 'idkpi' => $datakpi->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>

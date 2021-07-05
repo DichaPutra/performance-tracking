@@ -62,33 +62,6 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::post('/client-target-addkpi', [targetController::class, 'addKpi'])->name('client.target.addkpi');
     Route::post('/client-target-editkpi', [targetController::class, 'editKpi'])->name('client.target.editkpi');
 
-    // Target 2 (x)
-    Route::get('/client-target-strategicobjective', function () {
-        return view('client.target2.strategicobjective');
-    })->name('client.target.strategicobjective');
-    Route::get('/client-target-kpi', function () {
-        return view('client.target2.kpi');
-    })->name('client.target.kpi');
-    Route::get('/client-target-actionplan', function () {
-        return view('client.target2.actionplan');
-    })->name('client.target.actionplan');
-    Route::get('/client-target-actionplandetail', function () {
-        return view('client.target2.actionplandetail');
-    })->name('client.personnel.actionplandetail');
-
-    // ** KPI ** (X)
-    Route::get('/client-kpi', function () {
-        return view('client.kpi.kpi');
-    })->name('client.kpi');
-    Route::get('/client-kpi-details', function () {
-        return view('client.kpi.details');
-    })->name('client.kpi.details');
-
-    // * Report * (X)
-    Route::get('/client-report-viewreport', function () {
-        return view('client.report.viewreport');
-    })->name('client.report.viewreport');
-
     // ** Performance Report **
     Route::get('/client-performancereport', function () {
         return view('client.performancereport.performancereport');
@@ -101,12 +74,16 @@ Route::middleware([ClientGuard::class])->group(function () {
     })->name('client.performancereport.kpi');
 
     // ** Initiatives **
+    // -> page
     Route::get('/client-initiative-personnel', [initiativeController::class, 'index'])->name('client.initiative.personnel');
     Route::get('/client-initiative-kpi', [initiativeController::class, 'kpi'])->name('client.initiative.kpi');
     Route::get('/client-initiative-initiative', [initiativeController::class, 'initiative'])->name('client.initiative.initiative');
     Route::get('/client-initiative-actionplan', function () {
         return view('client.initiative.actionplan');
     })->name('client.initiative.actionplan');
+    // -> logic
+    Route::post('/client-initiative-initiative', [initiativeController::class, 'addInitiative'])->name('client.initiative.addinitiative');
+    
 });
 
 // == PERSONNEL ROUTE ==
@@ -143,4 +120,34 @@ Route::middleware([PersonnelGuard::class])->group(function () {
         return view('personnel.initiative.actionplan');
     })->name('personnel.initiative.actionplan');
 });
+
+
+
+//DUMP AREA
+//    // Target 2 (x)
+//    Route::get('/client-target-strategicobjective', function () {
+//        return view('client.target2.strategicobjective');
+//    })->name('client.target.strategicobjective');
+//    Route::get('/client-target-kpi', function () {
+//        return view('client.target2.kpi');
+//    })->name('client.target.kpi');
+//    Route::get('/client-target-actionplan', function () {
+//        return view('client.target2.actionplan');
+//    })->name('client.target.actionplan');
+//    Route::get('/client-target-actionplandetail', function () {
+//        return view('client.target2.actionplandetail');
+//    })->name('client.personnel.actionplandetail');
+//
+//    // ** KPI ** (X)
+//    Route::get('/client-kpi', function () {
+//        return view('client.kpi.kpi');
+//    })->name('client.kpi');
+//    Route::get('/client-kpi-details', function () {
+//        return view('client.kpi.details');
+//    })->name('client.kpi.details');
+//
+//    // * Report * (X)
+//    Route::get('/client-report-viewreport', function () {
+//        return view('client.report.viewreport');
+//    })->name('client.report.viewreport');
 

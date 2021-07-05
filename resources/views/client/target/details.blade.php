@@ -261,11 +261,11 @@
                                         <thead style="background-color: #F8F9FC;">
                                             <tr>
                                                 <th style="width: 3%; text-align: center;">No </th>
-                                                <th style="text-align: center;">Strategic Objective</th>
+                                                <th style="width: 20%;text-align: center;">Strategic Objective</th>
                                                 <th style="text-align: center;">KPI</th>
                                                 <th style="width: 10%; text-align: center;">Unit/Satuan</th>
-                                                <th style="width: 10%; text-align: center;">Target</th>
-                                                <th style="width: 10%; text-align: center;">Weight</th>
+                                                <th style="width: 5%; text-align: center;">Target</th>
+                                                <th style="width: 5%; text-align: center;">Weight</th>
                                                 <th style="width: 10%; text-align: center;">Operation</th>
                                             </tr>
                                         </thead>
@@ -274,7 +274,7 @@
                                             @foreach ($datakpi as $kpi)
                                             <tr>
                                                 <td style="width: 3%; text-align: center;">{{ $loop->iteration }}</td>
-                                                <td>
+                                                <td style="width: 20%;">
                                                     {{$kpi->so}}
                                                     @if($kpi->id_so_library == null)
                                                     <span class="badge badge-secondary float-right"><i class="fa fa-user"></i> </span>
@@ -287,8 +287,8 @@
                                                     @endif
                                                 </td>
                                                 <td style="width: 10%; text-align: center;">{{$kpi->unit}}</td>
-                                                <td style="width: 10%; text-align: center;">{{$kpi->target}}</td>
-                                                <td style="width: 10%; text-align: center;">{{$kpi->weight}} % <?php $totalWeight += $kpi->weight; ?></td>
+                                                <td style="width: 5%; text-align: center;">{{$kpi->target}}</td>
+                                                <td style="width: 5%; text-align: center;">{{$kpi->weight}} % <?php $totalWeight += $kpi->weight; ?></td>
                                                 <td style="width: 10%;text-align: center;">
                                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditKPI{{ $loop->iteration }}">
                                                         <i class="fas fa-pen"></i>
