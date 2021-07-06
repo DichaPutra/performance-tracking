@@ -101,7 +101,7 @@
                                     <td style="text-align: center;">1</td>
                                     <td style="text-align: center;">{{$datakpi->so}}</td>
                                     <td style="text-align: center;">{{$datakpi->kpi}}</td>
-                                    <td style="text-align: center;">{{getCountSI ($data->id)}}</td>
+                                    <td style="text-align: center;">{{getCountSIbyKPI($datakpi->id)}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -115,7 +115,7 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h5 class="m-0 font-weight-bold text-primary">Initiative</h5>
-                    <button class="btn btn-sm btn-primary float-right" data-bs-toggle="modal" data-bs-target="#modalAdd"><i class="fas fa-plus"></i></button>
+
                 </div>
 
                 <!-- Modal Add-->
@@ -129,12 +129,15 @@
                             <div class="modal-body">
                                 <form method="POST" action="{{route('client.initiative.addinitiative')}}">
                                     @csrf
+                                    <input name="id_user" type="hidden" value="{{$data->id}}">
+                                    <input name="id_target_kpi" type="hidden" value="{{$datakpi->id}}">
 
-                                    @livewire('addinitiative', ['id_user' => $data->id , 'id_target_kpi' => $datakpi->id, 'id_kpi_library' => $datakpi->id_kpi_library]);
+
+                                    @livewire('addinitiative', ['id_user' => $data->id , 'id_target_kpi' => $datakpi->id, 'id_kpi_library' => $datakpi->id_kpi_library])
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Add</button>
+                                        <input type="submit" value="Add" class="btn btn-primary">
                                     </div>
                                 </form>
                             </div>
@@ -144,12 +147,19 @@
 
                 <!-- Card Body -->
                 <div class="card-body">
+
+                    <a href="{{route('client.initiative.kpi', ['idpersonnel'=>$data->id])}}">
+                        <button class="btn btn-md btn-primary float-left"><i class="fas fa-chevron-left"></i></button>
+                    </a>
+                    <button class="btn btn-md btn-primary float-right" style="margin-bottom: 15px;"data-bs-toggle="modal" data-bs-target="#modalAdd"><i class="fas fa-plus"></i></button>
+                    <br>
+
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead style="background-color: #F8F9FC;">
                             <tr>
                                 <th style="text-align: center;">No</th>
                                 <th>Initiative</th>
-                                <th>Action Plan</th>
+                                <!--<th>Action Plan</th>-->
                                 <th style="width: 15%"></th>
                             </tr>
                         </thead>
@@ -158,7 +168,7 @@
                             <tr>
                                 <td style="text-align: center;">{{ $loop->iteration }}</td>
                                 <td>{{$datasi->si}}</td>
-                                <td style="text-align: center;">5</td>
+                                <!--<td style="text-align: center;">5</td>-->
                                 <td style="width: 15%; text-align: center;">
                                     <a href="{{route('client.initiative.actionplan')}}"><button class="btn btn-primary btn-sm">Details</button></a>
                                     <a href="#" onclick="return confirm('All Action Plan related data will be deleted, Are you sure you want to delete this Initiative ? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
@@ -166,15 +176,6 @@
                             </tr>
 
                             @endforeach
-                            <tr>
-                                <td style="text-align: center;">1</td>
-                                <td>Return on Equity (ROE) - Tingkat pengembalian atas modal yang telah ditanamkan</td>
-                                <td style="text-align: center;">5</td>
-                                <td style="width: 15%; text-align: center;">
-                                    <a href="{{route('client.initiative.actionplan')}}"><button class="btn btn-primary btn-sm">Details</button></a>
-                                    <a href="#" onclick="return confirm('All Action Plan related data will be deleted, Are you sure you want to delete this Initiative ? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
 

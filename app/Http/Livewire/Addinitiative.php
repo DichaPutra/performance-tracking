@@ -11,6 +11,7 @@ class Addinitiative extends Component {
     public $id_target_kpi;
     public $id_kpi_library;
     public $si; //series of data si by $id_kpi_library
+    public $selectedsi;
 
     public function mount()
     {
@@ -20,6 +21,11 @@ class Addinitiative extends Component {
     public function render()
     {
         return view('livewire.addinitiative');
+    }
+
+    public function updatedSelectedSi()
+    {
+        
     }
 
 }

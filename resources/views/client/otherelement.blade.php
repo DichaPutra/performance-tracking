@@ -44,8 +44,13 @@ function getCountKPI($id_user) {
     return $count;
 }
 
-function getCountSI($id_user) {
+function getCountSIbyUser($id_user) {
     $cout = target_si::where('id_user', $id_user)->count();
+    return $cout;
+}
+
+function getCountSIbyKPI($id_target_kpi) {
+    $cout = target_si::where('id_target_kpi', $id_target_kpi)->count();
     return $cout;
 }
 ?>

@@ -50,7 +50,7 @@
                                     <td>{{$user->position}}</td>
                                     <td>{{$user->name}}</td>
                                     <td style="text-align:center; width: 10%;">{{getCountKPI($user->id)}}</td>
-                                    <td style="text-align:center; width: 10%;">{{getCountSI($user->id)}}</td>
+                                    <td style="text-align:center; width: 10%;">{{getCountSIbyUser($user->id)}}</td>
                                     <td style="text-align: center;"><a href="{{route('client.initiative.kpi', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 @endforeach                             

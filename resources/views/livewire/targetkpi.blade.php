@@ -39,6 +39,7 @@
         <div class="form-group">
             <label><b>Custom KPI :</b></label>
             <input name="customKpi" type="text" class="form-control" required="" placeholder="Input your custom KPI description here..."><br>
+            
             <div class="row">
                 <div class="col-md-6">
                     <label><b>Measurement Unit :</b></label>

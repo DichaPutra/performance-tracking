@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\target_kpi;
 use App\Models\target_si;
+use App\Models\si_library;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -81,7 +82,35 @@ class initiativeController extends Controller {
 
     function addInitiative(Request $request)
     {
-        dd($request);
+        //dd($request);
+        if ($request->id_si_library == 0)
+        {
+            // if custom
+            $addtargetsi = new target_si;
+            $addtargetsi->id_user = $request->id_user;
+            $addtargetsi->id_target_kpi = $request->id_target_kpi;
+            $addtargetsi->id_si_library = null;
+            $addtargetsi->si = $request->customsi;
+            $addtargetsi->save();
+
+            return redirect()->back();
+        }
+        else
+        {
+            // on si library
+            //search on library
+            $sionlib = si_library::where('id', $request->id_si_library)->first();
+
+            // insert on db
+            $addtargetsi = new target_si;
+            $addtargetsi->id_user = $request->id_user;
+            $addtargetsi->id_target_kpi = $request->id_target_kpi;
+            $addtargetsi->id_si_library = $request->id_si_library;
+            $addtargetsi->si = $sionlib->si;
+            $addtargetsi->save();
+
+            return redirect()->back();
+        }
     }
 
 }

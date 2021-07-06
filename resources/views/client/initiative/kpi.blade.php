@@ -77,6 +77,11 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
+
+                    <a href="{{route('client.initiative.personnel')}}">
+                        <button class="btn btn-md btn-primary float-left" style="margin-bottom: 15px;"><i class="fas fa-chevron-left"></i></button>
+                    </a>
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead style="background-color: #F8F9FC;">
@@ -104,7 +109,7 @@
                                         <span class="badge badge-secondary float-right"><i class="fa fa-user"></i> </span>
                                         @endif
                                     </td>
-                                    <td style="text-align: center;">{{getCountSI ($data->id)}}</td>
+                                    <td style="text-align: center;">{{getCountSIbyKPI($datakpi->id)}}</td>
                                     <td style="text-align: center;"><a href="{{route('client.initiative.initiative',['idpersonnel' => $data->id , 'idkpi' => $datakpi->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 @endforeach
