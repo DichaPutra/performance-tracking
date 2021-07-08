@@ -36,7 +36,7 @@
                             <thead style="background-color: #F8F9FC;">
                                 <tr>
                                     <th>Level</th>      
-                                    <th>Position</th>
+                                    <th>Level Name</th>
                                     <th>PIC Name</th>
                                     <th style="text-align: center;">Strategic Objective</th>
                                     <th style="text-align: center;">KPI</th>
@@ -47,7 +47,7 @@
                                 @foreach($user as $user)
                                 <tr>
                                     <td style="background-color: {{color($user->level)}};">{{levelName($user->level)}}</td>
-                                    <td>{{$user->position}}</td>
+                                    <td>{{$user->level_name}}</td>
                                     <td>{{$user->name}}</td>
                                     <td style="text-align:center;">{{getCountSO($user->id)}}</td>
                                     <td style="text-align:center;">{{getCountKPI($user->id)}}</td>

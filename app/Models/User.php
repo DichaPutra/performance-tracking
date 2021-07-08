@@ -26,6 +26,7 @@ class User extends Authenticatable {
         'role',
         'client_parent',
         'level',
+        'level_name',
         'position'
     ];
 

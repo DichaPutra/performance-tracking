@@ -19,7 +19,7 @@
             <label><b>Strategic Objective Library:</b></label>
             <select name="SO" wire:model="selectedSo"class="form-control" size="10" required="">
                 @if ($so != null)
-                
+
                 @foreach($so as $so)
                 <option value='{{ $so->id }}-{{ $so->so }}'> - {{ $so->so }}</option>
                 @endforeach

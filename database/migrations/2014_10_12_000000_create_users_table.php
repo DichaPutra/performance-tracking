@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('company_address')->nullable();
             $table->bigInteger('client_parent')->nullable();
             $table->string('level')->nullable();
+            $table->string('level_name')->nullable();
             $table->string('position')->nullable();
             
         });

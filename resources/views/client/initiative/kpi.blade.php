@@ -46,15 +46,21 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Level Name</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" list="pos" value="{{$data->position}}" disabled="">
+                                    <input id="name" type="text" class="form-control " name="name" value="{{$data->level_name}}" required="" autocomplete="name" autofocus="" disabled="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">PIC Name</label>
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control " name="name" value="{{$data->name}}" required="" autocomplete="name" autofocus="" disabled="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" list="pos" value="{{$data->position}}" disabled="">
                                 </div>
                             </div>
                             <div class="form-group row">

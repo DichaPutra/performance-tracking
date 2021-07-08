@@ -71,6 +71,21 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="" autocomplete="new-password">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="position" class="col-md-4 col-form-label text-md-right" >Position</label>
+                            <div class="col-md-6">
+                                <input name="position"type="text" class="form-control" placeholder="Jabatan PIC ..." >
+                                <!--<datalist id="pos">
+                                    <option value="Corporate">
+                                    <option value="Finance">
+                                    <option value="Production">
+                                    <option value="Marketing">
+                                    <option value="Purchasing">
+                                    <option value="Inventory">
+                                </datalist>-->
+                            </div>
+                        </div>
+
                     </div>
                     <div class="col-md-6">
 
@@ -85,17 +100,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
+                            <label for="position" class="col-md-4 col-form-label text-md-right">Level Name</label>
                             <div class="col-md-6">
-                                <input name="position"type="text" class="form-control" list="pos">
-                                <datalist id="pos">
-                                    <option value="Corporate">
-                                    <option value="Finance">
-                                    <option value="Production">
-                                    <option value="Marketing">
-                                    <option value="Purchasing">
-                                    <option value="Inventory">
-                                </datalist>
+                                <input name="level_name"type="text" class="form-control" placeholder="Nama Divisi / Departemen ...">
                             </div>
                         </div>
 

@@ -47,9 +47,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Level Name</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" list="pos" value="{{$data->position}}" disabled="">
+                                    <input id="name" type="text" class="form-control " name="name" value="{{$data->level_name}}" required="" autocomplete="name" autofocus="" disabled="">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -59,20 +59,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" list="pos" value="{{$data->position}}" disabled="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control " name="email" value="{{$data->email}}" required="" autocomplete="email" disabled="">
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label class="col-md-4 col-form-label text-md-right">KPI</label>
-                                                        <div class="col-md-6">
-                                                            <textarea class="form-control" rows="4" readonly="">Cash Rasio - Kemampuan perusahaan dalam menyediakan uang tunai atau setara kas dibandingkan dengan tingkat kewajiban lancar (kurang dari setahun)</textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
                     </div>
                 </div>
             </div>

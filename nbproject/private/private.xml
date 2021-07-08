@@ -5,6 +5,8 @@
         <group>
             <file>file:/D:/xampp/htdocs/performance-tracking/resources/views/client/initiative/initiative.blade.php</file>
             <file>file:/D:/xampp/htdocs/performance-tracking/routes/web.php</file>
+            <file>file:/D:/xampp/htdocs/performance-tracking/resources/views/client/initiative/kpi.blade.php</file>
+            <file>file:/D:/xampp/htdocs/performance-tracking/resources/views/livewire/target.blade.php</file>
         </group>
     </open-files>
 </project-private>

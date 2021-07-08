@@ -11,28 +11,33 @@ use App\Models\User;
 
 class personnelController extends Controller {
 
-    public function index() {
+    public function index()
+    {
         $user = User::all()->where('client_parent', Auth::user()->id);
         return view('client.personnel.personnel', ['user' => $user]);
     }
 
-    public function addpersonnel() {
+    public function addpersonnel()
+    {
         return view('client.personnel.addpersonnel');
     }
 
-    public function detailpersonnel(Request $request) {
+    public function detailpersonnel(Request $request)
+    {
         $idpersonnel = $request->idpersonnel;
         $data = User::where('id', $idpersonnel)->first();
         return view('client.personnel.detailpersonnel', ['edit' => '0', 'data' => $data]);
     }
 
-    public function editpersonnel(Request $request) {
+    public function editpersonnel(Request $request)
+    {
         $idpersonnel = $request->idpersonnel;
         $data = User::where('id', $idpersonnel)->first();
         return view('client.personnel.detailpersonnel', ['edit' => '1', 'data' => $data]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
                     'name' => ['required', 'string', 'max:255'],
@@ -42,7 +47,8 @@ class personnelController extends Controller {
                     'company_address' => ['required']
         ]);
 
-        if ($validator->fails()) {
+        if ($validator->fails())
+        {
             return redirect('client-personnel-addpersonnel')
                             ->withErrors($validator)
                             ->withInput();
@@ -57,39 +63,50 @@ class personnelController extends Controller {
             'role' => 'personnel',
             'client_parent' => Auth::user()->id,
             'level' => $request->level,
-            'position' => $request->position
+            'position' => $request->position,
+            'level_name' => $request->level_name
         ]);
 
         return redirect('client-personnel')->with('message', 'Success ! Your personnel has been added');
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         //get data prev
         $dataprev = User::where('id', $request->id)->first();
 
         //if email not change
-        if ($dataprev->email == $request->email) {
-            if ($request->password != NULL) {
+        if ($dataprev->email == $request->email)
+        {
+            if ($request->password != NULL)
+            {
                 $validator = Validator::make($request->all(), [
                             'name' => ['required', 'string', 'max:255'],
                             'password' => ['required', 'string', 'min:8', 'confirmed'],
                             'position' => ['required', 'string']
                 ]);
-            } else {
+            }
+            else
+            {
                 $validator = Validator::make($request->all(), [
                             'name' => ['required', 'string', 'max:255'],
                             'position' => ['required', 'string']
                 ]);
             }
-        } else {
-            if ($request->password != NULL) {
+        }
+        else
+        {
+            if ($request->password != NULL)
+            {
                 $validator = Validator::make($request->all(), [
                             'name' => ['required', 'string', 'max:255'],
                             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                             'password' => ['required', 'string', 'min:8', 'confirmed'],
                             'position' => ['required', 'string']
                 ]);
-            } else {
+            }
+            else
+            {
                 $validator = Validator::make($request->all(), [
                             'name' => ['required', 'string', 'max:255'],
                             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -99,7 +116,8 @@ class personnelController extends Controller {
         }
 
         // Redirect Validator
-        if ($validator->fails()) {
+        if ($validator->fails())
+        {
             return redirect()->back()
                             ->withErrors($validator)
                             ->withInput();
@@ -109,13 +127,14 @@ class personnelController extends Controller {
         $user = User::where('id', $request->id)->first();
         $user->name = $request->name;
         $user->email = $request->email;
-        if ($request->password != NULL) {
+        if ($request->password != NULL)
+        {
             $user->password = Hash::make($request->password);
         }
         $user->position = $request->position;
         $user->save();
 
-        return redirect()->route('client.personnel.detailpersonnel',['idpersonnel'=>$request->id])->with('success', 'Success ! Personnel data has been updated ');
+        return redirect()->route('client.personnel.detailpersonnel', ['idpersonnel' => $request->id])->with('success', 'Success ! Personnel data has been updated ');
     }
 
 }
