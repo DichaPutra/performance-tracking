@@ -10,28 +10,36 @@ class Target extends Component {
 
     public $category;
     public $selectedCategory;
-    public $so;
-    public $selectedSo;
+    public $so = null;
+    public $selectedSo = null;
+    public $selectedAspect = null;
 
-    public function mount() {
+    public function mount()
+    {
         $this->category = business_categories::all();
     }
 
-    public function render() {
+    public function render()
+    {
         return view('livewire.target');
     }
 
-    public function updatedSelectedCategory($category) {
-        if (so_library::where('id_business_categories', $category)->exists()) {
-            $this->so = so_library::where('id_business_categories', $category)->get();
-        } else {
-            $this->so = null;
+    public function updatedSelectedCategory()
+    {
+        $this->selectedAspect = null;
+        $this->so = so_library::where('id_business_categories', $this->selectedCategory)->get();
+    }
+
+    public function updatedSelectedAspect()
+    {
+        if ($this->selectedAspect == 'All')
+        {
+            $this->so = so_library::where('id_business_categories', $this->selectedCategory)->get();
         }
-        
-        $this->selectedSo = null;
-//        if (!$this->so) {
-//            $this->selectedCategory == NULL;
-//        }
+        else
+        {
+            $this->so = so_library::where('id_business_categories', $this->selectedCategory)->where('aspect', $this->selectedAspect)->get();
+        }
     }
 
 }

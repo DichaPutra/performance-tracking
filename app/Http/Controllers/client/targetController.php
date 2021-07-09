@@ -50,7 +50,6 @@ class targetController extends Controller {
     public function addSo(Request $request) {// ** Fungsi Store SO ke database
         if ($request->so_custom == null) {
             //SO dari library;
-            list($idcategory, $category) = explode('-', $request->category);
             list($idso, $so) = explode('-', $request->SO);
 
             //insert db SO data
