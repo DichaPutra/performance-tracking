@@ -9,8 +9,10 @@
 <!-- PHP Part-->
 <?php
 
-function levelName($level) {
-    switch ($level) {
+function levelName($level)
+{
+    switch ($level)
+    {
         case 0:
             return "0. Corporate";
             break;
@@ -100,11 +102,22 @@ function levelName($level) {
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="position"  class="col-md-4 col-form-label text-md-right">Position</label>
+                            <div class="col-md-6">
+                                @if($edit==1)
+                                <input type="text" name="position" class="form-control" list="pos" value="{{$data->position}}">
+                                @else
+                                <input type="text" class="form-control" list="pos" value="{{$data->position}}" disabled="">
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control " name="email" value="{{$data->email}}" required="" autocomplete="email" disabled="">
                             </div>
                         </div>
+
                         @endif
 
                         @if($edit == 1)
@@ -112,6 +125,16 @@ function levelName($level) {
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control " name="name" value="{{$data->name}}" required="" autocomplete="name" autofocus="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="position"  class="col-md-4 col-form-label text-md-right">Position</label>
+                            <div class="col-md-6">
+                                @if($edit==1)
+                                <input type="text" name="position" class="form-control"  value="{{$data->position}}" placeholder="Jabatan PIC ...">
+                                @else
+                                <input type="text" class="form-control" list="pos" value="{{$data->position}}">
+                                @endif
                             </div>
                         </div>
                         <div class="form-group row">
@@ -145,20 +168,13 @@ function levelName($level) {
                         </div>
 
                         <div class="form-group row">
-                            <label for="position"  class="col-md-4 col-form-label text-md-right">Position</label>
+                            <label for="position"  class="col-md-4 col-form-label text-md-right">Level Name</label>
                             <div class="col-md-6">
                                 @if($edit==1)
-                                <input type="text" name="position" class="form-control" list="pos" value="{{$data->position}}">
+                                <input type="text" name="level_name" class="form-control" value="{{$data->level_name}}" placeholder="Nama Divisi / Departemen ...">
                                 @else
-                                <input type="text" class="form-control" list="pos" value="{{$data->position}}" disabled="">
+                                <input type="text" class="form-control" list="pos" value="{{$data->level_name}}" disabled="">
                                 @endif
-                                <datalist id="pos">
-                                    <option value="Finance">
-                                    <option value="Production">
-                                    <option value="Marketing">
-                                    <option value="Purchasing">
-                                    <option value="Inventory">
-                                </datalist>
                             </div>
                         </div>
 

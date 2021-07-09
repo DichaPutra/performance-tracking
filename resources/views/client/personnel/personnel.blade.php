@@ -51,7 +51,7 @@
                             <thead style="background-color: #F8F9FC;">
                                 <tr>
                                     <th>Level</th>
-                                    <th>Position</th>
+                                    <th>Level Name</th>
                                     <th>PIC Name</th>
                                     <th></th>
                                 </tr>
@@ -68,7 +68,7 @@
                                 @foreach($user as $user)
                                 <tr>
                                     <td style="background-color: {{color($user->level)}};">{{levelName($user->level)}}</td>
-                                    <td>{{$user->position}}</td>
+                                    <td>{{$user->level_name}}</td>
                                     <td>{{$user->name}}</td>
                                     <td><a href="{{route('client.personnel.detailpersonnel', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>

@@ -102,7 +102,8 @@ class personnelController extends Controller {
                             'name' => ['required', 'string', 'max:255'],
                             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                             'password' => ['required', 'string', 'min:8', 'confirmed'],
-                            'position' => ['required', 'string']
+                            'position' => ['required', 'string'],
+                            'level_name' => ['required', 'string']
                 ]);
             }
             else
@@ -110,7 +111,8 @@ class personnelController extends Controller {
                 $validator = Validator::make($request->all(), [
                             'name' => ['required', 'string', 'max:255'],
                             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                            'position' => ['required', 'string']
+                            'position' => ['required', 'string'],
+                            'level_name' => ['required', 'string']
                 ]);
             }
         }
@@ -132,6 +134,7 @@ class personnelController extends Controller {
             $user->password = Hash::make($request->password);
         }
         $user->position = $request->position;
+        $user->level_name = $request->level_name;
         $user->save();
 
         return redirect()->route('client.personnel.detailpersonnel', ['idpersonnel' => $request->id])->with('success', 'Success ! Personnel data has been updated ');

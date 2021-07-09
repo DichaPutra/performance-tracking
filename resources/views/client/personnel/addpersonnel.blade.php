@@ -48,7 +48,21 @@
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control " name="name" value="" required="" autocomplete="name" autofocus="">
+                                <input id="name" type="text" class="form-control " name="name" placeholder=""value="" required="" autocomplete="name" autofocus="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="position" class="col-md-4 col-form-label text-md-right" >Position</label>
+                            <div class="col-md-6">
+                                <input name="position"type="text" class="form-control" placeholder="Jabatan PIC ..." >
+                                <!--<datalist id="pos">
+                                    <option value="Corporate">
+                                    <option value="Finance">
+                                    <option value="Production">
+                                    <option value="Marketing">
+                                    <option value="Purchasing">
+                                    <option value="Inventory">
+                                </datalist>-->
                             </div>
                         </div>
                         <div class="form-group row">
@@ -69,20 +83,6 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="" autocomplete="new-password">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="position" class="col-md-4 col-form-label text-md-right" >Position</label>
-                            <div class="col-md-6">
-                                <input name="position"type="text" class="form-control" placeholder="Jabatan PIC ..." >
-                                <!--<datalist id="pos">
-                                    <option value="Corporate">
-                                    <option value="Finance">
-                                    <option value="Production">
-                                    <option value="Marketing">
-                                    <option value="Purchasing">
-                                    <option value="Inventory">
-                                </datalist>-->
                             </div>
                         </div>
 
