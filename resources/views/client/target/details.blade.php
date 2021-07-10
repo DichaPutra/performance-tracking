@@ -250,7 +250,7 @@
                                                     <input type="hidden" name="userid" value="{{$data->id}}">
                                                     <input type="hidden" name="tahun" value="{{$tahun}}">
 
-                                                    @livewire('targetkpi', ['id_personnel' => $data->id])
+                                                    @livewire('targetkpi', ['id_personnel' => $data->id, 'tahun' => $tahun])
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -55,6 +55,7 @@ class targetController extends Controller {
                 ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
                 ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
                 ->where('target_kpi.id_user', $request->idpersonnel)
+                ->where('target_kpi.periode_th', $request->tahun)
                 ->orderBy('target_kpi.id_target_so', 'asc')
                 ->get();
 

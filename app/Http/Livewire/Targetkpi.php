@@ -15,9 +15,10 @@ class Targetkpi extends Component {
     public $kpi; // series object of KPI 
     public $selectedKpi; // ID
     public $kpidata;
+    public $tahun;
 
     public function mount() {
-        $this->so = target_so::where('id_user', $this->id_personnel)->get();
+        $this->so = target_so::where('id_user', $this->id_personnel)->where('periode_th', $this->tahun)->get();
     }
 
     public function render() {

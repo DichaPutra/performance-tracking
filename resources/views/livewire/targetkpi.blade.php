@@ -18,18 +18,19 @@
     <div>
         <div class="form-group">
             <label><b>KPI Library :</b></label>
+            @if ($kpi != null && $kpi != 'nokpilibrary' )
             <select name="id_kpi_library" wire:model="selectedKpi"class="form-control" size="5" required>
-                @if ($kpi != null && $kpi != 'nokpilibrary' )
 
                 @foreach($kpi as $kpi)
                 <option value='{{ $kpi->id }}-{{ $kpi->kpi }}'> - {{ $kpi->kpi }}</option>
                 @endforeach
                 <option value="0"">- Other</option>
-
-                @else
-                <option value='' disabled="">No Data</option>
-                @endif
             </select>
+            @else
+            <select name="id_kpi_library" wire:model="selectedKpi"class="form-control" size="5">
+                <option value='' disabled="">No Data</option>
+            </select>
+            @endif
         </div>
     </div>
     @endif
