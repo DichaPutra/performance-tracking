@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 class targetController extends Controller {
 
     public function index(Request $request)
-    {// ** Memunculkan semua list personnel  
+    { // ** Memunculkan semua list personnel  
         if ($request->tahun == null)
         {
             // Default Tahun Sekarang
@@ -35,7 +35,7 @@ class targetController extends Controller {
     }
 
     public function details(Request $request)
-    {// ** Memunculkan detail personnel | req data : id personnel
+    { // ** Memunculkan detail personnel | req data : id personnel
         $data = User::where('id', $request->idpersonnel)->first();
 
         // guard (jika user yang dilihat bukan personnelnya)
@@ -66,7 +66,7 @@ class targetController extends Controller {
     }
 
     public function addSo(Request $request)
-    {// ** Fungsi Store SO ke database
+    { // ** Fungsi Store SO ke database
         if ($request->so_custom == null)
         {
             //SO dari library;
@@ -166,6 +166,15 @@ class targetController extends Controller {
         return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your kpi has been edited')->with('tab', 'kpi');
 
         //echo 'edit KPI';
+    }
+
+    public function deleteKPI(Request $request)
+    {
+        //dd($request);
+        
+        target_kpi::where('id', $request->id_targetkpi)->delete();
+        //redirect with succes message
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your kpi target has been deleted');
     }
 
     public function activateTarget(Request $request)
@@ -355,11 +364,11 @@ class targetController extends Controller {
                     break;
             }
         }
-        
+
         target_kpi::where('id_user', $request->user_id)
                 ->where('periode_th', $request->tahun)
-                ->update(['is_active'=>'1']);
-        
+                ->update(['is_active' => '1']);
+
         // update target kpi into is active = 1;
         return redirect()->route('client.target');
     }

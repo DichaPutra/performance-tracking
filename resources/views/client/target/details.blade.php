@@ -57,8 +57,6 @@
                     @endif
                     @endif
 
-
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row">
@@ -334,10 +332,26 @@
                                                 </td>
                                                 <td style="width: 5%; text-align: center;">{{$kpi->weight}} % <?php $totalWeight += $kpi->weight; ?></td>
                                                 <td style="width: 10%;text-align: center;">
-                                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditKPI{{ $loop->iteration }}">
-                                                        <i class="fas fa-pen"></i>
-                                                    </button>
-                                                    <a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                                                    <form action="{{route('client.target.deletekpi')}}" method="post">
+                                                        @csrf
+                                                        <!--button edit-->
+                                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditKPI{{ $loop->iteration }}">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
+                                                        <!--button delete-->
+                                                        <input type="hidden" name="id_targetkpi" value="{{$kpi->id}}">
+                                                        <input type="hidden" name="userid" value="{{$data->id}}">
+                                                        <input type="hidden" name="tahun" value="{{$tahun}}">
+                                                        <!--<button class="btn btn-danger btn-sm" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this KPI? ');"><i class="fas fa-trash"></i></button>-->
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this KPI? ');">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
+
+
+
+
+
                                                 </td>
                                             </tr>
                                             <!--modal edit-->
