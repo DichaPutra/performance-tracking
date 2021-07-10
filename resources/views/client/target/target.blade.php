@@ -50,12 +50,13 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead style="background-color: #F8F9FC;">
                                 <tr>
-                                    <th>Level</th>      
-                                    <th>Level Name</th>
+                                    <th style="width: 15%;">Level</th>      
+                                    <th style="width: 15%;">Level Name</th>
                                     <th>PIC Name</th>
-                                    <th style="text-align: center;">Strategic Objective</th>
-                                    <th style="text-align: center;">KPI</th>
-                                    <th></th>
+                                    <th style="text-align: center;width: 10%;">Strategic Objective</th>
+                                    <th style="text-align: center;width: 10%;">KPI</th>
+                                    <th style="text-align: center;width: 10%;">Status</th>
+                                    <th style="width: 8%;"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,7 +67,18 @@
                                     <td>{{$user->name}}</td>
                                     <td style="text-align:center;">{{getCountSO($user->id,$tahun)}}</td>
                                     <td style="text-align:center;">{{getCountKPI($user->id,$tahun)}}</td>
-                                    <td style="text-align: center;"><a href="{{route('client.target.details', ['idpersonnel'=>$user->id, 'tahun'=>$tahun])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td style="text-align:center;">
+                                        <div @if(getStatusTarget($user->id, $tahun) == 'Not Active') style="color: red;" @else style="color: green;"@endif>
+                                            {{getStatusTarget($user->id, $tahun)}}
+                                        </div>
+                                    </td>
+                                    <td style="text-align: center;width: 8%;">
+                                        @if(getStatusTarget($user->id, $tahun) == 'Not Active')
+                                        <a href="{{route('client.target.details', ['idpersonnel'=>$user->id, 'tahun'=>$tahun])}}"><button class="btn btn-primary btn-sm">Details</button></a>
+                                        @else
+                                        <a href="{{route('client.target.details', ['idpersonnel'=>$user->id, 'tahun'=>$tahun])}}"><button class="btn btn-success btn-sm">Check</button></a>
+                                        @endif
+                                    </td>
                                 </tr>
                                 @endforeach                            
                             </tbody>

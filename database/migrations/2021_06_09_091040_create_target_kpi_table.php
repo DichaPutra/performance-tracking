@@ -27,7 +27,7 @@ class CreateTargetKpiTable extends Migration {
             $table->bigInteger('weight');
             $table->string('polarization');
             $table->string('timeframe_target'); // Bulanan, Triwulan, Quartal, Semester, Tahunan
-            $table->boolean('is_active')->default(1);
+            $table->bigInteger('is_active')->default(0);
             $table->string('periode_th');
             $table->timestamps();
         });

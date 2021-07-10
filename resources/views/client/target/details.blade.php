@@ -88,6 +88,15 @@
                                     <input type="text" class="form-control" list="pos" value="{{getCountKPI($data->id, $tahun)}}" disabled="">
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="position" class="col-md-4 col-form-label text-md-right">Status : </label>
+                                <div class="col-md-6">
+                                    <div style="color: red; font-weight: bold; margin-top: 5px;">
+                                        Not Active
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div><br>
 
@@ -345,7 +354,7 @@
                                                                 <div class="col-md-6">
                                                                     <label>Target :</label>
                                                                     <div class="input-group mb-3">
-                                                                        <input name="targetedit" type="number" min="1" max="100"  value="{{$kpi->weight}}" class="form-control" >
+                                                                        <input name="targetedit" type="number" min="1"  value="{{$kpi->weight}}" class="form-control" >
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text" id="basic-addon2">{{$kpi->unit}}</span>
                                                                         </div>
@@ -382,9 +391,36 @@
                                     </table>
                                 </div><br>
                             </div>
-
                         </div>
                         <!--end of tab 2-->
+
+                        <!--Alert Activate kalau sudah beban sudah 100-->
+                        @if($totalWeight == 100)
+                        <div class="alert alert-primary" style="height: 10%;" role="alert">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <i class="fa fa-exclamation-triangle" style="margin-right: 15px;"></i>
+                                    KPI Weight met 100%. Click "Activate" button to activate Target
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="#" class="btn btn-primary btn-sm float-right">Activate</a>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif ($totalWeight > 100)
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <i class="fa fa-exclamation-triangle" style="margin-right: 15px;"></i>
+                                    KPI weight exceeds 100%, please readjust your weight
+                                </div>
+                            </div>
+
+                        </div>
+                        @endif
                     </div>
 
 
@@ -414,5 +450,11 @@
             "searching": false,
         });
     });
+
+    window.setTimeout(function () {
+        $(".alert-success").fadeTo(500, 0).slideUp(500, function () {
+            $(this).remove();
+        });
+    }, 1500);
 </script>
 @endsection

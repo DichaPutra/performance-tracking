@@ -6,8 +6,10 @@ use App\Models\target_kpi;
 use App\Models\target_si;
 
 // Color Function For Level and Name
-function color($level) {
-    switch ($level) {
+function color($level)
+{
+    switch ($level)
+    {
         case 0:
             return "#BDD7EE";
             break;
@@ -20,8 +22,10 @@ function color($level) {
     }
 }
 
-function levelName($level) {
-    switch ($level) {
+function levelName($level)
+{
+    switch ($level)
+    {
         case 0:
             return "0. Corporate";
             break;
@@ -34,22 +38,40 @@ function levelName($level) {
     }
 }
 
-function getCountSO($id_user, $tahun) {
-    $count = target_so::where('id_user', $id_user)->where('periode_th',$tahun)->count();
+function getCountSO($id_user, $tahun)
+{
+    $count = target_so::where('id_user', $id_user)->where('periode_th', $tahun)->count();
     return $count;
 }
 
-function getCountKPI($id_user, $tahun) {
-    $count = target_kpi::where('id_user', $id_user)->where('periode_th',$tahun)->count();
+function getCountKPI($id_user, $tahun)
+{
+    $count = target_kpi::where('id_user', $id_user)->where('periode_th', $tahun)->count();
     return $count;
 }
 
-function getCountSIbyUser($id_user) {
+function getStatusTarget($id_user, $tahun)
+{
+    $count = target_kpi::where('id_user', $id_user)->where('periode_th', $tahun)->sum('is_active');
+    if ($count == 0)
+    {
+        $text = "Not Active";
+    }
+    else
+    {
+        $text = 'Active';
+    }
+    return $text;
+}
+
+function getCountSIbyUser($id_user)
+{
     $cout = target_si::where('id_user', $id_user)->count();
     return $cout;
 }
 
-function getCountSIbyKPI($id_target_kpi) {
+function getCountSIbyKPI($id_target_kpi)
+{
     $cout = target_si::where('id_target_kpi', $id_target_kpi)->count();
     return $cout;
 }
