@@ -39,7 +39,7 @@
         <div class="form-group">
             <label><b>Custom KPI :</b></label>
             <input name="customKpi" type="text" class="form-control" required="" placeholder="Input your custom KPI description here..."><br>
-            
+
             <div class="row">
                 <div class="col-md-6">
                     <label><b>Measurement Unit :</b></label>
@@ -70,23 +70,34 @@
                 </div>
                 <div class="col-md-6">
                     <label><b>Target :</b></label>
-                    <input name="target" min="0.000001" type="number" class="form-control" required="" placeholder="Input your target here...">
+                    <input name="target" min="1" type="number" class="form-control" required="" placeholder="Input your target here...">
                 </div>
             </div><br>
             <div class="row">
                 <div class="col-md-6">
                     <label><b>Weight :</b></label>
                     <div class="input-group mb-3">
-                        <input name="weight" type="number" min="0.000001" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
+                        <input name="weight" type="number" class="form-control" min="1" max="100" placeholder="KPI Weight 1 - 100">
                         <div class="input-group-append">
                             <span class="input-group-text" id="basic-addon2">%</span>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-6">
+                    <label><b>Timeframe Target :</b></label>
+                    <div class="input-group mb-3">
+                        <select name="timeframe" class="form-control" required="">
+                            <option value=" " hidden>select...</option>
+                            <option value="bulanan">Bulanan</option>
+                            <option value="triwulan">Triwulan</option>
+                            <option value="quartal">Quartal</option>
+                            <option value="semester">Semester</option>
+                            <option value="tahunan">Tahunan</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-            <!--            <div class="col-auto">
-                            <label class="sr-only" for="inlineFormInputGroup">Username</label>
-                        </div>-->
         </div>
     </div>
 
@@ -128,9 +139,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <label><b>Timeframe Target :</b></label>
+                    <div class="input-group mb-3">
+                        <select name="timeframe" class="form-control" required="">
+                            <option value=" " hidden>select...</option>
+                            <option value="bulanan">Bulanan</option>
+                            <option value="triwulan">Triwulan</option>
+                            <option value="quartal">Quartal</option>
+                            <option value="semester">Semester</option>
+                            <option value="tahunan">Tahunan</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
+        @endif
+        {{-- The whole world belongs to you. --}}
     </div>
-    @endif
-    {{-- The whole world belongs to you. --}}
-</div>

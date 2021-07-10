@@ -15,8 +15,14 @@
         </ol>
     </nav><br>
 
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-bullseye"></i>  Target</h1>
+    </div> 
+
     <!-- Content Row -->
     <div class="row">
+
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
@@ -26,6 +32,9 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
+
+                    <a href="{{route('client.target')}}" class="btn btn-sm btn-primary "><i class="fas fa-chevron-left"></i></a>
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row">
@@ -239,6 +248,7 @@
                                                 <form method="POST" action="{{route('client.target.addkpi')}}">
                                                     @csrf
                                                     <input type="hidden" name="userid" value="{{$data->id}}">
+                                                    <input type="hidden" name="tahun" value="{{$tahun}}">
 
                                                     @livewire('targetkpi', ['id_personnel' => $data->id])
 
@@ -316,7 +326,7 @@
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Strategic Objective</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit KPI</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -326,6 +336,7 @@
                                                                 <div class="col-md-12">
                                                                     <input type="hidden" name="userid" value="{{$data->id}}">
                                                                     <input type="hidden" name="idtargetkpi" value="{{$kpi->id}}">
+                                                                    <input type="hidden" name="tahun" value="{{$tahun}}">
                                                                     <label>KPI :</label>
                                                                     <input type="text" name="kpiedit" value="{{$kpi->kpi}}" class="form-control" >
                                                                 </div>
@@ -333,12 +344,17 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <label>Target :</label>
-                                                                    <input type="number" min="0.000001" name="targetedit" value="{{$kpi->target}}" class="form-control" >
+                                                                    <div class="input-group mb-3">
+                                                                        <input name="targetedit" type="number" min="1" max="100"  value="{{$kpi->weight}}" class="form-control" >
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text" id="basic-addon2">{{$kpi->unit}}</span>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <label>Weight :</label>
                                                                     <div class="input-group mb-3">
-                                                                        <input type="number" min="0.000001" name="weightedit" value="{{$kpi->weight}}" class="form-control" >
+                                                                        <input type="number" min="1" max="100" name="weightedit" value="{{$kpi->weight}}" class="form-control" >
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text" id="basic-addon2">%</span>
                                                                         </div>

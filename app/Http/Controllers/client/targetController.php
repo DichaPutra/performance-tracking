@@ -141,10 +141,12 @@ class targetController extends Controller {
         $kpidb->polarization = $request->polarization;
         $kpidb->target = $request->target;
         $kpidb->weight = $request->weight;
+        $kpidb->timeframe_target = $request->timeframe;
+        $kpidb->periode_th = $request->tahun;
         $kpidb->save();
 
         //redirect with succes message
-        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your kpi has been added')->with('tab', 'kpi');
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your kpi has been added')->with('tab', 'kpi');
     }
 
     public function editKPI(Request $request)
@@ -158,7 +160,7 @@ class targetController extends Controller {
         $kpiupdate->save();
 
         //redirect with succes message
-        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your kpi has been edited')->with('tab', 'kpi');
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun'=>$request->tahun])->with('success', 'Success ! Your kpi has been edited')->with('tab', 'kpi');
 
         //echo 'edit KPI';
     }
