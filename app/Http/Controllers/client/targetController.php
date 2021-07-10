@@ -159,6 +159,7 @@ class targetController extends Controller {
         $kpiupdate->kpi = $request->kpiedit;
         $kpiupdate->target = $request->targetedit;
         $kpiupdate->weight = $request->weightedit;
+        $kpiupdate->timeframe_target = $request->timeframe;
         $kpiupdate->save();
 
         //redirect with succes message

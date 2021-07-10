@@ -371,6 +371,21 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
+                                                                    <label>Timeframe :</label>
+                                                                    <div class="input-group mb-3">
+                                                                        <select name="timeframe" class="form-control" required="">
+                                                                            <option value=" " hidden>select...</option>
+                                                                            <option @if($kpi->timeframe_target == 'bulanan') selected @endif value="bulanan">Bulanan</option>
+                                                                            <option @if($kpi->timeframe_target == 'triwulan') selected @endif value="triwulan">Triwulan</option>
+                                                                            <option @if($kpi->timeframe_target == 'quartal') selected @endif value="quartal">Quartal</option>
+                                                                            <option @if($kpi->timeframe_target == 'semester') selected @endif value="semester">Semester</option>
+                                                                            <option @if($kpi->timeframe_target == 'tahunan') selected @endif value="tahunan">Tahunan</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
                                                                     <label>Weight :</label>
                                                                     <div class="input-group mb-3">
                                                                         <input type="number" min="1" max="100" name="weightedit" value="{{$kpi->weight}}" class="form-control" >
@@ -379,7 +394,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div> <br>
+                                                            </div><br>
 
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
