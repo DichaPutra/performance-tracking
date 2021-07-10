@@ -26,14 +26,38 @@
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Details</h6>
+                <div class="card-header py-3 d-flex flex-row align-items-center">
+                    <!--back button--> 
+                    <a href="{{route('client.target')}}" style="margin-right: 15px;"class="btn btn-sm btn-primary "><i class="fas fa-chevron-left"></i></a><br>
+                    <h6 class="m-0 font-weight-bold text-primary float-left" >Details</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
+                    <!--Success Message--> 
+                    @if ( (session('success')))
+                    @if(session('tab') == 'kpi')
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ session('success') }}
+                    </div>
+                    @endif
+                    @endif
 
-                    <a href="{{route('client.target')}}" class="btn btn-sm btn-primary "><i class="fas fa-chevron-left"></i></a>
+                    <!--Success Message--> 
+                    @if ( (session('success')))
+                    @if(is_null(session('tab')))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ session('success') }}
+                    </div>
+                    @endif
+                    @endif
+
+
 
                     <div class="row">
                         <div class="col-md-6">
@@ -153,17 +177,7 @@
 
                             <!-- Card Body -->
                             <div class="card-body">
-                                <!--Success Message--> 
-                                @if ( (session('success')))
-                                @if(is_null(session('tab')))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    {{ session('success') }}
-                                </div>
-                                @endif
-                                @endif
+
 
                                 <!-- Content Row -->
                                 <div class="table-responsive">
@@ -277,16 +291,6 @@
                             <div class="card-body">
 
                                 <!--Success Message--> 
-                                @if ( (session('success')))
-                                @if(session('tab') == 'kpi')
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    {{ session('success') }}
-                                </div>
-                                @endif
-                                @endif
 
 
                                 <!--Content Row-->
@@ -297,7 +301,7 @@
                                                 <th style="width: 3%; text-align: center;">No </th>
                                                 <th style="width: 20%;text-align: center;">Strategic Objective</th>
                                                 <th style="text-align: center;">KPI</th>
-                                                <th style="width: 10%; text-align: center;">Unit/Satuan</th>
+                                                <th style="width: 10%; text-align: center;">Timeframe</th>
                                                 <th style="width: 5%; text-align: center;">Target</th>
                                                 <th style="width: 5%; text-align: center;">Weight</th>
                                                 <th style="width: 10%; text-align: center;">Operation</th>
@@ -320,8 +324,14 @@
                                                     <span class="badge badge-secondary float-right"><i class="fa fa-user"></i> </span>
                                                     @endif
                                                 </td>
-                                                <td style="width: 10%; text-align: center;">{{$kpi->unit}}</td>
-                                                <td style="width: 5%; text-align: center;">{{$kpi->target}}</td>
+                                                <td style="width: 10%; text-align: center;">{{$kpi->timeframe_target}}</td>
+                                                <td style="width: 5%; text-align: center;">
+                                                    @if($kpi->unit == 'Rp' || $kpi->unit == 'rp' || $kpi->unit == 'RP')
+                                                    Rp {{ $kpi->target}},-
+                                                    @else 
+                                                    {{ $kpi->target}} {{$kpi->unit}}
+                                                    @endif
+                                                </td>
                                                 <td style="width: 5%; text-align: center;">{{$kpi->weight}} % <?php $totalWeight += $kpi->weight; ?></td>
                                                 <td style="width: 10%;text-align: center;">
                                                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditKPI{{ $loop->iteration }}">
@@ -389,7 +399,7 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                </div><br>
+                                </div>
                             </div>
                         </div>
                         <!--end of tab 2-->
@@ -403,7 +413,14 @@
                                     KPI Weight met 100%. Click "Activate" button to activate Target
                                 </div>
                                 <div class="col-md-4">
-                                    <a href="#" class="btn btn-primary btn-sm float-right">Activate</a>
+                                    <!--<a href="#" class="btn btn-primary btn-sm float-right">Activate</a>-->
+                                    <form method="post" action="{{route('client.target.activate')}}">
+                                        @csrf
+                                        <input name="user_id" type="hidden" value="{{$data->id}}">
+                                        <input name="tahun" type="hidden" value="{{$tahun}}">
+                                        <input type="submit" class="btn btn-primary btn-sm float-right" value="Activate">
+
+                                    </form>
                                 </div>
                             </div>
                         </div>

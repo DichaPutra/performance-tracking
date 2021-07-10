@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\target_so;
 use App\Models\target_kpi;
+use App\Models\active_target_kpi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -161,9 +162,205 @@ class targetController extends Controller {
         $kpiupdate->save();
 
         //redirect with succes message
-        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun'=>$request->tahun])->with('success', 'Success ! Your kpi has been edited')->with('tab', 'kpi');
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your kpi has been edited')->with('tab', 'kpi');
 
         //echo 'edit KPI';
+    }
+
+    public function activateTarget(Request $request)
+    {
+        //data IN : user_id , tahun
+
+        $datakpi = DB::table('target_kpi')
+                ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
+                ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
+                ->where('target_kpi.id_user', $request->user_id)
+                ->where('target_kpi.periode_th', $request->tahun)
+                ->orderBy('target_kpi.id_target_so', 'asc')
+                ->get();
+
+
+        // Insert active target kpi based on timeframe
+        foreach ($datakpi as $datakpi)
+        {
+            switch ($datakpi->timeframe_target)
+            {
+                case 'bulanan':
+                    //code
+                    for ($i = 1; $i <= 12; $i++)
+                    {
+                        $activetarget = new active_target_kpi;
+                        $activetarget->id_user = $request->user_id;
+                        $activetarget->bulan = "$i";
+                        $activetarget->tahun = $request->tahun;
+                        $activetarget->so = $datakpi->so;
+                        $activetarget->kpi = $datakpi->kpi;
+                        $activetarget->unit = $datakpi->unit;
+                        $activetarget->measurement = $datakpi->measurement;
+                        $activetarget->target = $datakpi->target;
+                        $activetarget->weight = $datakpi->weight;
+                        $activetarget->polarization = $datakpi->polarization;
+                        $activetarget->timeframe_target = $datakpi->timeframe_target;
+                        $activetarget->save();
+                    }
+                    break;
+                case 'triwulan':
+                    //code
+                    $activetarget = new active_target_kpi;
+                    $activetarget->id_user = $request->user_id;
+                    $activetarget->bulan = '3';
+                    $activetarget->tahun = $request->tahun;
+                    $activetarget->so = $datakpi->so;
+                    $activetarget->kpi = $datakpi->kpi;
+                    $activetarget->unit = $datakpi->unit;
+                    $activetarget->measurement = $datakpi->measurement;
+                    $activetarget->target = $datakpi->target;
+                    $activetarget->weight = $datakpi->weight;
+                    $activetarget->polarization = $datakpi->polarization;
+                    $activetarget->timeframe_target = $datakpi->timeframe_target;
+                    $activetarget->save();
+
+                    $activetarget = new active_target_kpi;
+                    $activetarget->id_user = $request->user_id;
+                    $activetarget->bulan = '6';
+                    $activetarget->tahun = $request->tahun;
+                    $activetarget->so = $datakpi->so;
+                    $activetarget->kpi = $datakpi->kpi;
+                    $activetarget->unit = $datakpi->unit;
+                    $activetarget->measurement = $datakpi->measurement;
+                    $activetarget->target = $datakpi->target;
+                    $activetarget->weight = $datakpi->weight;
+                    $activetarget->polarization = $datakpi->polarization;
+                    $activetarget->timeframe_target = $datakpi->timeframe_target;
+                    $activetarget->save();
+
+                    $activetarget = new active_target_kpi;
+                    $activetarget->id_user = $request->user_id;
+                    $activetarget->bulan = '9';
+                    $activetarget->tahun = $request->tahun;
+                    $activetarget->so = $datakpi->so;
+                    $activetarget->kpi = $datakpi->kpi;
+                    $activetarget->unit = $datakpi->unit;
+                    $activetarget->measurement = $datakpi->measurement;
+                    $activetarget->target = $datakpi->target;
+                    $activetarget->weight = $datakpi->weight;
+                    $activetarget->polarization = $datakpi->polarization;
+                    $activetarget->timeframe_target = $datakpi->timeframe_target;
+                    $activetarget->save();
+
+                    $activetarget = new active_target_kpi;
+                    $activetarget->id_user = $request->user_id;
+                    $activetarget->bulan = '12';
+                    $activetarget->tahun = $request->tahun;
+                    $activetarget->so = $datakpi->so;
+                    $activetarget->kpi = $datakpi->kpi;
+                    $activetarget->unit = $datakpi->unit;
+                    $activetarget->measurement = $datakpi->measurement;
+                    $activetarget->target = $datakpi->target;
+                    $activetarget->weight = $datakpi->weight;
+                    $activetarget->polarization = $datakpi->polarization;
+                    $activetarget->timeframe_target = $datakpi->timeframe_target;
+                    $activetarget->save();
+                    break;
+                case 'quartal':
+                    //code
+                    $activetarget = new active_target_kpi;
+                    $activetarget->id_user = $request->user_id;
+                    $activetarget->bulan = '4';
+                    $activetarget->tahun = $request->tahun;
+                    $activetarget->so = $datakpi->so;
+                    $activetarget->kpi = $datakpi->kpi;
+                    $activetarget->unit = $datakpi->unit;
+                    $activetarget->measurement = $datakpi->measurement;
+                    $activetarget->target = $datakpi->target;
+                    $activetarget->weight = $datakpi->weight;
+                    $activetarget->polarization = $datakpi->polarization;
+                    $activetarget->timeframe_target = $datakpi->timeframe_target;
+                    $activetarget->save();
+
+                    $activetarget = new active_target_kpi;
+                    $activetarget->id_user = $request->user_id;
+                    $activetarget->bulan = '8';
+                    $activetarget->tahun = $request->tahun;
+                    $activetarget->so = $datakpi->so;
+                    $activetarget->kpi = $datakpi->kpi;
+                    $activetarget->unit = $datakpi->unit;
+                    $activetarget->measurement = $datakpi->measurement;
+                    $activetarget->target = $datakpi->target;
+                    $activetarget->weight = $datakpi->weight;
+                    $activetarget->polarization = $datakpi->polarization;
+                    $activetarget->timeframe_target = $datakpi->timeframe_target;
+                    $activetarget->save();
+
+                    $activetarget = new active_target_kpi;
+                    $activetarget->id_user = $request->user_id;
+                    $activetarget->bulan = '12';
+                    $activetarget->tahun = $request->tahun;
+                    $activetarget->so = $datakpi->so;
+                    $activetarget->kpi = $datakpi->kpi;
+                    $activetarget->unit = $datakpi->unit;
+                    $activetarget->measurement = $datakpi->measurement;
+                    $activetarget->target = $datakpi->target;
+                    $activetarget->weight = $datakpi->weight;
+                    $activetarget->polarization = $datakpi->polarization;
+                    $activetarget->timeframe_target = $datakpi->timeframe_target;
+                    $activetarget->save();
+                    break;
+                case 'semester':
+                    //code
+                    $activetarget = new active_target_kpi;
+                    $activetarget->id_user = $request->user_id;
+                    $activetarget->bulan = '6';
+                    $activetarget->tahun = $request->tahun;
+                    $activetarget->so = $datakpi->so;
+                    $activetarget->kpi = $datakpi->kpi;
+                    $activetarget->unit = $datakpi->unit;
+                    $activetarget->measurement = $datakpi->measurement;
+                    $activetarget->target = $datakpi->target;
+                    $activetarget->weight = $datakpi->weight;
+                    $activetarget->polarization = $datakpi->polarization;
+                    $activetarget->timeframe_target = $datakpi->timeframe_target;
+                    $activetarget->save();
+
+                    $activetarget = new active_target_kpi;
+                    $activetarget->id_user = $request->user_id;
+                    $activetarget->bulan = '12';
+                    $activetarget->tahun = $request->tahun;
+                    $activetarget->so = $datakpi->so;
+                    $activetarget->kpi = $datakpi->kpi;
+                    $activetarget->unit = $datakpi->unit;
+                    $activetarget->measurement = $datakpi->measurement;
+                    $activetarget->target = $datakpi->target;
+                    $activetarget->weight = $datakpi->weight;
+                    $activetarget->polarization = $datakpi->polarization;
+                    $activetarget->timeframe_target = $datakpi->timeframe_target;
+                    $activetarget->save();
+                    break;
+                case 'tahunan':
+                    //code
+                    $activetarget = new active_target_kpi;
+                    $activetarget->id_user = $request->user_id;
+                    $activetarget->bulan = '12';
+                    $activetarget->tahun = $request->tahun;
+                    $activetarget->so = $datakpi->so;
+                    $activetarget->kpi = $datakpi->kpi;
+                    $activetarget->unit = $datakpi->unit;
+                    $activetarget->measurement = $datakpi->measurement;
+                    $activetarget->target = $datakpi->target;
+                    $activetarget->weight = $datakpi->weight;
+                    $activetarget->polarization = $datakpi->polarization;
+                    $activetarget->timeframe_target = $datakpi->timeframe_target;
+                    $activetarget->save();
+                    break;
+            }
+        }
+        
+        target_kpi::where('id_user', $request->user_id)
+                ->where('periode_th', $request->tahun)
+                ->update(['is_active'=>'1']);
+        
+        // update target kpi into is active = 1;
+        return redirect()->route('client.target');
     }
 
 }

@@ -26,6 +26,7 @@ class CreateActiveTargetKpiTable extends Migration {
             $table->bigInteger('target');
             $table->bigInteger('weight');
             $table->string('polarization');
+            $table->string('timeframe_target');
             $table->timestamps();
         });
     }

@@ -61,6 +61,7 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::post('/client-target-editso', [targetController::class, 'editSo'])->name('client.target.editso');
     Route::post('/client-target-addkpi', [targetController::class, 'addKpi'])->name('client.target.addkpi');
     Route::post('/client-target-editkpi', [targetController::class, 'editKpi'])->name('client.target.editkpi');
+    Route::post('/client-target-activate', [targetController::class, 'activateTarget'])->name('client.target.activate');
 
     // ** Performance Report **
     Route::get('/client-performancereport', function () {
