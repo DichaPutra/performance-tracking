@@ -325,12 +325,12 @@
                                                             <div class="row">
                                                                 <div class="col-md-6">
                                                                     <label>Target :</label>
-                                                                    <input type="text" name="targetedit" value="{{$kpi->target}}" class="form-control" >
+                                                                    <input type="number" min="0.000001" name="targetedit" value="{{$kpi->target}}" class="form-control" >
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <label>Weight :</label>
                                                                     <div class="input-group mb-3">
-                                                                        <input type="text" name="weightedit" value="{{$kpi->weight}}" class="form-control" >
+                                                                        <input type="number" min="0.000001" name="weightedit" value="{{$kpi->weight}}" class="form-control" >
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text" id="basic-addon2">%</span>
                                                                         </div>

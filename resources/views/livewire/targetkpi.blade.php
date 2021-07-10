@@ -5,7 +5,7 @@
     <div>
         <div class="form-group">
             <label for="exampleFormControlSelect1"><b>Strategic Objective :</b></label>
-            <select name="id_target_so" wire:model="selectedSo" class="form-control" required="">
+            <select name="id_target_so" wire:model="selectedSo" class="form-control" required>
                 <option hidden>Choose a categories</option>
                 @foreach($so as $so)
                 <option value='{{ $so->id }}'>{{ $so->so }}</option>
@@ -18,7 +18,7 @@
     <div>
         <div class="form-group">
             <label><b>KPI Library :</b></label>
-            <select name="id_kpi_library" wire:model="selectedKpi"class="form-control" size="5" >
+            <select name="id_kpi_library" wire:model="selectedKpi"class="form-control" size="5" required>
                 @if ($kpi != null && $kpi != 'nokpilibrary' )
 
                 @foreach($kpi as $kpi)
@@ -70,14 +70,14 @@
                 </div>
                 <div class="col-md-6">
                     <label><b>Target :</b></label>
-                    <input name="target" type="number" class="form-control" required="" placeholder="Input your target here...">
+                    <input name="target" min="0.000001" type="number" class="form-control" required="" placeholder="Input your target here...">
                 </div>
             </div><br>
             <div class="row">
                 <div class="col-md-6">
                     <label><b>Weight :</b></label>
                     <div class="input-group mb-3">
-                        <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
+                        <input name="weight" type="number" min="0.000001" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
                         <div class="input-group-append">
                             <span class="input-group-text" id="basic-addon2">%</span>
                         </div>
@@ -115,14 +115,14 @@
                 </div>
                 <div class="col-md-6">
                     <label><b>Target :</b></label>
-                    <input name="target" type="number" class="form-control" required="" placeholder="Input your target here...">
+                    <input name="target" type="number" min="1" class="form-control"  placeholder="Input your target here..." required="">
                 </div>
             </div><br>
             <div class="row">
                 <div class="col-md-6">
                     <label><b>Weight :</b></label>
                     <div class="input-group mb-3">
-                        <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100">
+                        <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100" required="">
                         <div class="input-group-append">
                             <span class="input-group-text" id="basic-addon2">%</span>
                         </div>

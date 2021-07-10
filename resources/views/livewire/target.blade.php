@@ -15,19 +15,23 @@
 
     @if($so != null)
     <div>
-        <div class="form-group">
-            <label><b>Aspect :</b></label>
-            <select name="Aspect" wire:model="selectedAspect"class="form-control" required="">
-                <option value='All'>  All</option>
-                <option value='Proses Bisnis'>  Proses Bisnis</option>
-                <option value='Pelanggan'>  Pelanggan</option>
-                <option value='Keuangan'>  Keuangan</option>
-                <option value='SDM'>  SDM</option>
-                <option value='IT'>  IT</option>
-            </select>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label><b>Aspect :</b></label>
+                    <select name="Aspect" wire:model="selectedAspect"class="form-control" required="">
+                        <option value='All'>  All</option>
+                        <option value='Proses Bisnis'>  Proses Bisnis</option>
+                        <option value='Pelanggan'>  Pelanggan</option>
+                        <option value='Keuangan'>  Keuangan</option>
+                        <option value='SDM'>  SDM</option>
+                        <option value='IT'>  IT</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
-    
+
     <div>
         <div class="form-group">
             <label><b>Strategic Objective Library:</b></label>

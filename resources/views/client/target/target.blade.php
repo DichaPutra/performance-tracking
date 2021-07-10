@@ -67,9 +67,9 @@
 @endsection
 
 @section('script')
-<script>
+<!--<script>
     $(document).ready(function () {
         $('#dataTable').DataTable();
     });
-</script>
+</script>-->
 @endsection
