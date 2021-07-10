@@ -28,6 +28,21 @@
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">List personnel</h6>
+
+                    <form action="{{route('client.target')}}"method="GET" class="float-right" style="width: 20%;">
+                        <select name='tahun' onchange='if (this.value != <?php echo $tahun;?>) {
+                                    this.form.submit();
+                                }' class="form-control">
+                            <option @if($tahun == date('Y')) selected @endif  >{{date('Y')}}</option>
+                            @for ($i = 1; $i < 5; $i++)
+                            <option @if($tahun == date('Y')+$i) selected @endif >{{date('Y')+$i}}</option>
+                            @endfor
+                        </select>
+                    </form>
+                    
+
+
+
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -49,9 +64,9 @@
                                     <td style="background-color: {{color($user->level)}};">{{levelName($user->level)}}</td>
                                     <td>{{$user->level_name}}</td>
                                     <td>{{$user->name}}</td>
-                                    <td style="text-align:center;">{{getCountSO($user->id)}}</td>
-                                    <td style="text-align:center;">{{getCountKPI($user->id)}}</td>
-                                    <td style="text-align: center;"><a href="{{route('client.target.details', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td style="text-align:center;">{{getCountSO($user->id,$tahun)}}</td>
+                                    <td style="text-align:center;">{{getCountKPI($user->id,$tahun)}}</td>
+                                    <td style="text-align: center;"><a href="{{route('client.target.details', ['idpersonnel'=>$user->id, 'tahun'=>$tahun])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 @endforeach                            
                             </tbody>
@@ -60,6 +75,7 @@
                 </div>
             </div>
         </div>
+
 
     </div>
 

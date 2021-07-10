@@ -34,13 +34,13 @@ function levelName($level) {
     }
 }
 
-function getCountSO($id_user) {
-    $count = target_so::where('id_user', $id_user)->count();
+function getCountSO($id_user, $tahun) {
+    $count = target_so::where('id_user', $id_user)->where('periode_th',$tahun)->count();
     return $count;
 }
 
-function getCountKPI($id_user) {
-    $count = target_kpi::where('id_user', $id_user)->count();
+function getCountKPI($id_user, $tahun) {
+    $count = target_kpi::where('id_user', $id_user)->where('periode_th',$tahun)->count();
     return $count;
 }
 

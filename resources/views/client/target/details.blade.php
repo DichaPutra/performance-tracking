@@ -62,15 +62,21 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row">
+                                <label for="position" class="col-md-4 col-form-label text-md-right">Periode Target</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" list="pos" value="{{$tahun}}" disabled="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="position" class="col-md-4 col-form-label text-md-right">Number of SO</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" list="pos" value="{{getCountSO($data->id)}}" disabled="">
+                                    <input type="text" class="form-control" list="pos" value="{{getCountSO($data->id, $tahun)}}" disabled="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="position" class="col-md-4 col-form-label text-md-right">Number of KPI</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" list="pos" value="{{getCountKPI($data->id)}}" disabled="">
+                                    <input type="text" class="form-control" list="pos" value="{{getCountKPI($data->id, $tahun)}}" disabled="">
                                 </div>
                             </div>
                         </div>
@@ -111,6 +117,7 @@
                                                 <form method="POST" action="{{route('client.target.addso')}}">
                                                     @csrf
                                                     <input type="hidden" name="userid" value="{{$data->id}}">
+                                                    <input type="hidden" name="tahun" value="{{$tahun}}">
 
                                                     @livewire('target') 
 
@@ -181,6 +188,7 @@
                                                             @csrf
                                                             <input type="hidden" name="userid" value="{{$data->id}}">
                                                             <input type="hidden" name="idtargetso" value="{{$so->id}}">
+                                                            <input type="hidden" name="tahun" value="{{$tahun}}">
                                                             <input type="text" name="so" value="{{$so->so}}" class="form-control" >
 
                                                             <div class="modal-footer">

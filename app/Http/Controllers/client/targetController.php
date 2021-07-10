@@ -12,43 +12,61 @@ use Illuminate\Support\Facades\DB;
 
 class targetController extends Controller {
 
-    public function index() {// ** Memunculkan semua list personnel  
-        // Homepage Target
-        $user = User::all()->where('client_parent', Auth::user()->id);
+    public function index(Request $request)
+    {// ** Memunculkan semua list personnel  
+        if ($request->tahun == null)
+        {
+            // Default Tahun Sekarang
+            $tahun = date('Y');
+            // Homepage Target
+            $user = User::all()->where('client_parent', Auth::user()->id);
 
-        //$user = User::select(DB::raw('count(*) as so_count, status'))->where('client_parent', Auth::user()->id);
-        return view('client.target.target', ['user' => $user]);
+            return view('client.target.target', ['user' => $user, 'tahun' => $tahun]);
+        }
+        else
+        {
+            //Tahun Pilihan
+            // Homepage Target
+            $user = User::all()->where('client_parent', Auth::user()->id);
+
+            return view('client.target.target', ['user' => $user, 'tahun' => $request->tahun]);
+        }
     }
 
-    public function details(Request $request) {// ** Memunculkan detail personnel | req data : id personnel
+    public function details(Request $request)
+    {// ** Memunculkan detail personnel | req data : id personnel
         $data = User::where('id', $request->idpersonnel)->first();
 
         // guard (jika user yang dilihat bukan personnelnya)
-        if ($data == NULL) {
+        if ($data == NULL)
+        {
             return abort(403);
         }
-        if ($data->client_parent != Auth::user()->id) {
+        if ($data->client_parent != Auth::user()->id)
+        {
             return abort(403);
         }
 
         // get data SO by ID
-        $dataso = target_so::where('id_user', $request->idpersonnel)->get();
+        $dataso = target_so::where('id_user', $request->idpersonnel)->where('periode_th', $request->tahun)->get();
 
         //get data KPI by ID
         $datakpi = DB::table('target_kpi')
                 ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
                 ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
-                ->where('target_kpi.id_user',$request->idpersonnel)
+                ->where('target_kpi.id_user', $request->idpersonnel)
                 ->orderBy('target_kpi.id_target_so', 'asc')
                 ->get();
 
         //$datakpi = DB::select("SELECT * FROM target_kpi a, target_so b WHERE a.id_target_so = b.id AND a.id_user = $request->idpersonnel ORDER BY b.so ASC");
         // pass to view
-        return view('client.target.details', ['data' => $data, 'dataso' => $dataso, 'datakpi' => $datakpi]);
+        return view('client.target.details', ['data' => $data, 'dataso' => $dataso, 'datakpi' => $datakpi, 'tahun' => $request->tahun]);
     }
 
-    public function addSo(Request $request) {// ** Fungsi Store SO ke database
-        if ($request->so_custom == null) {
+    public function addSo(Request $request)
+    {// ** Fungsi Store SO ke database
+        if ($request->so_custom == null)
+        {
             //SO dari library;
             list($idso, $so) = explode('-', $request->SO);
 
@@ -57,11 +75,14 @@ class targetController extends Controller {
             $sodb->id_user = $request->userid;
             $sodb->id_so_library = $idso;
             $sodb->so = $so;
+            $sodb->periode_th = $request->tahun;
             $sodb->save();
 
             //redirect with succes message
-            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your strategic objective has been added');
-        } else {
+            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your strategic objective has been added');
+        }
+        else
+        {
             // SO Custom
             $so = $request->so_custom;
 
@@ -70,41 +91,48 @@ class targetController extends Controller {
             $sodb->id_user = $request->userid;
             $sodb->id_so_library = NULL;
             $sodb->so = $so;
+            $sodb->periode_th = $request->tahun;
             $sodb->save();
 
             //redirect with succes message
-            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your strategic objective has been added');
+            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your strategic objective has been added');
         }
     }
 
-    public function editSO(Request $request) {
+    public function editSO(Request $request)
+    {
         //update eloquent
         $soupdate = target_so::find($request->idtargetso);
         $soupdate->so = $request->so;
         $soupdate->save();
 
         //redirect with succes message
-        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your strategic objective has been edited');
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your strategic objective has been edited');
     }
 
-    public function addKpi(Request $request) {
+    public function addKpi(Request $request)
+    {
         // 3 kondisi add KPI = 
         // 1. SO Library KPI Library ( no customKpi var)
         // 2. SO Library KPI Custom  ( kpi = 0 , customKpi != null)
         // 3. SO Custom KPI Custom ( no kpi var)
-
         //insert db Target KPI data
         $kpidb = new target_kpi;
         $kpidb->id_user = $request->userid;
         $kpidb->id_target_so = $request->id_target_so;
-        if (is_null($request->customKpi)) {
+        if (is_null($request->customKpi))
+        {
             list($idkpi, $kpi) = explode('-', $request->id_kpi_library);
             $kpidb->id_kpi_library = $idkpi;
             $kpidb->kpi = $kpi;
-        } elseif ($request->id_kpi_library == '0') {
+        }
+        elseif ($request->id_kpi_library == '0')
+        {
             $kpidb->id_kpi_library = null;
             $kpidb->kpi = $request->customKpi;
-        } elseif (is_null($request->id_kpi_library)) {
+        }
+        elseif (is_null($request->id_kpi_library))
+        {
             $kpidb->id_kpi_library = null;
             $kpidb->kpi = $request->customKpi;
         }
@@ -116,12 +144,12 @@ class targetController extends Controller {
         $kpidb->save();
 
         //redirect with succes message
-        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your kpi has been added')->with('tab','kpi');
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your kpi has been added')->with('tab', 'kpi');
     }
 
-    public function editKPI(Request $request) {
+    public function editKPI(Request $request)
+    {
         //dd($request);
-
         //update eloquent
         $kpiupdate = target_kpi::find($request->idtargetkpi);
         $kpiupdate->kpi = $request->kpiedit;
@@ -130,7 +158,7 @@ class targetController extends Controller {
         $kpiupdate->save();
 
         //redirect with succes message
-        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your kpi has been edited')->with('tab','kpi');
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid])->with('success', 'Success ! Your kpi has been edited')->with('tab', 'kpi');
 
         //echo 'edit KPI';
     }
