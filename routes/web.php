@@ -56,9 +56,11 @@ Route::middleware([ClientGuard::class])->group(function () {
     // -> page
     Route::get('/client-target', [targetController::class, 'index'])->name('client.target');
     Route::get('/client-target-details', [targetController::class, 'details'])->name('client.target.details');
+    Route::get('/client-target-check', [targetController::class, 'check'])->name('client.target.check');
     // -> logic
     Route::post('/client-target-addso', [targetController::class, 'addSo'])->name('client.target.addso');
     Route::post('/client-target-editso', [targetController::class, 'editSo'])->name('client.target.editso');
+    Route::post('/client-target-deleteso', [targetController::class, 'deleteSo'])->name('client.target.deleteso');
     Route::post('/client-target-addkpi', [targetController::class, 'addKpi'])->name('client.target.addkpi');
     Route::post('/client-target-editkpi', [targetController::class, 'editKpi'])->name('client.target.editkpi');
     Route::post('/client-target-deletekpi', [targetController::class, 'deleteKpi'])->name('client.target.deletekpi');

@@ -112,6 +112,20 @@ class targetController extends Controller {
         return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your strategic objective has been edited');
     }
 
+    public function deleteSo(Request $request)
+    {
+        // data in : idpersonnel , tahun, idso
+
+        // delete kpi child
+        target_kpi::where('id_target_so', $request->id_targetso)->delete();
+
+        // delete so
+        target_so::where('id', $request->id_targetso)->delete();
+
+        //redirect with succes message
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your strategic objective has been deleted');
+    }
+
     public function addKpi(Request $request)
     {
         // 3 kondisi add KPI = 
@@ -171,8 +185,8 @@ class targetController extends Controller {
     public function deleteKPI(Request $request)
     {
         //dd($request);
-        
         target_kpi::where('id', $request->id_targetkpi)->delete();
+
         //redirect with succes message
         return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your kpi target has been deleted');
     }

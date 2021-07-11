@@ -198,10 +198,21 @@
                                                     @endif
                                                 </td>
                                                 <td style="width: 10%;text-align: center;">
-                                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit{{$so->id}}">
-                                                        <i class="fas fa-pen"></i>
-                                                    </button>
-                                                    <a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                                                    <form action="{{route('client.target.deleteso')}}" method="post">
+                                                        <!--button edit SO-->
+                                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEdit{{$so->id}}">
+                                                            <i class="fas fa-pen"></i>
+                                                        </button>
+                                                        <!--button delete SO-->
+                                                        @csrf
+                                                        <input type="hidden" name="id_targetso" value="{{$so->id}}">
+                                                        <input type="hidden" name="userid" value="{{$data->id}}">
+                                                        <input type="hidden" name="tahun" value="{{$tahun}}">
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                    <!--<a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>-->
                                                 </td>
                                             </tr>
 
@@ -287,9 +298,7 @@
 
                             <!-- Card Body -->
                             <div class="card-body">
-
                                 <!--Success Message--> 
-
 
                                 <!--Content Row-->
                                 <div class="table-responsive">
@@ -334,24 +343,19 @@
                                                 <td style="width: 10%;text-align: center;">
                                                     <form action="{{route('client.target.deletekpi')}}" method="post">
                                                         @csrf
-                                                        <!--button edit-->
+                                                        <!--button edit kpi-->
                                                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditKPI{{ $loop->iteration }}">
                                                             <i class="fas fa-pen"></i>
                                                         </button>
-                                                        <!--button delete-->
+                                                        <!--button delete kpi-->
                                                         <input type="hidden" name="id_targetkpi" value="{{$kpi->id}}">
                                                         <input type="hidden" name="userid" value="{{$data->id}}">
                                                         <input type="hidden" name="tahun" value="{{$tahun}}">
-                                                        <!--<button class="btn btn-danger btn-sm" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this KPI? ');"><i class="fas fa-trash"></i></button>-->
+
                                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this KPI? ');">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>
-
-
-
-
-
                                                 </td>
                                             </tr>
                                             <!--modal edit-->
