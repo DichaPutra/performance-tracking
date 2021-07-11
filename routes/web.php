@@ -93,6 +93,11 @@ Route::middleware([ClientGuard::class])->group(function () {
 Route::middleware([PersonnelGuard::class])->group(function () {
     Route::get('/personnel-home', [personnelHomeController::class, 'index'])->name('personnel.home')->middleware('PersonnelGuard');
 
+    // * target *
+    Route::get('/personnel-target', function () {
+        return view('personnel.target.target');
+    })->name('personnel.target');
+
     // * Capaian *
     Route::get('/personnel-capaian', function () {
         return view('personnel.capaian.capaian');

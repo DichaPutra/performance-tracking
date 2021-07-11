@@ -28,7 +28,7 @@
         <div class="col-lg-12">
 
             <!-- Project Card Example -->
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 animated--grow-in">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Dashboard</h6>
                 </div>

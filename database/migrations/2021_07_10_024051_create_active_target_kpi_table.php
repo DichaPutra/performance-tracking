@@ -18,7 +18,7 @@ class CreateActiveTargetKpiTable extends Migration {
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->unsignedBigInteger('id_target_kpi');
-            $table->foreign('id_user')->references('id')->on('target_kpi');
+            $table->foreign('id_target_kpi')->references('id')->on('target_kpi');
             $table->bigInteger('bulan');
             $table->bigInteger('tahun');
             $table->string('so');
@@ -29,6 +29,7 @@ class CreateActiveTargetKpiTable extends Migration {
             $table->bigInteger('weight');
             $table->string('polarization');
             $table->string('timeframe_target');
+            $table->bigInteger('is_scored')->default(0);
             $table->timestamps();
         });
     }

@@ -17,6 +17,8 @@ class CreateCapaianKpiTable extends Migration {
             $table->id();
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
+            $table->unsignedBigInteger('id_active_target_kpi');
+            $table->foreign('id_active_target_kpi')->references('id')->on('active_target_kpi');
             $table->bigInteger('bulan');
             $table->bigInteger('tahun');
             $table->string('so');

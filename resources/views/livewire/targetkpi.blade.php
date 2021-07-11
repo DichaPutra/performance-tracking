@@ -111,19 +111,19 @@
                 <div class="col-md-6">
                     <label><b>Measurement Unit :</b></label>
                     <input name="" value="{{$kpidata->measurement}}" type="text" class="form-control" readonly="">
-                    <input name="measurement" value="{{$kpidata->measurement}}" type="hidden" class="form-control" readonly="">
+                    <input name="measurement" value="{{$kpidata->measurement}}" type="hidden" class="form-control" required="" readonly="">
                 </div>
                 <div class="col-md-6">
                     <label><b>Polarization :</b></label>
                     <input name="" value="{{$kpidata->polarization}}" type="text" class="form-control" readonly="">
-                    <input name="polarization" value="{{$kpidata->polarization}}" type="hidden" class="form-control" readonly="">
+                    <input name="polarization" value="{{$kpidata->polarization}}" type="hidden" class="form-control" required="" readonly="">
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-md-6">
                     <label><b>Unit / Satuan :</b></label>
-                    <input name="unit" type="text" value="{{$kpidata->unit}}" class="form-control" readonly="">
+                    <input name="unit" type="text" value="{{$kpidata->unit}}" class="form-control" required="" readonly="">
                 </div>
                 <div class="col-md-6">
                     <label><b>Target :</b></label>

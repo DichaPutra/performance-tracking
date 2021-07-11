@@ -12,6 +12,12 @@
 </li>
 
 <li class="nav-item @if($page=='target')active @endif">
+    <a class="nav-link" href="{{route('personnel.target')}}">
+        <i class="fas fa-fw fa-bullseye"></i>
+        <span>Target</span></a>
+</li>
+
+<li class="nav-item @if($page=='capaian')active @endif">
     <a class="nav-link" href="{{route('personnel.capaian')}}">
         <i class="fas fa-fw fa-chart-line"></i>
         <span>Capaian</span></a>
