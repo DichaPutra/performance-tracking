@@ -6,29 +6,28 @@
 
 @section('content')
 <div class="container-fluid">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Target</li>
-            <li class="breadcrumb-item active" aria-current="page">Details</li>
-        </ol>
-    </nav><br>
 
     <!-- Content Row -->
     <div class="row">
         <div class="col-xl-12 col-lg-12">
 
             <div class="card shadow mb-4 animated--grow-in">
+
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Capaian</h6>
+
                     <select class="form-control form-control-sm float-right" style="width: 20%;">
-                        <option>January</option>
-                        <option>February</option>
-                        <option>March</option>
-                        <option>April</option>
-                        <option selected="">May</option>
+                        @for ($i = date('n'); $i > 0; $i--)
+
+                        <!--                        <option>February</option>
+                                                <option>March</option>
+                                                <option>April</option>-->
+                        <option selected="" value="{{$i}}">May</option>
+                        @endfor
                     </select>
+
                 </div>
 
                 <!-- Card Body -->

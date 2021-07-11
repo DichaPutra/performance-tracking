@@ -7,10 +7,10 @@
 @section('content')
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
-<!--        <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Target Tahunan</li>
-            <li class="breadcrumb-item active" aria-current="page">Details</li>
-        </ol>-->
+        <!--        <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Target Tahunan</li>
+                    <li class="breadcrumb-item active" aria-current="page">Details</li>
+                </ol>-->
     </nav>
 
     <!-- Page Heading -->
@@ -23,22 +23,14 @@
         <div class="col-xl-12 col-lg-12">
 
             <div class="card shadow mb-4 animated--grow-in">
-                <!-- Card Header - Dropdown -->
-<!--                <div
+                <!--Card Header - Dropdown--> 
+                <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Target</h6>
-                    <select class="form-control form-control-sm float-right" style="width: 20%;">
-                        <option>January</option>
-                        <option>February</option>
-                        <option>March</option>
-                        <option>April</option>
-                        <option selected="">May</option>
-                    </select>
-                </div>-->
+                </div>
 
                 <!-- Card Body -->
                 <div class="card-body">
-
                     <br>
                     <!-- Card Header - Dropdown -->
                     <div class="card-header">
@@ -47,45 +39,32 @@
 
 
                     <!--KPI Table-->
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead style="background-color: #F8F9FC;">
-                            <tr>
-                                <th style="width: 8%; text-align: center;">No</th>
-                                <th>Strategic Objective</th>
-                                <th>KPI</th>
-                                <th>Weight</th>
-                                <th>Target</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: center;">1</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;">2</td>
-                                <td>
-                                    <b>Return on Investment (ROI)</b><br>
-                                    Tingkat pengembalian atas investasi yang telah ditanamkan
-                                </td>
-                                <td>60%</td>
-                                <td><input type="text" class="form-control"></td>
-                            </tr>
-                            <tr>
-                                <td style="text-align: center;">3</td>
-                                <td><b>Tingkat Kesehatan (Standar BUMN)</b><br>
-                                    Kinerja berdasarkan atas sekumpulan indikator Keuangan, Operasional dan Administratif sesuai standard yang ditentukan oleh BUMN. Indikator Keuangan meliputi ROE, ROI, CASH RATIO, Current Ratio, Collection Periode, Perputaran Persediaan, Perputaran Total Asset, Rasio Modal Sendiri thd Total Aktiv Sedangkan indikator operasional adalah berkaitan dengan produktivitas tanaman, rendemen, % produk berkualitas tinggi serta penjualan langsung.
-                                </td>
-                                <td>60%</td>
-                                <td><input type="text" class="form-control"></td>
-                            </tr>                          
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead style="background-color: #F8F9FC;">
+                                <tr>
+                                    <th style="width: 8%; text-align: center;">No</th>
+                                    <th>Strategic Objective</th>
+                                    <th>KPI</th>
+                                    <th>Weight</th>
+                                    <th>Timeframe </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($datatarget as $dat)
+                                <tr>
+                                    <td style="text-align: center;">{{$loop->iteration}}</td>
+                                    <td>{{$dat->so}}</td>
+                                    <td>{{$dat->kpi}}</td>
+                                    <td>{{$dat->weight}}%</td>
+                                    <td>{{$dat->timeframe_target}}</td>
+                                </tr>                       
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>>
+                    <br>
 
-                    <!--<button></button>-->
-                    <button class="btn btn-primary float-right">Save</button>
                 </div>
             </div>
         </div>

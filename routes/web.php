@@ -4,11 +4,16 @@ use Illuminate\Support\Facades\Route;
 // Controller
 use App\Http\Controllers\admin\adminHomeController;
 use App\Http\Controllers\client\clientHomeController;
-use App\Http\Controllers\personnel\personnelHomeController;
-use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\client\personnelController;
 use App\Http\Controllers\client\targetController;
 use App\Http\Controllers\client\initiativeController;
+
+use App\Http\Controllers\personnel\personnelHomeController;
+use App\Http\Controllers\personnel\personnelTargetController;
+use App\Http\Controllers\personnel\personnelCapaianController;
+
+use App\Http\Controllers\ChangePasswordController;
+
 // Middleware
 use App\Http\Middleware\ClientGuard;
 use App\Http\Middleware\AdminGuard;
@@ -94,14 +99,10 @@ Route::middleware([PersonnelGuard::class])->group(function () {
     Route::get('/personnel-home', [personnelHomeController::class, 'index'])->name('personnel.home')->middleware('PersonnelGuard');
 
     // * target *
-    Route::get('/personnel-target', function () {
-        return view('personnel.target.target');
-    })->name('personnel.target');
+    Route::get('/personnel-target', [personnelTargetController::class, 'index'])->name('personnel.target');
 
     // * Capaian *
-    Route::get('/personnel-capaian', function () {
-        return view('personnel.capaian.capaian');
-    })->name('personnel.capaian');
+    Route::get('/personnel-capaian', [personnelCapaianController::class, 'index'])->name('personnel.capaian');
 
     // * Performance Report *
     Route::get('/personnel-performancereport', function () {
