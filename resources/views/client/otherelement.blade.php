@@ -4,7 +4,11 @@
 use App\Models\target_so;
 use App\Models\target_kpi;
 use App\Models\target_si;
+use App\Models\active_target_kpi;
 
+// =======================================================
+// ========  TARGET FORMULA ===============
+// =======================================================
 // Color Function For Level and Name
 function color($level)
 {
@@ -63,6 +67,24 @@ function getStatusTarget($id_user, $tahun)
     }
     return $text;
 }
+
+function getTargetbyMonth($id_user, $bulan, $tahun, $idtargetkpi)
+{
+    $target = active_target_kpi::where('id_user', $id_user)
+            ->where('id_target_kpi', $idtargetkpi)
+            ->where('bulan', $bulan)
+            ->where('tahun', $tahun)
+            ->first();
+    //get data from array first();
+    $targetbln = $target['target'];
+
+    return $targetbln;
+}
+
+// =======================================================
+// ========  STRATEGIC INITIATIVE FORMULA ===============
+// =======================================================
+
 
 function getCountSIbyUser($id_user)
 {

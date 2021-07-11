@@ -48,6 +48,16 @@ class targetController extends Controller {
             return abort(403);
         }
 
+        //guard jika target telah activated
+        $count = target_kpi::where('id_user', $data->id)->where('periode_th', $request->tahun)->sum('is_active');
+        if ($count != 0)
+        {
+            return abort(403);
+        }
+
+
+
+
         // get data SO by ID
         $dataso = target_so::where('id_user', $request->idpersonnel)->where('periode_th', $request->tahun)->get();
 
@@ -63,6 +73,20 @@ class targetController extends Controller {
         //$datakpi = DB::select("SELECT * FROM target_kpi a, target_so b WHERE a.id_target_so = b.id AND a.id_user = $request->idpersonnel ORDER BY b.so ASC");
         // pass to view
         return view('client.target.details', ['data' => $data, 'dataso' => $dataso, 'datakpi' => $datakpi, 'tahun' => $request->tahun]);
+    }
+
+    public function check(Request $request)
+    {
+        // data in request : tahun, idpersonnel
+        //dd($request);
+        $data = User::where('id', $request->idpersonnel)->first();
+
+        //get active target kpi  : var  so, kpi
+        $activetarget = active_target_kpi::groupBy('so', 'id_target_kpi','kpi', 'unit')->select('so','id_target_kpi', 'kpi', 'unit')->where('id_user', $request->idpersonnel)->where('tahun', $request->tahun)->get();
+
+
+
+        return view('client.target.active', ['data' => $data, 'tahun' => $request->tahun, 'activetarget' => $activetarget]);
     }
 
     public function addSo(Request $request)
@@ -115,7 +139,6 @@ class targetController extends Controller {
     public function deleteSo(Request $request)
     {
         // data in : idpersonnel , tahun, idso
-
         // delete kpi child
         target_kpi::where('id_target_so', $request->id_targetso)->delete();
 
@@ -203,7 +226,6 @@ class targetController extends Controller {
                 ->orderBy('target_kpi.id_target_so', 'asc')
                 ->get();
 
-
         // Insert active target kpi based on timeframe
         foreach ($datakpi as $datakpi)
         {
@@ -215,6 +237,7 @@ class targetController extends Controller {
                     {
                         $activetarget = new active_target_kpi;
                         $activetarget->id_user = $request->user_id;
+                        $activetarget->id_target_kpi = $datakpi->id;
                         $activetarget->bulan = "$i";
                         $activetarget->tahun = $request->tahun;
                         $activetarget->so = $datakpi->so;
@@ -232,6 +255,7 @@ class targetController extends Controller {
                     //code
                     $activetarget = new active_target_kpi;
                     $activetarget->id_user = $request->user_id;
+                    $activetarget->id_target_kpi = $datakpi->id;
                     $activetarget->bulan = '3';
                     $activetarget->tahun = $request->tahun;
                     $activetarget->so = $datakpi->so;
@@ -246,6 +270,7 @@ class targetController extends Controller {
 
                     $activetarget = new active_target_kpi;
                     $activetarget->id_user = $request->user_id;
+                    $activetarget->id_target_kpi = $datakpi->id;
                     $activetarget->bulan = '6';
                     $activetarget->tahun = $request->tahun;
                     $activetarget->so = $datakpi->so;
@@ -260,6 +285,7 @@ class targetController extends Controller {
 
                     $activetarget = new active_target_kpi;
                     $activetarget->id_user = $request->user_id;
+                    $activetarget->id_target_kpi = $datakpi->id;
                     $activetarget->bulan = '9';
                     $activetarget->tahun = $request->tahun;
                     $activetarget->so = $datakpi->so;
@@ -274,6 +300,7 @@ class targetController extends Controller {
 
                     $activetarget = new active_target_kpi;
                     $activetarget->id_user = $request->user_id;
+                    $activetarget->id_target_kpi = $datakpi->id;
                     $activetarget->bulan = '12';
                     $activetarget->tahun = $request->tahun;
                     $activetarget->so = $datakpi->so;
@@ -290,6 +317,7 @@ class targetController extends Controller {
                     //code
                     $activetarget = new active_target_kpi;
                     $activetarget->id_user = $request->user_id;
+                    $activetarget->id_target_kpi = $datakpi->id;
                     $activetarget->bulan = '4';
                     $activetarget->tahun = $request->tahun;
                     $activetarget->so = $datakpi->so;
@@ -304,6 +332,7 @@ class targetController extends Controller {
 
                     $activetarget = new active_target_kpi;
                     $activetarget->id_user = $request->user_id;
+                    $activetarget->id_target_kpi = $datakpi->id;
                     $activetarget->bulan = '8';
                     $activetarget->tahun = $request->tahun;
                     $activetarget->so = $datakpi->so;
@@ -318,6 +347,7 @@ class targetController extends Controller {
 
                     $activetarget = new active_target_kpi;
                     $activetarget->id_user = $request->user_id;
+                    $activetarget->id_target_kpi = $datakpi->id;
                     $activetarget->bulan = '12';
                     $activetarget->tahun = $request->tahun;
                     $activetarget->so = $datakpi->so;
@@ -334,6 +364,7 @@ class targetController extends Controller {
                     //code
                     $activetarget = new active_target_kpi;
                     $activetarget->id_user = $request->user_id;
+                    $activetarget->id_target_kpi = $datakpi->id;
                     $activetarget->bulan = '6';
                     $activetarget->tahun = $request->tahun;
                     $activetarget->so = $datakpi->so;
@@ -348,6 +379,7 @@ class targetController extends Controller {
 
                     $activetarget = new active_target_kpi;
                     $activetarget->id_user = $request->user_id;
+                    $activetarget->id_target_kpi = $datakpi->id;
                     $activetarget->bulan = '12';
                     $activetarget->tahun = $request->tahun;
                     $activetarget->so = $datakpi->so;
@@ -364,6 +396,7 @@ class targetController extends Controller {
                     //code
                     $activetarget = new active_target_kpi;
                     $activetarget->id_user = $request->user_id;
+                    $activetarget->id_target_kpi = $datakpi->id;
                     $activetarget->bulan = '12';
                     $activetarget->tahun = $request->tahun;
                     $activetarget->so = $datakpi->so;
@@ -382,9 +415,8 @@ class targetController extends Controller {
         target_kpi::where('id_user', $request->user_id)
                 ->where('periode_th', $request->tahun)
                 ->update(['is_active' => '1']);
-
         // update target kpi into is active = 1;
-        return redirect()->route('client.target');
+        return redirect()->route('client.target')->with('success', 'Success ! Target has been activated');
     }
 
 }
