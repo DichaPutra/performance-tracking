@@ -100,9 +100,14 @@ Route::middleware([PersonnelGuard::class])->group(function () {
 
     // * target *
     Route::get('/personnel-target', [personnelTargetController::class, 'index'])->name('personnel.target');
+    
 
     // * Capaian *
+    // -> page
     Route::get('/personnel-capaian', [personnelCapaianController::class, 'index'])->name('personnel.capaian');
+    Route::post('/personnel-capaian', [personnelCapaianController::class, 'index'])->name('personnel.capaian');
+    // -> logic
+    Route::post('/personnel-capaian-addcapaian', [personnelCapaianController::class, 'addCapaian'])->name('personnel.capaian.addcapaian');
 
     // * Performance Report *
     Route::get('/personnel-performancereport', function () {
