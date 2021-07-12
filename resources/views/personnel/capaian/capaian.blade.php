@@ -1,5 +1,7 @@
 @extends('layouts.app2')
 
+@include('personnel.formula')<!--berisikan function di view-->
+
 @section('head')
 <?php $page = 'capaian' ?>
 @endsection
@@ -102,6 +104,8 @@
                         @csrf
                         <input name="bulan" value="{{$bulan}}" type="hidden" >
                         <input name="tahun" value="{{$tahun}}" type="hidden" >
+
+
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead style="background-color: #F8F9FC;">
@@ -124,6 +128,14 @@
                                         <td>{{$target->timeframe_target}}</td>
                                         <td>{{$target->target}}{{$target->unit}}</td>
                                         <td> 
+                                            @if($is_scored != 0)
+                                            <div class="input-group mb-3">
+                                                <input name="cap" value="{{getCapaianPersonnel($bulan,$tahun,$target->id)}}" type="number" class="form-control" min="1" readonly>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="basic-addon2">{{$target->unit}}</span>
+                                                </div>
+                                            </div>
+                                            @else
                                             <div class="input-group mb-3">
                                                 <input name="activetargetid[]" value="{{$target->id}}" type="hidden" >
                                                 <input name="so[]" value="{{$target->so}}" type="hidden" >
@@ -138,6 +150,7 @@
                                                     <span class="input-group-text" id="basic-addon2">{{$target->unit}}</span>
                                                 </div>
                                             </div>
+                                            @endif
                                         </td>
                                     </tr>                        
                                     @endforeach
