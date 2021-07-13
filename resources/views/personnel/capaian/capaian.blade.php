@@ -24,7 +24,7 @@
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Capaian</h6>
 
-                    <button class="btn btn-secondary" data-toggle="modal" data-target="#changeTarget">{{date('F', mktime(0, 0, 0, $bulan, 10))}} {{$tahun}}</button>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#changeTarget">{{date('F', mktime(0, 0, 0, $bulan, 10))}} {{$tahun}}</button>
 
                     <!-- Modal ganti tanggal-->
                     <div class="modal fade" id="changeTarget" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -126,7 +126,13 @@
                                         <td>{{$target->so}}</td>
                                         <td>{{$target->kpi}}</td>
                                         <td>{{$target->timeframe_target}}</td>
-                                        <td>{{$target->target}}{{$target->unit}}</td>
+                                        <td>
+                                            @if($target->unit == 'Rp')
+                                             RP {{$target->target}},-
+                                            @else
+                                            {{$target->target}}{{$target->unit}}
+                                            @endif
+                                        </td>
                                         <td> 
                                             @if($is_scored != 0)
                                             <div class="input-group mb-3">

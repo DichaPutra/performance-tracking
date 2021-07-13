@@ -11,7 +11,7 @@ class so_library extends Model {
 
     protected $table = 'so_library';
     protected $fillable = [
-        'id_business_categories', 'so'
+        'id_business_categories', 'so', 'bisnis', 'aspect'
     ];
 
 }

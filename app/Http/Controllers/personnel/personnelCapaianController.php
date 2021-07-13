@@ -90,7 +90,8 @@ class personnelCapaianController extends Controller {
                 ->where('bulan', $bulan)
                 ->where('tahun', $tahun)->update(['is_scored' => 1]);
 
-        dd($request);
+        return redirect()->route('personnel.capaian', ['tahun'=>$tahun, 'bulan'=>$bulan]);
+        //dd($request);
     }
 
 }
