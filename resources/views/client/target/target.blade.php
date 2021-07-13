@@ -28,17 +28,6 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">List personnel</h6>
-
-                    <form action="{{ route('client.target') }}" method="GET" class="float-right" style="width: 20%;">
-                        <select name='tahun' onchange='if (this.value != <?php echo $tahun; ?>) {
-                                    this.form.submit();
-                                }' class="form-control">
-                            <option @if ($tahun == date('Y')) selected @endif>{{ date('Y') }}</option>
-                            @for ($i = 1; $i < 5; $i++)
-                            <option @if ($tahun == date('Y') + $i) selected @endif>{{ date('Y') + $i }}</option>
-                            @endfor
-                        </select>
-                    </form>
                 </div>
 
                 <!-- Card Body -->
@@ -53,6 +42,18 @@
                         {{ session('success') }}
                     </div>
                     @endif
+
+                    <form action="{{ route('client.target') }}" method="GET" class="float-right" style="width: 30%; margin-bottom: 50px;">
+                        <label>periode th :</label> 
+                        <select name='tahun' onchange='if (this.value != <?php echo $tahun; ?>) {
+                                    this.form.submit();
+                                }' class="form-control">
+                            <option @if ($tahun == date('Y')) selected @endif>{{ date('Y') }}</option>
+                            @for ($i = 1; $i < 5; $i++)
+                            <option @if ($tahun == date('Y') + $i) selected @endif>{{ date('Y') + $i }}</option>
+                            @endfor
+                        </select>
+                    </form>
 
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

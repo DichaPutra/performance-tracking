@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\business_categories;
 use App\Models\so_library;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Target extends Component {
 
@@ -19,20 +20,15 @@ class Target extends Component {
 
     public function mount()
     {
-        $this->category = business_categories::all();
+        $this->category = business_categories::where('id', Auth::user()->company_business_category)->first();
+        $this->selectedCategory = Auth::user()->company_business_category;
+        $this->bisnis = so_library::groupBy('bisnis')->select('bisnis')->where('id_business_categories', $this->selectedCategory)->get();
+        $this->so = so_library::where('id_business_categories', $this->selectedCategory)->orderBy('so')->get();
     }
 
     public function render()
     {
         return view('livewire.target');
-    }
-
-    public function updatedSelectedCategory()
-    {
-        $this->selectedBisnis = null;
-        $this->selectedAspect = null;
-        $this->bisnis = so_library::groupBy('bisnis')->select('bisnis')->where('id_business_categories', $this->selectedCategory)->get();
-        $this->so = so_library::where('id_business_categories', $this->selectedCategory)->orderBy('so')->get();
     }
 
     public function updatedSelectedBisnis()

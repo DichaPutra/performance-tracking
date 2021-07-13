@@ -4,8 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
-{
+class CreateUsersTable extends Migration {
+
     /**
      * Run the migrations.
      *
@@ -26,12 +26,13 @@ class CreateUsersTable extends Migration
             $table->time('expire_at')->nullable();
             $table->boolean('is_active')->nullable();
             $table->string('company_name')->nullable();
+            $table->unsignedBigInteger('company_business_category')->nullable();
+            $table->foreign('company_business_category')->references('id')->on('business_categories');
             $table->string('company_address')->nullable();
             $table->bigInteger('client_parent')->nullable();
             $table->string('level')->nullable();
             $table->string('level_name')->nullable();
             $table->string('position')->nullable();
-            
         });
     }
 
@@ -44,4 +45,5 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
+
 }

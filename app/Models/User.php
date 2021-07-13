@@ -22,6 +22,7 @@ class User extends Authenticatable {
         'email',
         'password',
         'company_name',
+        'company_business_category',
         'company_address',
         'role',
         'client_parent',

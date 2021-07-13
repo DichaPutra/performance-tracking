@@ -37,7 +37,8 @@ use RegistersUsers;
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('guest');
     }
 
@@ -47,13 +48,15 @@ use RegistersUsers;
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data) {
+    protected function validator(array $data)
+    {
         return Validator::make($data, [
                     'name' => ['required', 'string', 'max:255'],
                     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                     'password' => ['required', 'string', 'min:8', 'confirmed'],
                     'company_name' => ['required'],
-                    'company_address' => ['required']
+                    'company_address' => ['required'],
+                    'business_category' => ['required']
         ]);
     }
 
@@ -63,11 +66,13 @@ use RegistersUsers;
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data) {
+    protected function create(array $data)
+    {
         return User::create([
                     'name' => $data['name'],
                     'email' => $data['email'],
                     'company_name' => $data['company_name'],
+                    'company_business_category' => $data['business_category'],
                     'company_address' => $data['company_address'],
                     'password' => Hash::make($data['password'])
         ]);

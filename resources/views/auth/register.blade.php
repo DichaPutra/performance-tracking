@@ -1,3 +1,10 @@
+<?php
+
+use App\Models\business_categories;
+
+$categories = business_categories::all();
+?>
+
 @extends('layouts.app')
 
 @section('content')
@@ -69,6 +76,20 @@
 
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('company_name') is-invalid @enderror" name="company_name" required>
+                            </div>
+                        </div> 
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Business Category') }}</label>
+
+                            <div class="col-md-6" >
+                                <select name="business_category" class="form-control @error('business_category') is-invalid @enderror"  required>
+                                    <option value="" hidden>Select ...</option>
+                                    @foreach ($categories as $categories)
+                                    <option value="{{$categories->id}}">{{$categories->category}}</option>
+                                    @endforeach
+                                </select>
+                                <!--<input type="text" class="form-control @error('business_category') is-invalid @enderror" name="business_category" required>-->
                             </div>
                         </div> 
 

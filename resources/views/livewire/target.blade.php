@@ -7,12 +7,8 @@
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1"><b>Business Categories :</b></label>
-                    <select name="category" wire:model="selectedCategory" class="form-control" required="">
-                        <option hidden>Choose a categories</option>
-                        @foreach($category as $bc)
-                        <option value='{{ $bc->id }}'>{{ $bc->category }}</option>
-                        @endforeach
-                    </select>
+                    <input class="form-control"type="text" value="{{$category->category}}" disabled="">
+
                 </div>
             </div>
         </div>
@@ -56,7 +52,7 @@
             <label><b>Strategic Objective Library:</b></label>
             <select name="SO" wire:model="selectedSo"class="form-control" size="10" required="" style="overflow-x: auto;">
                 @foreach($so as $so)
-                <option value='{{ $so->id }}-{{ $so->so }}'> - {{ $so->so }} ({{$so->bisnis}}) ({{$so->aspect}})</option>
+                <option value='{{ $so->id }}-{{ $so->so }}'> - {{ $so->so }} ({{$so->aspect}})</option>
                 @endforeach
 
                 <option value='0'> - Other</option>
