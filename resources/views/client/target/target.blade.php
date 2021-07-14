@@ -27,7 +27,7 @@
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">List personnel</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Set Target</h6>
                 </div>
 
                 <!-- Card Body -->
@@ -43,17 +43,27 @@
                     </div>
                     @endif
 
-                    <form action="{{ route('client.target') }}" method="GET" class="float-right" style="width: 30%; margin-bottom: 50px;">
-                        <label>periode th :</label> 
-                        <select name='tahun' onchange='if (this.value != <?php echo $tahun; ?>) {
-                                    this.form.submit();
-                                }' class="form-control">
-                            <option @if ($tahun == date('Y')) selected @endif>{{ date('Y') }}</option>
-                            @for ($i = 1; $i < 5; $i++)
-                            <option @if ($tahun == date('Y') + $i) selected @endif>{{ date('Y') + $i }}</option>
-                            @endfor
-                        </select>
-                    </form>
+                    <div class="row">
+                        <form action="{{ route('client.target') }}" method="GET" class="float-right" style="width: 30%; margin-bottom: 50px;">
+                            <label>periode :</label> 
+                            <select name='tahun' onchange='if (this.value != <?php echo $tahun; ?>) {
+                                        this.form.submit();
+                                    }' class="form-control">
+                                @for ($i = 2; $i > 0; $i--)
+                                <option @if ($tahun == date('Y') - $i) selected @endif> {{ date('Y') - $i }}</option>
+                                @endfor
+                                <option @if ($tahun == date('Y')) selected @endif>{{ date('Y') }}</option>
+                                @for ($i = 1; $i < 3; $i++)
+                                <option @if ($tahun == date('Y') + $i) selected @endif>{{ date('Y') + $i }}</option>
+                                @endfor
+                            </select>
+                        </form>
+                    </div>
+
+                    <div class="row">
+                        <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Target Performance</h5>
+                        <h7 class="m-0 font-weight-bold text-primary" style="text-align: center;">Periode th {{$tahun}}</h7>
+                    </div> <br><br>
 
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
