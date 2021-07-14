@@ -54,8 +54,7 @@
                 @foreach($so as $so)
                 <option value='{{ $so->id }}-{{ $so->so }}'> - {{ $so->so }} ({{$so->aspect}})</option>
                 @endforeach
-
-                <option value='0'> - Other</option>
+                <option value='0'> - Custom Strategic Objective</option>
             </select>
         </div>
     </div>

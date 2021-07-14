@@ -49,11 +49,11 @@
                             <select name='tahun' onchange='if (this.value != <?php echo $tahun; ?>) {
                                         this.form.submit();
                                     }' class="form-control">
-                                @for ($i = 2; $i > 0; $i--)
+                                @for ($i = 1; $i > 0; $i--)
                                 <option @if ($tahun == date('Y') - $i) selected @endif> {{ date('Y') - $i }}</option>
                                 @endfor
                                 <option @if ($tahun == date('Y')) selected @endif>{{ date('Y') }}</option>
-                                @for ($i = 1; $i < 3; $i++)
+                                @for ($i = 1; $i < 4; $i++)
                                 <option @if ($tahun == date('Y') + $i) selected @endif>{{ date('Y') + $i }}</option>
                                 @endfor
                             </select>
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="row">
-                        <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Target Performance</h5>
+                        <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Performance Target </h5>
                         <h7 class="m-0 font-weight-bold text-primary" style="text-align: center;">Periode th {{$tahun}}</h7>
                     </div> <br><br>
 
