@@ -7,13 +7,10 @@ use App\Http\Controllers\client\clientHomeController;
 use App\Http\Controllers\client\personnelController;
 use App\Http\Controllers\client\targetController;
 use App\Http\Controllers\client\initiativeController;
-
 use App\Http\Controllers\personnel\personnelHomeController;
 use App\Http\Controllers\personnel\personnelTargetController;
 use App\Http\Controllers\personnel\personnelCapaianController;
-
 use App\Http\Controllers\ChangePasswordController;
-
 // Middleware
 use App\Http\Middleware\ClientGuard;
 use App\Http\Middleware\AdminGuard;
@@ -62,6 +59,7 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::get('/client-target', [targetController::class, 'index'])->name('client.target');
     Route::get('/client-target-details', [targetController::class, 'details'])->name('client.target.details');
     Route::get('/client-target-check', [targetController::class, 'check'])->name('client.target.check');
+    Route::get('/client-target-activateconfirm', [targetController::class, 'activateConfirm'])->name('client.target.activateconfirm');
     // -> logic
     Route::post('/client-target-addso', [targetController::class, 'addSo'])->name('client.target.addso');
     Route::post('/client-target-editso', [targetController::class, 'editSo'])->name('client.target.editso');
@@ -100,7 +98,7 @@ Route::middleware([PersonnelGuard::class])->group(function () {
 
     // * target *
     Route::get('/personnel-target', [personnelTargetController::class, 'index'])->name('personnel.target');
-    
+
 
     // * Capaian *
     // -> page

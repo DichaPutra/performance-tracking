@@ -55,9 +55,6 @@ class targetController extends Controller {
             return abort(403);
         }
 
-
-
-
         // get data SO by ID
         $dataso = target_so::where('id_user', $request->idpersonnel)->where('periode_th', $request->tahun)->get();
 
@@ -82,7 +79,7 @@ class targetController extends Controller {
         $data = User::where('id', $request->idpersonnel)->first();
 
         //get active target kpi  : var  so, kpi
-        $activetarget = active_target_kpi::groupBy('so', 'id_target_kpi','kpi', 'unit')->select('so','id_target_kpi', 'kpi', 'unit')->where('id_user', $request->idpersonnel)->where('tahun', $request->tahun)->get();
+        $activetarget = active_target_kpi::groupBy('so', 'id_target_kpi', 'kpi', 'unit')->select('so', 'id_target_kpi', 'kpi', 'unit')->where('id_user', $request->idpersonnel)->where('tahun', $request->tahun)->get();
 
 
 
@@ -179,7 +176,7 @@ class targetController extends Controller {
         $kpidb->measurement = $request->measurement;
         $kpidb->polarization = $request->polarization;
         $kpidb->target = $request->target;
-        $kpidb->weight = $request->weight;
+        //$kpidb->weight = $request->weight;
         $kpidb->timeframe_target = $request->timeframe;
         $kpidb->periode_th = $request->tahun;
         $kpidb->save();
@@ -218,6 +215,32 @@ class targetController extends Controller {
     {
         //data IN : user_id , tahun
 
+        $tahun = $request->tahun;
+        $user_id = $request->user_id;
+        $totalHidden = $request->totalHidden;
+        $idtargetkpi = $request->idtargetkpi;
+        $weight = $request->weight;
+
+        // if total bobot != 100 redirect back.
+        if ($totalHidden != 100)
+        {
+            return redirect()->back()->with('error', 'Error ! Total Weight must be 100% ');
+        }
+
+        // update weight on db
+        foreach ($idtargetkpi as $index => $idtarget)
+        {
+            echo "$idtarget<br>";
+            echo "$weight[$index]<hr>";
+            $targetkpi = target_kpi::find($idtarget);
+            $targetkpi->weight = $weight[$index];
+            $targetkpi->save();
+        }
+        dd($request);
+        dd($request['totalHidden']);
+
+
+        // baca data target kpi
         $datakpi = DB::table('target_kpi')
                 ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
                 ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
@@ -417,6 +440,22 @@ class targetController extends Controller {
                 ->update(['is_active' => '1']);
         // update target kpi into is active = 1;
         return redirect()->route('client.target')->with('success', 'Success ! Target has been activated');
+    }
+
+    public function activateConfirm(Request $request)
+    {
+        $data = User::where('id', $request->idpersonnel)->first();
+        //dd($request);
+
+        $datakpi = DB::table('target_kpi')
+                ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
+                ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
+                ->where('target_kpi.id_user', $request->idpersonnel)
+                ->where('target_kpi.periode_th', $request->tahun)
+                ->orderBy('target_kpi.id_target_so', 'asc')
+                ->get();
+
+        return view('client.target.activateConfirm', ['data' => $data, 'tahun' => $request->tahun, 'datakpi' => $datakpi]);
     }
 
 }

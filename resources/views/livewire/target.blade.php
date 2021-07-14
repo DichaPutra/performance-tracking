@@ -52,7 +52,7 @@
             <label><b>Strategic Objective Library:</b></label>
             <select name="SO" wire:model="selectedSo"class="form-control" size="10" required="" style="overflow-x: auto;">
                 @foreach($so as $so)
-                <option value='{{ $so->id }}-{{ $so->so }}'> - {{ $so->so }} ({{$so->aspect}})</option>
+                <option value='{{ $so->id }}-{{ $so->so }}'> - {{ $so->so }} ({{$so->aspect}}) </option>
                 @endforeach
                 <option value='0'> - Custom Strategic Objective</option>
             </select>

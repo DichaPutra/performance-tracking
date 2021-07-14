@@ -75,7 +75,7 @@
                 </div>
             </div><br>
             <div class="row">
-                <div class="col-md-6">
+<!--                <div class="col-md-6">
                     <label><b>Weight :</b></label>
                     <div class="input-group mb-3">
                         <input name="weight" type="number" class="form-control" min="1" max="100" placeholder="KPI Weight 1 - 100">
@@ -83,13 +83,13 @@
                             <span class="input-group-text" id="basic-addon2">%</span>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="col-md-6">
                     <label><b>Timeframe Target :</b></label>
                     <div class="input-group mb-3">
-                        <select name="timeframe" class="form-control" required="">
-                            <option value=" " hidden>select...</option>
+                        <select name="timeframe" class="form-control" required>
+                            <option value="" hidden>select...</option>
                             <option value="bulanan">Bulanan</option>
                             <option value="triwulan">Triwulan</option>
                             <option value="quartal">Quartal</option>
@@ -131,7 +131,7 @@
                 </div>
             </div><br>
             <div class="row">
-                <div class="col-md-6">
+<!--                <div class="col-md-6">
                     <label><b>Weight :</b></label>
                     <div class="input-group mb-3">
                         <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100" required="">
@@ -139,12 +139,12 @@
                             <span class="input-group-text" id="basic-addon2">%</span>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="col-md-6">
                     <label><b>Timeframe Target :</b></label>
                     <div class="input-group mb-3">
-                        <select name="timeframe" class="form-control" required="">
-                            <option value=" " hidden>select...</option>
+                        <select name="timeframe" class="form-control" required>
+                            <option value="" hidden>select...</option>
                             <option value="bulanan">Bulanan</option>
                             <option value="triwulan">Triwulan</option>
                             <option value="quartal">Quartal</option>

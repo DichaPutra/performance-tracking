@@ -15,11 +15,6 @@
         </ol>
     </nav><br>
 
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-bullseye"></i>  Target</h1>
-    </div> 
-
     <!-- Content Row -->
     <div class="row">
 
@@ -212,7 +207,6 @@
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>
-                                                    <!--<a href="#" onclick="return confirm('All KPI related data will be deleted, Are you sure you want to delete this Strategic Objective? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>-->
                                                 </td>
                                             </tr>
 
@@ -310,7 +304,6 @@
                                                 <th style="text-align: center;">KPI</th>
                                                 <th style="width: 10%; text-align: center;">Timeframe</th>
                                                 <th style="width: 5%; text-align: center;">Target</th>
-                                                <th style="width: 5%; text-align: center;">Weight</th>
                                                 <th style="width: 10%; text-align: center;">Operation</th>
                                             </tr>
                                         </thead>
@@ -339,7 +332,6 @@
                                                     {{ $kpi->target}} {{$kpi->unit}}
                                                     @endif
                                                 </td>
-                                                <td style="width: 5%; text-align: center;">{{$kpi->weight}} % <?php $totalWeight += $kpi->weight; ?></td>
                                                 <td style="width: 10%;text-align: center;">
                                                     <form action="{{route('client.target.deletekpi')}}" method="post">
                                                         @csrf
@@ -382,7 +374,7 @@
                                                                 <div class="col-md-6">
                                                                     <label>Target :</label>
                                                                     <div class="input-group mb-3">
-                                                                        <input name="targetedit" type="number" min="1"  value="{{$kpi->weight}}" class="form-control" >
+                                                                        <input name="targetedit" type="number" min="1"  value="{{$kpi->target}}" class="form-control" >
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text" id="basic-addon2">{{$kpi->unit}}</span>
                                                                         </div>
@@ -402,17 +394,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label>Weight :</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <input type="number" min="1" max="100" name="weightedit" value="{{$kpi->weight}}" class="form-control" >
-                                                                        <div class="input-group-append">
-                                                                            <span class="input-group-text" id="basic-addon2">%</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div><br>
 
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -425,11 +406,6 @@
                                             </div>
                                         </div>
                                         @endforeach
-                                        <tr>
-                                            <td colspan="5" style="text-align: center;"><b>Total Weight</b></td>
-                                            <td style="text-align: center;">{{$totalWeight}} %</td>
-                                            <td></td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -437,40 +413,54 @@
                         </div>
                         <!--end of tab 2-->
 
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-10">
+<!--                                    <i class="fa fa-exclamation-triangle" style="margin-right: 15px;"></i>
+                                KPI Weight met 100%. Click "Activate" button to activate Target-->
+                            </div>
+                            <div class="col-md-2">
+                                <div class="float-right">
+                                    <a href="{{route('client.target')}}" class="btn btn-sm btn-secondary ">Cancel</a>
+                                    <a href="{{route('client.target.activateconfirm', ['idpersonnel'=>$data->id, 'tahun'=>$tahun])}}" class="btn btn-primary btn-sm">Activate</a>
+                                </div>
+                            </div>
+                        </div>
+
                         <!--Alert Activate kalau sudah beban sudah 100-->
-                        @if($totalWeight == 100)
-                        <div class="alert alert-primary" style="height: 10%;" role="alert">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <i class="fa fa-exclamation-triangle" style="margin-right: 15px;"></i>
-                                    KPI Weight met 100%. Click "Activate" button to activate Target
-                                </div>
-                                <div class="col-md-4">
-                                    <!--<a href="#" class="btn btn-primary btn-sm float-right">Activate</a>-->
-                                    <form method="post" action="{{route('client.target.activate')}}">
-                                        @csrf
-                                        <input name="user_id" type="hidden" value="{{$data->id}}">
-                                        <input name="tahun" type="hidden" value="{{$tahun}}">
-                                        <input type="submit" class="btn btn-primary btn-sm float-right" value="Activate">
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        @elseif ($totalWeight > 100)
-                        <div class="alert alert-warning alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <i class="fa fa-exclamation-triangle" style="margin-right: 15px;"></i>
-                                    KPI weight exceeds 100%, please readjust your weight
-                                </div>
-                            </div>
-
-                        </div>
-                        @endif
+                        <!--                        @if($totalWeight == 100)
+                                                <div class="alert alert-primary" style="height: 10%;" role="alert">
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <i class="fa fa-exclamation-triangle" style="margin-right: 15px;"></i>
+                                                            KPI Weight met 100%. Click "Activate" button to activate Target
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <a href="#" class="btn btn-primary btn-sm float-right">Activate</a>
+                                                            <form method="post" action="{{route('client.target.activate')}}">
+                                                                @csrf
+                                                                <input name="user_id" type="hidden" value="{{$data->id}}">
+                                                                <input name="tahun" type="hidden" value="{{$tahun}}">
+                                                                <input type="submit" class="btn btn-primary btn-sm float-right" value="Activate">
+                        
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @elseif ($totalWeight > 100)
+                                                <div class="alert alert-warning alert-dismissible" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <i class="fa fa-exclamation-triangle" style="margin-right: 15px;"></i>
+                                                            KPI weight exceeds 100%, please readjust your weight
+                                                        </div>
+                                                    </div>
+                        
+                                                </div>
+                                                @endif-->
                     </div>
 
 
@@ -487,19 +477,19 @@
 
 @section('script')
 <script>
-    $(document).ready(function () {
-        $('#dataTable').DataTable({
-            "paging": false,
-            "searching": false,
-        });
-    });
-
-    $(document).ready(function () {
-        $('#tableKPI').DataTable({
-            "paging": false,
-            "searching": false,
-        });
-    });
+//    $(document).ready(function () {
+//        $('#dataTable').DataTable({
+//            "paging": false,
+//            "searching": false,
+//        });
+//    });
+//
+//    $(document).ready(function () {
+//        $('#tableKPI').DataTable({
+//            "paging": false,
+//            "searching": false,
+//        });
+//    });
 
     window.setTimeout(function () {
         $(".alert-success").fadeTo(500, 0).slideUp(500, function () {
