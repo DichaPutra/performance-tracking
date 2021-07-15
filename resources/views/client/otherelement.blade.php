@@ -87,6 +87,12 @@ function getTargetbyMonth($id_user, $bulan, $tahun, $idtargetkpi)
     return $targetbln;
 }
 
+function checkActiveTarget($id_user, $bulan, $tahun)
+{
+    $cekActive = active_target_kpi::where('id_user', $id_user)->where('bulan', $bulan)->where('tahun', $tahun)->first();
+    return $cekActive['bulan'];
+}
+
 // =======================================================
 // ========  STRATEGIC INITIATIVE FORMULA ===============
 // =======================================================
