@@ -67,7 +67,8 @@
                                     <th style="width: 15%;">Level</th>
                                     <th style="width: 15%;">Level Name</th>
                                     <th>PIC Name</th>
-                                    <th style="text-align: center;width: 10%;">Strategic Objective</th>
+                                    <!--<th style="text-align: center;width: 10%;">Range Periode</th>-->
+                                    <th style="text-align: center;width: 10%;">SO</th>
                                     <th style="text-align: center;width: 10%;">KPI</th>
                                     <th style="text-align: center;width: 10%;">Status</th>
                                     <th style="width: 8%;"></th>
@@ -80,6 +81,7 @@
                                         {{ levelName($user->level) }}</td>
                                     <td>{{ $user->level_name }}</td>
                                     <td>{{ $user->name }}</td>
+                                    <!--<td style="text-align:center;">{{ getRangePeriod($user->id, $tahun) }}</td>-->
                                     <td style="text-align:center;">{{ getCountSO($user->id, $tahun) }}</td>
                                     <td style="text-align:center;">{{ getCountKPI($user->id, $tahun) }}</td>
                                     <td style="text-align:center;">
