@@ -37,7 +37,7 @@ class personnelCapaianController extends Controller {
                 ->where('id_user', Auth::user()->id)
                 ->get();
         // is_scored : untuk melihat kondisi di bulan & tahun tersebut sudah di nilai, 0 = belum  1= sudah
-        $is_scoredq = active_target_kpi::select('is_scored')
+        $is_scoredq = active_target_kpi::select('is_scored', 'periode_th', 'range_period')
                 ->where('id_user', Auth::user()->id)
                 ->where('tahun', $tahun)
                 ->where('bulan', $bulan)
@@ -46,7 +46,14 @@ class personnelCapaianController extends Controller {
 
 //        dd($is_scored->is_scored);
 
-        return view('personnel.capaian.capaian', ['bulan' => $bulan, 'tahun' => $tahun, 'target' => $target, 'alltahun' => $alltahun, 'is_scored' => $is_scored]);
+        return view('personnel.capaian.capaian', ['bulan' => $bulan,
+            'tahun' => $tahun,
+            'target' => $target,
+            'alltahun' => $alltahun,
+            'is_scored' => $is_scored,
+            'periode_th' => $is_scoredq['periode_th'],
+            'range_period' => $is_scoredq['range_period']
+        ]);
     }
 
     function addCapaian(Request $request)

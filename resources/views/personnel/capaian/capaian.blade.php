@@ -39,31 +39,9 @@
                                 <form method="post" action="{{route('personnel.capaian')}}">
                                     @csrf
                                     <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label><b>Tahun :</b></label>
-                                                <div class="input-group mb-3">
-                                                    <select name="tahun" class="form-control" required="">
-                                                        <option value=" " hidden>select...</option>
-                                                        @foreach ($alltahun as $alltahun)
-                                                        <option value="{{$alltahun->tahun}}" >{{$alltahun->tahun}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label><b>Bulan :</b></label>
-                                                <div class="input-group mb-3">
-                                                    <select name="bulan" class="form-control" required="">
-                                                        <option value=" " hidden>select...</option>
-                                                        @for($i = 1; $i <= 12; $i++)
-                                                        <option value="{{$i}}">{{date('F', mktime(0, 0, 0, $i, 10))}}</option>
-                                                        @endfor
-                                                    </select>
 
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @livewire('changedate',['alltahun'=>$alltahun])
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -93,6 +71,27 @@
                     <!-- Card Header - Dropdown -->
                     <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Capaian KPI</h5>
                     <br>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right"><b>Periode Target : </b></label>
+                                <div class="col-md-6">
+                                    <input name="rangeperiode" class="form-control"type="text" value="{{$periode_th}}" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right"><b>Range Periode Target : </b></label>
+                                <div class="col-md-6">
+                                    <input name="rangeperiode" class="form-control"type="text" value="{{$range_period}}" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
 
                     <!--KPI Table-->
                     <form method="post" action="{{route('personnel.capaian.addcapaian')}}">
