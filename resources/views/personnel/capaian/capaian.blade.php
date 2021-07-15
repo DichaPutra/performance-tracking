@@ -75,15 +75,11 @@
                         </div>
                     </div>
                                         <!--<input class="form-control form-control-sm float-right" type="text" readonly="" value="{{date('F')}} {{date('Y')}}">-->
-
-
-
                 </div>
 
                 <!-- Card Body -->
-                <div class="card-body">
 
-                    <!--is scored = {{$is_scored}}-->
+                <div class="card-body">
                     @if($is_scored != 0)
                     <div class="alert alert-primary alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -97,7 +93,6 @@
                     <!-- Card Header - Dropdown -->
                     <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Capaian KPI</h5>
                     <br>
-
 
                     <!--KPI Table-->
                     <form method="post" action="{{route('personnel.capaian.addcapaian')}}">
@@ -128,7 +123,7 @@
                                         <td>{{$target->timeframe_target}}</td>
                                         <td>
                                             @if($target->unit == 'Rp')
-                                             RP {{$target->target}},-
+                                            RP {{$target->target}},-
                                             @else
                                             {{$target->target}}{{$target->unit}}
                                             @endif

@@ -43,7 +43,9 @@ class personnelCapaianController extends Controller {
                 ->where('tahun', $tahun)
                 ->where('bulan', $bulan)
                 ->first();
+
         $is_scored = $is_scoredq->is_scored;
+
 //        dd($is_scored->is_scored);
 
         return view('personnel.capaian.capaian', ['bulan' => $bulan, 'tahun' => $tahun, 'target' => $target, 'alltahun' => $alltahun, 'is_scored' => $is_scored]);
@@ -90,7 +92,7 @@ class personnelCapaianController extends Controller {
                 ->where('bulan', $bulan)
                 ->where('tahun', $tahun)->update(['is_scored' => 1]);
 
-        return redirect()->route('personnel.capaian', ['tahun'=>$tahun, 'bulan'=>$bulan]);
+        return redirect()->route('personnel.capaian', ['tahun' => $tahun, 'bulan' => $bulan]);
         //dd($request);
     }
 

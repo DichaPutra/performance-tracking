@@ -37,6 +37,17 @@
                         <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Target KPI {{date('Y')}}</h5>
                     </div><br>
 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right"><b>Range Periode Target : </b></label>
+                                <div class="col-md-6">
+                                    <input name="rangeperiode" class="form-control"type="text" value="{{$range_target}}" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+
 
                     <!--KPI Table-->
                     <div class="table-responsive">
@@ -58,11 +69,12 @@
                                     <td>{{$dat->kpi}}</td>
                                     <td>{{$dat->weight}}%</td>
                                     <td>{{$dat->timeframe_target}}</td>
+                                    <!--<td>{{$dat->range_period}}</td>-->
                                 </tr>                       
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>>
+                    </div>
                     <br>
 
                 </div>
