@@ -37,14 +37,12 @@ class personnelCapaianController extends Controller {
                 ->where('id_user', Auth::user()->id)
                 ->get();
         // is_scored : untuk melihat kondisi di bulan & tahun tersebut sudah di nilai, 0 = belum  1= sudah
-        $is_scoredq = active_target_kpi::groupby('is_scored')
-                ->select('is_scored')
+        $is_scoredq = active_target_kpi::select('is_scored')
                 ->where('id_user', Auth::user()->id)
                 ->where('tahun', $tahun)
                 ->where('bulan', $bulan)
                 ->first();
-
-        $is_scored = $is_scoredq->is_scored;
+        $is_scored = $is_scoredq['is_scored'];
 
 //        dd($is_scored->is_scored);
 
