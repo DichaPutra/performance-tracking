@@ -421,8 +421,55 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="float-right">
-                                    <a href="{{route('client.target')}}" class="btn btn-sm btn-secondary ">Cancel</a>
-                                    <a href="{{route('client.target.activateconfirm', ['idpersonnel'=>$data->id, 'tahun'=>$tahun])}}" class="btn btn-primary btn-sm">Activate</a>
+                                    <a href="{{route('client.target')}}" class="btn btn-secondary ">Cancel</a>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                        Activate
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Button trigger modal -->
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Awal Mulai Periode Target</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <form action="{{route('client.target.activateconfirm')}}">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <!--<a href="{{route('client.target.activateconfirm', ['idpersonnel'=>$data->id, 'tahun'=>$tahun])}}" class="btn btn-primary btn-sm">Activate</a>-->
+
+
+                                            <input type="hidden" name="idpersonnel" value="{{$data->id}}">
+                                            <input type="hidden" name="tahun" value="{{$tahun}}">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select name="startingbln"value class="form-control">                                        
+                                                        @for ($i = 1; $i < 12; $i++)
+                                                        <option value="{{$i}}">{{date('F', mktime(0, 0, 0, $i, 10))}}</option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input class="form-control" type="text" value="{{$tahun}}" readonly="">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <input type="submit" class="btn btn-primary" value="Save">
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

@@ -11,7 +11,8 @@ class CreateTargetKpiTable extends Migration {
      *
      * @return void
      */
-    public function up() {
+    public function up()
+    {
         Schema::create('target_kpi', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
@@ -25,10 +26,12 @@ class CreateTargetKpiTable extends Migration {
             $table->string('measurement'); //measurement = rating , rangking, absolute number, index, percentages
             $table->bigInteger('target');
             $table->bigInteger('weight')->nullable();
-            $table->string('polarization');
+            $table->string('polarization'); // minimize / maximize
             $table->string('timeframe_target'); // Bulanan, Triwulan, Quartal, Semester, Tahunan
+            $table->bigInteger('periode_th');
+            $table->bigInteger('starting_bln')->nullable();
+            $table->string('range_period')->nullable();
             $table->bigInteger('is_active')->default(0);
-            $table->string('periode_th');
             $table->timestamps();
         });
     }
@@ -38,7 +41,8 @@ class CreateTargetKpiTable extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
         Schema::dropIfExists('target_kpi');
     }
 

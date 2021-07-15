@@ -49,7 +49,7 @@ class CreateKpiLibraryTable extends Migration {
                     ['id_so_library' => '19', 'kpi' => '% Aset non produktif','unit' => '%', 'measurement' => 'percentages' ,'polarization' => 'minimize'],
                     ['id_so_library' => '20', 'kpi' => 'Rasio Kas terhadap kewajiban lancar','unit' => '', 'measurement' => '' ,'polarization' => 'maximize'],
                     ['id_so_library' => '21', 'kpi' => 'Jumlah dana tersedia untuk investasi dan modal kerja','unit' => 'Rp', 'measurement' => 'absolute number' ,'polarization' => 'maximize'],
-                    ['id_so_library' => '22', 'kpi' => 'Jumlah segmen pasar yang merugi','unit' => 'Jumlah Segmen Pasar', 'measurement' => 'absolute number' ,'polarization' => 'maximize'],
+                    ['id_so_library' => '22', 'kpi' => 'Jumlah segmen pasar yang merugi','unit' => 'Jumlah Segmen Pasar', 'measurement' => 'absolute number' ,'polarization' => 'minimize'],
                     ['id_so_library' => '23', 'kpi' => 'Rupiah per meter2','unit' => 'Rp', 'measurement' => 'absolute number' ,'polarization' => 'maximize'],
                     ['id_so_library' => '24', 'kpi' => 'Laba','unit' => 'Rp', 'measurement' => 'absolute number' ,'polarization' => 'maximize'],
                     ['id_so_library' => '25', 'kpi' => 'Sales','unit' => 'Rp', 'measurement' => 'absolute number' ,'polarization' => 'maximize'],

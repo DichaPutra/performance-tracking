@@ -19,6 +19,8 @@ class CreateActiveTargetKpiTable extends Migration {
             $table->foreign('id_user')->references('id')->on('users');
             $table->unsignedBigInteger('id_target_kpi');
             $table->foreign('id_target_kpi')->references('id')->on('target_kpi');
+            $table->bigInteger('periode_th');
+            $table->string('range_period');
             $table->bigInteger('bulan');
             $table->bigInteger('tahun');
             $table->string('so');

@@ -213,11 +213,16 @@ class targetController extends Controller {
 
     public function activateTarget(Request $request)
     {
-        //data IN : user_id , tahun
 
+//        dd($request);
+//        dd($request['totalHidden']);
+        //data in 
         $tahun = $request->tahun;
         $user_id = $request->user_id;
         $totalHidden = $request->totalHidden;
+        $startingbln = $request->startingbln;
+        $rangeperiode = $request->rangeperiode;
+        //data in array
         $idtargetkpi = $request->idtargetkpi;
         $weight = $request->weight;
 
@@ -230,15 +235,12 @@ class targetController extends Controller {
         // update weight on db
         foreach ($idtargetkpi as $index => $idtarget)
         {
-            echo "$idtarget<br>";
-            echo "$weight[$index]<hr>";
             $targetkpi = target_kpi::find($idtarget);
             $targetkpi->weight = $weight[$index];
+            $targetkpi->starting_bln = $startingbln;
+            $targetkpi->range_period = $rangeperiode;
             $targetkpi->save();
         }
-        dd($request);
-        dd($request['totalHidden']);
-
 
         // baca data target kpi
         $datakpi = DB::table('target_kpi')
@@ -256,13 +258,18 @@ class targetController extends Controller {
             {
                 case 'bulanan':
                     //code
+                    $bln = $datakpi->starting_bln;
+                    $tahun = $datakpi->periode_th;
+
                     for ($i = 1; $i <= 12; $i++)
                     {
                         $activetarget = new active_target_kpi;
                         $activetarget->id_user = $request->user_id;
                         $activetarget->id_target_kpi = $datakpi->id;
-                        $activetarget->bulan = "$i";
-                        $activetarget->tahun = $request->tahun;
+                        $activetarget->periode_th = $datakpi->periode_th;
+                        $activetarget->range_period = $datakpi->range_period;
+                        $activetarget->bulan = "$bln";
+                        $activetarget->tahun = "$tahun";
                         $activetarget->so = $datakpi->so;
                         $activetarget->kpi = $datakpi->kpi;
                         $activetarget->unit = $datakpi->unit;
@@ -272,165 +279,183 @@ class targetController extends Controller {
                         $activetarget->polarization = $datakpi->polarization;
                         $activetarget->timeframe_target = $datakpi->timeframe_target;
                         $activetarget->save();
+                        if ($bln == 12)
+                        {
+                            $bln = 1;
+                            $tahun++;
+                        }
+                        else
+                        {
+                            $bln++;
+                        }
                     }
                     break;
                 case 'triwulan':
                     //code
-                    $activetarget = new active_target_kpi;
-                    $activetarget->id_user = $request->user_id;
-                    $activetarget->id_target_kpi = $datakpi->id;
-                    $activetarget->bulan = '3';
-                    $activetarget->tahun = $request->tahun;
-                    $activetarget->so = $datakpi->so;
-                    $activetarget->kpi = $datakpi->kpi;
-                    $activetarget->unit = $datakpi->unit;
-                    $activetarget->measurement = $datakpi->measurement;
-                    $activetarget->target = $datakpi->target;
-                    $activetarget->weight = $datakpi->weight;
-                    $activetarget->polarization = $datakpi->polarization;
-                    $activetarget->timeframe_target = $datakpi->timeframe_target;
-                    $activetarget->save();
+                    $bln = $datakpi->starting_bln;
+                    $tahun = $datakpi->periode_th;
+                    $counter = 1;
 
-                    $activetarget = new active_target_kpi;
-                    $activetarget->id_user = $request->user_id;
-                    $activetarget->id_target_kpi = $datakpi->id;
-                    $activetarget->bulan = '6';
-                    $activetarget->tahun = $request->tahun;
-                    $activetarget->so = $datakpi->so;
-                    $activetarget->kpi = $datakpi->kpi;
-                    $activetarget->unit = $datakpi->unit;
-                    $activetarget->measurement = $datakpi->measurement;
-                    $activetarget->target = $datakpi->target;
-                    $activetarget->weight = $datakpi->weight;
-                    $activetarget->polarization = $datakpi->polarization;
-                    $activetarget->timeframe_target = $datakpi->timeframe_target;
-                    $activetarget->save();
+                    for ($i = 1; $i <= 12; $i++)
+                    {
 
-                    $activetarget = new active_target_kpi;
-                    $activetarget->id_user = $request->user_id;
-                    $activetarget->id_target_kpi = $datakpi->id;
-                    $activetarget->bulan = '9';
-                    $activetarget->tahun = $request->tahun;
-                    $activetarget->so = $datakpi->so;
-                    $activetarget->kpi = $datakpi->kpi;
-                    $activetarget->unit = $datakpi->unit;
-                    $activetarget->measurement = $datakpi->measurement;
-                    $activetarget->target = $datakpi->target;
-                    $activetarget->weight = $datakpi->weight;
-                    $activetarget->polarization = $datakpi->polarization;
-                    $activetarget->timeframe_target = $datakpi->timeframe_target;
-                    $activetarget->save();
-
-                    $activetarget = new active_target_kpi;
-                    $activetarget->id_user = $request->user_id;
-                    $activetarget->id_target_kpi = $datakpi->id;
-                    $activetarget->bulan = '12';
-                    $activetarget->tahun = $request->tahun;
-                    $activetarget->so = $datakpi->so;
-                    $activetarget->kpi = $datakpi->kpi;
-                    $activetarget->unit = $datakpi->unit;
-                    $activetarget->measurement = $datakpi->measurement;
-                    $activetarget->target = $datakpi->target;
-                    $activetarget->weight = $datakpi->weight;
-                    $activetarget->polarization = $datakpi->polarization;
-                    $activetarget->timeframe_target = $datakpi->timeframe_target;
-                    $activetarget->save();
+                        if ($counter == 3)
+                        {
+                            $activetarget = new active_target_kpi;
+                            $activetarget->id_user = $request->user_id;
+                            $activetarget->id_target_kpi = $datakpi->id;
+                            $activetarget->periode_th = $datakpi->periode_th;
+                            $activetarget->range_period = $datakpi->range_period;
+                            $activetarget->bulan = "$bln";
+                            $activetarget->tahun = "$tahun";
+                            $activetarget->so = $datakpi->so;
+                            $activetarget->kpi = $datakpi->kpi;
+                            $activetarget->unit = $datakpi->unit;
+                            $activetarget->measurement = $datakpi->measurement;
+                            $activetarget->target = $datakpi->target;
+                            $activetarget->weight = $datakpi->weight;
+                            $activetarget->polarization = $datakpi->polarization;
+                            $activetarget->timeframe_target = $datakpi->timeframe_target;
+                            $activetarget->save();
+                            $counter = 0;
+                        }
+                        if ($bln == 12)
+                        {
+                            $bln = 1;
+                            $tahun++;
+                            $counter++;
+                        }
+                        else
+                        {
+                            $bln++;
+                            $counter++;
+                        }
+                    }
+                    //code
                     break;
                 case 'quartal':
+                    $bln = $datakpi->starting_bln;
+                    $tahun = $datakpi->periode_th;
+                    $counter = 1;
+
+                    for ($i = 1; $i <= 12; $i++)
+                    {
+
+                        if ($counter == 4)
+                        {
+                            $activetarget = new active_target_kpi;
+                            $activetarget->id_user = $request->user_id;
+                            $activetarget->id_target_kpi = $datakpi->id;
+                            $activetarget->periode_th = $datakpi->periode_th;
+                            $activetarget->range_period = $datakpi->range_period;
+                            $activetarget->bulan = "$bln";
+                            $activetarget->tahun = "$tahun";
+                            $activetarget->so = $datakpi->so;
+                            $activetarget->kpi = $datakpi->kpi;
+                            $activetarget->unit = $datakpi->unit;
+                            $activetarget->measurement = $datakpi->measurement;
+                            $activetarget->target = $datakpi->target;
+                            $activetarget->weight = $datakpi->weight;
+                            $activetarget->polarization = $datakpi->polarization;
+                            $activetarget->timeframe_target = $datakpi->timeframe_target;
+                            $activetarget->save();
+                            $counter = 0;
+                        }
+                        if ($bln == 12)
+                        {
+                            $bln = 1;
+                            $tahun++;
+                            $counter++;
+                        }
+                        else
+                        {
+                            $bln++;
+                            $counter++;
+                        }
+                    }
                     //code
-                    $activetarget = new active_target_kpi;
-                    $activetarget->id_user = $request->user_id;
-                    $activetarget->id_target_kpi = $datakpi->id;
-                    $activetarget->bulan = '4';
-                    $activetarget->tahun = $request->tahun;
-                    $activetarget->so = $datakpi->so;
-                    $activetarget->kpi = $datakpi->kpi;
-                    $activetarget->unit = $datakpi->unit;
-                    $activetarget->measurement = $datakpi->measurement;
-                    $activetarget->target = $datakpi->target;
-                    $activetarget->weight = $datakpi->weight;
-                    $activetarget->polarization = $datakpi->polarization;
-                    $activetarget->timeframe_target = $datakpi->timeframe_target;
-                    $activetarget->save();
-
-                    $activetarget = new active_target_kpi;
-                    $activetarget->id_user = $request->user_id;
-                    $activetarget->id_target_kpi = $datakpi->id;
-                    $activetarget->bulan = '8';
-                    $activetarget->tahun = $request->tahun;
-                    $activetarget->so = $datakpi->so;
-                    $activetarget->kpi = $datakpi->kpi;
-                    $activetarget->unit = $datakpi->unit;
-                    $activetarget->measurement = $datakpi->measurement;
-                    $activetarget->target = $datakpi->target;
-                    $activetarget->weight = $datakpi->weight;
-                    $activetarget->polarization = $datakpi->polarization;
-                    $activetarget->timeframe_target = $datakpi->timeframe_target;
-                    $activetarget->save();
-
-                    $activetarget = new active_target_kpi;
-                    $activetarget->id_user = $request->user_id;
-                    $activetarget->id_target_kpi = $datakpi->id;
-                    $activetarget->bulan = '12';
-                    $activetarget->tahun = $request->tahun;
-                    $activetarget->so = $datakpi->so;
-                    $activetarget->kpi = $datakpi->kpi;
-                    $activetarget->unit = $datakpi->unit;
-                    $activetarget->measurement = $datakpi->measurement;
-                    $activetarget->target = $datakpi->target;
-                    $activetarget->weight = $datakpi->weight;
-                    $activetarget->polarization = $datakpi->polarization;
-                    $activetarget->timeframe_target = $datakpi->timeframe_target;
-                    $activetarget->save();
                     break;
                 case 'semester':
-                    //code
-                    $activetarget = new active_target_kpi;
-                    $activetarget->id_user = $request->user_id;
-                    $activetarget->id_target_kpi = $datakpi->id;
-                    $activetarget->bulan = '6';
-                    $activetarget->tahun = $request->tahun;
-                    $activetarget->so = $datakpi->so;
-                    $activetarget->kpi = $datakpi->kpi;
-                    $activetarget->unit = $datakpi->unit;
-                    $activetarget->measurement = $datakpi->measurement;
-                    $activetarget->target = $datakpi->target;
-                    $activetarget->weight = $datakpi->weight;
-                    $activetarget->polarization = $datakpi->polarization;
-                    $activetarget->timeframe_target = $datakpi->timeframe_target;
-                    $activetarget->save();
+                    $bln = $datakpi->starting_bln;
+                    $tahun = $datakpi->periode_th;
+                    $counter = 1;
 
-                    $activetarget = new active_target_kpi;
-                    $activetarget->id_user = $request->user_id;
-                    $activetarget->id_target_kpi = $datakpi->id;
-                    $activetarget->bulan = '12';
-                    $activetarget->tahun = $request->tahun;
-                    $activetarget->so = $datakpi->so;
-                    $activetarget->kpi = $datakpi->kpi;
-                    $activetarget->unit = $datakpi->unit;
-                    $activetarget->measurement = $datakpi->measurement;
-                    $activetarget->target = $datakpi->target;
-                    $activetarget->weight = $datakpi->weight;
-                    $activetarget->polarization = $datakpi->polarization;
-                    $activetarget->timeframe_target = $datakpi->timeframe_target;
-                    $activetarget->save();
+                    for ($i = 1; $i <= 12; $i++)
+                    {
+
+                        if ($counter == 6)
+                        {
+                            $activetarget = new active_target_kpi;
+                            $activetarget->id_user = $request->user_id;
+                            $activetarget->id_target_kpi = $datakpi->id;
+                            $activetarget->periode_th = $datakpi->periode_th;
+                            $activetarget->range_period = $datakpi->range_period;
+                            $activetarget->bulan = "$bln";
+                            $activetarget->tahun = "$tahun";
+                            $activetarget->so = $datakpi->so;
+                            $activetarget->kpi = $datakpi->kpi;
+                            $activetarget->unit = $datakpi->unit;
+                            $activetarget->measurement = $datakpi->measurement;
+                            $activetarget->target = $datakpi->target;
+                            $activetarget->weight = $datakpi->weight;
+                            $activetarget->polarization = $datakpi->polarization;
+                            $activetarget->timeframe_target = $datakpi->timeframe_target;
+                            $activetarget->save();
+                            $counter = 0;
+                        }
+                        if ($bln == 12)
+                        {
+                            $bln = 1;
+                            $tahun++;
+                            $counter++;
+                        }
+                        else
+                        {
+                            $bln++;
+                            $counter++;
+                        }
+                    }
                     break;
                 case 'tahunan':
-                    //code
-                    $activetarget = new active_target_kpi;
-                    $activetarget->id_user = $request->user_id;
-                    $activetarget->id_target_kpi = $datakpi->id;
-                    $activetarget->bulan = '12';
-                    $activetarget->tahun = $request->tahun;
-                    $activetarget->so = $datakpi->so;
-                    $activetarget->kpi = $datakpi->kpi;
-                    $activetarget->unit = $datakpi->unit;
-                    $activetarget->measurement = $datakpi->measurement;
-                    $activetarget->target = $datakpi->target;
-                    $activetarget->weight = $datakpi->weight;
-                    $activetarget->polarization = $datakpi->polarization;
-                    $activetarget->timeframe_target = $datakpi->timeframe_target;
-                    $activetarget->save();
+                    $bln = $datakpi->starting_bln;
+                    $tahun = $datakpi->periode_th;
+                    $counter = 1;
+
+                    for ($i = 1; $i <= 12; $i++)
+                    {
+
+                        if ($counter == 12)
+                        {
+                            $activetarget = new active_target_kpi;
+                            $activetarget->id_user = $request->user_id;
+                            $activetarget->id_target_kpi = $datakpi->id;
+                            $activetarget->periode_th = $datakpi->periode_th;
+                            $activetarget->range_period = $datakpi->range_period;
+                            $activetarget->bulan = "$bln";
+                            $activetarget->tahun = "$tahun";
+                            $activetarget->so = $datakpi->so;
+                            $activetarget->kpi = $datakpi->kpi;
+                            $activetarget->unit = $datakpi->unit;
+                            $activetarget->measurement = $datakpi->measurement;
+                            $activetarget->target = $datakpi->target;
+                            $activetarget->weight = $datakpi->weight;
+                            $activetarget->polarization = $datakpi->polarization;
+                            $activetarget->timeframe_target = $datakpi->timeframe_target;
+                            $activetarget->save();
+                            $counter = 0;
+                        }
+                        if ($bln == 12)
+                        {
+                            $bln = 1;
+                            $tahun++;
+                            $counter++;
+                        }
+                        else
+                        {
+                            $bln++;
+                            $counter++;
+                        }
+                    }
                     break;
             }
         }
@@ -444,6 +469,18 @@ class targetController extends Controller {
 
     public function activateConfirm(Request $request)
     {
+
+        $startingbln = $request->startingbln;
+        $tahun = $request->tahun;
+        if ($startingbln == 1)
+        {
+            $periodetarget = $startingbln . "/" . $tahun . " s/d 12/" . $tahun;
+        }
+        else
+        {
+            $periodetarget = $startingbln . "/" . $tahun . " s/d " . ($startingbln - 1) . "/" . ($tahun + 1);
+        }
+
         $data = User::where('id', $request->idpersonnel)->first();
         //dd($request);
 
@@ -455,7 +492,7 @@ class targetController extends Controller {
                 ->orderBy('target_kpi.id_target_so', 'asc')
                 ->get();
 
-        return view('client.target.activateConfirm', ['data' => $data, 'tahun' => $request->tahun, 'datakpi' => $datakpi]);
+        return view('client.target.activateConfirm', ['data' => $data, 'tahun' => $request->tahun, 'datakpi' => $datakpi, 'periodetarget' => $periodetarget, 'startingbln' => $startingbln]);
     }
 
 }

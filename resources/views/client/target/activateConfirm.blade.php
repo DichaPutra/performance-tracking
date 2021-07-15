@@ -40,7 +40,6 @@
                                 <div class="col-md-12">
                                     Harap lengkapi data berikut sebelum melanjutkan :
                                     <ul style="margin-right: 15px;">
-                                        <li>(Starting Period) Input periode awal tahun KPI berjalan</li>
                                         <li>(Weight) Input bobot KPI dengan total akhir 100%</li>
                                     </ul>
                                 </div>
@@ -61,22 +60,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label for="name" class="col-md-4 col-form-label text-md-right"><b>Starting Target Period : </b></label>
+                                    <label for="name" class="col-md-4 col-form-label text-md-right"><b>Periode Target : </b></label>
                                     <div class="col-md-6">
-                                        <select name="startTarget" id="startTarget" class="form-control">
-                                            <option value="1" selected="">January {{$tahun}}</option>
-                                            <option value="2">February {{$tahun}}</option>
-                                            <option value="3">March {{$tahun}}</option>
-                                            <option value="4">April {{$tahun}}</option>
-                                            <option value="5">May {{$tahun}}</option>
-                                            <option value="6">June {{$tahun}}</option>
-                                            <option value="7">July {{$tahun}}</option>
-                                            <option value="8">August {{$tahun}}</option>
-                                            <option value="9">September {{$tahun}}</option>
-                                            <option value="10">October {{$tahun}}</option>
-                                            <option value="11">November {{$tahun}}</option>
-                                            <option value="12">December {{$tahun}}</option>
-                                        </select>
+                                        <input name="tahun" class="form-control"type="text" value="{{$tahun}}" readonly="">
                                     </div>
                                 </div>
                             </div>
@@ -84,13 +70,23 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label for="name" class="col-md-4 col-form-label text-md-right"><b>Target Period : </b></label>
+                                    <label for="name" class="col-md-4 col-form-label text-md-right"><b>Range Periode Target : </b></label>
                                     <div class="col-md-6">
-                                        <input name="periodeTarget" id="periodeTarget"type="text" class="form-control" readonly="">
+                                        <input name="rangeperiode" class="form-control"type="text" value="{{$periodetarget}}" readonly="">
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!--                        <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label for="name" class="col-md-4 col-form-label text-md-right"><b>Target Period : </b></label>
+                                                            <div class="col-md-6">
+                                                                <input name="periodeTarget" id="periodeTarget"type="text" class="form-control" readonly="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
                         <br>
 
 
@@ -133,7 +129,7 @@
                                         <td>
                                             <div class="input-group mb-3">
                                                 <input type="hidden" name="user_id" value="{{$data->id}}">
-                                                <input type="hidden" name="tahun" value="{{$tahun}}">
+                                                <input type="hidden" name="startingbln" value="{{$startingbln}}">
                                                 <input type="hidden" name="idtargetkpi[]" value="{{$kpi->id}}">
                                                 <input name="weight[]" onchange="findTotal()" type="number"  id="qty{{$loop->iteration}}" class="form-control" min="0" max="100" placeholder=" 1 - 100 %" required=""><br>
                                                 <!--<input name="weight" id="weight" onchange="totalWeight()" type="number" class="form-control" min="0" max="100" placeholder=" 1 - 100 %" required="">-->
