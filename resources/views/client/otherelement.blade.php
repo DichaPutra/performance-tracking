@@ -73,7 +73,7 @@ function getTargetbyMonth($id_user, $bulan, $tahun, $idtargetkpi)
     $target = active_target_kpi::where('id_user', $id_user)
             ->where('id_target_kpi', $idtargetkpi)
             ->where('bulan', $bulan)
-            ->where('tahun', $tahun)
+            ->where('periode_th', $tahun)
             ->first();
     //get data from array first();
     $targetbln = $target['target'];

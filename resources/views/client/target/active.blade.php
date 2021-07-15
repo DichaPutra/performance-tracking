@@ -137,6 +137,18 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right"><b>Range Periode Target : </b></label>
+                                <div class="col-md-6">
+                                    <input name="rangeperiode" class="form-control"type="text" value="{{$range_period}}" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead style="background-color: #F8F9FC;">
@@ -144,18 +156,16 @@
                                     <th>No</th>
                                     <!--<th>SO</th>-->
                                     <th>KPI</th>
-                                    <th>1</th>
-                                    <th>2</th>
-                                    <th>3</th>
-                                    <th>4</th>
-                                    <th>5</th>
-                                    <th>6</th>
-                                    <th>7</th>
-                                    <th>8</th>
-                                    <th>9</th>
-                                    <th>10</th>
-                                    <th>11</th>
-                                    <th>12</th>
+                                    <?php $bln = $startingbln ?>
+                                    @for($i = 0; $i<12; $i++)
+                                    <th style="text-align: center;">{{$bln}}</th>
+                                    @if($bln == 12)
+                                    <?php $bln = 1 ?>
+                                    @else
+                                    <?php $bln ++ ?>
+                                    @endif
+                                    @endfor
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -164,18 +174,15 @@
                                     <td style="vertical-align: middle; text-align: center;">{{ $loop->iteration }}</td>
                                     <!--<td>{{$act->so}}</td>-->
                                     <td style="vertical-align: middle;">{{$act->kpi}} <b>({{$act->unit}})</b></td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 1, $tahun, $act->id_target_kpi)}}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 2, $tahun, $act->id_target_kpi)}}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 3, $tahun, $act->id_target_kpi)}}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 4, $tahun, $act->id_target_kpi)}}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 5, $tahun, $act->id_target_kpi)}}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 6, $tahun, $act->id_target_kpi)}}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 7, $tahun, $act->id_target_kpi)}}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 8, $tahun, $act->id_target_kpi)}}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 9, $tahun, $act->id_target_kpi)}}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 10, $tahun, $act->id_target_kpi)}}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 11, $tahun, $act->id_target_kpi)}}</td>
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, 12, $tahun, $act->id_target_kpi)}}</td>
+                                    <?php $bln = $startingbln ?>
+                                    @for($i = 0; $i<12; $i++)
+                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, $bln, $tahun, $act->id_target_kpi)}}</td>
+                                    @if($bln == 12)
+                                    <?php $bln = 1 ?>
+                                    @else
+                                    <?php $bln ++ ?>
+                                    @endif
+                                    @endfor
                                 </tr>
                                 @endforeach
                             </tbody>

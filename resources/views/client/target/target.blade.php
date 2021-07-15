@@ -44,9 +44,9 @@
                             <select name='tahun' onchange='if (this.value != <?php echo $tahun; ?>) {
                                         this.form.submit();
                                     }' class="form-control">
-                                @for ($i = 1; $i > 0; $i--)
+<!--                                @for ($i = 1; $i > 0; $i--)
                                 <option @if ($tahun == date('Y') - $i) selected @endif> {{ date('Y') - $i }}</option>
-                                @endfor
+                                @endfor-->
                                 <option @if ($tahun == date('Y')) selected @endif>{{ date('Y') }}</option>
                                 @for ($i = 1; $i < 4; $i++)
                                 <option @if ($tahun == date('Y') + $i) selected @endif>{{ date('Y') + $i }}</option>

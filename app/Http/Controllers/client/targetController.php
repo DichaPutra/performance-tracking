@@ -79,11 +79,20 @@ class targetController extends Controller {
         $data = User::where('id', $request->idpersonnel)->first();
 
         //get active target kpi  : var  so, kpi
-        $activetarget = active_target_kpi::groupBy('so', 'id_target_kpi', 'kpi', 'unit')->select('so', 'id_target_kpi', 'kpi', 'unit')->where('id_user', $request->idpersonnel)->where('tahun', $request->tahun)->get();
+        $activetarget = active_target_kpi::groupBy('so', 'id_target_kpi', 'kpi', 'unit')
+                        ->select('so', 'id_target_kpi', 'kpi', 'unit')
+                        ->where('id_user', $request->idpersonnel)
+                        ->where('tahun', $request->tahun)->get();
+        $startingbln = target_kpi::where('id_user', $request->idpersonnel)->where('periode_th', $request->tahun)->first();
 
 
-
-        return view('client.target.active', ['data' => $data, 'tahun' => $request->tahun, 'activetarget' => $activetarget]);
+        return view('client.target.active',
+                ['data' => $data,
+                    'tahun' => $request->tahun,
+                    'activetarget' => $activetarget,
+                    'startingbln' => $startingbln['starting_bln'],
+                    'range_period' => $startingbln['range_period']
+        ]);
     }
 
     public function addSo(Request $request)
