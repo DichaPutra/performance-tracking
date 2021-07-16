@@ -9,18 +9,43 @@ use Illuminate\Support\Facades\Auth;
 
 class personnelTargetController extends Controller {
 
-    function index()
+    function index(Request $request)
     {
-        //dd(Auth::user()->id);
-        $datatarget = active_target_kpi::groupby('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period')->select('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period')
-                        ->where('id_user', Auth::user()->id)
-                        ->where('tahun', date('Y'))->get();
+        if ($request->tahun != null)
+        {
+            $tahun = $request->tahun;
+            $datatarget = active_target_kpi::groupby('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period')->select('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period')
+                            ->where('id_user', Auth::user()->id)
+                            ->where('periode_th', $request->tahun)->get();
 
-        $target = active_target_kpi::where('id_user', Auth::user()->id)->where('periode_th', date('Y'))->first();
-        $target = $target['range_period'];
-//        dd($target['range_period']);
-        //dd($datatarget);
-        return view('personnel.target.target', ['datatarget' => $datatarget, 'range_target' => $target]);
+            $queryActiveTarget = active_target_kpi::where('id_user', Auth::user()->id)->where('periode_th', $request->tahun)->first();
+        }
+        else
+        {
+            $tahun = date('Y');
+            $datatarget = active_target_kpi::groupby('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period')->select('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period')
+                            ->where('id_user', Auth::user()->id)
+                            ->where('periode_th', date('Y'))->get();
+
+            $queryActiveTarget = active_target_kpi::where('id_user', Auth::user()->id)->where('periode_th', date('Y'))->first();
+        }
+
+
+        // all tahun active untuk modal pilih bulan tahun
+        $alltahun = active_target_kpi::groupby('periode_th')
+                ->select('periode_th')
+                ->where('id_user', Auth::user()->id)
+                ->get();
+        
+//        dd($alltahun);
+
+        return view('personnel.target.target', [
+            'datatarget' => $datatarget,
+            'range_period' => $queryActiveTarget['range_period'],
+            'periode_th' => $queryActiveTarget['periode_th'],
+            'alltahun' => $alltahun,
+            'tahun' => $tahun
+        ]);
     }
 
 }

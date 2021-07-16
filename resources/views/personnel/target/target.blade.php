@@ -24,9 +24,15 @@
 
             <div class="card shadow mb-4 animated--grow-in">
                 <!--Card Header - Dropdown--> 
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="card-header">
                     <h6 class="m-0 font-weight-bold text-primary">Target</h6>
+                    <form method="get" action="{{route('personnel.target')}}" style="margin-top: -20px;">
+                        <select name="tahun" onchange="this.form.submit()" class="form-control form-control-sm float-right" style="width: 20%;">
+                            @foreach ($alltahun as $ath)
+                            <option @if ($tahun == $ath->periode_th) selected @endif value="{{$ath->periode_th}}">{{$ath->periode_th}}</option>
+                            @endforeach
+                        </select>
+                    </form>
                 </div>
 
                 <!-- Card Body -->
@@ -34,15 +40,25 @@
                     <br>
                     <!-- Card Header - Dropdown -->
                     <div class="card-header">
-                        <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Target KPI {{date('Y')}}</h5>
+                        <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Target KPI {{$tahun}}</h5>
                     </div><br>
 
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right"><b>Periode Target : </b></label>
+                                <div class="col-md-6">
+                                    <input name="rangeperiode" class="form-control"type="text" value="{{$periode_th}}" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right"><b>Range Periode Target : </b></label>
                                 <div class="col-md-6">
-                                    <input name="rangeperiode" class="form-control"type="text" value="{{$range_target}}" readonly="">
+                                    <input name="rangeperiode" class="form-control"type="text" value="{{$range_period}}" readonly="">
                                 </div>
                             </div>
                         </div>
