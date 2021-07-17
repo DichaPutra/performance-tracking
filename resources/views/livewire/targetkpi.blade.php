@@ -46,11 +46,11 @@
                     <label><b>Measurement Unit :</b></label>
                     <select name="measurement" class="form-control">
                         <option value=" " hidden>select...</option>
-                        <option value="rating">Rating</option>
-                        <option value="rangking">Rangking</option>
+                        <option value="percentages">Percentages</option>
                         <option value="absolute number">Absolute Number</option>
                         <option value="index">Index</option>
-                        <option value="percentages">Percentages</option>
+                        <option value="rating">Rating</option>
+                        <!--<option value="rangking">Rangking</option>-->
                     </select>
                 </div>
 
@@ -75,15 +75,15 @@
                 </div>
             </div><br>
             <div class="row">
-<!--                <div class="col-md-6">
-                    <label><b>Weight :</b></label>
-                    <div class="input-group mb-3">
-                        <input name="weight" type="number" class="form-control" min="1" max="100" placeholder="KPI Weight 1 - 100">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon2">%</span>
-                        </div>
-                    </div>
-                </div>-->
+                <!--                <div class="col-md-6">
+                                    <label><b>Weight :</b></label>
+                                    <div class="input-group mb-3">
+                                        <input name="weight" type="number" class="form-control" min="1" max="100" placeholder="KPI Weight 1 - 100">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </div>
+                                </div>-->
 
                 <div class="col-md-6">
                     <label><b>Timeframe Target :</b></label>
@@ -131,15 +131,15 @@
                 </div>
             </div><br>
             <div class="row">
-<!--                <div class="col-md-6">
-                    <label><b>Weight :</b></label>
-                    <div class="input-group mb-3">
-                        <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100" required="">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon2">%</span>
-                        </div>
-                    </div>
-                </div>-->
+                <!--                <div class="col-md-6">
+                                    <label><b>Weight :</b></label>
+                                    <div class="input-group mb-3">
+                                        <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100" required="">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon2">%</span>
+                                        </div>
+                                    </div>
+                                </div>-->
                 <div class="col-md-6">
                     <label><b>Timeframe Target :</b></label>
                     <div class="input-group mb-3">

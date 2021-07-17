@@ -83,12 +83,81 @@ class personnelCapaianController extends Controller {
             $capaiankpi->so = $so[$index];
             $capaiankpi->kpi = $kpi[$index];
             $capaiankpi->unit = $unit[$index];
-            $capaiankpi->measurement = $measurement[$index];
+            $capaiankpi->measurement = $measurement[$index]; //measurement =   percentages , absolute number , index , rating , rangking 
             $capaiankpi->target = $target[$index];
             $capaiankpi->weight = $weight[$index];
-            $capaiankpi->polarization = $polarization[$index];
+            $capaiankpi->polarization = $polarization[$index]; // minimize / maximize
             $capaiankpi->capaian = $capaian[$index];
-            $capaiankpi->score = 1;  //harus di kalkulasi berdasarkan jenis measurementnya
+            //$capaiankpi->score = 1;  //harus di kalkulasi berdasarkan jenis measurementnya
+            switch ($measurement[$index])
+            {
+                case 'percentages':
+                    if ($polarization[$index] == 'maximize')
+                    {
+                        $score = ($capaian[$index] / $target[$index]) * 100;
+                        $capaiankpi->score = $score;
+                    }
+                    elseif ($polarization[$index] == 'minimize')
+                    {
+                        $score = ($target[$index] / $capaian[$index]) * 100;
+                        $capaiankpi->score = $score;
+                    }
+                    //code
+                    break;
+                case 'absolute number':
+                    if ($polarization[$index] == 'maximize')
+                    {
+                        $score = ($capaian[$index] / $target[$index]) * 100;
+                        $capaiankpi->score = $score;
+                    }
+                    elseif ($polarization[$index] == 'minimize')
+                    {
+                        $score = ($target[$index] / $capaian[$index]) * 100;
+                        $capaiankpi->score = $score;
+                    }
+                    //code
+                    break;
+                case 'index':
+                    if ($polarization[$index] == 'maximize')
+                    {
+                        $score = ($capaian[$index] / $target[$index]) * 100;
+                        $capaiankpi->score = $score;
+                    }
+                    elseif ($polarization[$index] == 'minimize')
+                    {
+                        $score = ($target[$index] / $capaian[$index]) * 100;
+                        $capaiankpi->score = $score;
+                    }
+                    //code
+                    break;
+                case 'rating':
+                    if ($polarization[$index] == 'maximize')
+                    {
+                        $score = ($capaian[$index] / $target[$index]) * 100;
+                        $capaiankpi->score = $score;
+                    }
+                    elseif ($polarization[$index] == 'minimize')
+                    {
+                        $score = ($target[$index] / $capaian[$index]) * 100;
+                        $capaiankpi->score = $score;
+                    }
+                    //code
+                    break;
+                case 'rangking':
+                    if ($polarization[$index] == 'maximize')
+                    {
+                        $score = ($capaian[$index] / $target[$index]) * 100;
+                        $capaiankpi->score = $score;
+                    }
+                    elseif ($polarization[$index] == 'minimize')
+                    {
+                        $score = ($target[$index] / $capaian[$index]) * 100;
+                        $capaiankpi->score = $score;
+                    }
+                    //code
+                    break;
+            }
+            //measurement =   percentages , absolute number , index , rating , rangking 
             $capaiankpi->save();
         }
 
