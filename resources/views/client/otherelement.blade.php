@@ -5,11 +5,11 @@ use App\Models\target_so;
 use App\Models\target_kpi;
 use App\Models\target_si;
 use App\Models\active_target_kpi;
+use App\Models\capaian_kpi;
 
 // =======================================================
 // ========  TARGET FORMULA ===============
 // =======================================================
-// Color Function For Level and Name
 function color($level)
 {
     switch ($level)
@@ -91,6 +91,27 @@ function checkActiveTarget($id_user, $bulan, $tahun)
 {
     $cekActive = active_target_kpi::where('id_user', $id_user)->where('bulan', $bulan)->where('tahun', $tahun)->first();
     return $cekActive['bulan'];
+}
+
+// =======================================================
+// ========  PERFORMANCE REPORT FORMULA ===============
+// =======================================================
+
+function getPeriodePerformance($id_user, $periode_th)
+{
+    $sumweightedscore = capaian_kpi::where('id_user', $id_user)->where('periode_th', $periode_th)->sum('weightedscore');
+    $sumweight = capaian_kpi::where('id_user', $id_user)->where('periode_th', $periode_th)->sum('weight');
+
+    if ($sumweight == 0)
+    {
+        $performance = 'n/a';
+    }
+    else
+    {
+        $performance = round($sumweightedscore / $sumweight, 2);
+    }
+
+    return $performance;
 }
 
 // =======================================================

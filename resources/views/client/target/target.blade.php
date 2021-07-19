@@ -15,14 +15,18 @@
         </ol>
     </nav><br>
 
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-bullseye"></i>  Target</h1>
+    </div> 
+
     <!--Content-->
     <div class="row">
-
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Set Target</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Target</h6>
                 </div>
 
                 <!-- Card Body -->
@@ -44,9 +48,9 @@
                             <select name='tahun' onchange='if (this.value != <?php echo $tahun; ?>) {
                                         this.form.submit();
                                     }' class="form-control">
-<!--                                @for ($i = 1; $i > 0; $i--)
-                                <option @if ($tahun == date('Y') - $i) selected @endif> {{ date('Y') - $i }}</option>
-                                @endfor-->
+                                <!--                                @for ($i = 1; $i > 0; $i--)
+                                                                <option @if ($tahun == date('Y') - $i) selected @endif> {{ date('Y') - $i }}</option>
+                                                                @endfor-->
                                 <option @if ($tahun == date('Y')) selected @endif>{{ date('Y') }}</option>
                                 @for ($i = 1; $i < 4; $i++)
                                 <option @if ($tahun == date('Y') + $i) selected @endif>{{ date('Y') + $i }}</option>
