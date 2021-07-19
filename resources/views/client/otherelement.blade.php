@@ -93,6 +93,12 @@ function checkActiveTarget($id_user, $bulan, $tahun)
     return $cekActive['bulan'];
 }
 
+function checkTargetTerakhir($id_user, $tahun)
+{
+    $cekActive = active_target_kpi::where('id_user', $id_user)->where('tahun', $tahun)->orderBy('bulan', 'desc')->first();
+    return $cekActive['bulan'];
+}
+
 // =======================================================
 // ========  PERFORMANCE REPORT FORMULA ===============
 // =======================================================

@@ -455,7 +455,7 @@
                                                 <div class="col-md-6">
                                                     <select name="startingbln"value class="form-control">                                        
                                                         @for ($i = 1; $i <= 12; $i++)
-                                                        @if (checkActiveTarget($data->id, $i, $tahun)==$i)
+                                                        @if (checkTargetTerakhir($data->id, $tahun)>=$i)
                                                         @else
                                                         <option value="{{$i}}">{{date('F', mktime(0, 0, 0, $i, 10))}}</option>
                                                         @endif

@@ -72,9 +72,7 @@ Route::middleware([ClientGuard::class])->group(function () {
 
     // ** Performance Report **
     Route::get('/client-performancereport', [performanceReportController::class, 'index'])->name('client.performancereport');
-    Route::get('/client-performancereport-details', function () {
-        return view('client.performancereport.details');
-    })->name('client.performancereport.details');
+    Route::get('/client-performancereport-details', [performanceReportController::class, 'details'])->name('client.performancereport.details');
     Route::get('/client-performancereport-kpi', function () {
         return view('client.performancereport.kpi');
     })->name('client.performancereport.kpi');

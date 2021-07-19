@@ -10,11 +10,6 @@ use Illuminate\Http\Request;
 
 class performanceReportController extends Controller {
 
-    public function indexxxx(Request $request)
-    {
-        
-    }
-
     function index(Request $request)
     {
         $alltahun = capaian_kpi::groupby('periode_th');
@@ -36,6 +31,16 @@ class performanceReportController extends Controller {
 
             return view('client.performancereport.performancereport', ['user' => $user, 'tahun' => $request->tahun]);
         }
+    }
+
+    function details(Request $request)
+    {
+        // data in request : tahun, idpersonnel
+//        dd($request);
+        $data = User::where('id', $request->user_id)->first();
+
+        
+        return view('client.performancereport.details',['data' => $data, 'periode_th' => $request->periode_th]);
     }
 
 }

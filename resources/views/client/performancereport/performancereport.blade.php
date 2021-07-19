@@ -26,16 +26,8 @@
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Performance Report</h6>
-<!--                    <select class="form-control form-control-sm float-right" style="width: 20%;">
-                        <option>January</option>
-                        <option>February</option>
-                        <option>March</option>
-                        <option>April</option>
-                        <option selected="">May</option>
-                    </select>-->
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -105,7 +97,7 @@
                                         </div>
                                         @endif
                                     </td>
-                                    <td style="text-align:center;"><a href="{{route('client.performancereport.details')}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td style="text-align:center;"><a href="{{route('client.performancereport.details', ['user_id'=>$user->id, 'periode_th'=>$tahun])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
                                 </tr>
                                 @endforeach                            
                             </tbody>

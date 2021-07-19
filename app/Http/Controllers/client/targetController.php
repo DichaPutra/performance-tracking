@@ -75,7 +75,6 @@ class targetController extends Controller {
     public function check(Request $request)
     {
         // data in request : tahun, idpersonnel
-        //dd($request);
         $data = User::where('id', $request->idpersonnel)->first();
 
         //get active target kpi  : var  so, kpi

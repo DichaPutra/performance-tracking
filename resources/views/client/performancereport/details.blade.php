@@ -1,5 +1,7 @@
 @extends('layouts.app2')
 
+@include('client.otherelement')<!--berisikan function calculation di view-->
+
 @section('head')
 <?php $page = 'performancereport' ?>
 
@@ -10,7 +12,6 @@
         height: 125px;
     }
 </style>
-
 @endsection
 
 @section('content')
@@ -40,39 +41,52 @@
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Level</label>
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control " name="name" value="0. Corporate" required="" autocomplete="name" autofocus="" disabled="">
+                                    <input id="name" type="text" class="form-control " name="name" value="{{levelName($data->level)}}" required="" autocomplete="name" autofocus="" disabled="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Level Name</label>
+                                <div class="col-md-6">
+                                    <input id="name" type="text" class="form-control " name="name" value="{{$data->level_name}}" required="" autocomplete="name" autofocus="" disabled="">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">PIC Name</label>
+                                <div class="col-md-6">
+                                    <input id="name" type="text" class="form-control " name="name" value="{{$data->name}}" required="" autocomplete="name" autofocus="" disabled="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="position" class="col-md-4 col-form-label text-md-right">Position</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" list="pos" value="Corporate" disabled="">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">PIC Name</label>
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control " name="name" value="Charde Marshall" required="" autocomplete="name" autofocus="" disabled="">
+                                    <input type="text" class="form-control" list="pos" value="{{$data->position}}" disabled="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control " name="email" value="chardemarshall@mail.com" required="" autocomplete="email" disabled="">
+                                    <input id="email" type="email" class="form-control " name="email" value="{{$data->email}}" required="" autocomplete="email" disabled="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row">
+                                <label for="position" class="col-md-4 col-form-label text-md-right">Periode Target</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" list="pos" value="{{$periode_th}}" disabled="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="position" class="col-md-4 col-form-label text-md-right">Number of SO</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" list="pos" value="5" disabled="">
+                                    <input type="text" class="form-control" list="pos" value="{{getCountSO($data->id, $periode_th)}}" disabled="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="position" class="col-md-4 col-form-label text-md-right">Number of KPI</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" list="pos" value="15" disabled="">
+                                    <input type="text" class="form-control" list="pos" value="{{getCountKPI($data->id, $periode_th)}}" disabled="">
                                 </div>
                             </div>
                         </div>
@@ -249,36 +263,36 @@
 // progressbar.js@1.0.0 version is used
 // Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
 
-var bar = new ProgressBar.SemiCircle(container, {
-strokeWidth: 6,
-        color: '#FFEA82',
-        trailColor: '#eee',
-        trailWidth: 1,
-        easing: 'easeInOut',
-        duration: 1400,
-        svgStyle: null,
-        text: {
-        value: '',
-                alignToBottom: false
-        },
-        from: {color: '#FF0000'},
-        to: {color: '##00FF00'},
-        // Set default step function for all animate calls
-        step: (state, bar) => {
-bar.path.setAttribute('stroke', state.color);
-var value = Math.round(bar.value() * 100);
-if (value === 0) {
-bar.setText('');
-} else {
-bar.setText(value + ' %');
-}
+    var bar = new ProgressBar.SemiCircle(container, {
+    strokeWidth: 6,
+            color: '#FFEA82',
+            trailColor: '#eee',
+            trailWidth: 1,
+            easing: 'easeInOut',
+            duration: 1400,
+            svgStyle: null,
+            text: {
+            value: '',
+                    alignToBottom: false
+            },
+            from: {color: '#FF0000'},
+            to: {color: '##00FF00'},
+            // Set default step function for all animate calls
+            step: (state, bar) => {
+    bar.path.setAttribute('stroke', state.color);
+    var value = Math.round(bar.value() * 100);
+    if (value === 0) {
+    bar.setText('');
+    } else {
+    bar.setText(value + ' %');
+    }
 
-bar.text.style.color = state.color;
-}
-});
-bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-bar.text.style.fontSize = '2rem';
-bar.animate({{0.7564}}); // Number from 0.0 to 1.0
+    bar.text.style.color = state.color;
+    }
+    });
+    bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+    bar.text.style.fontSize = '2rem';
+    bar.animate({{0.7564}}); // Number from 0.0 to 1.0
 </script>
 
 <!--Line Chart JS--> 
