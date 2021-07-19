@@ -81,19 +81,19 @@
                                         n/a
                                         @elseif(getPeriodePerformance($user->id, $tahun)>100)
                                         <div class="progress">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: {{getPeriodePerformance($user->id, $tahun)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{getPeriodePerformance($user->id, $tahun)}}%</div>
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: {{getPeriodePerformance($user->id, $tahun)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{getPeriodePerformance($user->id, $tahun)}}</div>
                                         </div>
                                         @elseif(getPeriodePerformance($user->id, $tahun)>75)
                                         <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{getPeriodePerformance($user->id, $tahun)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{getPeriodePerformance($user->id, $tahun)}}%</div>
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{getPeriodePerformance($user->id, $tahun)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{getPeriodePerformance($user->id, $tahun)}}</div>
                                         </div>
                                         @elseif(getPeriodePerformance($user->id, $tahun)>50)
                                         <div class="progress">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{getPeriodePerformance($user->id, $tahun)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{getPeriodePerformance($user->id, $tahun)}}%</div>
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{getPeriodePerformance($user->id, $tahun)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{getPeriodePerformance($user->id, $tahun)}}</div>
                                         </div>
                                         @elseif (getPeriodePerformance($user->id, $tahun)<50)
                                         <div class="progress">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{getPeriodePerformance($user->id, $tahun)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{getPeriodePerformance($user->id, $tahun)}}%</div>
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{getPeriodePerformance($user->id, $tahun)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{getPeriodePerformance($user->id, $tahun)}}</div>
                                         </div>
                                         @endif
                                     </td>
