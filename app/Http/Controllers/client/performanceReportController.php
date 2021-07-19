@@ -39,9 +39,22 @@ class performanceReportController extends Controller {
         // data in request : tahun, idpersonnel
         // data user
         $data = User::where('id', $request->user_id)->first();
+
         //data target dlm periode th
         $startingbln = target_kpi::where('id_user', $request->user_id)->where('periode_th', $request->periode_th)->first();
-        $month = null;
+
+        //data dropdown bulan
+        $dropdownbln = capaian_kpi::groupby('bulan', 'tahun')->select('bulan', 'tahun')->where('id_user', $request->user_id)->where('periode_th', $request->periode_th)->get();
+
+        // === DATA UNTUK MONTHLY DETAILS ===
+        if ($request->month == null)
+        {
+            $month = null;
+        }
+        else
+        {
+            $month = $request->month;
+        }
 
 
         // === DATA UNTUK CHART JS === 
@@ -60,7 +73,6 @@ class performanceReportController extends Controller {
         }
         $bulanChart = json_encode($bulanChart);
 
-
         // == Data Capaian Untuk Chart JS == 
         $capaianChart = array();
         $loopBlnChart = $startingbln['starting_bln'];
@@ -78,32 +90,36 @@ class performanceReportController extends Controller {
         }
         $capaianChart = json_encode($capaianChart);
 
-        //dd($capaianChart);
-
-
+        // pass data
         return view('client.performancereport.details', [
             'data' => $data,
             'periode_th' => $request->periode_th,
             'startingbln' => $startingbln['starting_bln'],
             'range_period' => $startingbln['range_period'],
             'month' => $month,
+            'bulanScore' => 0.7,
             'bulanChart' => $bulanChart,
-            'capaianChart' => $capaianChart
+            'capaianChart' => $capaianChart,
+            'dropdownbln' => $dropdownbln
         ]);
     }
 
+    //function untuk kalkulasi score capaian bulanan
     function getScoreBulanan($id_user, $bulan, $tahun)
     {
         $sumweight = capaian_kpi::where('id_user', $id_user)
                         ->where('bulan', $bulan)->where('tahun', $tahun)->sum('weight');
         $sumweightedscore = capaian_kpi::where('id_user', $id_user)
                         ->where('bulan', $bulan)->where('tahun', $tahun)->sum('weightedscore');
-        if($sumweight!=0){
-            $overallMonthlyScore = $sumweightedscore/$sumweight;
-        } else {
+        if ($sumweight != 0)
+        {
+            $overallMonthlyScore = $sumweightedscore / $sumweight;
+        }
+        else
+        {
             $overallMonthlyScore = 0;
         }
-        
+
         return $overallMonthlyScore;
     }
 
