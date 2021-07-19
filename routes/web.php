@@ -7,6 +7,7 @@ use App\Http\Controllers\client\clientHomeController;
 use App\Http\Controllers\client\personnelController;
 use App\Http\Controllers\client\targetController;
 use App\Http\Controllers\client\initiativeController;
+use App\Http\Controllers\client\performanceReportController;
 use App\Http\Controllers\personnel\personnelHomeController;
 use App\Http\Controllers\personnel\personnelTargetController;
 use App\Http\Controllers\personnel\personnelCapaianController;
@@ -70,9 +71,7 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::post('/client-target-activate', [targetController::class, 'activateTarget'])->name('client.target.activate');
 
     // ** Performance Report **
-    Route::get('/client-performancereport', function () {
-        return view('client.performancereport.performancereport');
-    })->name('client.performancereport');
+    Route::get('/client-performancereport', [performanceReportController::class, 'index'])->name('client.performancereport');
     Route::get('/client-performancereport-details', function () {
         return view('client.performancereport.details');
     })->name('client.performancereport.details');

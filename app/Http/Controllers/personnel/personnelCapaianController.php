@@ -61,6 +61,7 @@ class personnelCapaianController extends Controller {
         //not array 
         $bulan = $request->bulan;
         $tahun = $request->tahun;
+        $periode_th = $request->periode_th;
         //array
         $activetargetid = $request->activetargetid;
         $so = $request->so;
@@ -78,6 +79,7 @@ class personnelCapaianController extends Controller {
             $capaiankpi = new capaian_kpi;
             $capaiankpi->id_user = Auth::user()->id;
             $capaiankpi->id_active_target_kpi = $activetargetid;
+            $capaiankpi->periode_th = $periode_th;
             $capaiankpi->bulan = $bulan;
             $capaiankpi->tahun = $tahun;
             $capaiankpi->so = $so[$index];
@@ -96,11 +98,13 @@ class personnelCapaianController extends Controller {
                     {
                         $score = ($capaian[$index] / $target[$index]) * 100;
                         $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score*$weight[$index];
                     }
                     elseif ($polarization[$index] == 'minimize')
                     {
                         $score = ($target[$index] / $capaian[$index]) * 100;
                         $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score*$weight[$index];
                     }
                     //code
                     break;
@@ -109,11 +113,13 @@ class personnelCapaianController extends Controller {
                     {
                         $score = ($capaian[$index] / $target[$index]) * 100;
                         $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score*$weight[$index];
                     }
                     elseif ($polarization[$index] == 'minimize')
                     {
                         $score = ($target[$index] / $capaian[$index]) * 100;
                         $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score*$weight[$index];
                     }
                     //code
                     break;
@@ -122,11 +128,13 @@ class personnelCapaianController extends Controller {
                     {
                         $score = ($capaian[$index] / $target[$index]) * 100;
                         $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score*$weight[$index];
                     }
                     elseif ($polarization[$index] == 'minimize')
                     {
                         $score = ($target[$index] / $capaian[$index]) * 100;
                         $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score*$weight[$index];
                     }
                     //code
                     break;
@@ -135,11 +143,13 @@ class personnelCapaianController extends Controller {
                     {
                         $score = ($capaian[$index] / $target[$index]) * 100;
                         $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score*$weight[$index];
                     }
                     elseif ($polarization[$index] == 'minimize')
                     {
                         $score = ($target[$index] / $capaian[$index]) * 100;
                         $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score*$weight[$index];
                     }
                     //code
                     break;
@@ -148,11 +158,13 @@ class personnelCapaianController extends Controller {
                     {
                         $score = ($capaian[$index] / $target[$index]) * 100;
                         $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score*$weight[$index];
                     }
                     elseif ($polarization[$index] == 'minimize')
                     {
                         $score = ($target[$index] / $capaian[$index]) * 100;
                         $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score*$weight[$index];
                     }
                     //code
                     break;

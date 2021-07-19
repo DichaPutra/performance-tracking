@@ -98,6 +98,7 @@
                         @csrf
                         <input name="bulan" value="{{$bulan}}" type="hidden" >
                         <input name="tahun" value="{{$tahun}}" type="hidden" >
+                        <input name="periode_th" value="{{$periode_th}}" type="hidden" >
 
 
                         <div class="table-responsive">

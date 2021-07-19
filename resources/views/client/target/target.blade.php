@@ -122,8 +122,8 @@
             $(this).remove();
         });
     }, 3000);
-//    $(document).ready(function () {
-//        $('#dataTable').DataTable();
-//    });
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
 </script>
 @endsection

@@ -19,6 +19,7 @@ class CreateCapaianKpiTable extends Migration {
             $table->foreign('id_user')->references('id')->on('users');
             $table->unsignedBigInteger('id_active_target_kpi');
             $table->foreign('id_active_target_kpi')->references('id')->on('active_target_kpi');
+            $table->bigInteger('periode_th');
             $table->bigInteger('bulan');
             $table->bigInteger('tahun');
             $table->string('so');
@@ -30,6 +31,7 @@ class CreateCapaianKpiTable extends Migration {
             $table->string('polarization');
             $table->bigInteger('capaian');
             $table->bigInteger('score');
+            $table->bigInteger('weightedscore');
             $table->timestamps();
         });
     }
