@@ -147,8 +147,9 @@
                             <input type="hidden" name="user_id" value="{{$data->id}}">
                             <input type="hidden" name="periode_th" value="{{$periode_th}}">
                             <select name="month" class="form-control form-control-sm float-right" onchange="this.form.submit()">
+                                <option value="" hidden>select...</option>
                                 @foreach ($dropdownbln as $bln)
-                                <option value="{{$bln->bulan}}">{{date('F', mktime(0, 0, 0, $bln->bulan, 10))}}</option>
+                                <option value="{{$bln->bulan}}-{{$bln->tahun}}">{{date('F', mktime(0, 0, 0, $bln->bulan, 10))}} / {{$bln->tahun}} </option>
                                 @endforeach
                             </select>
                         </form>
@@ -161,8 +162,10 @@
                             <input type="hidden" name="user_id" value="{{$data->id}}">
                             <input type="hidden" name="periode_th" value="{{$periode_th}}">
                             <select name="month" class="form-control form-control-sm float-right" onchange="this.form.submit()">
+                                <option value="" hidden>select...</option>
                                 @foreach ($dropdownbln as $bln)
-                                <option value="{{$bln->bulan}}" @if($bln->bulan==$month) selected @endif>{{date('F', mktime(0, 0, 0, $bln->bulan, 10))}}</option>
+                                <option value="{{$bln->bulan}}-{{$bln->tahun}}" @if($bln->bulan==$month) selected @endif>  {{date('F', mktime(0, 0, 0, $bln->bulan, 10))}} / {{$bln->tahun}}</option>
+                                <!--<option value="{{$bln->bulan}}" @if($bln->bulan==$month) selected @endif>{{date('F', mktime(0, 0, 0, $bln->bulan, 10))}}</option>-->
                                 @endforeach
                             </select>
                         </form>
@@ -172,7 +175,7 @@
                     <!-- Card Body -->
                     <div class="card-body">
 
-                        <div class="text-center"><b>Overall Performance</b> <br>May 2021</div>
+                        <div class="text-center"><b>Overall Performance</b> <br>{{date('F', mktime(0, 0, 0, $month, 10))}} 2021</div>
                         <!--Performance Chart-->
                         <div class="d-flex justify-content-center">
                             <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900"
@@ -187,116 +190,66 @@
                                 <thead style="background-color: #F8F9FC;">
                                     <tr>
                                         <th style="width: 8%; text-align: center;">No</th>
-                                        <th style="width: 52%;">Strategic Objective</th>
-                                        <th style="width: 40%;">Performance</th>
+                                        <th style="width: 52%; text-align: center;">SO & KPI</th>
+                                        <th>Target</th>
+                                        <th>Capaian</th>
+                                        <th>Weight</th>
+                                        <th style="width: 40%; text-align: center;">Performance Score</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($datacapaian as $datacapaian)
                                     <tr>
-                                        <td style="text-align: center;">1</td>
+                                        <td style="text-align: center;">{{$loop->iteration}}</td>
                                         <td>
-                                            <b>Peningkatan Company Value</b><br>
-                                            Manajemen dari waktu ke waktu terus berusaha untuk meningkatkan kinerja
-                                            perusahaan untuk meningkatkan nilai perusahaan sehingga harapan dari
-                                            pemegang saham dan seluruh stakeholder yang lain dapat dipenuhi
+                                            <b>{{$datacapaian->so}}</b><br>
+                                            {{$datacapaian->kpi}}
                                         </td>
-                                        <td style="text-align: center;">
-                                            <h4 class="small font-weight-bold">Peningkatan Company Value <span
-                                                    class="float-right">20%</span></h4>
-                                            <div class="progress mb-4">
-                                                <div class="progress-bar bg-danger" role="progressbar"
-                                                     style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-                                                     aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:center;"><a
-                                                href="{{ route('client.performancereport.kpi') }}"><button
-                                                    class="btn btn-primary btn-sm">Details</button></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;">2</td>
                                         <td>
-                                            <b>Optimalisasi Cash Flow</b><br>
-                                            Dalam mengelola perusahaan maka faktor cash flow menjadi kunci utama dalam
-                                            keberlangsungan bisnis. Perusahaan boleh jadi memperoleh laba, namun jika
-                                            tidak ada cash flow maka kegiatan usaha dapat berhenti. Cash flow yang baik
-                                            dapat menjaga kepercayaan perusahaan terhadap pihak yang berkepentingan
-                                            (kreditor, pemegang saham, karyawan) dengan selalu menjaga komitmen
-                                            pembayaran tepat pada waktunya
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <h4 class="small font-weight-bold">Optimalisasi Cash Flow <span
-                                                    class="float-right">40%</span></h4>
-                                            <div class="progress mb-4">
-                                                <div class="progress-bar bg-warning" role="progressbar"
-                                                     style="width: 40%" aria-valuenow="40" aria-valuemin="0"
-                                                     aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:center;"><a
-                                                href="{{ route('client.performancereport.kpi') }}"><button
-                                                    class="btn btn-primary btn-sm">Details</button></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;">3</td>
-                                        <td><b>Efisiensi dan efektivitas biaya</b><br>
-                                            Cerminan dari upaya manajemen dalam melakukan efisiensi biaya dan
-                                            efektivitas biaya yang tercermin dari ukuran-ukuran keuangan yang dapat
-                                            menggambarkan pertumbuhan biaya yang dapat dikendalikan dengan baik
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <h4 class="small font-weight-bold">Efisiensi dan efektivitas biaya <span
-                                                    class="float-right">100%</span></h4>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" role="progressbar"
-                                                     style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-                                                     aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:center;"><a
-                                                href="{{ route('client.performancereport.kpi') }}"><button
-                                                    class="btn btn-primary btn-sm">Details</button></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;">4</td>
-                                        <td><b>Peningkatan Profit</b><br>
-                                            Upaya manajemen dalam meningkatkan tingkat keuntungan
-                                        </td>
-                                        <td style="text-align: center;">
-                                            <h4 class="small font-weight-bold">Peningkatan Profit <span
-                                                    class="float-right">100%</span></h4>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" role="progressbar"
-                                                     style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-                                                     aria-valuemax="100"></div>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:center;"><a
-                                                href="{{ route('client.performancereport.kpi') }}"><button
-                                                    class="btn btn-primary btn-sm">Details</button></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: center;">5</td>
-                                        <td><b>Peningkatan Total Pendapatan</b><br>
-                                            Upaya manajemen dalam meningkatkan tingkat pendapatan dari seluruh usaha
-                                            yang dilakukan oleh perusahaan baik berupa hasil penjualan seluruh produk
-                                            serta pendapatan jasa.
+                                            <!--{{$datacapaian->target}}-->
+                                            @if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
+                                            Rp {{ $datacapaian->target}},-
+                                            @else 
+                                            {{ $datacapaian->target}} {{$datacapaian->unit}}
+                                            @endif
 
                                         </td>
+                                        <td>
+                                            <!--{{$datacapaian->target}} {{$datacapaian->target}}-->
+                                            @if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
+                                            Rp {{ $datacapaian->capaian}},-
+                                            @else 
+                                            {{ $datacapaian->capaian}} {{$datacapaian->unit}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{$datacapaian->weight}} %
+                                        </td>
                                         <td style="text-align: center;">
-                                            <h4 class="small font-weight-bold">Peningkatan Total Pendapatan <span
-                                                    class="float-right">100%</span></h4>
+                                            @if($datacapaian->score>100)
                                             <div class="progress">
-                                                <div class="progress-bar bg-success" role="progressbar"
-                                                     style="width: 100%" aria-valuenow="100" aria-valuemin="0"
-                                                     aria-valuemax="100"></div>
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
                                             </div>
+                                            @elseif($datacapaian->score>=75)
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
+                                            </div>
+                                            @elseif($datacapaian->score>=50)
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
+                                            </div>
+                                            @elseif ($datacapaian->score<50)
+                                            <div class="progress">
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
+                                            </div>
+                                            @endif
                                         </td>
                                         <td style="text-align:center;"><a
                                                 href="{{ route('client.performancereport.kpi') }}"><button
                                                     class="btn btn-primary btn-sm">Details</button></a></td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -347,7 +300,7 @@
     // Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
 
     var bar = new ProgressBar.SemiCircle(container, {
-    strokeWidth: 6,
+    strokeWidth: 1,
             color: '#FFEA82',
             trailColor: '#eee',
             trailWidth: 1,
@@ -369,18 +322,25 @@
     bar.path.setAttribute('stroke', state.color);
     var value = Math.round(bar.value() * 100);
     if (value === 0) {
-    bar.setText('');
-    } else {
+    bar.setText('0');
+    } else if (value > 100){
+    bar.setText(value);
+    }
+    else {
     bar.setText(value);
     //bar.setText(value + ' %');
     }
 
+    if (bar.value() > 1) {
+    bar.trail.setAttribute('stroke', '#439afa');
+    }
     bar.text.style.color = state.color;
     }
     });
     bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
     bar.text.style.fontSize = '2rem';
-    bar.animate({{$bulanScore}}); // Number from 0.0 to 1.0
+    bar.animate({{$bulanScore}});
+//    bar.animate({{$bulanScore}}); // Number from 0.0 to 1.0
 </script>
 
 <!--Line Chart JS-->

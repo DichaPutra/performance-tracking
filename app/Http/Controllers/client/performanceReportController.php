@@ -40,8 +40,19 @@ class performanceReportController extends Controller {
         // data user
         $data = User::where('id', $request->user_id)->first();
 
+        // guard (jika user yang dilihat bukan personnelnya
+        if ($data == NULL)
+        {
+            return abort(403);
+        }
+        if ($data->client_parent != Auth::user()->id)
+        {
+            return abort(403);
+        }
+
         //data target dlm periode th
-        $startingbln = target_kpi::where('id_user', $request->user_id)->where('periode_th', $request->periode_th)->first();
+        $startingbln = target_kpi::where('id_user', $request->user_id)
+                        ->where('periode_th', $request->periode_th)->first();
 
         //data dropdown bulan
         $dropdownbln = capaian_kpi::groupby('bulan', 'tahun')->select('bulan', 'tahun')->where('id_user', $request->user_id)->where('periode_th', $request->periode_th)->get();
@@ -50,10 +61,22 @@ class performanceReportController extends Controller {
         if ($request->month == null)
         {
             $month = null;
+            $year = null;
+            $bulanScore = null;
+            $datacapaian = null;
         }
         else
         {
             $month = $request->month;
+            list($month, $year) = explode('-', $request->month);
+
+            $datacapaian = capaian_kpi::where('id_user', $request->user_id)
+                    ->where('tahun', $year)
+                    ->where('bulan', $month)
+                    ->get();
+            
+//            dd($datacapaian);
+            $bulanScore = $this->getScoreBulanan($request->user_id, $month, $year)/100;
         }
 
 
@@ -97,7 +120,9 @@ class performanceReportController extends Controller {
             'startingbln' => $startingbln['starting_bln'],
             'range_period' => $startingbln['range_period'],
             'month' => $month,
-            'bulanScore' => 0.7,
+            'year' => $year,
+            'datacapaian' => $datacapaian,
+            'bulanScore' => $bulanScore,
             'bulanChart' => $bulanChart,
             'capaianChart' => $capaianChart,
             'dropdownbln' => $dropdownbln
