@@ -11,6 +11,7 @@ use App\Http\Controllers\client\performanceReportController;
 use App\Http\Controllers\personnel\personnelHomeController;
 use App\Http\Controllers\personnel\personnelTargetController;
 use App\Http\Controllers\personnel\personnelCapaianController;
+use App\Http\Controllers\personnel\personnelPerformanceReportController;
 use App\Http\Controllers\ChangePasswordController;
 // Middleware
 use App\Http\Middleware\ClientGuard;
@@ -105,9 +106,7 @@ Route::middleware([PersonnelGuard::class])->group(function () {
     Route::post('/personnel-capaian-addcapaian', [personnelCapaianController::class, 'addCapaian'])->name('personnel.capaian.addcapaian');
 
     // * Performance Report *
-    Route::get('/personnel-performancereport', function () {
-        return view('personnel.performancereport.performancereport');
-    })->name('personnel.performancereport');
+    Route::get('/personnel-performancereport', [personnelPerformanceReportController::class, 'index'])->name('personnel.performancereport');
     Route::get('/personnel-performancereport-details', function () {
         return view('personnel.performancereport.details');
     })->name('personnel.performancereport.details');
