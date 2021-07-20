@@ -11,7 +11,7 @@ class capaian_kpi extends Model {
 
     protected $table = 'capaian_kpi';
     protected $fillable = [
-        'id_user','id_active_target_kpi', 'bulan', 'tahun', 'so', 'kpi', 'unit', 'measurement', 'target', 'weight', 'polarization', 'capaian', 'score'
+        'id_user','id_active_target_kpi', 'bulan', 'tahun', 'so', 'kpi', 'unit', 'measurement', 'target', 'weight', 'polarization', 'timeframe_target','capaian', 'score'
     ];
 
 }

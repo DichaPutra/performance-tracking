@@ -71,6 +71,7 @@ class personnelCapaianController extends Controller {
         $target = $request->target;
         $weight = $request->weight;
         $polarization = $request->polarization;
+        $timeframe_target = $request->timeframe_target;
         $capaian = $request->capaian;
 
         // insert into table capaian_kpi
@@ -89,6 +90,7 @@ class personnelCapaianController extends Controller {
             $capaiankpi->target = $target[$index];
             $capaiankpi->weight = $weight[$index];
             $capaiankpi->polarization = $polarization[$index]; // minimize / maximize
+            $capaiankpi->timeframe_target = $timeframe_target[$index];
             $capaiankpi->capaian = $capaian[$index];
             //$capaiankpi->score = 1;  //harus di kalkulasi berdasarkan jenis measurementnya
             switch ($measurement[$index])

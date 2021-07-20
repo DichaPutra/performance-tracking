@@ -29,6 +29,7 @@ class CreateCapaianKpiTable extends Migration {
             $table->bigInteger('target');
             $table->bigInteger('weight');
             $table->string('polarization');
+            $table->string('timeframe_target');
             $table->bigInteger('capaian');
             $table->bigInteger('score');
             $table->bigInteger('weightedscore');

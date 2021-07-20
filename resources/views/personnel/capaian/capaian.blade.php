@@ -146,6 +146,7 @@
                                                 <input name="target[]" value="{{$target->target}}" type="hidden" >
                                                 <input name="weight[]" value="{{$target->weight}}" type="hidden" >
                                                 <input name="polarization[]" value="{{$target->polarization}}" type="hidden" >
+                                                <input name="timeframe_target[]" value="{{$target->timeframe_target}}" type="hidden" >
                                                 <input name="capaian[]" type="number" class="form-control" min="1" required="">
                                                 <div class="input-group-append">
                                                     <span class="input-group-text" id="basic-addon2">{{$target->unit}}</span>

@@ -156,6 +156,7 @@
                                     <th>No</th>
                                     <!--<th>SO</th>-->
                                     <th>KPI</th>
+                                    <!--<th>Timeframe</th>-->
                                     <?php $bln = $startingbln ?>
                                     @for($i = 0; $i<12; $i++)
                                     <th style="text-align: center;">{{$bln}}</th>
@@ -174,6 +175,7 @@
                                     <td style="vertical-align: middle; text-align: center;">{{ $loop->iteration }}</td>
                                     <!--<td>{{$act->so}}</td>-->
                                     <td style="vertical-align: middle;">{{$act->kpi}} <b>({{$act->unit}})</b></td>
+                                    <!--<td style="vertical-align: middle;">{{$act->timeframe_target}}</td>-->
                                     <?php $bln = $startingbln ?>
                                     @for($i = 0; $i<12; $i++)
                                     <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, $bln, $tahun, $act->id_target_kpi)}}</td>

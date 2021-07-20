@@ -45,12 +45,14 @@ class Target extends Component {
                     ->select('aspect')
                     ->where('id_business_categories', $this->selectedCategory)
                     ->where(function($query) {
-                        $query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
+                        $query->where('bisnis', $this->selectedBisnis);
+                        //$query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
                     })
                     ->get();
             $this->so = so_library::where('id_business_categories', $this->selectedCategory)
                             ->where(function($query) {
-                                $query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
+                                $query->where('bisnis', $this->selectedBisnis);
+                                //$query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
                             })
                             ->orderBy('so')->get();
         }
@@ -63,14 +65,16 @@ class Target extends Component {
                 ->select('aspect')
                 ->where('id_business_categories', $this->selectedCategory)
                 ->where(function($query) {
-                    $query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
+                    $query->where('bisnis', $this->selectedBisnis);
+                    //$query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
                 })
                 ->get();
         if ($this->selectedAspect == 'All')
         {
             $this->so = so_library::where('id_business_categories', $this->selectedCategory)
                             ->where(function($query) {
-                                $query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
+                                $query->where('bisnis', $this->selectedBisnis);
+                                //$query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
                             })
                             ->orderBy('so')->get();
         }
@@ -78,7 +82,8 @@ class Target extends Component {
         {
             $this->so = so_library::where('id_business_categories', $this->selectedCategory)
                             ->where(function($query) {
-                                $query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
+                                $query->where('bisnis', $this->selectedBisnis);
+                                //$query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
                             })
                             ->where('Aspect', $this->selectedAspect)
                             ->orderBy('so')->get();
@@ -92,7 +97,8 @@ class Target extends Component {
                 ->select('aspect')
                 ->where('id_business_categories', $this->selectedCategory)
                 ->where(function($query) {
-                    $query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
+                    $query->where('bisnis', $this->selectedBisnis);
+//                    $query->where('bisnis', $this->selectedBisnis)->orWhere('bisnis', 'All');
                 })
                 ->get();
     }

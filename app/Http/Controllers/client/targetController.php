@@ -78,8 +78,8 @@ class targetController extends Controller {
         $data = User::where('id', $request->idpersonnel)->first();
 
         //get active target kpi  : var  so, kpi
-        $activetarget = active_target_kpi::groupBy('so', 'id_target_kpi', 'kpi', 'unit')
-                        ->select('so', 'id_target_kpi', 'kpi', 'unit')
+        $activetarget = active_target_kpi::groupBy('so', 'id_target_kpi', 'kpi', 'unit','timeframe_target')
+                        ->select('so', 'id_target_kpi', 'kpi', 'unit','timeframe_target')
                         ->where('id_user', $request->idpersonnel)
                         ->where('periode_th', $request->tahun)->get();
         $startingbln = target_kpi::where('id_user', $request->idpersonnel)->where('periode_th', $request->tahun)->first();

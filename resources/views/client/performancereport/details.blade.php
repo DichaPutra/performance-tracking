@@ -193,6 +193,7 @@
                                         <th style="width: 52%; text-align: center;">SO & KPI</th>
                                         <th>Target</th>
                                         <th>Capaian</th>
+                                        <th>Timeframe</th>
                                         <th>Weight</th>
                                         <th style="width: 40%; text-align: center;">Performance Score</th>
                                         <th></th>
@@ -206,6 +207,7 @@
                                             <b>{{$datacapaian->so}}</b><br>
                                             {{$datacapaian->kpi}}
                                         </td>
+
                                         <td>
                                             <!--{{$datacapaian->target}}-->
                                             @if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
@@ -223,6 +225,7 @@
                                             {{ $datacapaian->capaian}} {{$datacapaian->unit}}
                                             @endif
                                         </td>
+                                        <td>{{$datacapaian->timeframe_target}}</td>
                                         <td>
                                             {{$datacapaian->weight}} %
                                         </td>
