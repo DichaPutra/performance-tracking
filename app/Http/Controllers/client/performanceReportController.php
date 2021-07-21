@@ -102,7 +102,7 @@ class performanceReportController extends Controller {
         $loopThChart = $startingbln['periode_th'];
         for ($i = 0; $i < 12; $i++)
         {
-            $capaianChart[] = $this->getScoreBulanan($data->id, $loopBlnChart, $loopThChart);
+            $capaianChart[] = round($this->getScoreBulanan($data->id, $loopBlnChart, $loopThChart),2);
             if ($loopBlnChart == 12)
             {
                 $loopBlnChart = 1;

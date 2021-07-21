@@ -127,9 +127,7 @@
                             </div>
                         </div>
 
-                        <!--                        <div class="chart-container" style="height:20%; width:100%">
-                                                    <canvas id="yearlychart"></canvas>
-                                                </div>-->
+                        <!--<div class="chart-container" style="height:20%; width:100%"> <canvas id="yearlychart"></canvas></div>-->
                         <div class="row">
                             <div>
                                 <canvas id="yearlychart" width="100%" height="35%"></canvas>
@@ -191,8 +189,8 @@
                                     <tr>
                                         <th style="width: 8%; text-align: center;">No</th>
                                         <th style="width: 52%; text-align: center;">SO & KPI</th>
-                                        <th>Target</th>
-                                        <th>Capaian</th>
+                                        <!--<th>Target</th>-->
+                                        <!--<th>Capaian</th>-->
                                         <th>Timeframe</th>
                                         <th>Weight</th>
                                         <th style="width: 40%; text-align: center;">Performance Score</th>
@@ -207,9 +205,8 @@
                                             <b>{{$datacapaian->so}}</b><br>
                                             {{$datacapaian->kpi}}
                                         </td>
-
-                                        <td>
-                                            <!--{{$datacapaian->target}}-->
+<!--                                        <td>
+                                            {{$datacapaian->target}}
                                             @if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
                                             Rp {{ $datacapaian->target}},-
                                             @else 
@@ -218,13 +215,13 @@
 
                                         </td>
                                         <td>
-                                            <!--{{$datacapaian->target}} {{$datacapaian->target}}-->
+                                            {{$datacapaian->target}} {{$datacapaian->target}}
                                             @if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
                                             Rp {{ $datacapaian->capaian}},-
                                             @else 
                                             {{ $datacapaian->capaian}} {{$datacapaian->unit}}
                                             @endif
-                                        </td>
+                                        </td>-->
                                         <td>{{$datacapaian->timeframe_target}}</td>
                                         <td>
                                             {{$datacapaian->weight}} %
@@ -248,17 +245,73 @@
                                             </div>
                                             @endif
                                         </td>
-                                        <td style="text-align:center;"><a
-                                                href="{{ route('client.performancereport.kpi') }}"><button
-                                                    class="btn btn-primary btn-sm">Details</button></a></td>
+                                        <td style="text-align:center;">
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailsCapaianModal{{$loop->iteration}}">Details</button>
+                                            <!--<a href="{{ route('client.performancereport.kpi') }}">
+                                                <button class="btn btn-primary btn-sm">Details</button>
+                                            </a>-->
+                                        </td>
                                     </tr>
-                                    @endforeach
+
+                                    <!--Modal Detail-->
+                                    <!-- Large modal -->
+                                <div class="modal fade" id="detailsCapaianModal{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Detail Capaian</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1">Strategic Objective :</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" readonly="">{{$datacapaian->so}}</textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1">KPI :</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" readonly="">{{$datacapaian->kpi}}</textarea>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputEmail4">Target :</label>
+                                                        <input type="text" class="form-control" 
+                                                               value="@if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')Rp {{ $datacapaian->target}},-@else{{ $datacapaian->target}} {{$datacapaian->unit}}@endif" 
+                                                               readonly>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputPassword4">Capaian :</label>
+                                                        <input type="text" class="form-control" 
+                                                               value="@if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')Rp {{ $datacapaian->capaian}},-@else{{ $datacapaian->capaian}} {{$datacapaian->unit}}@endif" 
+                                                               readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputEmail4">Polarization :</label>
+                                                        <input type="text" class="form-control" value="{{$datacapaian->polarization}}" readonly>
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label for="inputPassword4">Score :</label>
+                                                        <input type="text" class="form-control" value="{{$datacapaian->score}}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     @endif
-
                 </div>
             </div>
         </div>
