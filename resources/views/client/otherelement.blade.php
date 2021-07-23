@@ -60,6 +60,12 @@ function getCountKPI($id_user, $tahun)
     return $count;
 }
 
+function getCountSI($id_user, $tahun)
+{
+    $count = target_si::where('id_user', $id_user)->where('periode_th', $tahun)->count();
+    return $count;
+}
+
 function getStatusTarget($id_user, $tahun)
 {
     $count = target_kpi::where('id_user', $id_user)->where('periode_th', $tahun)->sum('is_active');
@@ -125,9 +131,9 @@ function getPeriodePerformance($id_user, $periode_th)
 // =======================================================
 
 
-function getCountSIbyUser($id_user)
+function getCountSIbyUser($id_user, $tahun)
 {
-    $cout = target_si::where('id_user', $id_user)->count();
+    $cout = target_si::where('id_user', $id_user)->where('periode_th', $tahun)->count();
     return $cout;
 }
 

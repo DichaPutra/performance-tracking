@@ -13,8 +13,29 @@ use Illuminate\Support\Facades\DB;
 
 class initiativeController extends Controller {
 
-    function index()
+    function index(Request $request)
     {
+        $alltahun = target_kpi::groupby('periode_th');
+
+        // ** Memunculkan semua list personnel  
+        if ($request->tahun == null)
+        {
+            // Default Tahun Sekarang
+            $tahun = date('Y');
+            // Homepage Target
+            $user = User::all()->where('client_parent', Auth::user()->id);
+
+            return view('client.initiative.personnel', ['user' => $user, 'tahun' => $tahun]);
+        }
+        else
+        {
+            //Tahun Pilihan
+            // Homepage Target
+            $user = User::all()->where('client_parent', Auth::user()->id);
+
+            return view('client.initiative.personnel', ['user' => $user, 'tahun' => $request->tahun]);
+        }
+
         // get user by session id
         $user = User::all()->where('client_parent', Auth::user()->id);
 
@@ -38,15 +59,32 @@ class initiativeController extends Controller {
         }
 
         // get all kpi data by personnel 
-        //$datakpi = target_kpi::where('id_user', $request->idpersonnel)->get();
         $datakpi = DB::table('target_kpi')
                 ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
-                ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
+                ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library', 'range_period')
                 ->where('target_kpi.id_user', $request->idpersonnel)
+                ->where('target_kpi.periode_th', $request->tahun)
                 ->orderBy('target_kpi.id_target_so', 'asc')
                 ->get();
 
-        return view('client.initiative.kpi', ['data' => $data, 'datakpi' => $datakpi]);
+        // get data Target Strategic Inititives
+        if ($request->idkpi != null)
+        {
+            //get data kpi with SO
+            $datakpiselected = DB::table('target_kpi')
+                    ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
+                    ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
+                    ->where('target_kpi.id', $request->idkpi)
+                    ->first();
+            $datasi = target_si::where('id_target_kpi', $request->idkpi)->where('periode_th', $request->tahun)->get();
+        }
+        else
+        {
+            $datakpiselected = null;
+            $datasi = null;
+        }
+
+        return view('client.initiative.kpi', ['data' => $data, 'datakpi' => $datakpi, 'tahun' => $request->tahun, 'datakpiselected' => $datakpiselected, 'datasi' => $datasi]);
     }
 
     function initiative(Request $request)
@@ -91,6 +129,7 @@ class initiativeController extends Controller {
             $addtargetsi->id_target_kpi = $request->id_target_kpi;
             $addtargetsi->id_si_library = null;
             $addtargetsi->si = $request->customsi;
+            $addtargetsi->periode_th = $request->periode_th;
             $addtargetsi->save();
 
             return redirect()->back();
@@ -107,6 +146,7 @@ class initiativeController extends Controller {
             $addtargetsi->id_target_kpi = $request->id_target_kpi;
             $addtargetsi->id_si_library = $request->id_si_library;
             $addtargetsi->si = $sionlib->si;
+            $addtargetsi->periode_th = $request->periode_th;
             $addtargetsi->save();
 
             return redirect()->back();

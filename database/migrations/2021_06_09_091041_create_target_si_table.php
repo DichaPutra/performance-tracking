@@ -21,6 +21,7 @@ class CreateTargetSiTable extends Migration {
             $table->foreign('id_target_kpi')->references('id')->on('target_kpi');
             $table->unsignedBigInteger('id_si_library')->nullable();
             $table->string('si');
+            $table->bigInteger('periode_th');
             $table->timestamps();
         });
     }

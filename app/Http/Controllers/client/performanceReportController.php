@@ -13,7 +13,7 @@ class performanceReportController extends Controller {
 
     function index(Request $request)
     {
-        $alltahun = capaian_kpi::groupby('periode_th');
+        //$alltahun = capaian_kpi::groupby('periode_th');
         // ** Memunculkan semua list personnel  
         if ($request->tahun == null)
         {

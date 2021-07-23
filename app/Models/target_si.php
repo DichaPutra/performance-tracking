@@ -11,7 +11,7 @@ class target_si extends Model {
 
     protected $table = 'target_si';
     protected $fillable = [
-        'id_user', 'id_target_kpi', 'id_si_library', 'si'
+        'id_user', 'id_target_kpi', 'id_si_library', 'si', 'periode_th'
     ];
 
 }

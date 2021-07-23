@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 
-@include('client.otherelement2')<!--berisikan function di view-->
+@include('client.otherelement')<!--berisikan function di view-->
 
 @section('head')
 <?php $page = 'initiative' ?>
@@ -31,6 +31,29 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
+
+                    <div class="row">
+                        <form action="{{ route('client.initiative.personnel') }}" method="GET" class="float-right" style="width: 30%; margin-bottom: 50px;">
+                            <label>periode :</label> 
+                            <select name='tahun' onchange='if (this.value != <?php echo $tahun; ?>) {
+                                        this.form.submit();
+                                    }' class="form-control">
+                                @for ($i = 2; $i > 0; $i--)
+                                <option @if ($tahun == date('Y') - $i) selected @endif> {{ date('Y') - $i }}</option>
+                                @endfor
+                                <option @if ($tahun == date('Y')) selected @endif>{{ date('Y') }}</option>
+                                @for ($i = 1; $i < 4; $i++)
+                                <option @if ($tahun == date('Y') + $i) selected @endif>{{ date('Y') + $i }}</option>
+                                @endfor
+                            </select>
+                        </form>
+                    </div>
+
+                    <div class="row">
+                        <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Strategic Initiative </h5>
+                        <h7 class="m-0 font-weight-bold text-primary" style="text-align: center;">Periode th {{$tahun}}</h7>
+                    </div> <br><br>
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead style="background-color: #F8F9FC;">
@@ -49,9 +72,15 @@
                                     <td style="background-color: {{color($user->level)}};">{{levelName($user->level)}}</td>
                                     <td>{{$user->level_name}}</td>
                                     <td>{{$user->name}}</td>
-                                    <td style="text-align:center; width: 10%;">{{getCountKPI($user->id)}}</td>
-                                    <td style="text-align:center; width: 10%;">{{getCountSIbyUser($user->id)}}</td>
-                                    <td style="text-align: center;"><a href="{{route('client.initiative.kpi', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td style="text-align:center; width: 10%;">{{getCountKPI($user->id,$tahun)}}</td>
+                                    <td style="text-align:center; width: 10%;">{{getCountSIbyUser($user->id, $tahun)}}</td>
+                                    <td style="text-align: center;">
+                                        @if (getCountKPI($user->id,$tahun) != 0)
+                                        <a href="{{route('client.initiative.kpi', ['idpersonnel'=>$user->id, 'tahun'=>$tahun])}}">
+                                            <button class="btn btn-primary btn-sm">Details</button>
+                                        </a>
+                                        @endif
+                                    </td>
                                 </tr>
                                 @endforeach                             
                             </tbody>
