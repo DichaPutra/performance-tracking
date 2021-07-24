@@ -33,7 +33,9 @@
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="card-header py-3 d-flex flex-row align-items-center">
+                    <!--back button--> 
+                    <a href="{{route('client.performancereport')}}" style="margin-right: 15px;"class="btn btn-sm btn-primary "><i class="fas fa-chevron-left"></i></a><br>
                     <h6 class="m-0 font-weight-bold text-primary float-left">Details</h6>
                 </div>
                 <!-- Card Body -->

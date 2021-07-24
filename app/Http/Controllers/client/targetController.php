@@ -216,7 +216,7 @@ class targetController extends Controller {
         target_kpi::where('id', $request->id_targetkpi)->delete();
 
         //redirect with succes message
-        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your kpi target has been deleted');
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your kpi target has been deleted')->with('tab', 'kpi');
     }
 
     public function activateTarget(Request $request)
