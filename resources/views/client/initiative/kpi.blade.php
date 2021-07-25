@@ -184,7 +184,7 @@
                                 <form method="POST" action="{{route('client.initiative.addinitiative')}}">
                                     @csrf
                                     <input name="id_user" type="hidden" value="{{$data->id}}">
-                                    <input name="id_target_kpi" type="hidden" value="{{$datakpi->id}}">
+                                    <input name="id_target_kpi" type="hidden" value="{{$datakpiselected->id}}">
                                     <input name="periode_th" type="hidden" value="{{$tahun}}">
 
                                     @livewire('addinitiative', ['id_user' => $data->id , 'id_target_kpi' => $datakpiselected->id, 'id_kpi_library' => $datakpiselected->id_kpi_library])
@@ -234,7 +234,7 @@
                                 <td>{{$datasi->si}}</td>
                                 <!--<td style="text-align: center;">5</td>-->
                                 <td style="width: 15%; text-align: center;">
-                                    <a href="{{route('client.initiative.actionplan')}}"><button class="btn btn-primary btn-sm">Details</button></a>
+                                    <a href="{{route('client.initiative.actionplan',['idpersonnel'=>$data->id, 'tahun'=>$tahun, 'idkpiselected'=>$datakpiselected->id, 'idsi'=>$datasi->id])}}"><button class="btn btn-primary btn-sm">Details</button></a>
                                     <a href="#" onclick="return confirm('All Action Plan related data will be deleted, Are you sure you want to delete this Initiative ? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
                                 </td>
                             </tr>

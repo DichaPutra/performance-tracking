@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\target_kpi;
 use App\Models\target_si;
 use App\Models\si_library;
+use App\Models\actionplan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -87,40 +88,9 @@ class initiativeController extends Controller {
         return view('client.initiative.kpi', ['data' => $data, 'datakpi' => $datakpi, 'tahun' => $request->tahun, 'datakpiselected' => $datakpiselected, 'datasi' => $datasi]);
     }
 
-    function initiative(Request $request)
-    {
-
-        //dd($request);
-        //Mengambil detail data personnel
-        $data = User::where('id', $request->idpersonnel)->first();
-
-        // guard (jika user yang dilihat bukan personnelnya)
-        if ($data == NULL)
-        {
-            return abort(403);
-        }
-        if ($data->client_parent != Auth::user()->id)
-        {
-            return abort(403);
-        }
-
-        //get data kpi with SO
-        $datakpi = DB::table('target_kpi')
-                ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
-                ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
-                ->where('target_kpi.id', $request->idkpi)
-                ->first();
-
-        // get data Target Strategic Inititives
-        $datasi = target_si::where('id_target_kpi', $request->idkpi)->get();
-
-
-        return view('client.initiative.initiative', ['data' => $data, 'datakpi' => $datakpi, 'datasi' => $datasi]);
-    }
-
     function addInitiative(Request $request)
     {
-        //dd($request);
+//        dd($request);
         if ($request->id_si_library == 0)
         {
             // if custom
@@ -153,4 +123,63 @@ class initiativeController extends Controller {
         }
     }
 
+    function actionplan(Request $request)
+    {
+        // request idpersonnel, tahun, datakpiselected, idsi
+        //dd($request);
+        //Mengambil detail data personnel
+        $data = User::where('id', $request->idpersonnel)->first();
+
+        //mengambil data actionplan where tahun, user, idsi
+        $datakpiselected = DB::table('target_kpi')
+                ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
+                ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library', 'range_period')
+                ->where('target_kpi.id', $request->idkpiselected)
+                ->first();
+
+        $datasi = target_si::where('id', $request->idsi)->first();
+        //dd($datakpiselected);
+        $actionplan = actionplan::where('id_user', $request->idpersonnel)
+                ->where('id_target_si', $request->idsi)
+                ->where('periode_th', $request->tahun)
+                ->get();
+
+
+        return view('client.initiative.actionplan', ['data' => $data,
+            'datakpiselected' => $datakpiselected,
+            'datasi' => $datasi,
+            'tahun' => $request->tahun,
+            'actionplan' => $actionplan]);
+    }
+
+    //    function initiative(Request $request)
+//    {
+//
+//        //dd($request);
+//        //Mengambil detail data personnel
+//        $data = User::where('id', $request->idpersonnel)->first();
+//
+//        // guard (jika user yang dilihat bukan personnelnya)
+//        if ($data == NULL)
+//        {
+//            return abort(403);
+//        }
+//        if ($data->client_parent != Auth::user()->id)
+//        {
+//            return abort(403);
+//        }
+//
+//        //get data kpi with SO
+//        $datakpi = DB::table('target_kpi')
+//                ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
+//                ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
+//                ->where('target_kpi.id', $request->idkpi)
+//                ->first();
+//
+//        // get data Target Strategic Inititives
+//        $datasi = target_si::where('id_target_kpi', $request->idkpi)->get();
+//
+//
+//        return view('client.initiative.initiative', ['data' => $data, 'datakpi' => $datakpi, 'datasi' => $datasi]);
+//    }
 }
