@@ -123,6 +123,18 @@ class initiativeController extends Controller {
         }
     }
 
+    function deleteInitiative(Request $request)
+    {
+        //dd($request);
+        //delete action plan child where idsi
+        actionplan::where('id_target_si',$request->idsi)->delete();
+        
+        //delete si
+        target_si::where('id',$request->idsi)->delete();
+        
+        return redirect()->back()->with('success', 'Success ! Strategic Initiative has been deleted');
+    }
+
     function actionplan(Request $request)
     {
         // request idpersonnel, tahun, datakpiselected, idsi

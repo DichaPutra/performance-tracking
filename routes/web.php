@@ -85,7 +85,8 @@ Route::middleware([ClientGuard::class])->group(function () {
     //Route::get('/client-initiative-initiative', [initiativeController::class, 'initiative'])->name('client.initiative.initiative');
     Route::get('/client-initiative-actionplan', [initiativeController::class, 'actionplan'])->name('client.initiative.actionplan');
     // -> logic
-    Route::post('/client-initiative-initiative', [initiativeController::class, 'addInitiative'])->name('client.initiative.addinitiative');
+    Route::post('/client-initiative-addinitiative', [initiativeController::class, 'addInitiative'])->name('client.initiative.addinitiative');
+    Route::post('/client-initiative-deleteinitiative', [initiativeController::class, 'deleteInitiative'])->name('client.initiative.deleteinitiative');
     Route::post('/client-initiative-addactionplan', [initiativeController::class, 'addActionPlan'])->name('client.initiative.addactionplan');
     Route::post('/client-initiative-deleteactionplan', [initiativeController::class, 'deleteActionPlan'])->name('client.initiative.deleteactionplan');
 });

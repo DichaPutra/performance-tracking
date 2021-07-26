@@ -256,8 +256,14 @@
                                     {{getCountActionPlan($datasi->id, $tahun)}}
                                 </td>
                                 <td style="width: 15%; text-align: center;">
-                                    <a href="{{route('client.initiative.actionplan',['idpersonnel'=>$data->id, 'tahun'=>$tahun, 'idkpiselected'=>$datakpiselected->id, 'idsi'=>$datasi->id])}}"><button class="btn btn-primary btn-sm">Details</button></a>
-                                    <a href="#" onclick="return confirm('All Action Plan related data will be deleted, Are you sure you want to delete this Initiative ? ');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                                    <form method="post" action="{{route('client.initiative.deleteinitiative')}}">
+                                        @csrf
+                                        <a href="{{route('client.initiative.actionplan',['idpersonnel'=>$data->id, 'tahun'=>$tahun, 'idkpiselected'=>$datakpiselected->id, 'idsi'=>$datasi->id])}}" class="btn btn-primary btn-sm">Details</a>
+                                        <input name="idsi" type="hidden" value="{{$datasi->id}}">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('All Action Plan related data will be deleted, Are you sure you want to delete this Initiative ? ');">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
 
