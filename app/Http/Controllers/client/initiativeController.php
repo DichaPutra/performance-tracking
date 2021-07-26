@@ -102,7 +102,7 @@ class initiativeController extends Controller {
             $addtargetsi->periode_th = $request->periode_th;
             $addtargetsi->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Success ! Strategic Initiative has been added');
         }
         else
         {
@@ -119,7 +119,7 @@ class initiativeController extends Controller {
             $addtargetsi->periode_th = $request->periode_th;
             $addtargetsi->save();
 
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Success ! Strategic Initiative has been added');
         }
     }
 
@@ -150,6 +150,28 @@ class initiativeController extends Controller {
             'datasi' => $datasi,
             'tahun' => $request->tahun,
             'actionplan' => $actionplan]);
+    }
+
+    function addActionPlan(Request $request)
+    {
+        // data need id_target_si, periode_th, id_user, idkpiselected
+        //dd($request);
+
+        $insertap = new actionplan;
+        $insertap->id_user = $request->id_user;
+        $insertap->id_target_si = $request->id_target_si;
+        $insertap->actionplan = $request->actionplan;
+        $insertap->periode_th = $request->tahun;
+        $insertap->save();
+
+        //redirect with succes message
+        return redirect()->route('client.initiative.actionplan', [
+                            'idpersonnel' => $request->id_user,
+                            'tahun' => $request->tahun,
+                            'idkpiselected' => $request->idkpiselected,
+                            'idsi' => $request->id_target_si
+                        ])
+                        ->with('success', 'Success ! Action Plan has been added');
     }
 
     //    function initiative(Request $request)

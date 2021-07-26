@@ -6,6 +6,7 @@ use App\Models\target_kpi;
 use App\Models\target_si;
 use App\Models\active_target_kpi;
 use App\Models\capaian_kpi;
+use App\Models\actionplan;
 
 // =======================================================
 // ========  TARGET FORMULA ===============
@@ -133,14 +134,20 @@ function getPeriodePerformance($id_user, $periode_th)
 
 function getCountSIbyUser($id_user, $tahun)
 {
-    $cout = target_si::where('id_user', $id_user)->where('periode_th', $tahun)->count();
-    return $cout;
+    $count = target_si::where('id_user', $id_user)->where('periode_th', $tahun)->count();
+    return $count;
 }
 
-function getCountSIbyKPI($id_target_kpi)
+function getCountSIbyKPI($id_target_kpi, $tahun)
 {
-    $cout = target_si::where('id_target_kpi', $id_target_kpi)->count();
-    return $cout;
+    $count = target_si::where('id_target_kpi', $id_target_kpi)->where('periode_th', $tahun)->count();
+    return $count;
+}
+
+function getCountActionPlan($idsi, $tahun)
+{
+    $count = actionplan::where('id_target_si', $idsi)->where('periode_th', $tahun)->count();
+    return $count;
 }
 ?>
 

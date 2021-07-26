@@ -86,6 +86,7 @@ Route::middleware([ClientGuard::class])->group(function () {
     Route::get('/client-initiative-actionplan', [initiativeController::class, 'actionplan'])->name('client.initiative.actionplan');
     // -> logic
     Route::post('/client-initiative-initiative', [initiativeController::class, 'addInitiative'])->name('client.initiative.addinitiative');
+    Route::post('/client-initiative-addactionplan', [initiativeController::class, 'addActionPlan'])->name('client.initiative.addactionplan');
 });
 
 // == PERSONNEL ROUTE ==
