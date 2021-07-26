@@ -116,7 +116,7 @@
 
 
             <div class="row">
-                <div class="col-md 8">
+                <div class="col-md-12">
                     <!--Card 2-->
                     <div class="card shadow mb-4 animated--grow-in">
                         <!-- Card Header - Dropdown -->
@@ -197,7 +197,17 @@
                                             <td style="text-align: center;">{{$loop->iteration}}</td>
                                             <td>{{$actionplan->actionplan}}</td>
                                             <td style="text-align: center; width: 10%">
-                                                <a href="#" onclick="return confirm('Are you sure you want to delete this Action Plan ?');"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>
+                                                <form method="post" action="{{route('client.initiative.deleteactionplan')}}">
+                                                    @csrf
+                                                    <input name="id_user"type="hidden" value="{{$data->id}}">
+                                                    <input name="id_target_si"type="hidden" value="{{$datasi->id}}">
+                                                    <input name="tahun"type="hidden" value="{{$tahun}}">
+                                                    <input name="idkpiselected" type="hidden" value="{{$datakpiselected->id}}">
+                                                    <input name="idactionplan"type="hidden" value="{{$actionplan->id}}">
+                                                    <button type="submit"class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Action Plan ?');">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -208,8 +218,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <!--Card 3-->
+<!--                <div class="col-md-4">
+                    Card 3
                     <div class="card shadow mb-4 animated--grow-in" data-spy="scroll" style="height: 710px">
                         <div
                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -226,10 +236,10 @@
                                         <a href="#" class="btn btn-primary btn-sm float-right" style="margin-top: 10px">Submit</a>
 
                                         <div class="input-group">
-<!--                                            <textarea class="form-control" rows="3"></textarea>
+                                            <textarea class="form-control" rows="3"></textarea>
                                             <span class="input-group-btn" >     
                                                 <a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>
-                                            </span>-->
+                                            </span>
                                         </div>
                                         <hr>
                                         <div class="scroll">
@@ -364,8 +374,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
+                </div>-->
 
             </div>
         </div>

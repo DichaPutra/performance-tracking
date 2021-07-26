@@ -174,6 +174,22 @@ class initiativeController extends Controller {
                         ->with('success', 'Success ! Action Plan has been added');
     }
 
+    function deleteActionPlan(Request $request)
+    {
+        // id idactionplan
+        actionplan::where('id', $request->idactionplan)->delete();
+
+        //redirect with succes message
+        return redirect()->route('client.initiative.actionplan', [
+                            'idpersonnel' => $request->id_user,
+                            'tahun' => $request->tahun,
+                            'idkpiselected' => $request->idkpiselected,
+                            'idsi' => $request->id_target_si
+                        ])
+                        ->with('success', 'Success ! Action Plan has been deleted');
+        //dd($request);
+    }
+
     //    function initiative(Request $request)
 //    {
 //
