@@ -14,6 +14,7 @@ use App\Http\Controllers\personnel\personnelHomeController;
 use App\Http\Controllers\personnel\personnelTargetController;
 use App\Http\Controllers\personnel\personnelCapaianController;
 use App\Http\Controllers\personnel\personnelPerformanceReportController;
+use App\Http\Controllers\personnel\personnelInitiativeController;
 use App\Http\Controllers\ChangePasswordController;
 // Middleware
 use App\Http\Middleware\ClientGuard;
@@ -108,7 +109,6 @@ Route::middleware([PersonnelGuard::class])->group(function () {
     // * target *
     Route::get('/personnel-target', [personnelTargetController::class, 'index'])->name('personnel.target');
 
-
     // * Capaian *
     // -> page
     Route::get('/personnel-capaian', [personnelCapaianController::class, 'index'])->name('personnel.capaian');
@@ -126,18 +126,13 @@ Route::middleware([PersonnelGuard::class])->group(function () {
     })->name('personnel.performancereport.kpi');
 
     // * Initiatives *
-    Route::get('/personnel-initiative-personnel', function () {
-        return view('personnel.initiative.personnel');
-    })->name('personnel.initiative.personnel');
-    Route::get('/personnel-initiative-kpi', function () {
-        return view('personnel.initiative.kpi');
-    })->name('personnel.initiative.kpi');
-    Route::get('/personnel-initiative-initiative', function () {
-        return view('personnel.initiative.initiative');
-    })->name('personnel.initiative.initiative');
-    Route::get('/personnel-initiative-actionplan', function () {
-        return view('personnel.initiative.actionplan');
-    })->name('personnel.initiative.actionplan');
+    Route::get('/personnel-initiative-kpi', [personnelInitiativeController::class, 'index'])->name('personnel.initiative.kpi');
+    Route::get('/personnel-initiative-actionplan', [personnelInitiativeController::class, 'actionplan'])->name('personnel.initiative.actionplan');
+    // -> logic
+    Route::post('/personnel-initiative-addinitiative', [personnelInitiativeController::class, 'addInitiative'])->name('personnel.initiative.addinitiative');
+    Route::post('/personnel-initiative-deleteinitiative', [personnelInitiativeController::class, 'deleteInitiative'])->name('personnel.initiative.deleteinitiative');
+    Route::post('/personnel-initiative-addactionplan', [personnelInitiativeController::class, 'addActionPlan'])->name('personnel.initiative.addactionplan');
+    Route::post('/personnel-initiative-deleteactionplan', [personnelInitiativeController::class, 'deleteActionPlan'])->name('personnel.initiative.deleteactionplan');
 });
 
 

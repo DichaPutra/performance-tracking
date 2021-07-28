@@ -33,7 +33,7 @@
 <hr class="sidebar-divider d-none d-md-block">
 
 <li class="nav-item @if($page=='initiative')active @endif">
-    <a class="nav-link" href="{{route('personnel.initiative.personnel')}}">
+    <a class="nav-link" href="{{route('personnel.initiative.kpi')}}">
         <i class="fas fa-fw fa-lightbulb"></i>
         <span>Initiative</span></a>
 </li>
