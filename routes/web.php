@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 // Controller
 use App\Http\Controllers\admin\adminHomeController;
+use App\Http\Controllers\admin\businessCategoriesController;
+use App\Http\Controllers\admin\dataLibraryController;
 use App\Http\Controllers\client\clientHomeController;
 use App\Http\Controllers\client\personnelController;
 use App\Http\Controllers\client\targetController;
@@ -39,7 +41,15 @@ Route::get('/change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
 
 // == ADMIN ROUTE ==
-Route::get('/admin-home', [adminHomeController::class, 'index'])->name('admin.home')->middleware('AdminGuard');
+Route::middleware([AdminGuard::class])->group(function () {
+    // * Home *
+    Route::get('/admin-home', [adminHomeController::class, 'index'])->name('admin.home');
+
+    // * Data Library *
+    Route::get('/admin-businesscategories', [businessCategoriesController::class, 'index'])->name('admin.datalibrary.businesscategories');
+    Route::get('/admin-datalibrary', [dataLibraryController::class, 'index'])->name('admin.datalibrary.datalibrary');
+});
+
 
 // == CLIENT ROUTE ==
 Route::middleware([ClientGuard::class])->group(function () {

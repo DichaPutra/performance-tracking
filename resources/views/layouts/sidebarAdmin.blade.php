@@ -4,12 +4,12 @@
 <!-- Divider -->
 <hr class="sidebar-divider">
 <!-- Heading -->
-<div class="sidebar-heading">
+<!--<div class="sidebar-heading">
     Main Function
-</div>
+</div>-->
 
-<li class="nav-item active">
-    <a class="nav-link" href="">
+<li class="nav-item @if($page=='adminHome') active @endif">
+    <a class="nav-link" href="{{route('admin.home')}}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
@@ -22,17 +22,24 @@
 </li>
 
 <!-- Nav Item - Charts -->
-<li class="nav-item">
-    <a class="nav-link" href="">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>KPI Library</span></a>
+<li class="nav-item @if($page=='dataLibrary') active @endif">
+    <a class="nav-link" href="" data-toggle="collapse" data-target="#collapseDataLibrary">
+        <i class="fas fa-fw fa-book"></i>
+        <span>Data Library</span>
+    </a>
+    <div id="collapseDataLibrary" class="collapse">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{route('admin.datalibrary.businesscategories')}}">Business Categories</a>
+            <a class="collapse-item" href="{{route('admin.datalibrary.datalibrary')}}">SO KPI SI Library</a>
+        </div>
+    </div>
 </li>
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
-<div class="sidebar-heading">
+<!--<div class="sidebar-heading">
     Account Management
-</div>
+</div>-->
 
 <!--Change Password-->
 <li class="nav-item @if($page=='changepass')active @endif">

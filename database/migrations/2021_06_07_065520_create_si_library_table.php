@@ -17,7 +17,6 @@ class CreateSiLibraryTable extends Migration {
             $table->unsignedBigInteger('id_kpi_library');
             $table->foreign('id_kpi_library')->references('id')->on('kpi_library');
             $table->string('si');
-            $table->timestamps();
         });
 
         //insert
@@ -90,14 +89,6 @@ class CreateSiLibraryTable extends Migration {
                     ['id_kpi_library' => '42', 'si' => 'Analisis lay-out gudang dan analisis pergerakan persediaan '],
                     ['id_kpi_library' => '43', 'si' => 'Analisis turn over persediaan barang per item barang dan menghitung ulang persediaan minimal tiap item barang'],
                     //['id_kpi_library' => '', 'si' => ''],
-
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                 ]
         );
     }

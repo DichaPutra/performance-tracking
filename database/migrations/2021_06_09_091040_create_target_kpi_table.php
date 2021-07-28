@@ -24,9 +24,9 @@ class CreateTargetKpiTable extends Migration {
             $table->string('kpi');
             $table->string('unit'); //satuan
             $table->string('measurement'); //measurement =   percentages , absolute number , index , rating , rangking
+            $table->string('polarization'); // minimize / maximize
             $table->bigInteger('target');
             $table->bigInteger('weight')->nullable();
-            $table->string('polarization'); // minimize / maximize
             $table->string('timeframe_target'); // Bulanan, Triwulan, Quartal, Semester, Tahunan
             $table->bigInteger('periode_th');
             $table->bigInteger('starting_bln')->nullable();
