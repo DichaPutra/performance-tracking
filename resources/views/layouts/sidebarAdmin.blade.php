@@ -25,12 +25,12 @@
 <li class="nav-item @if($page=='dataLibrary') active @endif">
     <a class="nav-link" href="" data-toggle="collapse" data-target="#collapseDataLibrary">
         <i class="fas fa-fw fa-book"></i>
-        <span>Data Library</span>
+        <span>Library</span>
     </a>
     <div id="collapseDataLibrary" class="collapse">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{route('admin.datalibrary.businesscategories')}}">Business Categories</a>
-            <a class="collapse-item" href="{{route('admin.datalibrary.datalibrary')}}">SO KPI SI Library</a>
+            <a class="collapse-item" href="{{route('admin.datalibrary.datalibrary')}}">Data Library</a>
         </div>
     </div>
 </li>
