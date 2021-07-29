@@ -85,9 +85,6 @@ Route::middleware([ClientGuard::class])->group(function () {
     // ** Performance Report **
     Route::get('/client-performancereport', [performanceReportController::class, 'index'])->name('client.performancereport');
     Route::get('/client-performancereport-details', [performanceReportController::class, 'details'])->name('client.performancereport.details');
-    Route::get('/client-performancereport-kpi', function () {
-        return view('client.performancereport.kpi');
-    })->name('client.performancereport.kpi');
 
     // ** Initiatives **
     // -> page
@@ -118,12 +115,6 @@ Route::middleware([PersonnelGuard::class])->group(function () {
 
     // * Performance Report *
     Route::get('/personnel-performancereport', [personnelPerformanceReportController::class, 'index'])->name('personnel.performancereport');
-    Route::get('/personnel-performancereport-details', function () {
-        return view('personnel.performancereport.details');
-    })->name('personnel.performancereport.details');
-    Route::get('/personnel-performancereport-kpi', function () {
-        return view('personnel.performancereport.kpi');
-    })->name('personnel.performancereport.kpi');
 
     // * Initiatives *
     Route::get('/personnel-initiative-kpi', [personnelInitiativeController::class, 'index'])->name('personnel.initiative.kpi');

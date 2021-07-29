@@ -15,6 +15,13 @@ class personnelPerformanceReportController extends Controller {
     function index(Request $request)
     {
         // data in request : tahun, idpersonnel
+        
+        // all tahun active untuk pilih  tahun periode
+        $alltahun = active_target_kpi::groupby('periode_th')
+                ->select('periode_th')
+                ->where('id_user', Auth::user()->id)
+                ->get();
+
 
         if ($request->periode_th == null)
         {
@@ -105,7 +112,8 @@ class personnelPerformanceReportController extends Controller {
             'bulanScore' => $bulanScore,
             'bulanChart' => $bulanChart,
             'capaianChart' => $capaianChart,
-            'dropdownbln' => $dropdownbln
+            'dropdownbln' => $dropdownbln,
+            'alltahun' => $alltahun
         ]);
 
 //        return view('personnel.performancereport.performancereport');

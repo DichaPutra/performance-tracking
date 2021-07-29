@@ -28,13 +28,27 @@
         </ol>
     </nav><br>
 
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-chalkboard-teacher"></i> Performance Report</h1>
+    </div>
+
     <!-- Content Row -->
     <div class="row">
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="card-header">
                     <h6 class="m-0 font-weight-bold text-primary float-left">Details</h6>
+
+                    <form method="get" action="{{route('personnel.performancereport')}}" style="margin-top: -20px;">
+                        <select name="periode_th" onchange="this.form.submit()" class="form-control form-control-sm float-right" style="width: 20%;">
+                            @foreach ($alltahun as $ath)
+                            <option @if ($periode_th == $ath->periode_th) selected @endif value="{{$ath->periode_th}}">{{$ath->periode_th}}</option>
+                            @endforeach
+                        </select>
+                    </form>
+
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -249,9 +263,6 @@
                                         </td>
                                         <td style="text-align:center;">
                                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailsCapaianModal{{$loop->iteration}}">Details</button>
-                                            <!--<a href="{{ route('client.performancereport.kpi') }}">
-                                                <button class="btn btn-primary btn-sm">Details</button>
-                                            </a>-->
                                         </td>
                                     </tr>
 

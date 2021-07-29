@@ -249,9 +249,6 @@
                                         </td>
                                         <td style="text-align:center;">
                                             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailsCapaianModal{{$loop->iteration}}">Details</button>
-                                            <!--<a href="{{ route('client.performancereport.kpi') }}">
-                                                <button class="btn btn-primary btn-sm">Details</button>
-                                            </a>-->
                                         </td>
                                     </tr>
 

@@ -20,6 +20,12 @@ class personnelInitiativeController extends Controller {
         //Mengambil detail data personnel
         $data = User::where('id', Auth::user()->id)->first();
 
+        // all tahun active untuk modal pilih bulan tahun
+        $alltahun = active_target_kpi::groupby('periode_th')
+                ->select('periode_th')
+                ->where('id_user', Auth::user()->id)
+                ->get();
+
         //tahun
         if ($request->periode_th == null)
         {
@@ -59,7 +65,14 @@ class personnelInitiativeController extends Controller {
             $datasi = null;
         }
 
-        return view('personnel.initiative.kpi', ['data' => $data, 'datakpi' => $datakpi, 'tahun' => $periodeth, 'datakpiselected' => $datakpiselected, 'datasi' => $datasi]);
+        return view('personnel.initiative.kpi', [
+            'data' => $data,
+            'datakpi' => $datakpi,
+            'tahun' => $periodeth,
+            'periode_th' => $periodeth,
+            'datakpiselected' => $datakpiselected,
+            'datasi' => $datasi,
+            'alltahun' => $alltahun]);
     }
 
     function addInitiative(Request $request)

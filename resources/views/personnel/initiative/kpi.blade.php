@@ -36,15 +36,22 @@
         <div class="col-xl-12 col-lg-12">
             <div class="row">
                 <div class="col-md-12">
-                    
+
                     <!--Card 1-->
                     <div class="card shadow mb-4 animated--grow-in">
                         <!-- Card Header - Dropdown -->
 
 
-                        <div class="card-header py-3 d-flex flex-row align-items-center">
-
+                        <div class="card-header">
                             <h6 class="m-0 font-weight-bold text-primary">Personnel</h6>
+                            <form method="get" action="{{route('personnel.initiative.kpi')}}" style="margin-top: -20px;">
+                                <select name="periode_th" onchange="this.form.submit()" class="form-control form-control-sm float-right" style="width: 20%;">
+                                    @foreach ($alltahun as $ath)
+                                    <option @if ($periode_th == $ath->periode_th) selected @endif value="{{$ath->periode_th}}">{{$ath->periode_th}}</option>
+                                    @endforeach
+                                </select>
+                            </form>
+
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
