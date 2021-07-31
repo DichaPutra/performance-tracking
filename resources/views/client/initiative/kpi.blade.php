@@ -234,42 +234,42 @@
                         </div>
                     </div>
 
-
                     <button class="btn btn-md btn-primary float-right" style="margin-bottom: 15px;"data-bs-toggle="modal" data-bs-target="#modalAdd"><i class="fas fa-plus"></i></button>
                     <br>
 
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead style="background-color: #F8F9FC;">
-                            <tr>
-                                <th style="text-align: center;">No</th>
-                                <th style="text-align: center;">Initiative</th>
-                                <th style="text-align: center;">Action Plan</th>
-                                <th style="width: 15%"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($datasi as $datasi)
-                            <tr>
-                                <td style="text-align: center;">{{ $loop->iteration }}</td>
-                                <td>{{$datasi->si}}</td>
-                                <td style="text-align: center;">
-                                    {{getCountActionPlan($datasi->id, $tahun)}}
-                                </td>
-                                <td style="width: 15%; text-align: center;">
-                                    <form method="post" action="{{route('client.initiative.deleteinitiative')}}">
-                                        @csrf
-                                        <a href="{{route('client.initiative.actionplan',['idpersonnel'=>$data->id, 'tahun'=>$tahun, 'idkpiselected'=>$datakpiselected->id, 'idsi'=>$datasi->id])}}" class="btn btn-primary btn-sm">Details</a>
-                                        <input name="idsi" type="hidden" value="{{$datasi->id}}">
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('All Action Plan related data will be deleted, Are you sure you want to delete this Initiative ? ');">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead style="background-color: #F8F9FC;">
+                                <tr>
+                                    <th style="text-align: center;">No</th>
+                                    <th style="text-align: center;">Initiative</th>
+                                    <th style="text-align: center;">Action Plan</th>
+                                    <th style="width: 15%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($datasi as $datasi)
+                                <tr>
+                                    <td style="text-align: center;">{{ $loop->iteration }}</td>
+                                    <td>{{$datasi->si}}</td>
+                                    <td style="text-align: center;">
+                                        {{getCountActionPlan($datasi->id, $tahun)}}
+                                    </td>
+                                    <td style="width: 15%; text-align: center;">
+                                        <form method="post" action="{{route('client.initiative.deleteinitiative')}}">
+                                            @csrf
+                                            <a href="{{route('client.initiative.actionplan',['idpersonnel'=>$data->id, 'tahun'=>$tahun, 'idkpiselected'=>$datakpiselected->id, 'idsi'=>$datasi->id])}}" class="btn btn-primary btn-sm">Details</a>
+                                            <input name="idsi" type="hidden" value="{{$datasi->id}}">
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('All Action Plan related data will be deleted, Are you sure you want to delete this Initiative ? ');">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
             </div>

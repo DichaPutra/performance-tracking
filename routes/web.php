@@ -46,9 +46,14 @@ Route::middleware([AdminGuard::class])->group(function () {
     // * Home *
     Route::get('/admin-home', [adminHomeController::class, 'index'])->name('admin.home');
 
-    // * Data Library *
+    // * Data Library 
+    // -> page
     Route::get('/admin-businesscategories', [businessCategoriesController::class, 'index'])->name('admin.datalibrary.businesscategories');
     Route::get('/admin-datalibrary', [dataLibraryController::class, 'index'])->name('admin.datalibrary.datalibrary');
+    // -> logic
+    Route::post('/admin-addbusinesscategories', [businessCategoriesController::class, 'addBusinessCategories'])->name('admin.datalibrary.addbusinesscategories');
+    Route::post('/admin-addbisnis', [businessCategoriesController::class, 'addBisnis'])->name('admin.datalibrary.addbisnis');
+    Route::post('/admin-deletebisnis', [businessCategoriesController::class, 'deleteBisnis'])->name('admin.datalibrary.deletebisnis');
 });
 
 

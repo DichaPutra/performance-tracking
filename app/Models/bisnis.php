@@ -9,9 +9,10 @@ class bisnis extends Model {
 
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'bisnis';
     protected $fillable = [
-        'bisnis'
+        'id_bisnis_categories', 'bisnis'
     ];
 
 }

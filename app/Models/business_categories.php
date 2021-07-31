@@ -9,6 +9,7 @@ class business_categories extends Model {
 
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'business_categories';
     protected $fillable = [
         'category'
