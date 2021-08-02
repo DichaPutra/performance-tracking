@@ -14,6 +14,7 @@
     <!--Breadcrumb-->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Library</li>
             <li class="breadcrumb-item active" aria-current="page">Business Categories</li>
         </ol>
     </nav><br>

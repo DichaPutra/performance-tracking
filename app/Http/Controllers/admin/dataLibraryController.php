@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\bisnis;
 use App\Models\so_library;
+use App\Models\kpi_library;
 use App\Models\business_categories;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -46,7 +47,42 @@ class dataLibraryController extends Controller {
         $addso->save();
 
         //redirect back with success
-        return redirect()->back()->with('success', 'Success ! bisnis has been added');
+        return redirect()->back()->with('success', 'Success ! Strategic Objective Library has been added');
+    }
+
+    function kpilibrary(Request $request)
+    {
+        // data in = idso
+        //dd($request);
+        $dataso = so_library::where('id', $request->idso)->first();
+        $datakpi = kpi_library::where('id_so_library', $request->idso)->get();
+
+        return view('admin.datalibrary.kpilibrary', [
+            'dataso' => $dataso,
+            'datakpi' => $datakpi
+        ]);
+    }
+
+    function addKpi(Request $request)
+    {
+        // data in : id_so_library, kpi, unit, measurement, polarization
+        //dd($request);
+        //input data
+        $datakpi = new kpi_library;
+        $datakpi->id_so_library = $request->id_so_library;
+        $datakpi->kpi = $request->kpi;
+        $datakpi->unit = $request->unit;
+        $datakpi->measurement = $request->measurement;
+        $datakpi->polarization = $request->polarization;
+        $datakpi->save();
+
+        //redirect back with success
+        return redirect()->back()->with('success', 'Success ! KPI Library has been added');
+    }
+
+    function silibrary(Request $request)
+    {
+        dd($request);
     }
 
 }

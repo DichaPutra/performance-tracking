@@ -14,6 +14,7 @@
     <!--Breadcrumb-->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Library</li>
             <li class="breadcrumb-item active" aria-current="page">Data Library</li>
         </ol>
     </nav><br>
@@ -21,9 +22,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-book"></i> Data Library</h1>
-        <!--        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                    <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
-                </a>-->
     </div>
 
     @if ( (session('success')))
@@ -132,7 +130,7 @@
                                 {{getKpiLibraryCount($so->id)}}
                             </td>
                             <td style="text-align: center;">
-                                <a class="btn btn-primary btn-sm" href="">Detail</a>
+                                <a class="btn btn-primary btn-sm" href="{{route('admin.datalibrary.kpilibrary',['idso'=>$so->id])}}">Detail</a>
                             </td>
                         </tr>
                         @endforeach

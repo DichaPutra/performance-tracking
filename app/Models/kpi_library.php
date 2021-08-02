@@ -9,6 +9,7 @@ class kpi_library extends Model {
 
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'kpi_library';
     protected $fillable = [
         'id_so', 'kpi', 'measurement', 'polarization'
