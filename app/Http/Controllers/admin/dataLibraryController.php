@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\bisnis;
 use App\Models\so_library;
 use App\Models\kpi_library;
+use App\Models\si_library;
 use App\Models\business_categories;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -66,7 +67,6 @@ class dataLibraryController extends Controller {
     function addKpi(Request $request)
     {
         // data in : id_so_library, kpi, unit, measurement, polarization
-        //dd($request);
         //input data
         $datakpi = new kpi_library;
         $datakpi->id_so_library = $request->id_so_library;
@@ -82,7 +82,41 @@ class dataLibraryController extends Controller {
 
     function silibrary(Request $request)
     {
-        dd($request);
+        //data in = idso, idkpi
+        //dd($request);
+        $dataso = so_library::where('id', $request->idso)->first();
+        $datakpi = kpi_library::where('id', $request->idkpi)->first();
+        $datasi = si_library::where('id_kpi_library', $request->idkpi)->get();
+
+        return view('admin.datalibrary.silibrary', [
+            'dataso' => $dataso,
+            'datakpi' => $datakpi,
+            'datasi' => $datasi
+        ]);
+    }
+
+    function addSi(Request $request)
+    {
+        // data in = id_kpi_library, si
+        //input data
+        $datasi = new si_library;
+        $datasi->id_kpi_library = $request->id_kpi_library;
+        $datasi->si = $request->si;
+        $datasi->save();
+
+        //redirect back with success
+        return redirect()->back()->with('success', 'Success ! Strategic Initiative Library has been added');
+    }
+
+    function deleteSi(Request $request)
+    {
+        // data in = idsi
+        
+        //delete si library
+        si_library::where('id', $request->idsi)->delete();
+        
+        //redirect back with success
+        return redirect()->back()->with('success', 'Success ! SI Library has been deleted');
     }
 
 }

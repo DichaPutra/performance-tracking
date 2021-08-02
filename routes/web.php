@@ -58,6 +58,9 @@ Route::middleware([AdminGuard::class])->group(function () {
     Route::post('/admin-deletebisnis', [businessCategoriesController::class, 'deleteBisnis'])->name('admin.datalibrary.deletebisnis');
     Route::post('/admin-addso', [dataLibraryController::class, 'addSo'])->name('admin.datalibrary.addso');
     Route::post('/admin-addkpi', [dataLibraryController::class, 'addKpi'])->name('admin.datalibrary.addkpi');
+    Route::post('/admin-addsi', [dataLibraryController::class, 'addSi'])->name('admin.datalibrary.addsi');
+    Route::post('/admin-deletesi', [dataLibraryController::class, 'deleteSi'])->name('admin.datalibrary.deletesi');
+    
 });
 
 
