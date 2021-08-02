@@ -54,6 +54,7 @@ Route::middleware([AdminGuard::class])->group(function () {
     Route::post('/admin-addbusinesscategories', [businessCategoriesController::class, 'addBusinessCategories'])->name('admin.datalibrary.addbusinesscategories');
     Route::post('/admin-addbisnis', [businessCategoriesController::class, 'addBisnis'])->name('admin.datalibrary.addbisnis');
     Route::post('/admin-deletebisnis', [businessCategoriesController::class, 'deleteBisnis'])->name('admin.datalibrary.deletebisnis');
+    Route::post('/admin-addso', [dataLibraryController::class, 'addSo'])->name('admin.datalibrary.addso');
 });
 
 
