@@ -11,10 +11,8 @@ use App\Models\actionplan;
 // =======================================================
 // ========  TARGET FORMULA ===============
 // =======================================================
-function color($level)
-{
-    switch ($level)
-    {
+function color($level) {
+    switch ($level) {
         case 0:
             return "#BDD7EE";
             break;
@@ -27,10 +25,8 @@ function color($level)
     }
 }
 
-function levelName($level)
-{
-    switch ($level)
-    {
+function levelName($level) {
+    switch ($level) {
         case 0:
             return "0. Corporate";
             break;
@@ -43,79 +39,67 @@ function levelName($level)
     }
 }
 
-function getRangePeriod($id_user, $tahun)
-{
+function getRangePeriod($id_user, $tahun) {
     $period = target_kpi::where('id_user', $id_user)->where('periode_th', $tahun)->first();
-    if ($period == null)
-    {
+    if ($period == null) {
         return 'n/a';
-    }
-    else
-    {
+    } else {
         return $period['range_period'];
     }
 }
 
-function getCountSO($id_user, $tahun)
-{
+function getCountSO($id_user, $tahun) {
     $count = target_so::where('id_user', $id_user)->where('periode_th', $tahun)->count();
     return $count;
 }
 
-function getCountKPI($id_user, $tahun)
-{
+function getCountKPI($id_user, $tahun) {
     $count = target_kpi::where('id_user', $id_user)->where('periode_th', $tahun)->count();
     return $count;
 }
 
-function getCountSI($id_user, $tahun)
-{
+function getCountSI($id_user, $tahun) {
     $count = target_si::where('id_user', $id_user)->where('periode_th', $tahun)->count();
     return $count;
 }
 
-function getStatusTarget($id_user, $tahun)
-{
+function getStatusTarget($id_user, $tahun) {
     $count = target_kpi::where('id_user', $id_user)->where('periode_th', $tahun)->sum('is_active');
-    if ($count == 0)
-    {
+    if ($count == 0) {
         $text = "Not Active";
-    }
-    else
-    {
+    } else {
         $text = 'Active';
     }
     return $text;
 }
 
-function getTargetbyMonth($id_user, $bulan, $tahun, $idtargetkpi)
-{
+function getTargetbyMonth($id_user, $idtargetkpi, $bulan, $tahun) {
     $target = active_target_kpi::where('id_user', $id_user)
             ->where('id_target_kpi', $idtargetkpi)
             ->where('bulan', $bulan)
-            ->where('periode_th', $tahun)
+            ->where('tahun', $tahun)
             ->first();
     //get data from array first();
-    $targetbln = $target['target'];
+    //var_dump($target);
+    if ($target == null) {
+        $targetbln = '-';
+    } else {
+        $targetbln = $target['target'];
+    }
 
     return $targetbln;
 }
 
-function checkActiveTarget($id_user, $bulan, $tahun)
-{
+function checkActiveTarget($id_user, $bulan, $tahun) {
     $cekActive = active_target_kpi::where('id_user', $id_user)->where('bulan', $bulan)->where('tahun', $tahun)->first();
     return $cekActive['bulan'];
 }
 
-function checkTargetTerakhir($id_user, $tahun)
-{
+function checkTargetTerakhir($id_user, $tahun) {
     $cekActive = active_target_kpi::where('id_user', $id_user)->where('tahun', $tahun)->orderBy('bulan', 'desc')->first();
-    if ($cekActive == null)
-    {
+    if ($cekActive == null) {
         return 0;
-    }
-    else
-    {
+    } else {
         return $cekActive['bulan'];
     }
 }
@@ -124,17 +108,13 @@ function checkTargetTerakhir($id_user, $tahun)
 // ========  PERFORMANCE REPORT FORMULA ===============
 // =======================================================
 
-function getPeriodePerformance($id_user, $periode_th)
-{
+function getPeriodePerformance($id_user, $periode_th) {
     $sumweightedscore = capaian_kpi::where('id_user', $id_user)->where('periode_th', $periode_th)->sum('weightedscore');
     $sumweight = capaian_kpi::where('id_user', $id_user)->where('periode_th', $periode_th)->sum('weight');
 
-    if ($sumweight == 0)
-    {
+    if ($sumweight == 0) {
         $performance = 'n/a';
-    }
-    else
-    {
+    } else {
         $performance = round($sumweightedscore / $sumweight, 2);
     }
 
@@ -146,20 +126,17 @@ function getPeriodePerformance($id_user, $periode_th)
 // =======================================================
 
 
-function getCountSIbyUser($id_user, $tahun)
-{
+function getCountSIbyUser($id_user, $tahun) {
     $count = target_si::where('id_user', $id_user)->where('periode_th', $tahun)->count();
     return $count;
 }
 
-function getCountSIbyKPI($id_target_kpi, $tahun)
-{
+function getCountSIbyKPI($id_target_kpi, $tahun) {
     $count = target_si::where('id_target_kpi', $id_target_kpi)->where('periode_th', $tahun)->count();
     return $count;
 }
 
-function getCountActionPlan($idsi, $tahun)
-{
+function getCountActionPlan($idsi, $tahun) {
     $count = actionplan::where('id_target_si', $idsi)->where('periode_th', $tahun)->count();
     return $count;
 }

@@ -163,7 +163,7 @@
                                     @if($bln == 12)
                                     <?php $bln = 1 ?>
                                     @else
-                                    <?php $bln ++ ?>
+                                    <?php $bln++ ?>
                                     @endif
                                     @endfor
 
@@ -176,13 +176,17 @@
                                     <!--<td>{{$act->so}}</td>-->
                                     <td style="vertical-align: middle;">{{$act->kpi}} <b>({{$act->unit}})</b></td>
                                     <!--<td style="vertical-align: middle;">{{$act->timeframe_target}}</td>-->
-                                    <?php $bln = $startingbln ?>
+                                    <?php
+                                    $bln = $startingbln;
+                                    $th = $tahun;
+                                    ?>
                                     @for($i = 0; $i<12; $i++)
-                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, $bln, $tahun, $act->id_target_kpi)}}</td>
+                                    <!--{{$data->id}} {{$act->id_target_kpi}}-->
+                                    <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, $act->id_target_kpi, $bln, $th)}} </td>
                                     @if($bln == 12)
-                                    <?php $bln = 1 ?>
+                                    <?php $bln = 1; $th++; ?>
                                     @else
-                                    <?php $bln ++ ?>
+                                    <?php $bln++ ?>
                                     @endif
                                     @endfor
                                 </tr>
