@@ -157,11 +157,17 @@
                                     <!--<th>SO</th>-->
                                     <th>KPI</th>
                                     <!--<th>Timeframe</th>-->
-                                    <?php $bln = $startingbln ?>
+                                    <?php
+                                    $bln = $startingbln;
+                                    $th = $tahun;
+                                    ?>
                                     @for($i = 0; $i<12; $i++)
-                                    <th style="text-align: center;">{{$bln}}</th>
+                                    <th style="text-align: center;">{{$bln}}/{{$th}}</th>
                                     @if($bln == 12)
-                                    <?php $bln = 1 ?>
+                                    <?php
+                                    $bln = 1;
+                                    $th++;
+                                    ?>
                                     @else
                                     <?php $bln++ ?>
                                     @endif
@@ -184,9 +190,12 @@
                                     <!--{{$data->id}} {{$act->id_target_kpi}}-->
                                     <td style="vertical-align: middle; text-align: center;">{{getTargetbyMonth($data->id, $act->id_target_kpi, $bln, $th)}} </td>
                                     @if($bln == 12)
-                                    <?php $bln = 1; $th++; ?>
+                                    <?php
+                                    $bln = 1;
+                                    $th++;
+                                    ?>
                                     @else
-                                    <?php $bln++ ?>
+<?php $bln++ ?>
                                     @endif
                                     @endfor
                                 </tr>
