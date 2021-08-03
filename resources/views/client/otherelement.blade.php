@@ -110,7 +110,14 @@ function checkActiveTarget($id_user, $bulan, $tahun)
 function checkTargetTerakhir($id_user, $tahun)
 {
     $cekActive = active_target_kpi::where('id_user', $id_user)->where('tahun', $tahun)->orderBy('bulan', 'desc')->first();
-    return $cekActive['bulan'];
+    if ($cekActive == null)
+    {
+        return 0;
+    }
+    else
+    {
+        return $cekActive['bulan'];
+    }
 }
 
 // =======================================================
