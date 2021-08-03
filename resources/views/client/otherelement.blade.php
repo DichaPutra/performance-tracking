@@ -46,7 +46,14 @@ function levelName($level)
 function getRangePeriod($id_user, $tahun)
 {
     $period = target_kpi::where('id_user', $id_user)->where('periode_th', $tahun)->first();
-    return $period['range_period'];
+    if ($period == null)
+    {
+        return 'n/a';
+    }
+    else
+    {
+        return $period['range_period'];
+    }
 }
 
 function getCountSO($id_user, $tahun)
