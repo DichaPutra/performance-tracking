@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+//Auth Controller
+use App\Http\Controllers\Auth\VerificationEmailController;
 // Controller
 use App\Http\Controllers\admin\adminHomeController;
 use App\Http\Controllers\admin\businessCategoriesController;
@@ -36,7 +39,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
+//Auth::routes();
+Route::get('/email/verify/{id}/{hash}', [VerificationEmailController::class, '__invoke'])
+    ->middleware(['signed', 'throttle:6,1'])
+    ->name('verification.verify');
+
+
 // == GENERAL FUNCTION ==
 Route::get('/change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
@@ -65,7 +74,7 @@ Route::middleware([AdminGuard::class])->group(function () {
 
 
 // == CLIENT ROUTE ==
-Route::middleware([ClientGuard::class])->group(function () {
+Route::middleware([ClientGuard::class,'verified'])->group(function () {
     // * Home *
     Route::get('/client-home', [clientHomeController::class, 'index'])->name('client.home');
 
