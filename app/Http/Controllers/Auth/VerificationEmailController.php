@@ -25,7 +25,7 @@ class VerificationEmailController extends Controller {
 
         $message = __('Your email has been verified.');
 
-        return redirect('login')->with('status', $message); //if user is already logged in it will redirect to the dashboard page
+        return redirect('login')->with('success', 'Success ! Your email has been verified.');; //if user is already logged in it will redirect to the dashboard page
     }
 
 }

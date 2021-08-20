@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 //Auth Controller
 use App\Http\Controllers\Auth\VerificationEmailController;
+use App\Http\Controllers\HomeRouteController;
 // Controller
 use App\Http\Controllers\admin\adminHomeController;
 use App\Http\Controllers\admin\businessCategoriesController;
@@ -38,6 +39,8 @@ use App\Http\Middleware\PersonnelGuard;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', [HomeRouteController::class, 'index'])->name('home');
 
 Auth::routes(['verify'=>true]);
 //Auth::routes();
@@ -121,7 +124,7 @@ Route::middleware([ClientGuard::class,'verified'])->group(function () {
 });
 
 // == PERSONNEL ROUTE ==
-Route::middleware([PersonnelGuard::class])->group(function () {
+Route::middleware([PersonnelGuard::class, 'verified'])->group(function () {
     Route::get('/personnel-home', [personnelHomeController::class, 'index'])->name('personnel.home')->middleware('PersonnelGuard');
 
     // * target *
@@ -146,33 +149,3 @@ Route::middleware([PersonnelGuard::class])->group(function () {
     Route::post('/personnel-initiative-addactionplan', [personnelInitiativeController::class, 'addActionPlan'])->name('personnel.initiative.addactionplan');
     Route::post('/personnel-initiative-deleteactionplan', [personnelInitiativeController::class, 'deleteActionPlan'])->name('personnel.initiative.deleteactionplan');
 });
-
-
-
-//DUMP AREA
-//    // Target 2 (x)
-//    Route::get('/client-target-strategicobjective', function () {
-//        return view('client.target2.strategicobjective');
-//    })->name('client.target.strategicobjective');
-//    Route::get('/client-target-kpi', function () {
-//        return view('client.target2.kpi');
-//    })->name('client.target.kpi');
-//    Route::get('/client-target-actionplan', function () {
-//        return view('client.target2.actionplan');
-//    })->name('client.target.actionplan');
-//    Route::get('/client-target-actionplandetail', function () {
-//        return view('client.target2.actionplandetail');
-//    })->name('client.personnel.actionplandetail');
-//
-//    // ** KPI ** (X)
-//    Route::get('/client-kpi', function () {
-//        return view('client.kpi.kpi');
-//    })->name('client.kpi');
-//    Route::get('/client-kpi-details', function () {
-//        return view('client.kpi.details');
-//    })->name('client.kpi.details');
-//
-//    // * Report * (X)
-//    Route::get('/client-report-viewreport', function () {
-//        return view('client.report.viewreport');
-//    })->name('client.report.viewreport');
