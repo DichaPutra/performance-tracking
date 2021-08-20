@@ -35,7 +35,7 @@
                 <!-- Sidebar - Brand -->
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}" style="margin-left: -15px;">
                     <div class="sidebar-brand-icon">
-                        <img src="image/logo3.png" alt="" style="width: 50%">
+                        <img src="{{asset('/image/logo3.png')}}" alt="" style="width: 50%">
                         <!--<i class="fas fa-laugh-wink"></i>-->
                     </div>
                     <div class="sidebar-brand-text" style="font-size: small;text-align: left;"><b>Performance</b><br><h5>Tracking</h5></div>
@@ -94,8 +94,12 @@
                                  aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    {{ Auth::user()->email }}
                                 </a>
+<!--                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>-->
                                 <a class="dropdown-item" href="{{route('change.password')}}">
                                     <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Change Password
@@ -165,12 +169,12 @@
         <script src="js/demo/chart-pie-demo.js"></script>
 
         <script>
-if ($(window).width() > 514) {
-    $('#accordionSidebar').removeClass('toggled');
+                                       if ($(window).width() > 514) {
+                                           $('#accordionSidebar').removeClass('toggled');
 
-} else {
-    $('#accordionSidebar').addClass('toggled');
-}
+                                       } else {
+                                           $('#accordionSidebar').addClass('toggled');
+                                       }
         </script>
         @yield('script')
         @livewireScripts 

@@ -44,10 +44,10 @@ Route::get('/home', [HomeRouteController::class, 'index'])->name('home');
 
 Auth::routes(['verify'=>true]);
 //Auth::routes();
-Route::get('/email/verify/{id}/{hash}', [VerificationEmailController::class, '__invoke'])
-    ->middleware(['signed', 'throttle:6,1'])
-    ->name('verification.verify');
-
+//Route::get('/email/verify/{id}/{hash}', [VerificationEmailController::class, '__invoke'])
+//    ->middleware(['signed', 'throttle:6,1'])
+//    ->name('verification.verify');
+// custom listener verified email
 
 // == GENERAL FUNCTION ==
 Route::get('/change-password', [ChangePasswordController::class, 'index']);
