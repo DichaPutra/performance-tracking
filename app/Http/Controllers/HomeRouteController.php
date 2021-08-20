@@ -8,7 +8,9 @@ class HomeRouteController extends Controller {
 
     public function index()
     {
+        // Reset password & verified account success messages
         return view('auth.verifysuccess');
+        
 //        if (auth()->user()->role == 'admin')
 //        {
 //            return redirect()->route('admin.home')->with('success','');
