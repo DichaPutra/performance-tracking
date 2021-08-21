@@ -36,13 +36,23 @@ class personnelTargetController extends Controller {
                 ->select('periode_th')
                 ->where('id_user', Auth::user()->id)
                 ->get();
-        
-//        dd($alltahun);
+
+        //ambil data range_period & periode_th
+        if ($queryActiveTarget == null)
+        {
+            $range_period = null;
+            $periode_th = null;
+        }
+        else
+        {
+            $range_period = $queryActiveTarget['range_period'];
+            $periode_th = $queryActiveTarget['periode_th'];
+        }
 
         return view('personnel.target.target', [
             'datatarget' => $datatarget,
-            'range_period' => $queryActiveTarget['range_period'],
-            'periode_th' => $queryActiveTarget['periode_th'],
+            'range_period' => $range_period,
+            'periode_th' => $periode_th,
             'alltahun' => $alltahun,
             'tahun' => $tahun
         ]);
