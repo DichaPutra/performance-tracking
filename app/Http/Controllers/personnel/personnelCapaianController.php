@@ -55,6 +55,7 @@ class personnelCapaianController extends Controller {
             $periode_th = $is_scoredq['periode_th'];
             $range_period = $is_scoredq['range_period'];
         }
+        
 
 
         return view('personnel.capaian.capaian', ['bulan' => $bulan,

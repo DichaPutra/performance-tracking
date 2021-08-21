@@ -100,7 +100,6 @@
                         <input name="tahun" value="{{$tahun}}" type="hidden" >
                         <input name="periode_th" value="{{$periode_th}}" type="hidden" >
 
-
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead style="background-color: #F8F9FC;">
@@ -114,9 +113,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php $jmlTarget = 0; ?>
                                     @foreach($target as $target)
                                     <tr>
-
+                                        <?php $jmlTarget++; ?>
                                         <td style="text-align: center;">{{$loop->iteration}}</td>
                                         <td>{{$target->so}}</td>
                                         <td>{{$target->kpi}}</td>
@@ -160,7 +160,7 @@
                             </table>
                         </div><br>
                         <!--<button></button>-->
-                        @if($is_scored == 0)
+                        @if($is_scored == 0 && $jmlTarget != 0)
                         <button class="btn btn-primary float-right" onclick="confirm('Make sure your input is correct before going to the submit process. Are you sure to submit this data?')">Submit Capaian</button>
                         @endif
                     </form>

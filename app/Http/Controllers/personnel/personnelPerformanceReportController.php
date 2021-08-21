@@ -15,7 +15,6 @@ class personnelPerformanceReportController extends Controller {
     function index(Request $request)
     {
         // data in request : tahun, idpersonnel
-        
         // all tahun active untuk pilih  tahun periode
         $alltahun = active_target_kpi::groupby('periode_th')
                 ->select('periode_th')
@@ -27,7 +26,14 @@ class personnelPerformanceReportController extends Controller {
         {
             //get periode today month and year
             $getperiode = active_target_kpi::where('tahun', date('Y'))->where('bulan', date('n'))->first();
-            $periodeth = $getperiode['periode_th'];
+            if ($getperiode == null)
+            {
+                $periodeth = null;
+            }
+            else
+            {
+                $periodeth = $getperiode['periode_th'];
+            }
         }
         else
         {
