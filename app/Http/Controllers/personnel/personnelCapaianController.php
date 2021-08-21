@@ -43,20 +43,27 @@ class personnelCapaianController extends Controller {
                 ->where('bulan', $bulan)
                 ->first();
         // jika tidak ada active target / target blm di set
-        if ($is_scoredq == null){
-             $is_scored = null;
-        } else {
-            $is_scored = $is_scoredq['is_scored'];
+        if ($is_scoredq == null)
+        {
+            $is_scored = null;
+            $periode_th = null;
+            $range_period = null;
         }
-       
+        else
+        {
+            $is_scored = $is_scoredq['is_scored'];
+            $periode_th = $is_scoredq['periode_th'];
+            $range_period = $is_scoredq['range_period'];
+        }
+
 
         return view('personnel.capaian.capaian', ['bulan' => $bulan,
             'tahun' => $tahun,
             'target' => $target,
             'alltahun' => $alltahun,
             'is_scored' => $is_scored,
-            'periode_th' => $is_scoredq['periode_th'],
-            'range_period' => $is_scoredq['range_period']
+            'periode_th' => $periode_th,
+            'range_period' => $range_period
         ]);
     }
 
@@ -104,13 +111,13 @@ class personnelCapaianController extends Controller {
                     {
                         $score = ($capaian[$index] / $target[$index]) * 100;
                         $capaiankpi->score = $score;
-                        $capaiankpi->weightedscore = $score*$weight[$index];
+                        $capaiankpi->weightedscore = $score * $weight[$index];
                     }
                     elseif ($polarization[$index] == 'minimize')
                     {
                         $score = ($target[$index] / $capaian[$index]) * 100;
                         $capaiankpi->score = $score;
-                        $capaiankpi->weightedscore = $score*$weight[$index];
+                        $capaiankpi->weightedscore = $score * $weight[$index];
                     }
                     //code
                     break;
@@ -119,13 +126,13 @@ class personnelCapaianController extends Controller {
                     {
                         $score = ($capaian[$index] / $target[$index]) * 100;
                         $capaiankpi->score = $score;
-                        $capaiankpi->weightedscore = $score*$weight[$index];
+                        $capaiankpi->weightedscore = $score * $weight[$index];
                     }
                     elseif ($polarization[$index] == 'minimize')
                     {
                         $score = ($target[$index] / $capaian[$index]) * 100;
                         $capaiankpi->score = $score;
-                        $capaiankpi->weightedscore = $score*$weight[$index];
+                        $capaiankpi->weightedscore = $score * $weight[$index];
                     }
                     //code
                     break;
@@ -134,13 +141,13 @@ class personnelCapaianController extends Controller {
                     {
                         $score = ($capaian[$index] / $target[$index]) * 100;
                         $capaiankpi->score = $score;
-                        $capaiankpi->weightedscore = $score*$weight[$index];
+                        $capaiankpi->weightedscore = $score * $weight[$index];
                     }
                     elseif ($polarization[$index] == 'minimize')
                     {
                         $score = ($target[$index] / $capaian[$index]) * 100;
                         $capaiankpi->score = $score;
-                        $capaiankpi->weightedscore = $score*$weight[$index];
+                        $capaiankpi->weightedscore = $score * $weight[$index];
                     }
                     //code
                     break;
@@ -149,13 +156,13 @@ class personnelCapaianController extends Controller {
                     {
                         $score = ($capaian[$index] / $target[$index]) * 100;
                         $capaiankpi->score = $score;
-                        $capaiankpi->weightedscore = $score*$weight[$index];
+                        $capaiankpi->weightedscore = $score * $weight[$index];
                     }
                     elseif ($polarization[$index] == 'minimize')
                     {
                         $score = ($target[$index] / $capaian[$index]) * 100;
                         $capaiankpi->score = $score;
-                        $capaiankpi->weightedscore = $score*$weight[$index];
+                        $capaiankpi->weightedscore = $score * $weight[$index];
                     }
                     //code
                     break;
@@ -164,13 +171,13 @@ class personnelCapaianController extends Controller {
                     {
                         $score = ($capaian[$index] / $target[$index]) * 100;
                         $capaiankpi->score = $score;
-                        $capaiankpi->weightedscore = $score*$weight[$index];
+                        $capaiankpi->weightedscore = $score * $weight[$index];
                     }
                     elseif ($polarization[$index] == 'minimize')
                     {
                         $score = ($target[$index] / $capaian[$index]) * 100;
                         $capaiankpi->score = $score;
-                        $capaiankpi->weightedscore = $score*$weight[$index];
+                        $capaiankpi->weightedscore = $score * $weight[$index];
                     }
                     //code
                     break;
