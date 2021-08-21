@@ -42,9 +42,13 @@ class personnelCapaianController extends Controller {
                 ->where('tahun', $tahun)
                 ->where('bulan', $bulan)
                 ->first();
-        $is_scored = $is_scoredq['is_scored'];
-
-//        dd($is_scored->is_scored);
+        // jika tidak ada active target / target blm di set
+        if ($is_scoredq == null){
+             $is_scored = null;
+        } else {
+            $is_scored = $is_scoredq['is_scored'];
+        }
+       
 
         return view('personnel.capaian.capaian', ['bulan' => $bulan,
             'tahun' => $tahun,
