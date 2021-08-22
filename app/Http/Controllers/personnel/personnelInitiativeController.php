@@ -31,7 +31,14 @@ class personnelInitiativeController extends Controller {
         {
             //get periode today month and year
             $getperiode = active_target_kpi::where('tahun', date('Y'))->where('bulan', date('n'))->first();
-            $periodeth = $getperiode['periode_th'];
+            if ($getperiode == null)
+            {
+                $periodeth = null;
+            }
+            else
+            {
+                $periodeth = $getperiode['periode_th'];
+            }
         }
         else
         {
@@ -77,7 +84,6 @@ class personnelInitiativeController extends Controller {
 
     function addInitiative(Request $request)
     {
-//        dd($request);
         if ($request->id_si_library == 0)
         {
             // if custom

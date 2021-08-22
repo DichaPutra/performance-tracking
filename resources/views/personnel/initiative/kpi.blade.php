@@ -136,8 +136,18 @@
                                     <div class="form-group row">
                                         <label for="name" class="col-md-4 col-form-label text-md-right"><b>Range Periode Target : </b></label>
                                         <div class="col-md-6">
+                                            <?php
+                                            if (empty($datakpi[0]))
+                                            {
+                                                $rangeperiode = null;
+                                            }
+                                            else
+                                            {
+                                                $rangeperiode = $datakpi[0]->range_period;
+                                            }
+                                            ?>
                                             <input name="rangeperiode" class="form-control" type="text"
-                                                   value="{{ $datakpi[0]->range_period }}" readonly="">
+                                                   value="{{$rangeperiode}}" readonly="">
                                         </div>
                                     </div>
                                 </div>

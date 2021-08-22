@@ -45,8 +45,19 @@ class personnelPerformanceReportController extends Controller {
         $data = User::where('id', Auth::user()->id)->first();
 
         //data target dlm periode th
-        $startingbln = target_kpi::where('id_user', Auth::user()->id)
+        $targetquery = target_kpi::where('id_user', Auth::user()->id)
                         ->where('periode_th', $periodeth)->first();
+        if ($targetquery == null)
+        {
+            $startingbln = null;
+            $rangeperiod = null;
+        }
+        else
+        {
+            $startingbln = $targetquery['starting_bln'];
+            $rangeperiod = $targetquery['range_period'];
+        }
+
 
         //data dropdown bulan
         $dropdownbln = capaian_kpi::groupby('bulan', 'tahun')->select('bulan', 'tahun')->where('id_user', Auth::user()->id)->where('periode_th', $periodeth)->get();
@@ -76,7 +87,7 @@ class personnelPerformanceReportController extends Controller {
         // === DATA UNTUK CHART JS === 
         // Data Labels Chart JS
         $bulanChart = array();
-        $loopBlnChart = $startingbln['starting_bln'];
+        $loopBlnChart = $startingbln;
         for ($i = 0; $i < 12; $i++)
         {
             $bulanChart[] = date('F', mktime(0, 0, 0, $loopBlnChart, 10));
@@ -91,8 +102,8 @@ class personnelPerformanceReportController extends Controller {
 
         // == Data Capaian Untuk Chart JS == 
         $capaianChart = array();
-        $loopBlnChart = $startingbln['starting_bln'];
-        $loopThChart = $startingbln['periode_th'];
+        $loopBlnChart = $startingbln;
+        $loopThChart = $periodeth;
         for ($i = 0; $i < 12; $i++)
         {
             $capaianChart[] = $this->getScoreBulanan($data->id, $loopBlnChart, $loopThChart);
@@ -110,8 +121,8 @@ class personnelPerformanceReportController extends Controller {
         return view('personnel.performancereport.performancereport', [
             'data' => $data,
             'periode_th' => $periodeth,
-            'startingbln' => $startingbln['starting_bln'],
-            'range_period' => $startingbln['range_period'],
+            'startingbln' => $startingbln,
+            'range_period' => $rangeperiod,
             'month' => $month,
             'year' => $year,
             'datacapaian' => $datacapaian,
@@ -121,8 +132,6 @@ class personnelPerformanceReportController extends Controller {
             'dropdownbln' => $dropdownbln,
             'alltahun' => $alltahun
         ]);
-
-//        return view('personnel.performancereport.performancereport');
     }
 
     //function untuk kalkulasi score capaian bulanan
