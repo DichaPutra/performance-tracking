@@ -24,6 +24,10 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Middleware\ClientGuard;
 use App\Http\Middleware\AdminGuard;
 use App\Http\Middleware\PersonnelGuard;
+//Mail
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewPersonnelEmail;
+
 
 /*
   |--------------------------------------------------------------------------
@@ -39,15 +43,20 @@ use App\Http\Middleware\PersonnelGuard;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/home', [HomeRouteController::class, 'index'])->name('home');
-
 Auth::routes(['verify'=>true]);
 //Auth::routes();
 //Route::get('/email/verify/{id}/{hash}', [VerificationEmailController::class, '__invoke'])
 //    ->middleware(['signed', 'throttle:6,1'])
 //    ->name('verification.verify');
 // custom listener verified email
+Route::get('/send-mail', function () {
+
+    Mail::to('arwindra23@gmail.com')->send(new NewPersonnelEmail());
+
+    return 'A message has been sent to arwindra23@gmail.com!';
+
+});
 
 // == GENERAL FUNCTION ==
 Route::get('/change-password', [ChangePasswordController::class, 'index']);

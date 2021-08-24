@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+//Mail
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewPersonnelEmail;
 
 class personnelController extends Controller {
 
@@ -54,6 +57,16 @@ class personnelController extends Controller {
                             ->withInput();
         }
 
+        //send email data
+        $details = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'company_name' => $request->company_name
+        ];
+        Mail::to("$request->email")->send(new NewPersonnelEmail($details));
+
+        //store data 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
