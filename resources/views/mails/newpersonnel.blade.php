@@ -13,7 +13,7 @@ Click below to start working right now
 Login to App
 @endcomponent
 
-Don't forget to change the password after you log into the application.
+Don't forget to change the password after you login into the application.
 Thank you for choosing Crowe Performance Tracking!
 
 
