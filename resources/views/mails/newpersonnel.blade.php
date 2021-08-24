@@ -4,8 +4,7 @@ Hello **{{$name}}**,  {{-- use double space for line break --}}
 
 Here is your temporary account login data :
 
-Email : **{{$email}}**
-
+Email : **{{$email}}**  
 Password : **{{$password}}**
 
 Click below to start working right now
@@ -16,6 +15,7 @@ Login to App
 
 Don't forget to change the password after you log into the application.
 Thank you for choosing Crowe Performance Tracking!
+
 
 Sincerely,  
 
