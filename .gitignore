@@ -4,6 +4,8 @@
 /storage/*.key
 /vendor
 .env
+.env(server)
+.env(dell local)
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml
