@@ -50,13 +50,6 @@ Auth::routes(['verify'=>true]);
 //    ->middleware(['signed', 'throttle:6,1'])
 //    ->name('verification.verify');
 // custom listener verified email
-Route::get('/send-mail', function () {
-
-    Mail::to('arwindra23@gmail.com')->send(new NewPersonnelEmail());
-
-    return 'A message has been sent to arwindra23@gmail.com!';
-
-});
 
 // == GENERAL FUNCTION ==
 Route::get('/change-password', [ChangePasswordController::class, 'index']);
