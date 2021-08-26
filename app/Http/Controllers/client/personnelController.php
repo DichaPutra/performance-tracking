@@ -45,6 +45,7 @@ class personnelController extends Controller {
         $validator = Validator::make($request->all(), [
                     'name' => ['required', 'string', 'max:255'],
                     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                    'phone' => ['required'],
                     'password' => ['required', 'string', 'min:8', 'confirmed'],
                     'company_name' => ['required'],
                     'company_address' => ['required']
@@ -70,6 +71,7 @@ class personnelController extends Controller {
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
             'company_name' => $request->company_name,
             'company_address' => $request->company_address,
             'password' => Hash::make($request->password),
@@ -80,7 +82,7 @@ class personnelController extends Controller {
             'level_name' => $request->level_name
         ]);
 
-        return redirect('client-personnel')->with('message', 'Success ! Your personnel has been added');
+        return redirect('client-personnel')->with('message', 'Success ! account data has been sent to Personnel email ');
     }
 
     public function update(Request $request)

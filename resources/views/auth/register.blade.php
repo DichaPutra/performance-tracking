@@ -54,7 +54,7 @@ $categories = business_categories::all();
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1">+62</span>
                                     </div>
-                                    <input name="phone" type="text" class="form-control" placeholder="Phone Number after first 0 ..." aria-label="Username" aria-describedby="basic-addon1">
+                                    <input name="phone" type="text" class="form-control" placeholder="Phone Number after first 0 ..." required="">
                                 </div>
 
                                 @error('phone')

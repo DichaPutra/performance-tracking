@@ -72,7 +72,7 @@ use RegistersUsers;
         return User::create([
                     'name' => $data['name'],
                     'email' => $data['email'],
-                    'phone' => "62".$data['phone'],
+                    'phone' => $data['phone'],
                     'company_name' => $data['company_name'],
                     'company_business_category' => $data['business_category'],
                     'company_address' => $data['company_address'],
