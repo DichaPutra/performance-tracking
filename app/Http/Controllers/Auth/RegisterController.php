@@ -53,6 +53,7 @@ use RegistersUsers;
         return Validator::make($data, [
                     'name' => ['required', 'string', 'max:255'],
                     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                    'phone' => ['required'],
                     'password' => ['required', 'string', 'min:8', 'confirmed'],
                     'company_name' => ['required'],
                     'company_address' => ['required'],
@@ -71,6 +72,7 @@ use RegistersUsers;
         return User::create([
                     'name' => $data['name'],
                     'email' => $data['email'],
+                    'phone' => "62".$data['phone'],
                     'company_name' => $data['company_name'],
                     'company_business_category' => $data['business_category'],
                     'company_address' => $data['company_address'],

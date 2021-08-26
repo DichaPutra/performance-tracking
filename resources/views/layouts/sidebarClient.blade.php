@@ -32,7 +32,7 @@
 </li>
 
 <!-- Divider -->
-<hr class="sidebar-divider d-none d-md-block">
+<hr class="sidebar-divider">
 
 <li class="nav-item @if($page=='initiative')active @endif">
     <a class="nav-link" href="{{route('client.initiative.personnel')}}">
@@ -41,7 +41,15 @@
 </li>
 
 <!-- Divider -->
-<hr class="sidebar-divider d-none d-md-block">
+<hr class="sidebar-divider">
+<!-- Divider 
+<hr class="sidebar-divider d-none d-md-block">-->
+
+<li class="nav-item">
+    <a class="nav-link" href="{{route('chatify')}}">
+        <i class="fas fa-fw fa-comments"></i>
+        <span>Messages</span></a>
+</li>
 
 <!--Change Password-->
 <li class="nav-item @if($page=='changepass')active @endif">
