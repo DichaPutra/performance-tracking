@@ -97,7 +97,11 @@
                                         </div>
                                         @endif
                                     </td>
+                                    @if (isTargetExist($user->id, $tahun))
                                     <td style="text-align:center;"><a href="{{route('client.performancereport.details', ['user_id'=>$user->id, 'periode_th'=>$tahun])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    @else
+                                    <td style="text-align:center;"> - No Target - </td>
+                                    @endif
                                 </tr>
                                 @endforeach                            
                             </tbody>
