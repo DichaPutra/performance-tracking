@@ -117,6 +117,19 @@ function levelName($level)
                                 <input id="email" type="email" class="form-control " name="email" value="{{$data->email}}" required="" autocomplete="email" disabled="">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">Phone</label>
+                            <div class="col-md-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">+62</span>
+                                    </div>
+                                    <input name="phone" type="number" class="form-control" value="{{$data->phone}}"  disabled="">
+
+
+                                </div>
+                            </div>
+                        </div>
 
                         @endif
 

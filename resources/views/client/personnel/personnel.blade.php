@@ -29,8 +29,7 @@
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
-                <div
-                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Personnel</h6>
                 </div>
 
@@ -70,7 +69,12 @@
                                     <td style="background-color: {{color($user->level)}};">{{levelName($user->level)}}</td>
                                     <td>{{$user->level_name}}</td>
                                     <td>{{$user->name}}</td>
-                                    <td><a href="{{route('client.personnel.detailpersonnel', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
+                                    <td>
+                                        <a href="{{route('client.personnel.detailpersonnel', ['idpersonnel'=>$user->id])}}"><button class="btn btn-primary btn-sm">Details</button></a>
+                                     @if($user->phone != null)
+                                     <a href="https://api.whatsapp.com/send?phone=62{{$user->phone}}"><button class="btn btn-success btn-sm"><i class="fab fa-whatsapp"></i></button></a>
+                                     @endif
+                                    </td>
                                 </tr>
                                 @endforeach                            
                             </tbody>
