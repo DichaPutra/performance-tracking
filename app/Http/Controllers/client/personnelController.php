@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 //Mail
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewPersonnelEmail;
@@ -22,6 +24,8 @@ class personnelController extends Controller {
 
     public function addpersonnel()
     {
+//        $sekarang = Carbon::now()->toDateTimeString();
+//        dd($sekarang);
         return view('client.personnel.addpersonnel');
     }
 
@@ -46,7 +50,7 @@ class personnelController extends Controller {
                     'name' => ['required', 'string', 'max:255'],
                     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                     'phone' => ['required'],
-                    'password' => ['required', 'string', 'min:8', 'confirmed'],
+                    //'password' => ['required', 'string', 'min:8', 'confirmed'],
                     'company_name' => ['required'],
                     'company_address' => ['required']
         ]);
@@ -57,12 +61,16 @@ class personnelController extends Controller {
                             ->withErrors($validator)
                             ->withInput();
         }
-
+        
+        // make random password generate
+        $password = Str::random(8);
+        
         //send email data
         $details = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
+            //'password' => $request->password,
+            'password' => $password,
             'company_name' => $request->company_name
         ];
         Mail::to("$request->email")->send(new NewPersonnelEmail($details));
@@ -72,9 +80,10 @@ class personnelController extends Controller {
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'email_verified_at' => Carbon::now()->toDateTimeString(),
             'company_name' => $request->company_name,
             'company_address' => $request->company_address,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($password),
             'role' => 'personnel',
             'client_parent' => Auth::user()->id,
             'level' => $request->level,

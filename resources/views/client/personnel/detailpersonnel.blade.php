@@ -156,7 +156,7 @@ function levelName($level)
                                 <input id="email" type="email" class="form-control " name="email" value="{{$data->email}}" required="" autocomplete="email">
                             </div>
                         </div>
-                        <div class="form-group row">
+<!--                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control " name="password" autocomplete="new-password">
@@ -168,7 +168,7 @@ function levelName($level)
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
                             </div>
-                        </div>
+                        </div>-->
                         @endif
                     </div>
                     <div class="col-md-6">
