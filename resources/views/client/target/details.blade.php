@@ -419,6 +419,7 @@
 <!--                                    <i class="fa fa-exclamation-triangle" style="margin-right: 15px;"></i>
                                 KPI Weight met 100%. Click "Activate" button to activate Target-->
                             </div>
+                            @if (isTargetExist($data->id, $tahun))
                             <div class="col-md-2">
                                 <div class="float-right">
                                     <a href="{{route('client.target')}}" class="btn btn-secondary ">Cancel</a>
@@ -427,6 +428,7 @@
                                     </button>
                                 </div>
                             </div>
+                            @endif
                         </div>
 
                         <!-- Button trigger modal -->

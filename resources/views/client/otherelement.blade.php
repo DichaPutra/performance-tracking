@@ -151,10 +151,13 @@ function getPeriodePerformance($id_user, $periode_th)
 
 function isTargetExist($id_user, $periode_th)
 {
-    $cektarget = target_kpi::where('id_user',$id_user)->where('periode_th',$periode_th)->first();
-    if($cektarget != null){
+    $cektarget = target_kpi::where('id_user', $id_user)->where('periode_th', $periode_th)->first();
+    if ($cektarget != null)
+    {
         return true;
-    }else{
+    }
+    else
+    {
         return false;
     }
 }
