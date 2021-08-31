@@ -32,7 +32,7 @@
 
                 <!-- Card Body -->
                 <div class="card-body">
-                    <form method="post" action="{{route('client.target.activate')}}">
+                    <form class="form-loading" method="post" action="{{route('client.target.activate')}}">
                         @csrf
                         <!-- Message--> 
                         <div class="alert alert-primary" style="height: 10%;" role="alert">
@@ -158,11 +158,12 @@
                             <div class="col-md-2">
                                 <div class="float-right">
                                     <a href="{{route('client.target.details', ['idpersonnel'=>$data->id, 'tahun'=>$tahun])}}" class="btn btn-sm btn-secondary ">Cancel</a>
-                                    <input type="submit" class=" btn btn-primary btn-sm" value="Activate">
+                                    <button type="submit" class=" btn btn-primary btn-sm button-loading">
+                                        <i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Activate
+                                    </button>
                                 </div>
                             </div>
                         </div>
-
                     </form>
 
 <!--                        Qty1 : <input onchange="findTotal()" type="number" name="qty" id="qty1"/><br>

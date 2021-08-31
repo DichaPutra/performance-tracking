@@ -449,7 +449,7 @@
                                         </button>
                                     </div>
 
-                                    <form action="{{route('client.target.activateconfirm')}}">
+                                    <form class="form-loading" action="{{route('client.target.activateconfirm')}}">
                                         @csrf
                                         <div class="modal-body">
                                             <!--<a href="{{route('client.target.activateconfirm', ['idpersonnel'=>$data->id, 'tahun'=>$tahun])}}" class="btn btn-primary btn-sm">Activate</a>-->
@@ -476,7 +476,9 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <input type="submit" class="btn btn-primary" value="Save">
+                                            <button type="submit" class="btn btn-primary button-loading">
+                                                <i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Save
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
