@@ -6,6 +6,9 @@
 
         <title>Performance Tracking</title>
 
+        <!--Icon-->
+        <link rel="icon" href="{{asset('/favicon/favicon.png')}}" type="image/x-icon"/>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 

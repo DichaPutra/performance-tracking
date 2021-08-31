@@ -41,9 +41,9 @@
             </div>
             @endif
 
-            <form method="POST" action="{{route('client.personnel.store')}}" >
+            <form class="form-loading" method="POST" action="{{route('client.personnel.store')}}" >
+                @csrf
                 <div class="row">
-                    @csrf
                     <div class="col-md-6">
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
@@ -85,19 +85,19 @@
                             </div>
                         </div>
 
-<!--                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control " name="password" required="" autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="" autocomplete="new-password">
-                            </div>
-                        </div>-->
+                        <!--                        <div class="form-group row">
+                                                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                                    <div class="col-md-6">
+                                                        <input id="password" type="password" class="form-control " name="password" required="" autocomplete="new-password">
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="form-group row">
+                                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                                                    <div class="col-md-6">
+                                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="" autocomplete="new-password">
+                                                    </div>
+                                                </div>-->
 
                     </div>
                     <div class="col-md-6">
@@ -137,7 +137,7 @@
                 <hr>
                 <div class="float-right">
                     <a href="{{ URL::previous() }}"><button type="button" class="btn btn-secondary">Cancel</button></a>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary button-loading"><i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Save</button>
                 </div>
             </form>
         </div>

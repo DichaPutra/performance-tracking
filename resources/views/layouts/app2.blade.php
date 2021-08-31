@@ -12,7 +12,6 @@
 
         <!--Icon-->
         <link rel="icon" href="{{asset('/favicon/favicon.png')}}" type="image/x-icon"/>
-        <!--<link rel="icon" href="/your_path_to_image/favicon.jpg">-->
 
         <!--Bootstrap Component--> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -166,15 +165,21 @@
 
         <!-- Page level custom scripts -->
         <!--<script src="js/demo/chart-area-demo.js"></script>-->
-        <script src="js/demo/chart-pie-demo.js"></script>
+        <!--<script src="js/demo/chart-pie-demo.js"></script>-->
 
         <script>
-                                       if ($(window).width() > 514) {
-                                           $('#accordionSidebar').removeClass('toggled');
+            //prevent submit & Loading spinner
+            $('.form-loading').on('submit', function () {
+                $('.button-loading').attr('disabled', 'true');
+                $('.spinner').show();
+            })
+            
+            if ($(window).width() > 514) {
+                $('#accordionSidebar').removeClass('toggled');
 
-                                       } else {
-                                           $('#accordionSidebar').addClass('toggled');
-                                       }
+            } else {
+                $('#accordionSidebar').addClass('toggled');
+            }
         </script>
         @yield('script')
         @livewireScripts 

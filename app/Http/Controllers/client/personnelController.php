@@ -50,7 +50,6 @@ class personnelController extends Controller {
                     'name' => ['required', 'string', 'max:255'],
                     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                     'phone' => ['required'],
-                    //'password' => ['required', 'string', 'min:8', 'confirmed'],
                     'company_name' => ['required'],
                     'company_address' => ['required']
         ]);
@@ -69,7 +68,6 @@ class personnelController extends Controller {
         $details = [
             'name' => $request->name,
             'email' => $request->email,
-            //'password' => $request->password,
             'password' => $password,
             'company_name' => $request->company_name
         ];

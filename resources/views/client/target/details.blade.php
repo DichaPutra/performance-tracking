@@ -149,7 +149,7 @@
                                             <div class="modal-body">
                                                 <!-- **** Form Add SO **** -->
 
-                                                <form method="POST" action="{{route('client.target.addso')}}">
+                                                <form class="form-loading"method="POST" action="{{route('client.target.addso')}}">
                                                     @csrf
                                                     <input type="hidden" name="userid" value="{{$data->id}}">
                                                     <input type="hidden" name="tahun" value="{{$tahun}}">
@@ -158,7 +158,9 @@
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <input type="submit" class="btn btn-primary" value="Add">
+                                                        <button type="submit" class="btn btn-primary button-loading">
+                                                        <i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Add
+                                                        </button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -271,7 +273,7 @@
                                             <div class="modal-body">
                                                 <!-- **** Form Add KPI **** -->
 
-                                                <form method="POST" action="{{route('client.target.addkpi')}}">
+                                                <form class="form-loading" method="POST" action="{{route('client.target.addkpi')}}">
                                                     @csrf
                                                     <input type="hidden" name="userid" value="{{$data->id}}">
                                                     <input type="hidden" name="tahun" value="{{$tahun}}">
@@ -280,7 +282,9 @@
 
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <input type="submit" class="btn btn-primary" value="Add">
+                                                        <button type="submit" class="btn btn-primary button-loading">
+                                                            <i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Add
+                                                        </button>
                                                     </div>
                                                 </form>
                                             </div>

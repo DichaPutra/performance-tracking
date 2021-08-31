@@ -108,214 +108,248 @@
                             </div>
                         </div>
                     </div><br>
-
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Performance periode th
-                            {{ $periode_th }}</h5>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label for="name" class="col-md-4 col-form-label text-md-right"><b>Range Periode
-                                            Target : </b></label>
-                                    <div class="col-md-6">
-                                        <input name="rangeperiode" class="form-control" type="text"
-                                               value="{{ $range_period }}" readonly="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--<div class="chart-container" style="height:20%; width:100%"> <canvas id="yearlychart"></canvas></div>-->
-                        <div class="row">
-                            <div>
-                                <canvas id="yearlychart" width="100%" height="35%"></canvas>
-                            </div>
-                        </div>
-                    </div><br><br><br>
-
-
-                    <!-- Card Header - Dropdown -->
-                    @if ($month == null)
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Monthly Details</h5>
-                        <!-- Button trigger modal -->
-                        <form method="get" action="{{route('client.performancereport.details')}}" style="width: 20%;">
-                            <input type="hidden" name="user_id" value="{{$data->id}}">
-                            <input type="hidden" name="periode_th" value="{{$periode_th}}">
-                            <select name="month" class="form-control form-control-sm float-right" onchange="this.form.submit()">
-                                <option value="" hidden>select...</option>
-                                @foreach ($dropdownbln as $bln)
-                                <option value="{{$bln->bulan}}-{{$bln->tahun}}">{{date('F', mktime(0, 0, 0, $bln->bulan, 10))}} / {{$bln->tahun}} </option>
-                                @endforeach
-                            </select>
-                        </form>
-                    </div>
-                    @else
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Monthly Details</h5>
-                        <!-- Button trigger modal -->
-                        <form method="get" action="{{route('client.performancereport.details')}}" style="width: 20%;">
-                            <input type="hidden" name="user_id" value="{{$data->id}}">
-                            <input type="hidden" name="periode_th" value="{{$periode_th}}">
-                            <select name="month" class="form-control form-control-sm float-right" onchange="this.form.submit()">
-                                <option value="" hidden>select...</option>
-                                @foreach ($dropdownbln as $bln)
-                                <option value="{{$bln->bulan}}-{{$bln->tahun}}" @if($bln->bulan==$month) selected @endif>  {{date('F', mktime(0, 0, 0, $bln->bulan, 10))}} / {{$bln->tahun}}</option>
-                                <!--<option value="{{$bln->bulan}}" @if($bln->bulan==$month) selected @endif>{{date('F', mktime(0, 0, 0, $bln->bulan, 10))}}</option>-->
-                                @endforeach
-                            </select>
-                        </form>
-                    </div>
-
-
-                    <!-- Card Body -->
-                    <div class="card-body">
-
-                        <div class="text-center"><b>Overall Performance</b> <br>{{date('F', mktime(0, 0, 0, $month, 10))}} 2021</div>
-                        <!--Performance Chart-->
-                        <div class="d-flex justify-content-center">
-                            <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900"
-                                  rel="stylesheet" type="text/css">
-                            <div class="float-none" id="container"></div>
-                        </div><br>
-
-
-                        <!-- Content Row -->
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead style="background-color: #F8F9FC;">
-                                    <tr>
-                                        <th style="width: 8%; text-align: center;">No</th>
-                                        <th style="width: 52%; text-align: center;">SO & KPI</th>
-                                        <!--<th>Target</th>-->
-                                        <!--<th>Capaian</th>-->
-                                        <th>Timeframe</th>
-                                        <th>Weight</th>
-                                        <th style="width: 40%; text-align: center;">Performance Score</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($datacapaian as $datacapaian)
-                                    <tr>
-                                        <td style="text-align: center;">{{$loop->iteration}}</td>
-                                        <td>
-                                            <b>{{$datacapaian->so}}</b><br>
-                                            {{$datacapaian->kpi}}
-                                        </td>
-<!--                                        <td>
-                                            {{$datacapaian->target}}
-                                            @if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
-                                            Rp {{ $datacapaian->target}},-
-                                            @else 
-                                            {{ $datacapaian->target}} {{$datacapaian->unit}}
-                                            @endif
-
-                                        </td>
-                                        <td>
-                                            {{$datacapaian->target}} {{$datacapaian->target}}
-                                            @if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
-                                            Rp {{ $datacapaian->capaian}},-
-                                            @else 
-                                            {{ $datacapaian->capaian}} {{$datacapaian->unit}}
-                                            @endif
-                                        </td>-->
-                                        <td>{{$datacapaian->timeframe_target}}</td>
-                                        <td>
-                                            {{$datacapaian->weight}} %
-                                        </td>
-                                        <td style="text-align: center;">
-                                            @if($datacapaian->score>100)
-                                            <div class="progress">
-                                                <div class="progress-bar bg-info" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
-                                            </div>
-                                            @elseif($datacapaian->score>=75)
-                                            <div class="progress">
-                                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
-                                            </div>
-                                            @elseif($datacapaian->score>=50)
-                                            <div class="progress">
-                                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
-                                            </div>
-                                            @elseif ($datacapaian->score<50)
-                                            <div class="progress">
-                                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
-                                            </div>
-                                            @endif
-                                        </td>
-                                        <td style="text-align:center;">
-                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailsCapaianModal{{$loop->iteration}}">Details</button>
-                                        </td>
-                                    </tr>
-
-                                    <!--Modal Detail-->
-                                    <!-- Large modal -->
-                                <div class="modal fade" id="detailsCapaianModal{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Detail Capaian</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlTextarea1">Strategic Objective :</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" readonly="">{{$datacapaian->so}}</textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlTextarea1">KPI :</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" readonly="">{{$datacapaian->kpi}}</textarea>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
-                                                        <label for="inputEmail4">Target :</label>
-                                                        <input type="text" class="form-control" 
-                                                               value="@if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')Rp {{ $datacapaian->target}},-@else{{ $datacapaian->target}} {{$datacapaian->unit}}@endif" 
-                                                               readonly>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="inputPassword4">Capaian :</label>
-                                                        <input type="text" class="form-control" 
-                                                               value="@if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')Rp {{ $datacapaian->capaian}},-@else{{ $datacapaian->capaian}} {{$datacapaian->unit}}@endif" 
-                                                               readonly>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
-                                                        <label for="inputEmail4">Polarization :</label>
-                                                        <input type="text" class="form-control" value="{{$datacapaian->polarization}}" readonly>
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="inputPassword4">Score :</label>
-                                                        <input type="text" class="form-control" value="{{$datacapaian->score}}" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    @endif
                 </div>
             </div>
         </div>
 
     </div>
+
+<!--    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4 animated--grow-in">
+                 Card Header - Dropdown 
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Pending Approval Capaian</h5>
+                </div>
+                 Card Body 
+                <div class="card-body">
+
+                    <div class="alert alert-warning">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><i class="fa fa-warning"></i></svg>
+
+                        Berikut ini adalah data capaian yang pending dalam report. Harap lakukan <b>pengecekan data capaian</b>. Jika data yang telah di inputkan oleh personnel telah benar, harap lakukan "approval" dengan menekan tombol "approve".
+                            <div class="chart-container" style="height:20%; width:100%"> <canvas id="yearlychart"></canvas></div>
+                    </div>
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4 animated--grow-in">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Performance periode th
+                        {{ $periode_th }}</h5>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right"><b>Range Periode
+                                        Target : </b></label>
+                                <div class="col-md-6">
+                                    <input name="rangeperiode" class="form-control" type="text"
+                                           value="{{ $range_period }}" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <!--<div class="chart-container" style="height:20%; width:100%"> <canvas id="yearlychart"></canvas></div>-->
+                    <div class="row">
+                        <div>
+                            <canvas id="yearlychart" width="100%" height="35%"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="card shadow mb-4 animated--grow-in">
+
+                <!-- Card Header - Dropdown -->
+                @if ($month == null)
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Monthly Details</h5>
+                    <!-- Button trigger modal -->
+                    <form method="get" action="{{route('client.performancereport.details')}}" style="width: 20%;">
+                        <input type="hidden" name="user_id" value="{{$data->id}}">
+                        <input type="hidden" name="periode_th" value="{{$periode_th}}">
+                        <select name="month" class="form-control form-control-sm float-right" onchange="this.form.submit()">
+                            <option value="" hidden>select...</option>
+                            @foreach ($dropdownbln as $bln)
+                            <option value="{{$bln->bulan}}-{{$bln->tahun}}">{{date('F', mktime(0, 0, 0, $bln->bulan, 10))}} / {{$bln->tahun}} </option>
+                            @endforeach
+                        </select>
+                    </form>
+                </div>
+                @else
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Monthly Details</h5>
+                    <!-- Button trigger modal -->
+                    <form method="get" action="{{route('client.performancereport.details')}}" style="width: 20%;">
+                        <input type="hidden" name="user_id" value="{{$data->id}}">
+                        <input type="hidden" name="periode_th" value="{{$periode_th}}">
+                        <select name="month" class="form-control form-control-sm float-right" onchange="this.form.submit()">
+                            <option value="" hidden>select...</option>
+                            @foreach ($dropdownbln as $bln)
+                            <option value="{{$bln->bulan}}-{{$bln->tahun}}" @if($bln->bulan==$month) selected @endif>  {{date('F', mktime(0, 0, 0, $bln->bulan, 10))}} / {{$bln->tahun}}</option>
+                            <!--<option value="{{$bln->bulan}}" @if($bln->bulan==$month) selected @endif>{{date('F', mktime(0, 0, 0, $bln->bulan, 10))}}</option>-->
+                            @endforeach
+                        </select>
+                    </form>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+
+                    <div class="text-center"><b>Overall Performance</b> <br>{{date('F', mktime(0, 0, 0, $month, 10))}} 2021</div>
+                    <!--Performance Chart-->
+                    <div class="d-flex justify-content-center">
+                        <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900"
+                              rel="stylesheet" type="text/css">
+                        <div class="float-none" id="container"></div>
+                    </div><br>
+
+
+                    <!-- Content Row -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead style="background-color: #F8F9FC;">
+                                <tr>
+                                    <th style="width: 8%; text-align: center;">No</th>
+                                    <th style="width: 52%; text-align: center;">SO & KPI</th>
+                                    <!--<th>Target</th>-->
+                                    <!--<th>Capaian</th>-->
+                                    <th>Timeframe</th>
+                                    <th>Weight</th>
+                                    <th style="width: 40%; text-align: center;">Performance Score</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($datacapaian as $datacapaian)
+                                <tr>
+                                    <td style="text-align: center;">{{$loop->iteration}}</td>
+                                    <td>
+                                        <b>{{$datacapaian->so}}</b><br>
+                                        {{$datacapaian->kpi}}
+                                    </td>
+<!--                                        <td>
+                                        {{$datacapaian->target}}
+                                        @if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
+                                        Rp {{ $datacapaian->target}},-
+                                        @else 
+                                        {{ $datacapaian->target}} {{$datacapaian->unit}}
+                                        @endif
+
+                                    </td>
+                                    <td>
+                                        {{$datacapaian->target}} {{$datacapaian->target}}
+                                        @if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
+                                        Rp {{ $datacapaian->capaian}},-
+                                        @else 
+                                        {{ $datacapaian->capaian}} {{$datacapaian->unit}}
+                                        @endif
+                                    </td>-->
+                                    <td>{{$datacapaian->timeframe_target}}</td>
+                                    <td>
+                                        {{$datacapaian->weight}} %
+                                    </td>
+                                    <td style="text-align: center;">
+                                        @if($datacapaian->score>100)
+                                        <div class="progress">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
+                                        </div>
+                                        @elseif($datacapaian->score>=75)
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
+                                        </div>
+                                        @elseif($datacapaian->score>=50)
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
+                                        </div>
+                                        @elseif ($datacapaian->score<50)
+                                        <div class="progress">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
+                                        </div>
+                                        @endif
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailsCapaianModal{{$loop->iteration}}">Details</button>
+                                    </td>
+                                </tr>
+
+                                <!--Modal Detail-->
+                                <!-- Large modal -->
+                            <div class="modal fade" id="detailsCapaianModal{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Detail Capaian</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Strategic Objective :</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" readonly="">{{$datacapaian->so}}</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">KPI :</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" readonly="">{{$datacapaian->kpi}}</textarea>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">Target :</label>
+                                                    <input type="text" class="form-control" 
+                                                           value="@if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')Rp {{ $datacapaian->target}},-@else{{ $datacapaian->target}} {{$datacapaian->unit}}@endif" 
+                                                           readonly>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">Capaian :</label>
+                                                    <input type="text" class="form-control" 
+                                                           value="@if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')Rp {{ $datacapaian->capaian}},-@else{{ $datacapaian->capaian}} {{$datacapaian->unit}}@endif" 
+                                                           readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputEmail4">Polarization :</label>
+                                                    <input type="text" class="form-control" value="{{$datacapaian->polarization}}" readonly>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">Score :</label>
+                                                    <input type="text" class="form-control" value="{{$datacapaian->score}}" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @endif
+            </div>
+        </div>
+    </div>
+
 
 </div>
 <!-- /.container-fluid -->

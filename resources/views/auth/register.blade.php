@@ -15,7 +15,7 @@ $categories = business_categories::all();
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form class="form-loading" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -121,12 +121,12 @@ $categories = business_categories::all();
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                <button type="submit" class="btn btn-primary button-loading">
+                                    <div  style="display: none;" class="spinner-border spinner-border-sm text-light"></div> {{ __('Register') }}
                                 </button>
-                                <!--                                <a class="btn btn-link" href="{{ route('login') }}">
-                                                                    {{ __('Already have an account? Sign in') }}
-                                                                </a>-->
+                                <a class="btn btn-link" href="{{ route('login') }}">
+                                    {{ __('Already have an account? Sign in') }}
+                                </a>
                             </div>
                         </div>
                     </form>
