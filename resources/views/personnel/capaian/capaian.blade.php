@@ -58,7 +58,7 @@
                 <!-- Card Body -->
 
                 <div class="card-body">
-                    @if($is_scored != 0)
+                    @if($is_scored != 0 && getStatusApproval($bulan, $tahun) != 'not approved')
                     <div class="alert alert-primary alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -91,10 +91,29 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    @if (getStatusApproval($bulan, $tahun) != null)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right"><b>Status : </b></label>
+                                <div class="col-md-6">
+                                    @if(getStatusApproval($bulan, $tahun) == 'approved')
+                                    <b><div style="color: green; margin-top: 8px;">{{getStatusApproval($bulan, $tahun)}}</div></b>
+                                    @elseif(getStatusApproval($bulan, $tahun) == 'waiting for approval')
+                                    <b><div style="color: darkgrey; margin-top: 8px;">{{getStatusApproval($bulan, $tahun)}}</div></b>
+                                    @elseif (getStatusApproval($bulan, $tahun) == 'not approved')
+                                    <b><div style="color: red; margin-top: 8px;">{{getStatusApproval($bulan, $tahun)}}</div></b>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                     </div><br>
+                    @endif
 
                     <!--KPI Table-->
-                    <form method="post" action="{{route('personnel.capaian.addcapaian')}}">
+                    <form method="post" action="@if(getStatusApproval($bulan, $tahun) == 'not approved'){{route('personnel.capaian.updatecapaian')}}@else{{route('personnel.capaian.addcapaian')}}@endif" >
                         @csrf
                         <input name="bulan" value="{{$bulan}}" type="hidden" >
                         <input name="tahun" value="{{$tahun}}" type="hidden" >
@@ -129,13 +148,30 @@
                                             @endif
                                         </td>
                                         <td> 
-                                            @if($is_scored != 0)
+                                            @if($is_scored != 0 && getStatusApproval($bulan, $tahun) != 'not approved')
                                             <div class="input-group mb-3">
                                                 <input name="cap" value="{{getCapaianPersonnel($bulan,$tahun,$target->id)}}" type="number" class="form-control" min="1" readonly>
                                                 <div class="input-group-append">
                                                     <span class="input-group-text" id="basic-addon2">{{$target->unit}}</span>
                                                 </div>
                                             </div>
+                                            @elseif (getStatusApproval($bulan, $tahun) == 'not approved')
+                                            <div class="input-group mb-3">
+                                                <input name="activetargetid[]" value="{{$target->id}}" type="hidden" >
+                                                <input name="so[]" value="{{$target->so}}" type="hidden" >
+                                                <input name="kpi[]" value="{{$target->kpi}}" type="hidden" >
+                                                <input name="unit[]" value="{{$target->unit}}" type="hidden" >
+                                                <input name="measurement[]" value="{{$target->measurement}}" type="hidden" >
+                                                <input name="target[]" value="{{$target->target}}" type="hidden" >
+                                                <input name="weight[]" value="{{$target->weight}}" type="hidden" >
+                                                <input name="polarization[]" value="{{$target->polarization}}" type="hidden" >
+                                                <input name="timeframe_target[]" value="{{$target->timeframe_target}}" type="hidden" >
+                                                <input name="capaian[]" type="number" value="{{getCapaianPersonnel($bulan,$tahun,$target->id)}}" class="form-control" min="1" required="">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="basic-addon2">{{$target->unit}}</span>
+                                                </div>
+                                            </div>
+
                                             @else
                                             <div class="input-group mb-3">
                                                 <input name="activetargetid[]" value="{{$target->id}}" type="hidden" >
@@ -162,6 +198,8 @@
                         <!--<button></button>-->
                         @if($is_scored == 0 && $jmlTarget != 0)
                         <button class="btn btn-primary float-right" onclick="confirm('Make sure your input is correct before going to the submit process. Are you sure to submit this data?')">Submit Capaian</button>
+                        @elseif (getStatusApproval($bulan, $tahun) == 'not approved')
+                        <button class="btn btn-primary float-right" onclick="confirm('Make sure your input is correct before going to the submit process. Are you sure to submit this data?')">Update Capaian</button>
                         @endif
                     </form>
                 </div>

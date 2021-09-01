@@ -18,7 +18,10 @@ class personnelCapaianController extends Controller {
             $bulan = date('n');
             $tahun = date('Y');
             // ambil active target dibulan sekarang dan tahun sekarang
-            $target = active_target_kpi::where('id_user', Auth::user()->id)->where('tahun', $tahun)->where('bulan', $bulan)->get();
+            $target = active_target_kpi::where('id_user', Auth::user()->id)
+                    ->where('tahun', $tahun)
+                    ->where('bulan', $bulan)
+                    ->get();
         }
         else
         {
@@ -27,7 +30,10 @@ class personnelCapaianController extends Controller {
             $tahun = $requset->tahun;
 
             // ambil active target dibulan berdasarkan inputan
-            $target = active_target_kpi::where('id_user', Auth::user()->id)->where('tahun', $requset->tahun)->where('bulan', $requset->bulan)->get();
+            $target = active_target_kpi::where('id_user', Auth::user()->id)
+                    ->where('tahun', $requset->tahun)
+                    ->where('bulan', $requset->bulan)
+                    ->get();
         }
 
 
@@ -55,7 +61,7 @@ class personnelCapaianController extends Controller {
             $periode_th = $is_scoredq['periode_th'];
             $range_period = $is_scoredq['range_period'];
         }
-        
+
 
 
         return view('personnel.capaian.capaian', ['bulan' => $bulan,
@@ -193,7 +199,135 @@ class personnelCapaianController extends Controller {
                 ->where('tahun', $tahun)->update(['is_scored' => 1]);
 
         return redirect()->route('personnel.capaian', ['tahun' => $tahun, 'bulan' => $bulan]);
-        //dd($request);
+    }
+
+    function updateCapaian(Request $request)
+    {
+        //update capaian bila not approved
+        // get all data
+        //not array 
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+        $periode_th = $request->periode_th;
+        //array
+        $activetargetid = $request->activetargetid;
+        $so = $request->so;
+        $kpi = $request->kpi;
+        $unit = $request->unit;
+        $measurement = $request->measurement;
+        $target = $request->target;
+        $weight = $request->weight;
+        $polarization = $request->polarization;
+        $timeframe_target = $request->timeframe_target;
+        $capaian = $request->capaian;
+
+        // update table capaian_kpi
+        foreach ($activetargetid as $index => $activetargetid)
+        {
+            $capaiankpi = capaian_kpi::where('id_user', Auth::user()->id)
+                    ->where('id_active_target_kpi', $activetargetid)
+                    ->where('bulan', $bulan)
+                    ->where('tahun', $tahun)
+                    ->first();
+            $capaiankpi->id_user = Auth::user()->id;
+            $capaiankpi->id_active_target_kpi = $activetargetid;
+            $capaiankpi->periode_th = $periode_th;
+            $capaiankpi->bulan = $bulan;
+            $capaiankpi->tahun = $tahun;
+            $capaiankpi->so = $so[$index];
+            $capaiankpi->kpi = $kpi[$index];
+            $capaiankpi->unit = $unit[$index];
+            $capaiankpi->measurement = $measurement[$index]; //measurement =   percentages , absolute number , index , rating , rangking 
+            $capaiankpi->target = $target[$index];
+            $capaiankpi->weight = $weight[$index];
+            $capaiankpi->polarization = $polarization[$index]; // minimize / maximize
+            $capaiankpi->timeframe_target = $timeframe_target[$index];
+            $capaiankpi->capaian = $capaian[$index];
+            $capaiankpi->approval = 'waiting for approval';
+            //$capaiankpi->score = 1;  //harus di kalkulasi berdasarkan jenis measurementnya
+            switch ($measurement[$index])
+            {
+                case 'percentages':
+                    if ($polarization[$index] == 'maximize')
+                    {
+                        $score = ($capaian[$index] / $target[$index]) * 100;
+                        $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score * $weight[$index];
+                    }
+                    elseif ($polarization[$index] == 'minimize')
+                    {
+                        $score = ($target[$index] / $capaian[$index]) * 100;
+                        $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score * $weight[$index];
+                    }
+                    //code
+                    break;
+                case 'absolute number':
+                    if ($polarization[$index] == 'maximize')
+                    {
+                        $score = ($capaian[$index] / $target[$index]) * 100;
+                        $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score * $weight[$index];
+                    }
+                    elseif ($polarization[$index] == 'minimize')
+                    {
+                        $score = ($target[$index] / $capaian[$index]) * 100;
+                        $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score * $weight[$index];
+                    }
+                    //code
+                    break;
+                case 'index':
+                    if ($polarization[$index] == 'maximize')
+                    {
+                        $score = ($capaian[$index] / $target[$index]) * 100;
+                        $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score * $weight[$index];
+                    }
+                    elseif ($polarization[$index] == 'minimize')
+                    {
+                        $score = ($target[$index] / $capaian[$index]) * 100;
+                        $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score * $weight[$index];
+                    }
+                    //code
+                    break;
+                case 'rating':
+                    if ($polarization[$index] == 'maximize')
+                    {
+                        $score = ($capaian[$index] / $target[$index]) * 100;
+                        $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score * $weight[$index];
+                    }
+                    elseif ($polarization[$index] == 'minimize')
+                    {
+                        $score = ($target[$index] / $capaian[$index]) * 100;
+                        $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score * $weight[$index];
+                    }
+                    //code
+                    break;
+                case 'rangking':
+                    if ($polarization[$index] == 'maximize')
+                    {
+                        $score = ($capaian[$index] / $target[$index]) * 100;
+                        $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score * $weight[$index];
+                    }
+                    elseif ($polarization[$index] == 'minimize')
+                    {
+                        $score = ($target[$index] / $capaian[$index]) * 100;
+                        $capaiankpi->score = $score;
+                        $capaiankpi->weightedscore = $score * $weight[$index];
+                    }
+                    //code
+                    break;
+            }
+            //measurement =   percentages , absolute number , index , rating , rangking 
+            $capaiankpi->save();
+        }
+
+        return redirect()->route('personnel.capaian', ['tahun' => $tahun, 'bulan' => $bulan]);
     }
 
 }

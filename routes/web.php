@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 //Auth Controller
 use App\Http\Controllers\Auth\VerificationEmailController;
 use App\Http\Controllers\HomeRouteController;
@@ -28,7 +27,6 @@ use App\Http\Middleware\PersonnelGuard;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewPersonnelEmail;
 
-
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -44,13 +42,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', [HomeRouteController::class, 'index'])->name('home');
-Auth::routes(['verify'=>true]);
+Auth::routes(['verify' => true]);
 //Auth::routes();
 //Route::get('/email/verify/{id}/{hash}', [VerificationEmailController::class, '__invoke'])
 //    ->middleware(['signed', 'throttle:6,1'])
 //    ->name('verification.verify');
 // custom listener verified email
-
 // == GENERAL FUNCTION ==
 Route::get('/change-password', [ChangePasswordController::class, 'index']);
 Route::post('change-password', [ChangePasswordController::class, 'store'])->name('change.password');
@@ -74,12 +71,11 @@ Route::middleware([AdminGuard::class])->group(function () {
     Route::post('/admin-addkpi', [dataLibraryController::class, 'addKpi'])->name('admin.datalibrary.addkpi');
     Route::post('/admin-addsi', [dataLibraryController::class, 'addSi'])->name('admin.datalibrary.addsi');
     Route::post('/admin-deletesi', [dataLibraryController::class, 'deleteSi'])->name('admin.datalibrary.deletesi');
-    
 });
 
 
 // == CLIENT ROUTE ==
-Route::middleware([ClientGuard::class,'verified'])->group(function () {
+Route::middleware([ClientGuard::class, 'verified'])->group(function () {
     // * Home *
     Route::get('/client-home', [clientHomeController::class, 'index'])->name('client.home');
 
@@ -111,6 +107,8 @@ Route::middleware([ClientGuard::class,'verified'])->group(function () {
     // ** Performance Report **
     Route::get('/client-performancereport', [performanceReportController::class, 'index'])->name('client.performancereport');
     Route::get('/client-performancereport-details', [performanceReportController::class, 'details'])->name('client.performancereport.details');
+    Route::post('/client-performancereport-approvecapaian', [performanceReportController::class, 'approveCapaian'])->name('client.performancereport.approvecapaian');
+    Route::post('/client-performancereport-rejectcapaian', [performanceReportController::class, 'rejectCapaian'])->name('client.performancereport.rejectcapaian');
 
     // ** Initiatives **
     // -> page
@@ -138,6 +136,7 @@ Route::middleware([PersonnelGuard::class, 'verified'])->group(function () {
     Route::post('/personnel-capaian', [personnelCapaianController::class, 'index'])->name('personnel.capaian');
     // -> logic
     Route::post('/personnel-capaian-addcapaian', [personnelCapaianController::class, 'addCapaian'])->name('personnel.capaian.addcapaian');
+    Route::post('/personnel-capaian-updatecapaian', [personnelCapaianController::class, 'updateCapaian'])->name('personnel.capaian.updatecapaian');
 
     // * Performance Report *
     Route::get('/personnel-performancereport', [personnelPerformanceReportController::class, 'index'])->name('personnel.performancereport');

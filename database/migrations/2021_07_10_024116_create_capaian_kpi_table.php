@@ -33,6 +33,7 @@ class CreateCapaianKpiTable extends Migration {
             $table->bigInteger('capaian');
             $table->double('score', 20, 2);
             $table->bigInteger('weightedscore');
+            $table->string('approval')->default('waiting for approval'); // waiting for approval, approved , not approved
             $table->timestamps();
         });
     }

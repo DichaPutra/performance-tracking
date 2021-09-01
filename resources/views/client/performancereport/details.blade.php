@@ -111,32 +111,175 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-<!--    <div class="row">
+
+
+    @if ($waitingApprovalCapaian->count())
+    <!--jika ada waiting approval-->
+    <div class="row">
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4 animated--grow-in">
-                 Card Header - Dropdown 
+                <!--Card Header - Dropdown--> 
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Pending Approval Capaian</h5>
                 </div>
-                 Card Body 
+                <!--Card Body--> 
                 <div class="card-body">
 
+                    <!--ambil data capaian_kpi dengan approval = waiting for acceptance
+                    - make function untuk details capaian di otherelements
+                    -->
                     <div class="alert alert-warning">
-                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><i class="fa fa-warning"></i></svg>
-
-                        Berikut ini adalah data capaian yang pending dalam report. Harap lakukan <b>pengecekan data capaian</b>. Jika data yang telah di inputkan oleh personnel telah benar, harap lakukan "approval" dengan menekan tombol "approve".
-                            <div class="chart-container" style="height:20%; width:100%"> <canvas id="yearlychart"></canvas></div>
+                        <div class="row">
+                            <div class="col-md-1" style="text-align: center;">
+                                <i class="fas fa-exclamation-triangle" ></i>
+                            </div>
+                            <div class="col-md-9">
+                                Berikut ini adalah data capaian yang pending dalam report. Harap lakukan <b>pengecekan data capaian</b>. Jika data yang diinputkan oleh personnel sudah benar, harap lakukan approval dengan menekan tombol "approve".
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
 
+                        <?php
+                        //data untuk modal
+                        $waitingApprovalCapaian2 = $waitingApprovalCapaian
+                        ?>
+                        <!--Tabel Approval-->
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead style="background-color: #F8F9FC;">
+                                    <tr>
+                                        <th style="text-align: center; width: 5%">No</th>
+                                        <th style="text-align: center;">Waktu Capaian</th>
+                                        <th style="text-align: center; width: 20%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($waitingApprovalCapaian as $waitingApprovalCapaian)
+                                    <tr>
+                                        <td style="text-align: center;">{{$loop->iteration}}</td>
+                                        <td style="text-align: center;">{{$waitingApprovalCapaian->bulan}}/{{$waitingApprovalCapaian->tahun}}</td>
+                                        <td style="text-align: center;">
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#detailsApproval{{$loop->iteration}}">Details</button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!--Modal Detail-->
+                        @foreach ($waitingApprovalCapaian2 as $waitingApprovalCapaian2)
+                        <div class="modal fade" id="detailsApproval{{$loop->iteration}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Detail Capaian</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group row">
+                                                    <label for="position" class="col-md-4 col-form-label text-md-right">Waktu Capaian</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control" list="pos"
+                                                               value="{{$waitingApprovalCapaian2->bulan}}/{{$waitingApprovalCapaian2->tahun}}" disabled="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered" width="100%" cellspacing="0">
+                                                <thead style="background-color: #F8F9FC;">
+                                                    <tr>
+                                                        <th style="width: 8%; text-align: center;">No</th>
+                                                        <th style="width: 52%; text-align: center;">SO & KPI</th>
+                                                        <th>Target</th>
+                                                        <th>Capaian</th>
+                                                        <th>Unit Satuan</th>
+                                                        <th style="width: 40%; text-align: center;">Performance Score</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (detailCapaianApprove($waitingApprovalCapaian2->bulan, $waitingApprovalCapaian2->tahun, $data->id) as $approvalCapaian )
+                                                    <tr>
+                                                        <td style="text-align: center;">{{$loop->iteration}}</td>
+                                                        <td>
+                                                            <b>{{$approvalCapaian->so}}</b><br>
+                                                            {{$approvalCapaian->kpi}}
+                                                        </td>
+                                                        <td style="text-align: center;">
+                                                            {{ $approvalCapaian->target}} 
+                                                        </td>
+                                                        <td style="text-align: center;">
+                                                            {{ $approvalCapaian->capaian}} 
+
+                                                        </td>
+                                                        <td>
+                                                            {{$approvalCapaian->unit}}
+                                                        </td>
+                                                        <td style="text-align: center;">
+                                                            @if($approvalCapaian->score>100)
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-info" role="progressbar" style="width: {{$approvalCapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$approvalCapaian->score}}</div>
+                                                            </div>
+                                                            @elseif($approvalCapaian->score>=75)
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-success" role="progressbar" style="width: {{$approvalCapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$approvalCapaian->score}}</div>
+                                                            </div>
+                                                            @elseif($approvalCapaian->score>=50)
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{$approvalCapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$approvalCapaian->score}}</div>
+                                                            </div>
+                                                            @elseif ($approvalCapaian->score<50)
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{$approvalCapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$approvalCapaian->score}}</div>
+                                                            </div>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <form method="post" action="{{route('client.performancereport.rejectcapaian')}}">
+                                            @csrf
+                                            <input name="bulan" type="hidden" value="{{$waitingApprovalCapaian2->bulan}}">
+                                            <input name="tahun" type="hidden" value="{{$waitingApprovalCapaian2->tahun}}">
+                                            <input name="id_user" type="hidden" value="{{$data->id}}">
+                                            <button type="submit" class="btn btn-danger" >Reject</button>
+                                        </form>
+                                        <form method="post" action="{{route('client.performancereport.approvecapaian')}}">
+                                            @csrf
+                                            <input name="bulan" type="hidden" value="{{$waitingApprovalCapaian2->bulan}}">
+                                            <input name="tahun" type="hidden" value="{{$waitingApprovalCapaian2->tahun}}">
+                                            <input name="id_user" type="hidden" value="{{$data->id}}">
+                                            <button type="submit" class="btn btn-primary" >Approve</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
+    @endif
+
+
 
     <div class="row">
         <div class="col-xl-12 col-lg-12">
@@ -160,8 +303,6 @@
                             </div>
                         </div>
                     </div>
-
-                        <!--<div class="chart-container" style="height:20%; width:100%"> <canvas id="yearlychart"></canvas></div>-->
                     <div class="row">
                         <div>
                             <canvas id="yearlychart" width="100%" height="35%"></canvas>
@@ -171,6 +312,10 @@
             </div>
         </div>
     </div>
+
+
+
+
     <div class="row">
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4 animated--grow-in">
@@ -218,7 +363,6 @@
                         <div class="float-none" id="container"></div>
                     </div><br>
 
-
                     <!-- Content Row -->
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -242,7 +386,7 @@
                                         <b>{{$datacapaian->so}}</b><br>
                                         {{$datacapaian->kpi}}
                                     </td>
-<!--                                        <td>
+                                    <!--<td>
                                         {{$datacapaian->target}}
                                         @if($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
                                         Rp {{ $datacapaian->target}},-
@@ -351,13 +495,12 @@
     </div>
 
 
+
 </div>
 <!-- /.container-fluid -->
-
 @endsection
 
 @section('script')
-
 <!--chart.JS-->
 <script>
     new Chart(document.getElementById("yearlychart"), {

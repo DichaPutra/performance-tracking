@@ -130,29 +130,28 @@
                         <div class="modal fade bd-example-modal-lg" id="modalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
-                                    <form
-                                        <form action="{{route('client.initiative.addactionplan')}}" method="post">
-                                            @csrf
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Add Action Plan </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <form action="{{route('client.initiative.addactionplan')}}" method="post">
+                                        @csrf
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Add Action Plan </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- **** Form Add SO **** -->
+                                            <input name="id_user"type="hidden" value="{{$data->id}}">
+                                            <input name="id_target_si"type="hidden" value="{{$datasi->id}}">
+                                            <input name="tahun"type="hidden" value="{{$tahun}}">
+                                            <input name="idkpiselected" type="hidden" value="{{$datakpiselected->id}}">
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Action Plan :</label>
+                                                <textarea name="actionplan"class="form-control" rows="2"></textarea>
                                             </div>
-                                            <div class="modal-body">
-                                                <!-- **** Form Add SO **** -->
-                                                <input name="id_user"type="hidden" value="{{$data->id}}">
-                                                <input name="id_target_si"type="hidden" value="{{$datasi->id}}">
-                                                <input name="tahun"type="hidden" value="{{$tahun}}">
-                                                <input name="idkpiselected" type="hidden" value="{{$datakpiselected->id}}">
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlSelect1">Action Plan :</label>
-                                                    <textarea name="actionplan"class="form-control" rows="2"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <input class="btn btn-primary"type="submit" value="Add">
-                                            </div>
-                                        </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <input class="btn btn-primary"type="submit" value="Add">
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -218,163 +217,163 @@
                         </div>
                     </div>
                 </div>
-<!--                <div class="col-md-4">
-                    Card 3
-                    <div class="card shadow mb-4 animated--grow-in" data-spy="scroll" style="height: 710px">
-                        <div
-                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Comments</h6>
-                        </div>
-
-                        <div class="row">
-                            <div class="container">
-                                <div class="text-justify">
-                                    <div class="well">
-                                        <br>
-                                        <h4>What is on your mind?</h4>
-                                        <textarea class="form-control" rows="2"></textarea>
-                                        <a href="#" class="btn btn-primary btn-sm float-right" style="margin-top: 10px">Submit</a>
-
-                                        <div class="input-group">
-                                            <textarea class="form-control" rows="3"></textarea>
-                                            <span class="input-group-btn" >     
-                                                <a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>
-                                            </span>
+                <!--                <div class="col-md-4">
+                                    Card 3
+                                    <div class="card shadow mb-4 animated--grow-in" data-spy="scroll" style="height: 710px">
+                                        <div
+                                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold text-primary">Comments</h6>
                                         </div>
-                                        <hr>
-                                        <div class="scroll">
-                                            <ul data-brackets-id="12674" id="sortable" class="list-unstyled ui-sortable">
-                                                <strong class="pull-left primary-font">James | Company</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
-
-                                                <hr>
-
-                                                <strong class="pull-left primary-font">Taylor | Production</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-
-                                                <hr>
-
-                                                <strong class="pull-left primary-font">Taylor | Production</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-
-                                                <hr>
-
-                                                <strong class="pull-left primary-font">Taylor | Production</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-
-                                                <hr>
-
-                                                <strong class="pull-left primary-font">Taylor | Production</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-
-                                                <strong class="pull-left primary-font">James | Company</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
-
-                                                <hr>
-
-                                                <strong class="pull-left primary-font">Taylor | Production</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-
-                                                <hr>                                                <strong class="pull-left primary-font">James | Company</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
-
-                                                <hr>
-
-                                                <strong class="pull-left primary-font">Taylor | Production</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-
-                                                <hr>                                                <strong class="pull-left primary-font">James | Company</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
-
-                                                <hr>
-
-                                                <strong class="pull-left primary-font">Taylor | Production</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-
-                                                <hr>                                                <strong class="pull-left primary-font">James | Company</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
-
-                                                <hr>
-
-                                                <strong class="pull-left primary-font">Taylor | Production</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-
-                                                <hr>                                                <strong class="pull-left primary-font">James | Company</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
-
-                                                <hr>
-
-                                                <strong class="pull-left primary-font">Taylor | Production</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-
-                                                <hr>                                                <strong class="pull-left primary-font">James | Company</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
-
-                                                <hr>
-
-                                                <strong class="pull-left primary-font">Taylor | Production</strong>
-                                                <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
-                                                </br>
-                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
-
-                                                <hr>
-                                            </ul>
+                
+                                        <div class="row">
+                                            <div class="container">
+                                                <div class="text-justify">
+                                                    <div class="well">
+                                                        <br>
+                                                        <h4>What is on your mind?</h4>
+                                                        <textarea class="form-control" rows="2"></textarea>
+                                                        <a href="#" class="btn btn-primary btn-sm float-right" style="margin-top: 10px">Submit</a>
+                
+                                                        <div class="input-group">
+                                                            <textarea class="form-control" rows="3"></textarea>
+                                                            <span class="input-group-btn" >     
+                                                                <a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>
+                                                            </span>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="scroll">
+                                                            <ul data-brackets-id="12674" id="sortable" class="list-unstyled ui-sortable">
+                                                                <strong class="pull-left primary-font">James | Company</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
+                
+                                                                <hr>
+                
+                                                                <strong class="pull-left primary-font">Taylor | Production</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                
+                                                                <hr>
+                
+                                                                <strong class="pull-left primary-font">Taylor | Production</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                
+                                                                <hr>
+                
+                                                                <strong class="pull-left primary-font">Taylor | Production</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                
+                                                                <hr>
+                
+                                                                <strong class="pull-left primary-font">Taylor | Production</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                
+                                                                <strong class="pull-left primary-font">James | Company</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
+                
+                                                                <hr>
+                
+                                                                <strong class="pull-left primary-font">Taylor | Production</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                
+                                                                <hr>                                                <strong class="pull-left primary-font">James | Company</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
+                
+                                                                <hr>
+                
+                                                                <strong class="pull-left primary-font">Taylor | Production</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                
+                                                                <hr>                                                <strong class="pull-left primary-font">James | Company</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
+                
+                                                                <hr>
+                
+                                                                <strong class="pull-left primary-font">Taylor | Production</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                
+                                                                <hr>                                                <strong class="pull-left primary-font">James | Company</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
+                
+                                                                <hr>
+                
+                                                                <strong class="pull-left primary-font">Taylor | Production</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                
+                                                                <hr>                                                <strong class="pull-left primary-font">James | Company</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
+                
+                                                                <hr>
+                
+                                                                <strong class="pull-left primary-font">Taylor | Production</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                
+                                                                <hr>                                                <strong class="pull-left primary-font">James | Company</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>7 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>
+                
+                                                                <hr>
+                
+                                                                <strong class="pull-left primary-font">Taylor | Production</strong>
+                                                                <small class="pull-right text-muted">
+                                                                    <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                                                </br>
+                                                                <li class="ui-state-default">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                
+                                                                <hr>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
+                                </div>-->
 
             </div>
         </div>

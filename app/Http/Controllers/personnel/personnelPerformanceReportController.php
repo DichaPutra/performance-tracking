@@ -60,7 +60,12 @@ class personnelPerformanceReportController extends Controller {
 
 
         //data dropdown bulan
-        $dropdownbln = capaian_kpi::groupby('bulan', 'tahun')->select('bulan', 'tahun')->where('id_user', Auth::user()->id)->where('periode_th', $periodeth)->get();
+        $dropdownbln = capaian_kpi::groupby('bulan', 'tahun')
+                ->select('bulan', 'tahun')
+                ->where('id_user', Auth::user()->id)
+                ->where('periode_th', $periodeth)
+                ->where('approval', 'approved')
+                ->get();
 
         // === DATA UNTUK MONTHLY DETAILS ===
         if ($request->month == null)
@@ -78,6 +83,7 @@ class personnelPerformanceReportController extends Controller {
             $datacapaian = capaian_kpi::where('id_user', Auth::user()->id)
                     ->where('tahun', $year)
                     ->where('bulan', $month)
+                    ->where('approval', 'approved')
                     ->get();
 
             $bulanScore = $this->getScoreBulanan(Auth::user()->id, $month, $year) / 100;
@@ -138,9 +144,15 @@ class personnelPerformanceReportController extends Controller {
     function getScoreBulanan($id_user, $bulan, $tahun)
     {
         $sumweight = capaian_kpi::where('id_user', $id_user)
-                        ->where('bulan', $bulan)->where('tahun', $tahun)->sum('weight');
+                ->where('bulan', $bulan)
+                ->where('tahun', $tahun)
+                ->where('approval', 'approved')
+                ->sum('weight');
         $sumweightedscore = capaian_kpi::where('id_user', $id_user)
-                        ->where('bulan', $bulan)->where('tahun', $tahun)->sum('weightedscore');
+                ->where('bulan', $bulan)
+                ->where('tahun', $tahun)
+                ->where('approval', 'approved')
+                ->sum('weightedscore');
         if ($sumweight != 0)
         {
             $overallMonthlyScore = $sumweightedscore / $sumweight;

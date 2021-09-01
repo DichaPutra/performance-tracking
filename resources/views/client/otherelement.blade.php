@@ -134,8 +134,14 @@ function checkTargetTerakhir($id_user, $tahun)
 
 function getPeriodePerformance($id_user, $periode_th)
 {
-    $sumweightedscore = capaian_kpi::where('id_user', $id_user)->where('periode_th', $periode_th)->sum('weightedscore');
-    $sumweight = capaian_kpi::where('id_user', $id_user)->where('periode_th', $periode_th)->sum('weight');
+    $sumweightedscore = capaian_kpi::where('id_user', $id_user)
+            ->where('periode_th', $periode_th)
+            ->where('approval', 'approved')
+            ->sum('weightedscore');
+    $sumweight = capaian_kpi::where('id_user', $id_user)
+            ->where('periode_th', $periode_th)
+            ->where('approval', 'approved')
+            ->sum('weight');
 
     if ($sumweight == 0)
     {
@@ -160,6 +166,16 @@ function isTargetExist($id_user, $periode_th)
     {
         return false;
     }
+}
+
+function detailCapaianApprove($bulan, $tahun, $id_user)
+{
+    $capaianApproval = capaian_kpi::where('bulan', $bulan)
+                    ->where('tahun', $tahun)
+                    ->where('id_user', $id_user)
+                    ->where('approval', 'waiting for approval')->get();
+
+    return $capaianApproval;
 }
 
 // =======================================================

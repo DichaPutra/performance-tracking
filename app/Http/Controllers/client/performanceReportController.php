@@ -50,12 +50,26 @@ class performanceReportController extends Controller {
             return abort(403);
         }
 
+        // data group capaian_kpi yang "waiting for approval"
+        $waitingApprovalCapaian = capaian_kpi::groupby('bulan', 'tahun')
+                ->select('bulan', 'tahun')
+                ->where('id_user', $request->user_id)
+                ->where('periode_th', $request->periode_th)
+                ->where('approval', 'waiting for approval')
+                ->get();
+
+
         //data target dlm periode th
         $startingbln = target_kpi::where('id_user', $request->user_id)
                         ->where('periode_th', $request->periode_th)->first();
 
         //data dropdown bulan
-        $dropdownbln = capaian_kpi::groupby('bulan', 'tahun')->select('bulan', 'tahun')->where('id_user', $request->user_id)->where('periode_th', $request->periode_th)->get();
+        $dropdownbln = capaian_kpi::groupby('bulan', 'tahun')
+                ->select('bulan', 'tahun')
+                ->where('id_user', $request->user_id)
+                ->where('periode_th', $request->periode_th)
+                ->where('approval', 'approved')
+                ->get();
 
         // === DATA UNTUK MONTHLY DETAILS ===
         if ($request->month == null)
@@ -73,10 +87,10 @@ class performanceReportController extends Controller {
             $datacapaian = capaian_kpi::where('id_user', $request->user_id)
                     ->where('tahun', $year)
                     ->where('bulan', $month)
+                    ->where('approval', 'approved')
                     ->get();
-            
-//            dd($datacapaian);
-            $bulanScore = $this->getScoreBulanan($request->user_id, $month, $year)/100;
+
+            $bulanScore = $this->getScoreBulanan($request->user_id, $month, $year) / 100;
         }
 
 
@@ -96,13 +110,13 @@ class performanceReportController extends Controller {
         }
         $bulanChart = json_encode($bulanChart);
 
-        // == Data Capaian Untuk Chart JS == 
+        // === Data Capaian Untuk Chart JS === 
         $capaianChart = array();
         $loopBlnChart = $startingbln['starting_bln'];
         $loopThChart = $startingbln['periode_th'];
         for ($i = 0; $i < 12; $i++)
         {
-            $capaianChart[] = round($this->getScoreBulanan($data->id, $loopBlnChart, $loopThChart),2);
+            $capaianChart[] = round($this->getScoreBulanan($data->id, $loopBlnChart, $loopThChart), 2);
             if ($loopBlnChart == 12)
             {
                 $loopBlnChart = 1;
@@ -125,7 +139,8 @@ class performanceReportController extends Controller {
             'bulanScore' => $bulanScore,
             'bulanChart' => $bulanChart,
             'capaianChart' => $capaianChart,
-            'dropdownbln' => $dropdownbln
+            'dropdownbln' => $dropdownbln,
+            'waitingApprovalCapaian' => $waitingApprovalCapaian
         ]);
     }
 
@@ -133,9 +148,15 @@ class performanceReportController extends Controller {
     function getScoreBulanan($id_user, $bulan, $tahun)
     {
         $sumweight = capaian_kpi::where('id_user', $id_user)
-                        ->where('bulan', $bulan)->where('tahun', $tahun)->sum('weight');
+                ->where('bulan', $bulan)
+                ->where('tahun', $tahun)
+                ->where('approval', 'approved')
+                ->sum('weight');
         $sumweightedscore = capaian_kpi::where('id_user', $id_user)
-                        ->where('bulan', $bulan)->where('tahun', $tahun)->sum('weightedscore');
+                ->where('bulan', $bulan)
+                ->where('tahun', $tahun)
+                ->where('approval', 'approved')
+                ->sum('weightedscore');
         if ($sumweight != 0)
         {
             $overallMonthlyScore = $sumweightedscore / $sumweight;
@@ -146,6 +167,34 @@ class performanceReportController extends Controller {
         }
 
         return $overallMonthlyScore;
+    }
+
+    function approveCapaian(Request $request)
+    {
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+        $id_user = $request->id_user;
+
+        capaian_kpi::where('id_user', $id_user)
+                ->where('bulan', $bulan)
+                ->where('tahun', $tahun)
+                ->update(['approval' => 'approved']);
+
+        return redirect()->back();
+    }
+
+    function rejectCapaian(Request $request)
+    {
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+        $id_user = $request->id_user;
+        
+        capaian_kpi::where('id_user', $id_user)
+                ->where('bulan', $bulan)
+                ->where('tahun', $tahun)
+                ->update(['approval' => 'not approved']);
+
+        return redirect()->back();
     }
 
 }
