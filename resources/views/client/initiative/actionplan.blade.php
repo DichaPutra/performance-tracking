@@ -24,6 +24,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">Initiative</li>
             <li class="breadcrumb-item active" aria-current="page">KPI</li>
+            <li class="breadcrumb-item active" aria-current="page">SI</li>
             <li class="breadcrumb-item active" aria-current="page">Action Plan</li>
         </ol>
     </nav><br>
@@ -36,7 +37,7 @@
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center">
-                    <a href="{{route('client.initiative.kpi', ['idpersonnel'=>$data->id,'tahun'=>$tahun])}}" style="margin-right: 15px;"class="btn btn-sm btn-primary "><i class="fas fa-chevron-left"></i></a><br>
+                    <a href="{{route('client.initiative.kpi', ['idpersonnel'=>$data->id,'tahun'=>$tahun, 'idkpi'=>$datakpiselected->id])}}" style="margin-right: 15px;"class="btn btn-sm btn-primary "><i class="fas fa-chevron-left"></i></a><br>
                     <h6 class="m-0 font-weight-bold text-primary">Details</h6>
                 </div>
                 <!-- Card Body -->
@@ -187,15 +188,53 @@
                                         <tr>
                                             <th style="text-align: center; width: 10%">No</th>
                                             <th>Action Plan</th>
-                                            <th style="text-align: center; width: 10%"></th>
+                                            <th style="text-align: center; width: 12%;"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         @foreach ($actionplan as $actionplan)
+                                        @if ($actionplan->approval == 'waiting for approval')
+                                        <tr style="background-color: #FFF3CD;">
+                                            @else 
                                         <tr>
+                                            @endif
+
+
                                             <td style="text-align: center;">{{$loop->iteration}}</td>
                                             <td>{{$actionplan->actionplan}}</td>
-                                            <td style="text-align: center; width: 10%">
+                                            <td style="text-align: center;">
+                                                @if ($actionplan->approval == 'waiting for approval')
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <form method="post" action="{{route('client.initiative.approveactionplan')}}">
+                                                            @csrf
+                                                            <input name="id_user"type="hidden" value="{{$data->id}}">
+                                                            <input name="id_target_si"type="hidden" value="{{$datasi->id}}">
+                                                            <input name="tahun"type="hidden" value="{{$tahun}}">
+                                                            <input name="idkpiselected" type="hidden" value="{{$datakpiselected->id}}">
+                                                            <input name="idactionplan"type="hidden" value="{{$actionplan->id}}">
+                                                            <button type="submit" class="btn btn-success btn-sm">
+                                                                Approve
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <form method="post" action="{{route('client.initiative.deleteactionplan')}}">
+                                                            @csrf
+                                                            <input name="id_user"type="hidden" value="{{$data->id}}">
+                                                            <input name="id_target_si"type="hidden" value="{{$datasi->id}}">
+                                                            <input name="tahun"type="hidden" value="{{$tahun}}">
+                                                            <input name="idkpiselected" type="hidden" value="{{$datakpiselected->id}}">
+                                                            <input name="idactionplan"type="hidden" value="{{$actionplan->id}}">
+                                                            <button type="submit"class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to reject this Action Plan ?');">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                                @else 
                                                 <form method="post" action="{{route('client.initiative.deleteactionplan')}}">
                                                     @csrf
                                                     <input name="id_user"type="hidden" value="{{$data->id}}">
@@ -207,6 +246,7 @@
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
+                                                @endif
                                             </td>
                                         </tr>
                                         @endforeach

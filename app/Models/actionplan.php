@@ -11,7 +11,7 @@ class actionplan extends Model {
 
     protected $table = 'actionplan';
     protected $fillable = [
-        'id_user', 'id_target_si', 'si', 'periode_th'
+        'id_user', 'id_target_si', 'si', 'periode_th', 'approval'
     ];
 
 }

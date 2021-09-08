@@ -69,8 +69,24 @@ class initiativeController extends Controller {
                 ->get();
 
         // get data Target Strategic Inititives
-        if ($request->idkpi != null)
+        if ($request->idkpi == null)
         {
+            // jika belum pilih KPI => tampilkan list KPI
+
+            $datakpiselected = null;
+            $datasi = null;
+
+            return view('client.initiative.kpi', [
+                'data' => $data,
+                'datakpi' => $datakpi,
+                'tahun' => $request->tahun,
+                'datakpiselected' => $datakpiselected,
+                'datasi' => $datasi
+            ]);
+        }
+        else
+        {
+            // Jika sudah pilih KPI
             //get data kpi with SO
             $datakpiselected = DB::table('target_kpi')
                     ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
@@ -78,19 +94,20 @@ class initiativeController extends Controller {
                     ->where('target_kpi.id', $request->idkpi)
                     ->first();
             $datasi = target_si::where('id_target_kpi', $request->idkpi)->where('periode_th', $request->tahun)->get();
-        }
-        else
-        {
-            $datakpiselected = null;
-            $datasi = null;
-        }
 
-        return view('client.initiative.kpi', ['data' => $data, 'datakpi' => $datakpi, 'tahun' => $request->tahun, 'datakpiselected' => $datakpiselected, 'datasi' => $datasi]);
+            return view('client.initiative.strategicinitiative', [
+                'data' => $data,
+                'datakpi' => $datakpi,
+                'tahun' => $request->tahun,
+                'datakpiselected' => $datakpiselected,
+                'datasi' => $datasi
+            ]);
+        }
     }
 
     function addInitiative(Request $request)
     {
-//        dd($request);
+        //dd($request);
         if ($request->id_si_library == 0)
         {
             // if custom
@@ -100,6 +117,7 @@ class initiativeController extends Controller {
             $addtargetsi->id_si_library = null;
             $addtargetsi->si = $request->customsi;
             $addtargetsi->periode_th = $request->periode_th;
+            $addtargetsi->approval = 'approved';
             $addtargetsi->save();
 
             return redirect()->back()->with('success', 'Success ! Strategic Initiative has been added');
@@ -117,6 +135,7 @@ class initiativeController extends Controller {
             $addtargetsi->id_si_library = $request->id_si_library;
             $addtargetsi->si = $sionlib->si;
             $addtargetsi->periode_th = $request->periode_th;
+            $addtargetsi->approval = 'approved';
             $addtargetsi->save();
 
             return redirect()->back()->with('success', 'Success ! Strategic Initiative has been added');
@@ -127,12 +146,21 @@ class initiativeController extends Controller {
     {
         //dd($request);
         //delete action plan child where idsi
-        actionplan::where('id_target_si',$request->idsi)->delete();
-        
+        actionplan::where('id_target_si', $request->idsi)->delete();
+
         //delete si
-        target_si::where('id',$request->idsi)->delete();
-        
+        target_si::where('id', $request->idsi)->delete();
+
         return redirect()->back()->with('success', 'Success ! Strategic Initiative has been deleted');
+    }
+
+    function approveInitiative(Request $request)
+    {
+        //dd($request);
+        //update SI
+        target_si::where('id', $request->idsi)->update(['approval' => 'approved']);
+
+        return redirect()->back()->with('success', 'Success ! Strategic Initiative has been approved');
     }
 
     function actionplan(Request $request)
@@ -174,6 +202,7 @@ class initiativeController extends Controller {
         $insertap->id_target_si = $request->id_target_si;
         $insertap->actionplan = $request->actionplan;
         $insertap->periode_th = $request->tahun;
+        $insertap->approval = 'approved';
         $insertap->save();
 
         //redirect with succes message
@@ -199,37 +228,21 @@ class initiativeController extends Controller {
                             'idsi' => $request->id_target_si
                         ])
                         ->with('success', 'Success ! Action Plan has been deleted');
-        //dd($request);
     }
 
-    //    function initiative(Request $request)
-//    {
-//
-//        //dd($request);
-//        //Mengambil detail data personnel
-//        $data = User::where('id', $request->idpersonnel)->first();
-//
-//        // guard (jika user yang dilihat bukan personnelnya)
-//        if ($data == NULL)
-//        {
-//            return abort(403);
-//        }
-//        if ($data->client_parent != Auth::user()->id)
-//        {
-//            return abort(403);
-//        }
-//
-//        //get data kpi with SO
-//        $datakpi = DB::table('target_kpi')
-//                ->join('target_so', 'target_kpi.id_target_so', '=', 'target_so.id')
-//                ->select('target_kpi.*', 'target_so.so', 'target_so.id_so_library')
-//                ->where('target_kpi.id', $request->idkpi)
-//                ->first();
-//
-//        // get data Target Strategic Inititives
-//        $datasi = target_si::where('id_target_kpi', $request->idkpi)->get();
-//
-//
-//        return view('client.initiative.initiative', ['data' => $data, 'datakpi' => $datakpi, 'datasi' => $datasi]);
-//    }
+    function approveActionplan(Request $request)
+    {
+        // id idactionplan
+        actionplan::where('id', $request->idactionplan)->update(['approval' => 'approved']);
+
+        //redirect with succes message
+        return redirect()->route('client.initiative.actionplan', [
+                            'idpersonnel' => $request->id_user,
+                            'tahun' => $request->tahun,
+                            'idkpiselected' => $request->idkpiselected,
+                            'idsi' => $request->id_target_si
+                        ])
+                        ->with('success', 'Success ! Action Plan has been approved');
+    }
+
 }

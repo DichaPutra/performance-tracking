@@ -119,8 +119,10 @@ Route::middleware([ClientGuard::class, 'verified'])->group(function () {
     // -> logic
     Route::post('/client-initiative-addinitiative', [initiativeController::class, 'addInitiative'])->name('client.initiative.addinitiative');
     Route::post('/client-initiative-deleteinitiative', [initiativeController::class, 'deleteInitiative'])->name('client.initiative.deleteinitiative');
+    Route::post('/client-initiative-approveinitiative', [initiativeController::class, 'approveInitiative'])->name('client.initiative.approveinitiative');
     Route::post('/client-initiative-addactionplan', [initiativeController::class, 'addActionPlan'])->name('client.initiative.addactionplan');
     Route::post('/client-initiative-deleteactionplan', [initiativeController::class, 'deleteActionPlan'])->name('client.initiative.deleteactionplan');
+    Route::post('/client-initiative-approveactionplan', [initiativeController::class, 'approveActionplan'])->name('client.initiative.approveactionplan');
 });
 
 // == PERSONNEL ROUTE ==

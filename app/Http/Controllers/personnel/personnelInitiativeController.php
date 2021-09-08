@@ -56,7 +56,12 @@ class personnelInitiativeController extends Controller {
                 ->get();
 
         // get data Target Strategic Inititives
-        if ($request->idkpi != null)
+        if ($request->idkpi == null)
+        {
+            $datakpiselected = null;
+            $datasi = null;
+        }
+        else
         {
             //get data kpi with SO
             $datakpiselected = DB::table('target_kpi')
@@ -66,11 +71,6 @@ class personnelInitiativeController extends Controller {
                     ->first();
             $datasi = target_si::where('id_target_kpi', $request->idkpi)->where('periode_th', $periodeth)->get();
         }
-        else
-        {
-            $datakpiselected = null;
-            $datasi = null;
-        }
 
         return view('personnel.initiative.kpi', [
             'data' => $data,
@@ -79,7 +79,8 @@ class personnelInitiativeController extends Controller {
             'periode_th' => $periodeth,
             'datakpiselected' => $datakpiselected,
             'datasi' => $datasi,
-            'alltahun' => $alltahun]);
+            'alltahun' => $alltahun
+        ]);
     }
 
     function addInitiative(Request $request)
@@ -93,6 +94,7 @@ class personnelInitiativeController extends Controller {
             $addtargetsi->id_si_library = null;
             $addtargetsi->si = $request->customsi;
             $addtargetsi->periode_th = $request->periode_th;
+            $addtargetsi->approval = 'waiting for approval';
             $addtargetsi->save();
 
             return redirect()->back()->with('success', 'Success ! Strategic Initiative has been added');
@@ -110,6 +112,7 @@ class personnelInitiativeController extends Controller {
             $addtargetsi->id_si_library = $request->id_si_library;
             $addtargetsi->si = $sionlib->si;
             $addtargetsi->periode_th = $request->periode_th;
+            $addtargetsi->approval = 'waiting for approval';
             $addtargetsi->save();
 
             return redirect()->back()->with('success', 'Success ! Strategic Initiative has been added');
@@ -167,6 +170,7 @@ class personnelInitiativeController extends Controller {
         $insertap->id_target_si = $request->id_target_si;
         $insertap->actionplan = $request->actionplan;
         $insertap->periode_th = $request->tahun;
+        $insertap->approval = 'waiting for approval';
         $insertap->save();
 
         //redirect with succes message
