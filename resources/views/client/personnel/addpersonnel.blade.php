@@ -137,7 +137,9 @@
                 <hr>
                 <div class="float-right">
                     <a href="{{ URL::previous() }}"><button type="button" class="btn btn-secondary">Cancel</button></a>
-                    <button type="submit" class="btn btn-primary button-loading"><i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Save</button>
+                    <button type="submit" class="btn btn-primary button-loading">
+                        <i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Save
+                    </button>
                 </div>
             </form>
         </div>

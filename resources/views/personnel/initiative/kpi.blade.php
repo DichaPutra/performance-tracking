@@ -216,7 +216,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form method="POST" action="{{route('personnel.initiative.addinitiative')}}">
+                                <form class="form-loading"method="POST" action="{{route('personnel.initiative.addinitiative')}}">
                                     @csrf
                                     <input name="id_user" type="hidden" value="{{$data->id}}">
                                     <input name="id_target_kpi" type="hidden" value="{{$datakpiselected->id}}">
@@ -226,7 +226,9 @@
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <input type="submit" value="Add" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary button-loading">
+                                            <i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Add
+                                        </button>
                                     </div>
                                 </form>
                             </div>

@@ -125,7 +125,7 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <form
-                                        <form action="{{route('personnel.initiative.addactionplan')}}" method="post">
+                                        <form class="form-loading" action="{{route('personnel.initiative.addactionplan')}}" method="post">
                                             @csrf
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Add Action Plan </h5>
@@ -144,7 +144,9 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <input class="btn btn-primary"type="submit" value="Add">
+                                                <button class="btn btn-primary button-loading"type="submit" >
+                                                    <i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Add
+                                                </button>
                                             </div>
                                         </form>
                                 </div>
@@ -154,7 +156,7 @@
                         <!-- Card Body -->
                         <div class="card-body">
 
-                            
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
