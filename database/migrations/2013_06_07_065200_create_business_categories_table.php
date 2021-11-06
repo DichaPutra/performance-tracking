@@ -11,7 +11,8 @@ class CreateBusinessCategoriesTable extends Migration {
      *
      * @return void
      */
-    public function up() {
+    public function up()
+    {
         Schema::create('business_categories', function (Blueprint $table) {
             $table->id();
             $table->string('category');
@@ -20,7 +21,9 @@ class CreateBusinessCategoriesTable extends Migration {
         //insert
         DB::table('business_categories')->insert(
                 [
-                    ['category' => 'Logistics']
+                    ['category' => 'Logistics'],
+                    ['category' => 'Banking'],
+                    ['category' => 'Food and Beverage']
                 ]
         );
     }
@@ -30,7 +33,8 @@ class CreateBusinessCategoriesTable extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down()
+    {
         Schema::dropIfExists('business_categories');
     }
 
