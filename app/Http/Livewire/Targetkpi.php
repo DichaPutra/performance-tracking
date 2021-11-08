@@ -16,38 +16,46 @@ class Targetkpi extends Component {
     public $selectedKpi; // ID
     public $kpidata;
     public $tahun;
+    public $isCustomKpi; // 1 = yes 
 
-    public function mount() {
+    public function mount()
+    {
         $this->so = target_so::where('id_user', $this->id_personnel)->where('periode_th', $this->tahun)->get();
     }
 
-    public function render() {
+    public function render()
+    {
         return view('livewire.targetkpi');
     }
 
-    public function updatedSelectedSo() {
-        
-        // ambil id_so_library data dari tabel target_so
-        $targetso = target_so::where('id', $this->selectedSo)->first();
-        $idsolibrary = $targetso->id_so_library;
-        
-        if (!is_null($idsolibrary)) {
-            $this->kpi = kpi_library::where('id_so_library', $idsolibrary)->get();
-        } else {
-            $this->kpi = 'nokpilibrary';
-        }
+    public function updatedSelectedSo()
+    {
+
         $this->selectedKpi = null;
+        $this->isCustomKpi = null;
+
+        // ambil id_so_library data dari tabel target_so
+        $selectedso = target_so::where('id', $this->selectedSo)->first();
+        $idsolibrary = $selectedso->id_so_library;
+
+        $this->kpi = kpi_library::where('id_so_library', $idsolibrary)->get();
+//        
+//        if (!is_null($idsolibrary)) {
+//            $this->kpi = kpi_library::where('id_so_library', $idsolibrary)->get();
+//        } else {
+//            $this->kpi = 'nokpilibrary';
+//        }
+//        $this->selectedKpi = null;
     }
 
-    public function updatedSelectedKpi() {
+    public function updatedSelectedKpi()
+    {
         $this->kpidata = kpi_library::where('id', $this->selectedKpi)->first();
     }
 
-//    public function updatedSelectedCategory($category) {
-//        if (so_library::where('id_business_categories', $category)->exists()) {
-//            $this->so = so_library::where('id_business_categories', $category)->get();
-//        } else {
-//            $this->so = null;
-//        }
-//    }
+    public function customKPI()
+    {
+        $this->isCustomKpi = 1;
+    }
+
 }

@@ -14,28 +14,26 @@
         </div>
     </div>
 
-    @if ($selectedSo != null)
+    @if ($selectedSo)
+    @if ($isCustomKpi == null)
     <div>
         <div class="form-group">
-            <label><b>KPI Library :</b></label>
-            @if ($kpi != null && $kpi != 'nokpilibrary' )
+            <label><b>KPI Library :</b></label>  
+            <div>
+                <button wire:click="customKPI" class="btn btn-sm btn-secondary" style="margin-bottom: 5px;">Custom KPI</button>
+            </div>
             <select name="id_kpi_library" wire:model="selectedKpi"class="form-control" size="5" required>
-
                 @foreach($kpi as $kpi)
                 <option value='{{ $kpi->id }}-{{ $kpi->kpi }}'> - {{ $kpi->kpi }}</option>
                 @endforeach
-                <option value="0"">- Other</option>
+                <!--<option value="0"">- Other</option>-->
             </select>
-            @else
-            <select name="id_kpi_library" wire:model="selectedKpi"class="form-control" size="5">
-                <option value='' disabled="">No Data</option>
-            </select>
-            @endif
         </div>
     </div>
     @endif
+    @endif
 
-    @if ($selectedKpi == '0' || $kpi == 'nokpilibrary')
+    @if ($isCustomKpi)
     <div>
         <div class="form-group">
             <label><b>Custom KPI :</b></label>
@@ -75,15 +73,6 @@
                 </div>
             </div><br>
             <div class="row">
-                <!--                <div class="col-md-6">
-                                    <label><b>Weight :</b></label>
-                                    <div class="input-group mb-3">
-                                        <input name="weight" type="number" class="form-control" min="1" max="100" placeholder="KPI Weight 1 - 100">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2">%</span>
-                                        </div>
-                                    </div>
-                                </div>-->
 
                 <div class="col-md-6">
                     <label><b>Timeframe Target :</b></label>
@@ -101,12 +90,17 @@
             </div>
         </div>
     </div>
-
     @endif
 
-    @if ($selectedKpi != NULL  && $selectedKpi != '0')
+    @if ($selectedKpi != NULL  && $isCustomKpi != '1')
     <div>
         <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <label><b>Formula :</b></label>
+                    <textarea class="form-control" readonly="">{{$kpidata->formula}}</textarea>
+                </div>
+            </div><br>
             <div class="row">
                 <div class="col-md-6">
                     <label><b>Measurement Unit :</b></label>
@@ -131,15 +125,6 @@
                 </div>
             </div><br>
             <div class="row">
-                <!--                <div class="col-md-6">
-                                    <label><b>Weight :</b></label>
-                                    <div class="input-group mb-3">
-                                        <input name="weight" type="number" class="form-control" min="0" max="100" placeholder="KPI Weight 1 - 100" required="">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2">%</span>
-                                        </div>
-                                    </div>
-                                </div>-->
                 <div class="col-md-6">
                     <label><b>Timeframe Target :</b></label>
                     <div class="input-group mb-3">
