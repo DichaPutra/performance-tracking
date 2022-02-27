@@ -81,7 +81,7 @@
                             <option value="" hidden>select...</option>
                             <option value="bulanan">Bulanan</option>
                             <option value="triwulan">Triwulan</option>
-                            <option value="quartal">Quartal</option>
+                            <!--<option value="quartal">Quartal</option>-->
                             <option value="semester">Semester</option>
                             <option value="tahunan">Tahunan</option>
                         </select>
