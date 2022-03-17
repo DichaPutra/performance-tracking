@@ -5,8 +5,13 @@ namespace App\Http\Controllers\personnel;
 use App\Http\Controllers\Controller;
 use App\Models\active_target_kpi;
 use App\Models\capaian_kpi;
+use App\Models\User;
+use App\Notifications\SubmittedCapaian;
+use App\Notifications\CapaianTelahDisubmit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
+
 
 class personnelCapaianController extends Controller {
 
@@ -197,7 +202,19 @@ class personnelCapaianController extends Controller {
         active_target_kpi::where('id_user', Auth::user()->id)
                 ->where('bulan', $bulan)
                 ->where('tahun', $tahun)->update(['is_scored' => 1]);
-
+        
+        // send notif email
+        $user = User::where('id', Auth::user()->client_parent)->first();    
+  
+        $details = [
+            'greeting' => 'Hi '.$user->name,
+            'body' => Auth::user()->name.'  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
+            'thanks' => 'Thank you for using Performance Tracking App!',
+            'dbdata' => Auth::user()->name.'  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
+        ];
+        Notification::send($user, new CapaianTelahDisubmit($details));
+        
+        // redirect 
         return redirect()->route('personnel.capaian', ['tahun' => $tahun, 'bulan' => $bulan]);
     }
 
@@ -328,6 +345,23 @@ class personnelCapaianController extends Controller {
         }
 
         return redirect()->route('personnel.capaian', ['tahun' => $tahun, 'bulan' => $bulan]);
+    }
+
+    public function sendNotification()
+    {
+        //dd(Auth::user()->client_parent);
+        $user = User::where('id', Auth::user()->client_parent)->first();    
+  
+        $details = [
+            'greeting' => 'Hi '.$user->name,
+            'body' => Auth::user()->name.'  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
+            'thanks' => 'Thank you for using Performance Tracking App!',
+            //'actionText' => 'View My Site',
+            //'actionURL' => url('/'),
+            'dbdata' => Auth::user()->name.'  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
+        ];
+  
+        Notification::send($user, new CapaianTelahDisubmit($details));
     }
 
 }

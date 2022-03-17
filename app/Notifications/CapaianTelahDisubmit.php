@@ -7,18 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SubmittedCapaian extends Notification
-{
+class CapaianTelahDisubmit extends Notification {
+
     use Queueable;
+
+    private $details;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
-        //
+        $this->details = $details;
     }
 
     /**
@@ -29,7 +31,7 @@ class SubmittedCapaian extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -40,10 +42,16 @@ class SubmittedCapaian extends Notification
      */
     public function toMail($notifiable)
     {
+//        return (new MailMessage)
+//                        ->greeting($this->details['greeting'])
+//                        ->line($this->details['body'])
+//                        ->action($this->details['actionText'], $this->details['actionURL'])
+//                        ->line($this->details['thanks']);
+
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                        ->greeting($this->details['greeting'])
+                        ->line($this->details['body'])
+                        ->line($this->details['thanks']);
     }
 
     /**
@@ -52,10 +60,13 @@ class SubmittedCapaian extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    
+    public function toDatabase($notifiable)
     {
         return [
-            //
+            //$this->details['dbdata']
+            'dbdata' => $this->details['dbdata']
         ];
     }
+
 }

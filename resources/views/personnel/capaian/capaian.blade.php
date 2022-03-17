@@ -113,7 +113,7 @@
                     @endif
 
                     <!--KPI Table-->
-                    <form method="post" action="@if(getStatusApproval($bulan, $tahun) == 'not approved'){{route('personnel.capaian.updatecapaian')}}@else{{route('personnel.capaian.addcapaian')}}@endif" >
+                    <form class="form-loading" method="post" action="@if(getStatusApproval($bulan, $tahun) == 'not approved'){{route('personnel.capaian.updatecapaian')}}@else{{route('personnel.capaian.addcapaian')}}@endif" >
                         @csrf
                         <input name="bulan" value="{{$bulan}}" type="hidden" >
                         <input name="tahun" value="{{$tahun}}" type="hidden" >
@@ -197,9 +197,13 @@
                         </div><br>
                         <!--<button></button>-->
                         @if($is_scored == 0 && $jmlTarget != 0)
-                        <button class="btn btn-primary float-right" onclick="confirm('Make sure your input is correct before going to the submit process. Are you sure to submit this data?')">Submit Capaian</button>
+                        <button class="btn btn-primary float-right button-loading" onclick="confirm('Make sure your input is correct before going to the submit process. Are you sure to submit this data?')">
+                            <i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Submit Capaian
+                        </button>
                         @elseif (getStatusApproval($bulan, $tahun) == 'not approved')
-                        <button class="btn btn-primary float-right" onclick="confirm('Make sure your input is correct before going to the submit process. Are you sure to submit this data?')">Update Capaian</button>
+                        <button class="btn btn-primary float-right button-loading" onclick="confirm('Make sure your input is correct before going to the submit process. Are you sure to submit this data?')">
+                            <i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Update Capaian
+                        </button>
                         @endif
                     </form>
                 </div>

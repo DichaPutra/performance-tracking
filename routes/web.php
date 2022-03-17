@@ -139,7 +139,8 @@ Route::middleware([PersonnelGuard::class, 'verified'])->group(function () {
     // -> logic
     Route::post('/personnel-capaian-addcapaian', [personnelCapaianController::class, 'addCapaian'])->name('personnel.capaian.addcapaian');
     Route::post('/personnel-capaian-updatecapaian', [personnelCapaianController::class, 'updateCapaian'])->name('personnel.capaian.updatecapaian');
-
+    Route::get('/personnel-capaian-sendNotification', [personnelCapaianController::class, 'sendNotification'])->name('personnel.capaian.sendNotification');
+    
     // * Performance Report *
     Route::get('/personnel-performancereport', [personnelPerformanceReportController::class, 'index'])->name('personnel.performancereport');
 
