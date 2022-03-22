@@ -11,15 +11,15 @@
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Personnel</li>
+            <li class="breadcrumb-item active" aria-current="page">Team Member</li>
         </ol>
     </nav><br>
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user-alt "></i>  Personnel</h1>
+        <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user-alt "></i>  Team Member</h1>
         <a href="{{route('client.personnel.addpersonnel')}}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-user-plus fa-sm text-white-50"></i>  Add Personnel
+            <i class="fas fa-user-plus fa-sm text-white-50"></i>  Add Member
         </a>
     </div>
 
@@ -30,7 +30,7 @@
             <div class="card shadow mb-4 animated--grow-in">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Personnel</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Team Member</h6>
                 </div>
 
                 <!-- Card Body -->

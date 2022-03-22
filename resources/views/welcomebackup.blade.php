@@ -40,8 +40,8 @@
 <!--        <section id="topbar" class="d-flex align-items-center" style="background-color:#002C5F;">
             <div class="container d-flex justify-content-center justify-content-md-between" >
                 <div class="contact-info d-flex align-items-center">
-                    <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">munir.ali@crowe.id</a></i>
-                    <i class="bi bi-phone d-flex align-items-center ms-4"><span>+62 21 25535699</span></i>
+                    <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
+                    <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
                 </div>
                 <div class="social-links d-none d-md-flex align-items-center">
                     <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -101,7 +101,7 @@
         </section><!-- End Hero -->
 
         <main id="main">
-            <!--======= Featured Services Section =======--> 
+                         <!--======= Featured Services Section =======--> 
 <!--            <section id="featured-services" class="featured-services">
                 <div class="container" data-aos="fade-up">
 
@@ -151,54 +151,49 @@
                     <div class="section-title">
                         <h2>About</h2>
                         <h3>Find Out More <span>About Us</span></h3>
-                        <p>  </p>
+                        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-                            <img src="assetsLanding/img/about2.jpg" class="img-fluid" alt="">
+                            <img src="assetsLanding/img/about.jpg" class="img-fluid" alt="">
                         </div>
                         <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                            <h3>Overview</h3>
+                            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
                             <p class="fst-italic">
-
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                magna aliqua.
                             </p>
                             <ul>
                                 <li>
-                                    <i class="bx bx-star"></i>
+                                    <i class="bx bx-store-alt"></i>
                                     <div>
-                                        <h5>About Us</h5>
-                                        <p>Crowe Indonesia didirikan pada tahun 2003 sebagai CIBA Consulting Group oleh beberapa Mitra senior dari perusahaan jasa profesional terbesar di Indonesia.</p>
+                                        <h5>Ullamco laboris nisi ut aliquip consequat</h5>
+                                        <p>Magni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
                                     </div>
                                 </li>
                                 <li>
-                                    <i class="bx bx-line-chart"></i>
+                                    <i class="bx bx-images"></i>
                                     <div>
-                                        <h5>CIBA</h5>
-                                        <p>CIBA telah berkembang pesat menjadi salah satu perusahaan jasa profesional terbesar di Indonesia yang menyediakan audit berkualitas tinggi & jaminan, pajak dan penasihat bisnis serta keuangan perusahaan layanan seperti penasihat keuangan, uji tuntas dan penilaian di Indonesia.</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <i class="bx bx-user"></i>
-                                    <div>
-                                        <h5>Our People</h5>
-                                        <p>Saat ini didukung oleh lebih dari 500 staf profesional dan melayani sekitar 800 klien di Indonesia</p>
+                                        <h5>Magnam soluta odio exercitationem reprehenderi</h5>
+                                        <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
                                     </div>
                                 </li>
                             </ul>
-<!--                            <p>
+                            <p>
                                 Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
                                 velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                                 culpa qui officia deserunt mollit anim id est laborum
-                            </p>-->
+                            </p>
                         </div>
                     </div>
+
                 </div>
             </section>
             <!-- End About Section -->
 
             <!-- ======= Skills Section ======= -->
-            <!--                        <section id="skills" class="skills">
+            <!--            <section id="skills" class="skills">
                 <div class="container" data-aos="fade-up">
 
                     <div class="row skills-content">
@@ -260,7 +255,7 @@
             <!-- End Skills Section -->
 
             <!-- ======= Counts Section ======= -->
-            <!--            <section id="counts" class="counts">
+<!--            <section id="counts" class="counts">
                 <div class="container" data-aos="fade-up">
                     <div class="row">
                         <div class="col-lg-3 col-md-6">
@@ -300,54 +295,41 @@
                 </div>
             </section>-->
             <!-- End Counts Section -->
-            <!-- ======= Services Section ======= -->
-            <section id="about" class="services section-bg">
-                <div class="container" data-aos="fade-up">
 
-                    <div class="section-title">
-                        <!--<h2>Services</h2>-->
-                        <h3>Latar Belakang Pembuatan <span>Aplikasi</span></h3>
-                        <!--<p>Berikut beberapa keunggulan Performance Apps by Crowe </p>-->
-                    </div>
+            <!-- ======= Clients Section ======= -->
+            <section id="clients" class="clients section-bg">
+                <div class="container" data-aos="zoom-in">
 
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bx-file"></i></div>
-                                <h4><a href="">Inisiatif</a></h4>
-                                <p>
-                                <ol>
-                                    <li style="text-align: left;">Membantu para pimpinan perusahaan logistik dalam memahami kinerja perusahaan dan tantangan dalam industri secara tepat waktu, dengan cara menggunakan Performance Apps yang sederhana dan terjangkau.</li>
-                                    <li style="text-align: left;">Mengembangkan daya saing para pelaku usaha di industri logistik dan supply chain nasional dengan basis informasi kinerja yang memadai.</li>
-                                </ol>
-                                </p>
-                            </div>
+
+                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
                         </div>
 
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bx-bulb"></i></div>
-                                <h4><a href="">Masa Depan</a></h4>
-                                <p>
-                                <ol>
-                                    <li style="text-align: left;">Pasar Logistik Indonesia 2020 - 2024 Diperkirakan memiliki pertumbuhan rata-rata CAGR 7,9% dengan estimasi pendapatan mencapai angka US$ 300.3 Miliar pada tahun 2024</li>
-                                    <li style="text-align: left;">Prospek bisnis ini meliputi: Freight transport, freight forwarding, warehousing, courier, express and parcel (CEP), value added services dan cold chain logistics segments</li>
-                                </ol>
-                                </p>
-                            </div>
+                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
                         </div>
 
-                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-                            <div class="icon-box">
-                                <div class="icon"><i class="bx bxs-user-account"></i></div>
-                                <h4><a href="">Disiapkan khusus untuk</a></h4>
-                                <p>Perusahaan logistik skala kecil dan menengah, dengan tim yang memiliki ambisi untuk memacu pertumbuhan kinerja melalui kolaborasi yang solid.</p>
-                            </div>
+                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
                         </div>
+
+                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                            <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+                        </div>
+
+                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                            <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+                        </div>
+
+                        <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+                            <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+                        </div>
+
                     </div>
+
                 </div>
-            </section>
-            <!-- End Services Section -->
+            </section><!-- End Clients Section -->
 
             <!-- ======= Services Section ======= -->
             <section id="services" class="services">
@@ -356,82 +338,69 @@
                     <div class="section-title">
                         <h2>Services</h2>
                         <h3>Check our <span>Services</span></h3>
-                        <p>Berikut beberapa keunggulan Performance Apps by Crowe </p>
+                        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-library"></i></div>
-                                <h4><a href="">KPI Library</a></h4>
-                                <p>Aplikasi Performance Apps by Crowe menyediakan gallery pilihan KPI (Key Performance Indicators) yang merupakan standar kinerja perusahaan di industri logistik secara khusus, sehingga memudahkan user untuk menentukan target team dari waktu ke waktu.</p>
+                                <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                                <h4><a href="">Lorem Ipsum</a></h4>
+                                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-file"></i></div>
-                                <h4><a href="">Strategic Initiatives Library</a></h4>
-                                <p>Di samping itu, Apps ini juga menyediakan gallery pilihan Strategic Initiatives yang dapat membantu user dalam memilih solusi ketika target dalam KPI yang sudah ditetapkan tidak tercapai sesuai harapan.</p>
+                                <h4><a href="">Sed ut perspiciatis</a></h4>
+                                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
                             <div class="icon-box">
                                 <div class="icon"><i class="bx bx-tachometer"></i></div>
-                                <h4><a href="">Collaboration Tool for Team</a></h4>
-                                <p>Aplikasi Performance Apps by Crowe dapat memfasilitasi member dalam satu user team untuk berkolaborasi dalam menentukan  target, mengevaluasi pencapaiannya,pencapaiannya serta menemukan solusi ketika target tidak tercapai.</p>
+                                <h4><a href="">Magni Dolores</a></h4>
+                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bxs-dashboard"></i></div>
-                                <h4><a href="">Dashboard Team Performance</a></h4>
-                                <p>Apps ini juga memberikan kemudahan bagi user team leader dan member untuk tracking dan monitoring capaian kinerja secara periodik sesuai target yang telah ditetapkan pada periode tersebut. </p>
+                                <div class="icon"><i class="bx bx-world"></i></div>
+                                <h4><a href="">Nemo Enim</a></h4>
+                                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
                             <div class="icon-box">
-                                <div class="icon"><i class="bx bx-chat"></i></div>
-                                <h4><a href="">Live Chat for Team Users</a></h4>
-                                <p>Aplikasi Performance Apps by Crowe memfasilitasi user leader dan member dalam berkomunikasi sebagai team dengan menggunakan fungsi live chat yang tersedia secara real time.</p>
+                                <div class="icon"><i class="bx bx-slideshow"></i></div>
+                                <h4><a href="">Dele cardo</a></h4>
+                                <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
                             </div>
                         </div>
 
-                        <!--                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
-                                                    <div class="icon-box">
-                                                        <div class="icon"><i class="bx bx-arch"></i></div>
-                                                        <h4><a href="">Divera don</a></h4>
-                                                        <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-                                                    </div>
-                                                </div>-->
+                        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="icon-box">
+                                <div class="icon"><i class="bx bx-arch"></i></div>
+                                <h4><a href="">Divera don</a></h4>
+                                <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+                            </div>
+                        </div>
 
                     </div>
 
                 </div>
-            </section>
-            <!-- End Services Section -->
+            </section><!-- End Services Section -->
 
             <!-- ======= Testimonials Section ======= -->
-<!--            <section id="testimonials" class="testimonials">
+            <section id="testimonials" class="testimonials">
                 <div class="container" data-aos="zoom-in">
 
                     <div class="testimonials-slider swiper-container" data-aos="fade-up" data-aos-delay="100">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                                    <h3>Saul Goodman</h3>
-                                    <h4>Ceo &amp; Founder</h4>
-                                    <p>
-                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div> 
 
                             <div class="swiper-slide">
                                 <div class="testimonial-item">
@@ -444,15 +413,66 @@
                                         <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                                     </p>
                                 </div>
-                            </div> 
-                            End testimonial item 
+                            </div><!-- End testimonial item -->
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                                    <h3>Sara Wilsson</h3>
+                                    <h4>Designer</h4>
+                                    <p>
+                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                        Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div><!-- End testimonial item -->
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                                    <h3>Jena Karlis</h3>
+                                    <h4>Store Owner</h4>
+                                    <p>
+                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div><!-- End testimonial item -->
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                                    <h3>Matt Brandon</h3>
+                                    <h4>Freelancer</h4>
+                                    <p>
+                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                        Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div><!-- End testimonial item -->
+
+                            <div class="swiper-slide">
+                                <div class="testimonial-item">
+                                    <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                                    <h3>John Larson</h3>
+                                    <h4>Entrepreneur</h4>
+                                    <p>
+                                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                        Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div><!-- End testimonial item -->
+
                         </div>
                         <div class="swiper-pagination"></div>
                     </div>
 
                 </div>
-            </section>-->
-            <!-- End Testimonials Section -->
+            </section><!-- End Testimonials Section -->
 
             <!-- ======= Pricing Section ======= -->
 <!--            <section id="pricing" class="pricing">
@@ -548,7 +568,7 @@
                     <div class="section-title">
                         <h2>F.A.Q</h2>
                         <h3>Frequently Asked <span>Questions</span></h3>
-                        <p> </p>
+                        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
                     </div>
 
                     <div class="row justify-content-center">
@@ -556,105 +576,55 @@
                             <ul class="faq-list">
 
                                 <li>
-                                    <div data-bs-toggle="collapse" class="collapsed question" href="#faq1">Apakah yang dimaksud Performance Apps  by Crowe?<i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+                                    <div data-bs-toggle="collapse" class="collapsed question" href="#faq1">Non consectetur a erat nam at lectus urna duis? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
                                     <div id="faq1" class="collapse" data-bs-parent=".faq-list">
                                         <p>
-                                            Aplikasi yang bertujuan untuk membantu team dalam mengukur efektifvitas Kinerja dalam menggunakan sumber daya perusahan untuk mencapai tujuan team.
+                                            Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
                                         </p>
                                     </div>
                                 </li>
 
                                 <li>
-                                    <div data-bs-toggle="collapse" href="#faq2" class="collapsed question">Apa Keunggulan Performance Apps by Crowe? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+                                    <div data-bs-toggle="collapse" href="#faq2" class="collapsed question">Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
                                     <div id="faq2" class="collapse" data-bs-parent=".faq-list">
                                         <p>
-                                            Pengguna dapat menggunakan KPI library yang telah disiapkan oleh para konsultan berpengalaman untuk membantu anda dalam menjalankan usaha dengan lebih efisien dan terukur
+                                            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
                                         </p>
                                     </div>
                                 </li>
 
                                 <li>
-                                    <div data-bs-toggle="collapse" href="#faq3" class="collapsed question">Siapa saja yang dapat menggunakan Performance Apps by Crowe?<i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+                                    <div data-bs-toggle="collapse" href="#faq3" class="collapsed question">Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
                                     <div id="faq3" class="collapse" data-bs-parent=".faq-list">
                                         <p>
-                                            Aplikasi ini dikhususkan untuk anda yang memiliki dan/danatau memimpin usaha/perusahaan skala kecil dan menengah di bidang logistik
+                                            Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
                                         </p>
                                     </div>
                                 </li>
 
                                 <li>
-                                    <div data-bs-toggle="collapse" href="#faq4" class="collapsed question">Bagaimana cara user/pengguna baru dalam menggunakan Performance Apps by Crowe? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+                                    <div data-bs-toggle="collapse" href="#faq4" class="collapsed question">Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
                                     <div id="faq4" class="collapse" data-bs-parent=".faq-list">
                                         <p>
-                                            User dapat langsung mendaftar dan menggunakanya dengan mengikuti Instruction yang telah  tersedia, dan Tim Developer akan selalu bersedia membantu  anda bilamana ada kendala.
+                                            Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
                                         </p>
                                     </div>
                                 </li>
 
                                 <li>
-                                    <div data-bs-toggle="collapse" href="#faq5" class="collapsed question">Apa yang dimaksud dengan KPI Library dan Strategic Initiatives Library? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+                                    <div data-bs-toggle="collapse" href="#faq5" class="collapsed question">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
                                     <div id="faq5" class="collapse" data-bs-parent=".faq-list">
                                         <p>
-                                            <b>KPI Library</b> bertujuan untuk menyediakan pilihan Key Performance Indicators (KPI), yang bersifat umum di industri logistik dan dibuat sedemikian rupa sehingga secara otomatis dapat memvisualisasikan metrik dan tren kinerja untuk eksekutif bisnis di sektor logistik.
-                                        </p>
-                                        <p>
-                                            <b>Strategic Initiatives Library</b> bertujuan untuk menyediakan pilihan solusi bagi organisasi dalam menerjemahkan tujuan dan visinya ke dalam praktik,praktik, terutama ketika target KPI tidak tercapai. 
+                                            Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
                                         </p>
                                     </div>
                                 </li>
 
                                 <li>
-                                    <div data-bs-toggle="collapse" href="#faq6" class="collapsed question">Berapa Biaya untuk dapat menggunakan Performance Apps by Crowe dengan lisensi resmi?<i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+                                    <div data-bs-toggle="collapse" href="#faq6" class="collapsed question">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
                                     <div id="faq6" class="collapse" data-bs-parent=".faq-list">
                                         <p>
-                                            Lisensi Penggunaan Dasar Performance Apps disediakan secara gratis.
-                                            Untuk Fitur-Fitur Plus, Pro dan Enterprise atau tambahan lainya dapat langsung menghubungi Admin untuk mendapat informasi lebih lanjut.
-                                        </p>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div data-bs-toggle="collapse" href="#faq7" class="collapsed question">Apa saja yang menjadi parameter pengukuran dalam Performance Apps by Crowe?<i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-                                    <div id="faq7" class="collapse" data-bs-parent=".faq-list">
-                                        <p>
-                                            Kami menfokuskan kedalam 5 Parameter Utama Logistik yaitu: <br>
-                                            1. Cost <br>
-                                            2. Lead Time <br>
-                                            3. Damage <br>
-                                            4. Track & Trace, <br>
-                                            5. Bukti Penyerahan Barang (Proof of Delivery)
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div data-bs-toggle="collapse" href="#faq8" class="collapsed question">Apakah Performance Apps by Crowe ini hanya sekedar mengukur, tapi belum sampai pada tingkat merekomendasikan actions lebih lanjut? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-                                    <div id="faq8" class="collapse" data-bs-parent=".faq-list">
-                                        <p>
-                                            Tentu, Ketika dalam team memiliki hasil yang kurang memuaskan atau memerlukan improvement, Konsultan kami siap menghubungi dan mendampingi hingga anda mendapatkan Hasil yang memuaskan. 
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div data-bs-toggle="collapse" href="#faq9" class="collapsed question">Apa saja yang dicover oleh apps ini untuk pengukuran kinerja bagi perusahaan penyedia jasa logistik? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-                                    <div id="faq9" class="collapse" data-bs-parent=".faq-list">
-                                        <p>
-                                            Saat ini Performance Apps by Crowe mengcover  Analisa Kinerja Tim berdasarkan Objektif dan KPI. Selanjutnya,Selanjutnya kami siap melakukan pendampingan khusus agar goals  yang diharapkan Perusahaan user dapat segera tercapai.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div data-bs-toggle="collapse" href="#faq10" class="collapsed question">Berapa lama training yang diperlukan bagi perusahaan Logistik yang ingin mencoba apps ini? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-                                    <div id="faq10" class="collapse" data-bs-parent=".faq-list">
-                                        <p>
-                                            Training dilakukan dapat melalui Online atau Offline Meeting dengan pendampingan selama 1-3 hari.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div data-bs-toggle="collapse" href="#faq11" class="collapsed question">Apa saja persyaratan yang harus dipenuhi oleh perusahaan yang ingin mencoba menerapkan apps ini?<i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
-                                    <div id="faq11" class="collapse" data-bs-parent=".faq-list">
-                                        <p>
-                                            Persyaratannya antara lain Legalitas Perusahaan Logistik sesuai Peraturan yang berlaku dan Keyakinan tim yang memiliki ambisi untuk memacu pertumbuhan kinerja melalui kolaborasi yang solid
+                                            Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Nibh tellus molestie nunc non blandit massa enim nec.
                                         </p>
                                     </div>
                                 </li>
@@ -700,14 +670,14 @@
                                     <div class="info-box mb-4">
                                         <i class="bx bx-envelope"></i>
                                         <h3>Email Us</h3>
-                                        <p>munir.ali@crowe.id</p>
+                                        <p>contact@example.com</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="info-box mb-4">
                                         <i class="bx bx-phone-call"></i>
                                         <h3>Call Us</h3>
-                                        <p>+62 21 25535699</p>
+                                        <p>+1 5589 55488 55</p>
                                     </div>
                                 </div>
                             </div>
@@ -722,69 +692,84 @@
 
         <!-- ======= Footer ======= -->
         <footer id="footer">
-            <!--            <div class="footer-top">
-                            <div class="container">
-                                <div class="row">
-            
-                                    <div class="col-lg-3 col-md-6 footer-contact">
-                                        <h3>BizLand<span>.</span></h3>
-                                        <p>
-                                            A108 Adam Street <br>
-                                            New York, NY 535022<br>
-                                            United States <br><br>
-                                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                                            <strong>Email:</strong> info@example.com<br>
-                                        </p>
-                                    </div>
-            
-                                    <div class="col-lg-3 col-md-6 footer-links">
-                                        <h4>Useful Links</h4>
-                                        <ul>
-                                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                                            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                                            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                                        </ul>
-                                    </div>
-            
-                                    <div class="col-lg-3 col-md-6 footer-links">
-                                        <h4>Our Services</h4>
-                                        <ul>
-                                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                                        </ul>
-                                    </div>
-            
-                                    <div class="col-lg-3 col-md-6 footer-links">
-                                        <h4>Our Social Networks</h4>
-                                        <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
-                                        <div class="social-links mt-3">
-                                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                                        </div>
-                                    </div>
-            
-                                </div>
+
+            <div class="footer-newsletter">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <h4>Join Our Newsletter</h4>
+                            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                            <form action="" method="post">
+                                <input type="email" name="email"><input type="submit" value="Subscribe">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-3 col-md-6 footer-contact">
+                            <h3>BizLand<span>.</span></h3>
+                            <p>
+                                A108 Adam Street <br>
+                                New York, NY 535022<br>
+                                United States <br><br>
+                                <strong>Phone:</strong> +1 5589 55488 55<br>
+                                <strong>Email:</strong> info@example.com<br>
+                            </p>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-links">
+                            <h4>Useful Links</h4>
+                            <ul>
+                                <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-links">
+                            <h4>Our Services</h4>
+                            <ul>
+                                <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+                                <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 footer-links">
+                            <h4>Our Social Networks</h4>
+                            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+                            <div class="social-links mt-3">
+                                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                             </div>
-                        </div>-->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
             <div class="container py-4">
                 <div class="copyright">
-                    &copy; Copyright <strong><span>Crowe Indonesia</span></strong>. All Rights Reserved
+                    &copy; Copyright <strong><span>BizLand</span></strong>. All Rights Reserved
                 </div>
                 <div class="credits">
                     <!-- All the links in the footer should remain intact. -->
                     <!-- You can delete the links only if you purchased the pro version. -->
                     <!-- Licensing information: https://bootstrapmade.com/license/ -->
                     <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bizland-bootstrap-business-template/ -->
-                    <!--                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                 </div>
             </div>
         </footer><!-- End Footer -->

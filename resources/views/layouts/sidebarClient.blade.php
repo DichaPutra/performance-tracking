@@ -13,7 +13,7 @@
 <li class="nav-item @if($page=='personnel')active @endif">
     <a class="nav-link" href="{{route('client.personnel')}}">
         <i class="fas fa-fw fa-user-alt"></i>
-        <span>Personnel</span></a>
+        <span>Team Member</span></a>
 </li>
 
 <!-- Divider -->
