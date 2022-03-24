@@ -122,7 +122,7 @@ class personnelController extends Controller {
             {
                 $validator = Validator::make($request->all(), [
                             'name' => ['required', 'string', 'max:255'],
-                            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                            //'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                             'password' => ['required', 'string', 'min:8', 'confirmed'],
                             'position' => ['required', 'string'],
                             'level_name' => ['required', 'string']
@@ -132,7 +132,7 @@ class personnelController extends Controller {
             {
                 $validator = Validator::make($request->all(), [
                             'name' => ['required', 'string', 'max:255'],
-                            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                            //'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                             'position' => ['required', 'string'],
                             'level_name' => ['required', 'string']
                 ]);
@@ -150,7 +150,7 @@ class personnelController extends Controller {
         // Update Data
         $user = User::where('id', $request->id)->first();
         $user->name = $request->name;
-        $user->email = $request->email;
+        //$user->email = $request->email;
         if ($request->password != NULL)
         {
             $user->password = Hash::make($request->password);
