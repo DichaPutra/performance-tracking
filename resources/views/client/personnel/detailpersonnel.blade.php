@@ -156,19 +156,30 @@ function levelName($level)
                                 <input id="email" type="email" class="form-control " name="email" value="{{$data->email}}" required="" autocomplete="email" readonly="">
                             </div>
                         </div>
-<!--                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">Phone</label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control " name="password" autocomplete="new-password">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">+62</span>
+                                    </div>
+                                    <input name="phone" type="number" class="form-control" value="{{$data->phone}}" >
+                                </div>
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
-                            </div>
-                        </div>-->
+                        <!--                        <div class="form-group row">
+                                                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                                    <div class="col-md-6">
+                                                        <input id="password" type="password" class="form-control " name="password" autocomplete="new-password">
+                                                    </div>
+                                                </div>
+                        
+                                                <div class="form-group row">
+                                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                                                    <div class="col-md-6">
+                                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="new-password">
+                                                    </div>
+                                                </div>-->
                         @endif
                     </div>
                     <div class="col-md-6">

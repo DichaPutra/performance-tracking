@@ -150,6 +150,7 @@ class personnelController extends Controller {
         // Update Data
         $user = User::where('id', $request->id)->first();
         $user->name = $request->name;
+        $user->phone = $request->phone;
         //$user->email = $request->email;
         if ($request->password != NULL)
         {
