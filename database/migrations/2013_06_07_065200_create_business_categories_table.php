@@ -21,9 +21,10 @@ class CreateBusinessCategoriesTable extends Migration {
         //insert
         DB::table('business_categories')->insert(
                 [
-                    ['category' => 'Logistics'],
-                    ['category' => 'Banking'],
-                    ['category' => 'Food and Beverage']
+                    ['category' => 'Logistics']
+//                    ,
+//                    ['category' => 'Banking'],
+//                    ['category' => 'Food and Beverage']
                 ]
         );
     }

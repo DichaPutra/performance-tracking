@@ -27,8 +27,9 @@ class CreateBisnisTable extends Migration {
                     ['id_business_categories' => '1', 'bisnis' => 'All'],
                     ['id_business_categories' => '1', 'bisnis' => 'Distribusi'],
                     ['id_business_categories' => '1', 'bisnis' => 'Pergudangan'],
-                    ['id_business_categories' => '1', 'bisnis' => 'Transportasi'],
-                    ['id_business_categories' => '2', 'bisnis' => 'perbankan']
+                    ['id_business_categories' => '1', 'bisnis' => 'Transportasi']
+//                    ,
+//                    ['id_business_categories' => '2', 'bisnis' => 'perbankan']
                 ]
         );
     }
