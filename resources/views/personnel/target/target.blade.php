@@ -74,6 +74,7 @@
                                     <th>Strategic Objective</th>
                                     <th>KPI</th>
                                     <th>Weight</th>
+                                    <th>Target</th>
                                     <th>Timeframe </th>
                                 </tr>
                             </thead>
@@ -84,6 +85,7 @@
                                     <td>{{$dat->so}}</td>
                                     <td>{{$dat->kpi}}</td>
                                     <td>{{$dat->weight}}%</td>
+                                    <td>{{$dat->target}} {{$dat->unit}}</td>
                                     <td>{{$dat->timeframe_target}}</td>
                                     <!--<td>{{$dat->range_period}}</td>-->
                                 </tr>                       

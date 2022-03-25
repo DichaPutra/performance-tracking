@@ -23,7 +23,7 @@ class personnelTargetController extends Controller {
         else
         {
             $tahun = date('Y');
-            $datatarget = active_target_kpi::groupby('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period')->select('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period')
+            $datatarget = active_target_kpi::groupby('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period','unit')->select('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period','unit')
                             ->where('id_user', Auth::user()->id)
                             ->where('periode_th', date('Y'))->get();
 
