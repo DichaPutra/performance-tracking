@@ -4,8 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group/>
         <group name="Group 20211106-07:41:16">
-            <file>file:/D:/xampp/htdocs/performance-tracking/resources/views/welcome.blade.php</file>
-            <file>file:/D:/xampp/htdocs/performance-tracking/resources/views/welcome.blade_default.php</file>
+            <file>file:/D:/xampp/htdocs/performance-tracking/resources/views/personnel/target/target.blade.php</file>
+            <file>file:/D:/xampp/htdocs/performance-tracking/app/Http/Controllers/personnel/personnelTargetController.php</file>
         </group>
     </open-files>
 </project-private>
