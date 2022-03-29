@@ -7,10 +7,6 @@
 @section('content')
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
-        <!--        <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">Target Tahunan</li>
-                    <li class="breadcrumb-item active" aria-current="page">Details</li>
-                </ol>-->
     </nav>
 
     <!-- Page Heading -->
@@ -37,12 +33,56 @@
 
                 <!-- Card Body -->
                 <div class="card-body">
+                    <!--Success Message--> 
+                    @if ( (session('success')))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ session('success') }}
+                    </div>
+                    @endif
                     <br>
+                    
+                    
                     <!-- Card Header - Dropdown -->
-                    <div class="card-header">
-                        <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Target KPI {{$tahun}}</h5>
-                    </div><br>
+                    <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Target KPI {{$tahun}}</h5><br>
 
+                    @if ($targetstatus->status == 'waiting for approval'||'approved')
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right"><b>Periode Tahun : </b></label>
+                                <div class="col-md-6">
+                                    <input name="rangeperiode" class="form-control"type="text" value="{{$tahun}}" readonly="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right"><b>Status : </b></label>
+                                <div class="col-md-6">
+                                    @if($targetstatus->status == 'waiting for approval')
+                                    <div style="color: grey; font-weight: bold; margin-top: 5px;">
+                                        {{$targetstatus->status}}
+                                    </div>
+                                    @elseif($targetstatus->status == 'not approved')
+                                    <div style="color: red; font-weight: bold; margin-top: 5px;">
+                                        {{$targetstatus->status}}
+                                    </div>
+                                    @elseif ($targetstatus->status == 'approved')
+                                    <div style="color: green; font-weight: bold; margin-top: 5px;">
+                                        {{$targetstatus->status}}
+                                    </div>
+                                    @endif
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @else
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row">
@@ -62,7 +102,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div><br>
+                    </div>
+                    @endif
+                    <br>
 
 
                     <!--KPI Table-->
@@ -73,7 +115,9 @@
                                     <th style="width: 8%; text-align: center;">No</th>
                                     <th>Strategic Objective</th>
                                     <th>KPI</th>
+                                    @if (($targetstatus == null))
                                     <th>Weight</th>
+                                    @endif
                                     <th>Target</th>
                                     <th>Timeframe </th>
                                 </tr>
@@ -84,7 +128,9 @@
                                     <td style="text-align: center;">{{$loop->iteration}}</td>
                                     <td>{{$dat->so}}</td>
                                     <td>{{$dat->kpi}}</td>
+                                    @if (($targetstatus == null))
                                     <td>{{$dat->weight}}%</td>
+                                    @endif
                                     <td>{{$dat->target}} {{$dat->unit}}</td>
                                     <td>{{$dat->timeframe_target}}</td>
                                     <!--<td>{{$dat->range_period}}</td>-->
@@ -94,6 +140,23 @@
                         </table>
                     </div>
                     <br>
+                    @if ($targetstatus->status == 'waiting for approval')
+                    <div class="row">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="float-right">
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                    Reject
+                                </button>
+                                <a href="{{route('personnel.target.approve',['tahun'=>$tahun])}}" class="btn btn-success">
+                                    Approve
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                    @endif
 
                 </div>
             </div>

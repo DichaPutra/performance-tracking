@@ -451,8 +451,7 @@
                                     <a href="{{ route('client.target.updatetargetstatus', ['idpersonnel' => $idpersonnel, 'tahun' => $tahun]) }}" class="btn btn-primary">
                                         Propose to Team
                                     </a>
-                                    @endif
-                                    @if (isTargetExist($data->id, $tahun) && ($targetstatus->status == 'approved'))
+                                    @elseif (isTargetExist($data->id, $tahun) && ($targetstatus->status == 'approved'))
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                         Activate
                                     </button>
