@@ -102,6 +102,8 @@ Route::middleware([ClientGuard::class, 'verified'])->group(function () {
     Route::post('/client-target-addkpi', [targetController::class, 'addKpi'])->name('client.target.addkpi');
     Route::post('/client-target-editkpi', [targetController::class, 'editKpi'])->name('client.target.editkpi');
     Route::post('/client-target-deletekpi', [targetController::class, 'deleteKpi'])->name('client.target.deletekpi');
+    Route::get('/client-target-addtargetstatus', [targetController::class, 'addtargetstatus'])->name('client.target.addtargetstatus');
+    Route::get('/client-target-updatetargetstatus', [targetController::class, 'updatetargetstatus'])->name('client.target.updatetargetstatus');
     Route::post('/client-target-activate', [targetController::class, 'activateTarget'])->name('client.target.activate');
 
     // ** Performance Report **

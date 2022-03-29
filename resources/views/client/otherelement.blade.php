@@ -7,6 +7,7 @@ use App\Models\target_si;
 use App\Models\active_target_kpi;
 use App\Models\capaian_kpi;
 use App\Models\actionplan;
+use App\Models\target_status;
 
 // =======================================================
 // ========  TARGET FORMULA ===============
@@ -48,7 +49,7 @@ function getRangePeriod($id_user, $tahun)
     $period = target_kpi::where('id_user', $id_user)->where('periode_th', $tahun)->first();
     if ($period == null)
     {
-        return 'n/a';
+        return null;
     }
     else
     {
@@ -76,16 +77,22 @@ function getCountSI($id_user, $tahun)
 
 function getStatusTarget($id_user, $tahun)
 {
+    $targetstatus = target_status::where('id_user', $id_user)
+            ->where('periode_th', $tahun)
+            ->first();
     $count = target_kpi::where('id_user', $id_user)->where('periode_th', $tahun)->sum('is_active');
-    if ($count == 0)
+    
+    if ($targetstatus == null)
     {
-        $text = "Not Active";
+        return 'Not Active';
+    }
+    else if( $count!=0){
+        return 'Active';
     }
     else
     {
-        $text = 'Active';
+        return $targetstatus->status;
     }
-    return $text;
 }
 
 function getTargetbyMonth($id_user, $idtargetkpi, $bulan, $tahun)

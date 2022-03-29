@@ -74,10 +74,10 @@
                                     <th style="width: 15%;">Level</th>
                                     <th style="width: 15%;">Level Name</th>
                                     <th>PIC Name</th>
-                                    <th style="text-align: center;width: 10%;">Range Periode</th>
+                                    <th style="text-align: center;">Range Periode</th>
                                     <!--<th style="text-align: center;width: 10%;">SO</th>-->
-                                    <th style="text-align: center;width: 10%;">KPI</th>
-                                    <th style="text-align: center;width: 10%;">Status</th>
+                                    <th style="text-align: center;">KPI</th>
+                                    <th style="text-align: center;">Status</th>
                                     <th style="width: 8%;"></th>
                                 </tr>
                             </thead>
@@ -88,36 +88,52 @@
                                         {{ levelName($user->level) }}</td>
                                     <td>{{ $user->level_name }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td style="text-align:center;"><small>{{ getRangePeriod($user->id, $tahun) }}</small></td>
+                                    <td style="text-align:center;">
+                                        <small>
+                                            @if (getRangePeriod($user->id, $tahun) == null)
+                                            n/a
+                                            @else
+                                            {{ getRangePeriod($user->id, $tahun) }}
+                                            @endif
+                                        </small>
+                                    </td>
                                     <!--<td style="text-align:center;">{{ getCountSO($user->id, $tahun) }}</td>-->
                                     <td style="text-align:center;">{{ getCountKPI($user->id, $tahun) }}</td>
                                     <td style="text-align:center;">
-                                        <div @if (getStatusTarget($user->id, $tahun) == 'Not Active') style="color: red;" @else style="color: green;" @endif>
-                                              {{ getStatusTarget($user->id, $tahun) }}
-                                    </div>
-                                </td>
-                                <td style="text-align: center;width: 8%;">
-                                    @if (getStatusTarget($user->id, $tahun) == 'Not Active')
-                                    <a href="{{ route('client.target.details', ['idpersonnel' => $user->id, 'tahun' => $tahun]) }}">
-                                        <button class="btn btn-primary btn-sm">Details</button>
-                                    </a>
-                                    @else
-                                    <a href="{{ route('client.target.check', ['idpersonnel' => $user->id, 'tahun' => $tahun]) }}">
-                                        <button class="btn btn-success btn-sm">Check</button>
-                                    </a>
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                        @if (getStatusTarget($user->id, $tahun) == 'Not Active') 
+                                        <div style="color: red;" >{{ getStatusTarget($user->id, $tahun) }}</div>
+                                        @elseif (getStatusTarget($user->id, $tahun) == 'waiting for approval') 
+                                        <div style="color: grey;" >{{ getStatusTarget($user->id, $tahun) }}</div>
+                                        @elseif (getStatusTarget($user->id, $tahun) == 'not approved') 
+                                        <div style="color: red;" >{{ getStatusTarget($user->id, $tahun) }}</div>
+                                        @elseif (getStatusTarget($user->id, $tahun) == 'approved') 
+                                        <div style="color: green;" >{{ getStatusTarget($user->id, $tahun) }}</div>
+                                        @else 
+                                        <div style="color: green;">{{ getStatusTarget($user->id, $tahun) }}</div>
+                                        @endif
+                                    </td>
+                                    <td style="text-align: center;width: 8%;">
+                                        @if (getStatusTarget($user->id, $tahun) == 'Active')
+                                        <a href="{{ route('client.target.check', ['idpersonnel' => $user->id, 'tahun' => $tahun]) }}">
+                                            <button class="btn btn-success btn-sm">Check</button>
+                                        </a>
+                                        @else
+                                        <a href="{{ route('client.target.details', ['idpersonnel' => $user->id, 'tahun' => $tahun]) }}">
+                                            <button class="btn btn-primary btn-sm">Details</button>
+                                        </a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+
+
     </div>
-
-
-</div>
 
 </div>
 @endsection

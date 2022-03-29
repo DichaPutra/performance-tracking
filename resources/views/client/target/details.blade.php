@@ -109,9 +109,23 @@
                             <div class="form-group row">
                                 <label for="position" class="col-md-4 col-form-label text-md-right">Status : </label>
                                 <div class="col-md-6">
+                                    @if ($targetstatus == null)
                                     <div style="color: red; font-weight: bold; margin-top: 5px;">
                                         Not Active
                                     </div>
+                                    @elseif ($targetstatus->status == 'waiting for approval')
+                                    <div style="color: grey; font-weight: bold; margin-top: 5px;">
+                                        {{$targetstatus->status}}
+                                    </div>
+                                    @elseif ($targetstatus->status == 'approved')
+                                    <div style="color: green; font-weight: bold; margin-top: 5px;">
+                                        {{$targetstatus->status}}
+                                    </div>
+                                    @elseif ($targetstatus->status == 'not approved')
+                                    <div style="color: red; font-weight: bold; margin-top: 5px;">
+                                        {{$targetstatus->status}}
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -130,13 +144,13 @@
                         <div class="tab-pane fade @if(is_null(session('tab')))show active @endif" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <br>
                             <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary" style="text-align: center;"> </h6>
-                                <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Strategic Objective</h5>
+                            <div class="py-3 d-flex flex-row align-items-center justify-content-between">
+                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAdd">
-                                    <i class="fas fa-plus"></i>
+                                <button type="button" style="margin-left: 20px;" class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#modalAdd">
+                                    Add SO <i class="fas fa-plus"></i>
                                 </button>
+                                @endif
 
                                 <!-- Modal Add-->
                                 <div class="modal fade bd-example-modal-lg" id="modalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -159,7 +173,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary button-loading">
-                                                        <i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Add
+                                                            <i style="display: none;"class="spinner fa fa-spinner fa-spin"></i> Add
                                                         </button>
                                                     </div>
                                                 </form>
@@ -172,8 +186,6 @@
 
                             <!-- Card Body -->
                             <div class="card-body">
-
-
                                 <!-- Content Row -->
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -181,7 +193,9 @@
                                             <tr>
                                                 <th style="width: 5%; text-align: center;">No</th>
                                                 <th>Strategic Objective</th>
+                                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
                                                 <th style="width: 10%; text-align: center;">Operation</th>
+                                                @endif
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -194,6 +208,7 @@
                                                     <span class="badge badge-secondary float-right"><i class="fa fa-user"></i> Custom</span>
                                                     @endif
                                                 </td>
+                                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
                                                 <td style="width: 10%;text-align: center;">
                                                     <form action="{{route('client.target.deleteso')}}" method="post">
                                                         <!--button edit SO-->
@@ -210,6 +225,7 @@
                                                         </button>
                                                     </form>
                                                 </td>
+                                                @endif
                                             </tr>
 
                                             <!--modal edit-->
@@ -243,8 +259,6 @@
                                     </table>
                                 </div>
                             </div>
-
-
                         </div>
                         <!--end of tab 1-->
 
@@ -254,13 +268,13 @@
                             <br>
 
                             <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary" style="text-align: center;"> </h6>
-                                <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">KPI</h5>
+                            <div class="py-3 d-flex flex-row align-items-center justify-content-between">
+                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAddKPI">
-                                    <i class="fas fa-plus"></i>
+                                <button type="button" style="margin-left: 20px;"class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAddKPI">
+                                    Add KPI <i class="fas fa-plus"></i>
                                 </button>
+                                @endif
 
                                 <!-- Modal Add-->
                                 <div class="modal fade bd-example-modal-lg" id="modalAddKPI" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -308,7 +322,9 @@
                                                 <th style="text-align: center;">KPI</th>
                                                 <th style="width: 10%; text-align: center;">Timeframe</th>
                                                 <th style="width: 5%; text-align: center;">Target</th>
+                                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
                                                 <th style="width: 10%; text-align: center;">Operation</th>
+                                                @endif
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -336,6 +352,7 @@
                                                     {{ $kpi->target}} {{$kpi->unit}}
                                                     @endif
                                                 </td>
+                                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
                                                 <td style="width: 10%;text-align: center;">
                                                     <form action="{{route('client.target.deletekpi')}}" method="post">
                                                         @csrf
@@ -353,6 +370,7 @@
                                                         </button>
                                                     </form>
                                                 </td>
+                                                @endif
                                             </tr>
                                             <!--modal edit-->
                                         <div class="modal fade bd-example-modal-lg" id="modalEditKPI{{ $loop->iteration }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -419,20 +437,29 @@
 
                         <hr>
                         <div class="row">
-                            <div class="col-md-10">
-<!--                                    <i class="fa fa-exclamation-triangle" style="margin-right: 15px;"></i>
-                                KPI Weight met 100%. Click "Activate" button to activate Target-->
+                            <div class="col-md-8">
                             </div>
-                            @if (isTargetExist($data->id, $tahun))
-                            <div class="col-md-2">
+
+                            <div class="col-md-4">
                                 <div class="float-right">
                                     <a href="{{route('client.target')}}" class="btn btn-secondary ">Cancel</a>
+                                    @if ($targetstatus == null)
+                                    <a href="{{ route('client.target.addtargetstatus', ['idpersonnel' => $idpersonnel, 'tahun' => $tahun]) }}" class="btn btn-primary">
+                                        Propose to Team
+                                    </a>
+                                    @elseif($targetstatus->status == 'not approved')
+                                    <a href="{{ route('client.target.updatetargetstatus', ['idpersonnel' => $idpersonnel, 'tahun' => $tahun]) }}" class="btn btn-primary">
+                                        Propose to Team
+                                    </a>
+                                    @endif
+                                    @if (isTargetExist($data->id, $tahun) && ($targetstatus->status == 'approved'))
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                         Activate
                                     </button>
+                                    @endif
                                 </div>
                             </div>
-                            @endif
+
                         </div>
 
                         <!-- Button trigger modal -->
@@ -484,46 +511,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!--Alert Activate kalau sudah beban sudah 100-->
-                        <!--                        @if($totalWeight == 100)
-                                                <div class="alert alert-primary" style="height: 10%;" role="alert">
-                                                    <div class="row">
-                                                        <div class="col-md-8">
-                                                            <i class="fa fa-exclamation-triangle" style="margin-right: 15px;"></i>
-                                                            KPI Weight met 100%. Click "Activate" button to activate Target
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <a href="#" class="btn btn-primary btn-sm float-right">Activate</a>
-                                                            <form method="post" action="{{route('client.target.activate')}}">
-                                                                @csrf
-                                                                <input name="user_id" type="hidden" value="{{$data->id}}">
-                                                                <input name="tahun" type="hidden" value="{{$tahun}}">
-                                                                <input type="submit" class="btn btn-primary btn-sm float-right" value="Activate">
-                        
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                @elseif ($totalWeight > 100)
-                                                <div class="alert alert-warning alert-dismissible" role="alert">
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    <div class="row">
-                                                        <div class="col-md-8">
-                                                            <i class="fa fa-exclamation-triangle" style="margin-right: 15px;"></i>
-                                                            KPI weight exceeds 100%, please readjust your weight
-                                                        </div>
-                                                    </div>
-                        
-                                                </div>
-                                                @endif-->
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>
@@ -553,6 +541,6 @@
         $(".alert-success").fadeTo(500, 0).slideUp(500, function () {
             $(this).remove();
         });
-    }, 1500);
+    }, 10000);
 </script>
 @endsection

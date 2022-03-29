@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\target_so;
 use App\Models\target_kpi;
 use App\Models\active_target_kpi;
+use App\Models\target_status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -67,9 +68,45 @@ class targetController extends Controller {
                 ->orderBy('target_kpi.id_target_so', 'asc')
                 ->get();
 
-        //$datakpi = DB::select("SELECT * FROM target_kpi a, target_so b WHERE a.id_target_so = b.id AND a.id_user = $request->idpersonnel ORDER BY b.so ASC");
+        // get target status , untuk approval dari team member
+        $targetstatus = target_status::where('id_user', $request->idpersonnel)
+                ->where('periode_th', $request->tahun)
+                ->first();
+
         // pass to view
-        return view('client.target.details', ['data' => $data, 'dataso' => $dataso, 'datakpi' => $datakpi, 'tahun' => $request->tahun]);
+        return view('client.target.details',
+                ['data' => $data,
+                    'dataso' => $dataso,
+                    'datakpi' => $datakpi,
+                    'tahun' => $request->tahun,
+                    'idpersonnel' => $request->idpersonnel,
+                    'targetstatus' => $targetstatus]);
+    }
+
+    public function addtargetstatus(Request $request)
+    {
+        // awal team leader mengirim approval kepada team member, agar status menjadi waiting for approval
+        $targetstatus = new target_status;
+        $targetstatus->id_user = $request->idpersonnel;
+        $targetstatus->periode_th = $request->tahun;
+        $targetstatus->status = 'waiting for approval';
+        $targetstatus->save();
+
+        //redirect with succes message
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->idpersonnel, 'tahun' => $request->tahun])
+                        ->with('success', 'Success ! Target telah dikirim kepada team member, menunggu approval dari team member');
+    }
+
+    public function updatetargetstatus(Request $request)
+    {
+        // fungsi ini dijalankan ketika team leader melakukan pengiriman approval target ke team member bila team member menolak target
+        target_status::where('id_user', $request->idpersonnel)
+        ->where('periode_th', $request->tahun)
+        ->update(['status'=>'waiting for approval']);
+
+        //redirect with succes message
+        return redirect()->route('client.target.details', ['idpersonnel' => $request->idpersonnel, 'tahun' => $request->tahun])
+                        ->with('success', 'Success ! Target telah dikirim kepada team member, menunggu approval dari team member');
     }
 
     public function check(Request $request)
@@ -78,8 +115,8 @@ class targetController extends Controller {
         $data = User::where('id', $request->idpersonnel)->first();
 
         //get active target kpi  : var  so, kpi
-        $activetarget = active_target_kpi::groupBy('so', 'id_target_kpi', 'kpi', 'unit','timeframe_target')
-                        ->select('so', 'id_target_kpi', 'kpi', 'unit','timeframe_target')
+        $activetarget = active_target_kpi::groupBy('so', 'id_target_kpi', 'kpi', 'unit', 'timeframe_target')
+                        ->select('so', 'id_target_kpi', 'kpi', 'unit', 'timeframe_target')
                         ->where('id_user', $request->idpersonnel)
                         ->where('periode_th', $request->tahun)->get();
         $startingbln = target_kpi::where('id_user', $request->idpersonnel)->where('periode_th', $request->tahun)->first();
@@ -110,7 +147,8 @@ class targetController extends Controller {
             $sodb->save();
 
             //redirect with succes message
-            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your strategic objective has been added');
+            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])
+                            ->with('success', 'Success ! Your strategic objective has been added');
         }
         else
         {
@@ -126,7 +164,8 @@ class targetController extends Controller {
             $sodb->save();
 
             //redirect with succes message
-            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])->with('success', 'Success ! Your strategic objective has been added');
+            return redirect()->route('client.target.details', ['idpersonnel' => $request->userid, 'tahun' => $request->tahun])
+                            ->with('success', 'Success ! Your strategic objective has been added');
         }
     }
 
