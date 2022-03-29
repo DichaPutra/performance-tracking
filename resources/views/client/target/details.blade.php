@@ -145,7 +145,7 @@
                             <br>
                             <!-- Card Header - Dropdown -->
                             <div class="py-3 d-flex flex-row align-items-center justify-content-between">
-                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
+                                @if (($targetstatus == null)||(($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved')))
                                 <!-- Button trigger modal -->
                                 <button type="button" style="margin-left: 20px;" class="btn btn-primary btn-sm"  data-bs-toggle="modal" data-bs-target="#modalAdd">
                                     Add SO <i class="fas fa-plus"></i>
@@ -193,7 +193,7 @@
                                             <tr>
                                                 <th style="width: 5%; text-align: center;">No</th>
                                                 <th>Strategic Objective</th>
-                                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
+                                                @if (($targetstatus == null)||(($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved')))
                                                 <th style="width: 10%; text-align: center;">Operation</th>
                                                 @endif
                                             </tr>
@@ -208,7 +208,7 @@
                                                     <span class="badge badge-secondary float-right"><i class="fa fa-user"></i> Custom</span>
                                                     @endif
                                                 </td>
-                                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
+                                                @if (($targetstatus == null)||(($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved')))
                                                 <td style="width: 10%;text-align: center;">
                                                     <form action="{{route('client.target.deleteso')}}" method="post">
                                                         <!--button edit SO-->
@@ -269,7 +269,7 @@
 
                             <!-- Card Header - Dropdown -->
                             <div class="py-3 d-flex flex-row align-items-center justify-content-between">
-                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
+                                @if (($targetstatus == null)||(($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved')))
                                 <!-- Button trigger modal -->
                                 <button type="button" style="margin-left: 20px;"class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalAddKPI">
                                     Add KPI <i class="fas fa-plus"></i>
@@ -322,7 +322,7 @@
                                                 <th style="text-align: center;">KPI</th>
                                                 <th style="width: 10%; text-align: center;">Timeframe</th>
                                                 <th style="width: 5%; text-align: center;">Target</th>
-                                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
+                                                @if (($targetstatus == null)||(($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved')))
                                                 <th style="width: 10%; text-align: center;">Operation</th>
                                                 @endif
                                             </tr>
@@ -352,7 +352,7 @@
                                                     {{ $kpi->target}} {{$kpi->unit}}
                                                     @endif
                                                 </td>
-                                                @if (($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved'))
+                                                @if (($targetstatus == null)||(($targetstatus->status != 'waiting for approval')&&($targetstatus->status != 'approved')))
                                                 <td style="width: 10%;text-align: center;">
                                                     <form action="{{route('client.target.deletekpi')}}" method="post">
                                                         @csrf
