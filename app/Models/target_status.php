@@ -13,5 +13,5 @@ class target_status extends Model {
     protected $fillable = [
         'id_user', 'periode_th', 'status', 'reason'
     ];
-    // status = waiting for approval, not approved, approved
+    // status = waiting for approval, not approved, approved, active
 }

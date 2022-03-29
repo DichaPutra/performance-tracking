@@ -260,9 +260,6 @@ class targetController extends Controller {
 
     public function activateTarget(Request $request)
     {
-
-//        dd($request);
-//        dd($request['totalHidden']);
         //data in 
         $tahun = $request->tahun;
         $user_id = $request->user_id;
@@ -507,10 +504,16 @@ class targetController extends Controller {
             }
         }
 
+        // update target kpi into is active = 1;
         target_kpi::where('id_user', $request->user_id)
                 ->where('periode_th', $request->tahun)
                 ->update(['is_active' => '1']);
-        // update target kpi into is active = 1;
+        
+        // update target status , status = active
+        target_status::where('id_user', $request->user_id)
+                ->where('periode_th', $request->tahun)
+                ->update(['status' => 'Active']);
+        
         return redirect()->route('client.target')->with('success', 'Success ! Target has been activated');
     }
 

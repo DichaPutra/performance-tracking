@@ -43,8 +43,8 @@
                     </div>
                     @endif
                     <br>
-                    
-                    
+
+
                     <!-- Card Header - Dropdown -->
                     <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Target KPI {{$tahun}}</h5><br>
 
@@ -76,13 +76,17 @@
                                     <div style="color: green; font-weight: bold; margin-top: 5px;">
                                         {{$targetstatus->status}}
                                     </div>
+                                    @elseif ($targetstatus->status == 'Active')
+                                    <div style="color: green; font-weight: bold; margin-top: 5px;">
+                                        {{$targetstatus->status}}
+                                    </div>
                                     @endif
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @else
+                    @elseif ($targetstatus->status == 'Active')
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group row">
@@ -115,7 +119,7 @@
                                     <th style="width: 8%; text-align: center;">No</th>
                                     <th>Strategic Objective</th>
                                     <th>KPI</th>
-                                    @if (($targetstatus == null))
+                                    @if (($targetstatus == null)||($targetstatus->status == 'Active'))
                                     <th>Weight</th>
                                     @endif
                                     <th>Target</th>
@@ -128,7 +132,7 @@
                                     <td style="text-align: center;">{{$loop->iteration}}</td>
                                     <td>{{$dat->so}}</td>
                                     <td>{{$dat->kpi}}</td>
-                                    @if (($targetstatus == null))
+                                    @if (($targetstatus == null)||($targetstatus->status == 'Active'))
                                     <td>{{$dat->weight}}%</td>
                                     @endif
                                     <td>{{$dat->target}} {{$dat->unit}}</td>
