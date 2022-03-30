@@ -107,7 +107,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="position" class="col-md-4 col-form-label text-md-right">Status : </label>
+                                <label for="position" class="col-md-4 col-form-label text-md-right">Status  </label>
                                 <div class="col-md-6">
                                     @if ($targetstatus == null)
                                     <div style="color: red; font-weight: bold; margin-top: 5px;">
@@ -128,6 +128,15 @@
                                     @endif
                                 </div>
                             </div>
+                            @if ($targetstatus == null)
+                            @elseif ($targetstatus->status == 'not approved')
+                            <div class="form-group row">
+                                <label for="position" class="col-md-4 col-form-label text-md-right">Reason  </label>
+                                <div class="col-md-6">
+                                    <textarea name="reason"class="form-control" rows="5" readonly>{{$targetstatus->reason}}</textarea>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                     </div><br>
 

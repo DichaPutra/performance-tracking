@@ -47,7 +47,6 @@
 
                     <!-- Card Header - Dropdown -->
                     <h5 class="m-0 font-weight-bold text-primary" style="text-align: center;">Target KPI {{$tahun}}</h5><br>
-
                     @if ($targetstatus->status == 'waiting for approval'||'approved')
                     <div class="row">
                         <div class="col-md-6">
@@ -149,20 +148,47 @@
                         <div class="col-md-8">
                         </div>
                         <div class="col-md-4">
+
+                            <!--BUTTON REJECT APPROVE--> 
                             <div class="float-right">
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalReject">
                                     Reject
                                 </button>
                                 <a href="{{route('personnel.target.approve',['tahun'=>$tahun])}}" class="btn btn-success">
                                     Approve
                                 </a>
+                            </div>
 
+                            <!--MODAL REJECT REASON-->
+                            <div class="modal fade" id="modalReject" tabindex="-1" role="dialog"aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Alasan Penolakan</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form method="POST" action="{{route('personnel.target.notapprove')}}">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <input name="iduser"type="hidden" value="{{$iduser}}">
+                                                <input name="tahun"type="hidden" value="{{$tahun}}">
+                                                <textarea name="reason"class="form-control" rows="5"></textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">OK</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @endif
-
                 </div>
+
             </div>
         </div>
 

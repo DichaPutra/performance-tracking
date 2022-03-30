@@ -23,11 +23,15 @@ class personnelTargetController extends Controller {
             //target status
             $targetstatus = target_status::where('id_user', Auth::user()->id)
                             ->where('periode_th', $tahun)->first();
+            if ($targetstatus == null)
+            {
+                $targetstatus = (object) array("status" => 0);
+            }
 
             $datatarget = DB::select("SELECT b.so, a.kpi, a.target, a.unit, a.weight, a.timeframe_target, a.range_period "
                             . "FROM target_kpi a, target_so b "
                             . "WHERE a.id_target_so = b.id AND a.id_user = $iduser AND a.periode_th = $tahun");
-            
+
             // untuk ambil range periode
             $queryActiveTarget = active_target_kpi::where('id_user', Auth::user()->id)->where('periode_th', $request->tahun)->first();
         }
@@ -39,6 +43,10 @@ class personnelTargetController extends Controller {
             //target status
             $targetstatus = target_status::where('id_user', Auth::user()->id)
                             ->where('periode_th', $tahun)->first();
+            if ($targetstatus == null)
+            {
+                $targetstatus = (object) array("status" => 0);
+            }
 
             if ($targetstatus->status == 'waiting for approval' || 'approved')
             {
@@ -48,6 +56,7 @@ class personnelTargetController extends Controller {
             }
             else
             {
+
                 $datatarget = active_target_kpi::groupby('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period', 'unit')->select('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period', 'unit')
                                 ->where('id_user', $iduser)
                                 ->where('periode_th', date('Y'))->get();
@@ -61,30 +70,31 @@ class personnelTargetController extends Controller {
                 ->where('id_user', Auth::user()->id)
                 ->get();
 
-        // all tahun active untuk modal pilih bulan tahun
-//        $alltahun = active_target_kpi::groupby('periode_th')
-//                ->select('periode_th')
-//                ->where('id_user', Auth::user()->id)
-//                ->get();
+        //all tahun active untuk modal pilih bulan tahun
+        //       $alltahun = active_target_kpi::groupby('periode_th')
+        //                ->select('periode_th')
+        //                ->where('id_user', Auth::user()->id)
+        //                ->get();
         //ambil data range_period & periode_th
-//        if ($queryActiveTarget == null)
-//        {
-//            $range_period = null;
-//            $periode_th = null;
-//        }
-//        else
-//        {
-//            $range_period = $queryActiveTarget['range_period'];
-//            $periode_th = $queryActiveTarget['periode_th'];
-//        }
+        //        if ($queryActiveTarget == null)
+        //        {
+        //            $range_period = null;
+        //            $periode_th = null;
+        //        }
+        //        else
+        //        {
+        //            $range_period = $queryActiveTarget['range_period'];
+        //            $periode_th = $queryActiveTarget['periode_th'];
+        //        }
 
         return view('personnel.target.target', [
             'datatarget' => $datatarget,
-//            'range_period' => $range_period,
-//            'periode_th' => $periode_th,
+            //  'range_period' => $range_period,
+            //  'periode_th' => $periode_th,
             'alltahun' => $alltahun,
             'tahun' => $tahun,
-            'targetstatus' => $targetstatus
+            'targetstatus' => $targetstatus,
+            'iduser' => $iduser
         ]);
     }
 
@@ -102,9 +112,17 @@ class personnelTargetController extends Controller {
                         ->with('success', 'Success ! Anda telah menyetujui target yang telah ditetapkan oleh Team Leader, menunggu proses aktivasi target oleh Team Leader');
     }
 
-    function reject()
+    function notapprove(Request $request)
     {
-        
+        //dd($request->reason);
+        // fungsi ini dijalankan ketika team leader melakukan pengiriman approval target ke team member bila team member menolak target
+        target_status::where('id_user', $request->iduser)
+                ->where('periode_th', $request->tahun)
+                ->update(['status' => 'not approved', 'reason' => $request->reason]);
+
+        //redirect with succes message
+        return redirect()->route('personnel.target')
+                        ->with('success', 'Success ! target telah berhasil di tolak, harap menghubungi team leader anda untuk mendiskusikan target lebih lanjut');
     }
 
 }

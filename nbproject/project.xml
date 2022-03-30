@@ -10,6 +10,7 @@
             <word>csrf</word>
             <word>endif</word>
             <word>foreach</word>
+            <word>Penolakan</word>
             <word>tahun</word>
         </spellchecker-wordlist>
     </configuration>

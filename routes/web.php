@@ -134,7 +134,7 @@ Route::middleware([PersonnelGuard::class, 'verified'])->group(function () {
     // * target *
     Route::get('/personnel-target', [personnelTargetController::class, 'index'])->name('personnel.target');
     Route::get('/personnel-target-approve', [personnelTargetController::class, 'approve'])->name('personnel.target.approve');
-    Route::get('/personnel-target-reject', [personnelTargetController::class, 'reject'])->name('personnel.target.reject');
+    Route::post('/personnel-target-notapprove', [personnelTargetController::class, 'notapprove'])->name('personnel.target.notapprove');
 
     // * Capaian *
     // -> page
