@@ -192,6 +192,16 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group row">
+                                                    <label for="position" class="col-md-4 col-form-label text-md-right">File Capaian</label>
+                                                    <div class="col-md-6">
+                                                        <i class="fas fa-file"></i> <a href="{{getFilePath($data->id,$waitingApprovalCapaian2->bulan,$waitingApprovalCapaian2->tahun)}}">
+                                                            {{getFileName($data->id,$waitingApprovalCapaian2->bulan,$waitingApprovalCapaian2->tahun)}}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="table-responsive">

@@ -8,6 +8,8 @@ use App\Models\active_target_kpi;
 use App\Models\capaian_kpi;
 use App\Models\actionplan;
 use App\Models\target_status;
+use App\Models\capaian_kpi_file;
+use Illuminate\Support\Facades\Storage;
 
 // =======================================================
 // ========  TARGET FORMULA ===============
@@ -81,12 +83,13 @@ function getStatusTarget($id_user, $tahun)
             ->where('periode_th', $tahun)
             ->first();
     $count = target_kpi::where('id_user', $id_user)->where('periode_th', $tahun)->sum('is_active');
-    
+
     if ($targetstatus == null)
     {
         return 'Not Active';
     }
-    else if( $count!=0){
+    else if ($count != 0)
+    {
         return 'Active';
     }
     else
@@ -183,6 +186,44 @@ function detailCapaianApprove($bulan, $tahun, $id_user)
                     ->where('approval', 'waiting for approval')->get();
 
     return $capaianApproval;
+}
+
+function getFilePath($id_user, $bulan, $tahun)
+{
+    //jika ad file attachment, maka ambil url nya
+    $file = capaian_kpi_file::where('id_user', $id_user)
+            ->where('bulan', $bulan)
+            ->where('tahun', $tahun)
+            ->first();
+    if ($file != null)
+    {
+        $filepath = Storage::url($file->path);
+    }
+    else
+    {
+        $filepath = 'cakep';
+    }
+
+    return $filepath;
+}
+
+function getFileName($id_user, $bulan, $tahun)
+{
+    //jika ad file attachment, maka ambil url nya
+    $file = capaian_kpi_file::where('id_user', $id_user)
+            ->where('bulan', $bulan)
+            ->where('tahun', $tahun)
+            ->first();
+    if ($file != null)
+    {
+        $filename = $file->filename;
+    }
+    else
+    {
+        $filename = 'cakep';
+    }
+
+    return $filename;
 }
 
 // =======================================================

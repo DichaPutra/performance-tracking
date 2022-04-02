@@ -55,6 +55,7 @@ class personnelCapaianController extends Controller {
                 ->where('tahun', $tahun)
                 ->where('bulan', $bulan)
                 ->first();
+        
         //jika ad file attachment, maka ambil url nya
         $file = capaian_kpi_file::where('id_user', Auth::user()->id)
                 ->where('bulan', $bulan)
@@ -257,9 +258,9 @@ class personnelCapaianController extends Controller {
                 ->where('bulan', $bulan)
                 ->where('tahun', $tahun)
                 ->first();
-        Storage::delete($existingfile->path);
-        capaian_kpi_file::where('id',$existingfile->id)->delete();
-
+        Storage::delete($existingfile->path); //hapus file
+        capaian_kpi_file::where('id',$existingfile->id)->delete(); //hapus data
+        //new data
         $filename = $request->file('file')->getClientOriginalName();
         $path = $request->file('file')->store('public/filebukticapaian');
         $file = new capaian_kpi_file;
