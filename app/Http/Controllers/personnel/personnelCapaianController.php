@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\active_target_kpi;
 use App\Models\capaian_kpi;
 use App\Models\User;
+use App\Models\capaian_kpi_file;
 use App\Notifications\SubmittedCapaian;
 use App\Notifications\CapaianTelahDisubmit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class personnelCapaianController extends Controller {
 
@@ -53,6 +55,21 @@ class personnelCapaianController extends Controller {
                 ->where('tahun', $tahun)
                 ->where('bulan', $bulan)
                 ->first();
+        //jika ad file attachment, maka ambil url nya
+        $file = capaian_kpi_file::where('id_user', Auth::user()->id)
+                ->where('bulan', $bulan)
+                ->where('tahun', $tahun)
+                ->first();
+        if ($file != null)
+        {
+            $filepath = Storage::url($file->path);
+        }
+        else
+        {
+            $filepath = null;
+        }
+
+
         // jika tidak ada active target / target blm di set
         if ($is_scoredq == null)
         {
@@ -75,12 +92,25 @@ class personnelCapaianController extends Controller {
             'alltahun' => $alltahun,
             'is_scored' => $is_scored,
             'periode_th' => $periode_th,
-            'range_period' => $range_period
+            'range_period' => $range_period,
+            'filepath' => $filepath,
+            'file' => $file
         ]);
     }
 
     function addCapaian(Request $request)
     {
+        //add data to db
+        $filename = $request->file('file')->getClientOriginalName();
+        $path = $request->file('file')->store('public/filebukticapaian');
+        $file = new capaian_kpi_file;
+        $file->id_user = Auth::user()->id;
+        $file->bulan = $request->bulan;
+        $file->tahun = $request->tahun;
+        $file->filename = $filename;
+        $file->path = $path;
+        $file->save();
+        //return $filename;
         //not array 
         $bulan = $request->bulan;
         $tahun = $request->tahun;
@@ -202,25 +232,46 @@ class personnelCapaianController extends Controller {
         active_target_kpi::where('id_user', Auth::user()->id)
                 ->where('bulan', $bulan)
                 ->where('tahun', $tahun)->update(['is_scored' => 1]);
-        
+
         // send notif email
-        $user = User::where('id', Auth::user()->client_parent)->first();    
-  
+        $user = User::where('id', Auth::user()->client_parent)->first();
+
         $details = [
-            'greeting' => 'Hi '.$user->name,
-            'body' => Auth::user()->name.'  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
+            'greeting' => 'Hi ' . $user->name,
+            'body' => Auth::user()->name . '  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
             'thanks' => 'Thank you for using Performance Tracking App!',
-            'dbdata' => Auth::user()->name.'  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
+            'dbdata' => Auth::user()->name . '  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
         ];
         Notification::send($user, new CapaianTelahDisubmit($details));
-        
+
         // redirect 
         return redirect()->route('personnel.capaian', ['tahun' => $tahun, 'bulan' => $bulan]);
     }
 
     function updateCapaian(Request $request)
     {
-        //update capaian bila not approved
+        //UPDATE CAPAIAN BILA NOT APPROVED
+        //update file attachment
+        //del existing file
+        $existingfile = capaian_kpi_file::where('id_user', Auth::user()->id)
+                ->where('bulan', $bulan)
+                ->where('tahun', $tahun)
+                ->first();
+        Storage::delete($existingfile->path);
+        capaian_kpi_file::where('id',$existingfile->id)->delete();
+
+        $filename = $request->file('file')->getClientOriginalName();
+        $path = $request->file('file')->store('public/filebukticapaian');
+        $file = new capaian_kpi_file;
+        $file->id_user = Auth::user()->id;
+        $file->bulan = $request->bulan;
+        $file->tahun = $request->tahun;
+        $file->filename = $filename;
+        $file->path = $path;
+        $file->save();
+
+
+
         // get all data
         //not array 
         $bulan = $request->bulan;
@@ -350,17 +401,17 @@ class personnelCapaianController extends Controller {
     public function sendNotification()
     {
         //dd(Auth::user()->client_parent);
-        $user = User::where('id', Auth::user()->client_parent)->first();    
-  
+        $user = User::where('id', Auth::user()->client_parent)->first();
+
         $details = [
-            'greeting' => 'Hi '.$user->name,
-            'body' => Auth::user()->name.'  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
+            'greeting' => 'Hi ' . $user->name,
+            'body' => Auth::user()->name . '  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
             'thanks' => 'Thank you for using Performance Tracking App!',
             //'actionText' => 'View My Site',
             //'actionURL' => url('/'),
-            'dbdata' => Auth::user()->name.'  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
+            'dbdata' => Auth::user()->name . '  Baru saja mengirimkan capaian kedalam sistem, harap lakukan pengecekan kedalam aplikasi dengan login ke Performance Tracking Apps untuk melakukan verifikasi capaian',
         ];
-  
+
         Notification::send($user, new CapaianTelahDisubmit($details));
     }
 

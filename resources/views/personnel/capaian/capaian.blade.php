@@ -113,7 +113,9 @@
                     @endif
 
                     <!--KPI Table-->
-                    <form class="form-loading" method="post" action="@if(getStatusApproval($bulan, $tahun) == 'not approved'){{route('personnel.capaian.updatecapaian')}}@else{{route('personnel.capaian.addcapaian')}}@endif" >
+                    <form class="form-loading" method="post" 
+                          action="@if(getStatusApproval($bulan, $tahun) == 'not approved'){{route('personnel.capaian.updatecapaian')}}@else{{route('personnel.capaian.addcapaian')}}@endif" 
+                          enctype="multipart/form-data">
                         @csrf
                         <input name="bulan" value="{{$bulan}}" type="hidden" >
                         <input name="tahun" value="{{$tahun}}" type="hidden" >
@@ -195,6 +197,20 @@
                                 </tbody>
                             </table>
                         </div><br>
+
+                        <!--FILE ATTACHMENT BUKTI-->
+                        @if($filepath == null)
+                        <div class="mb-3">
+                            <label class="form-label">File Bukti Data Capaian</label>
+                            <input name="file" class="form-control" type="file" accept=".doc,.docx,.xml,.pdf,.xlsx,.xls,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+                        </div>
+                        @else
+                        <div class="mb-3">
+                            <label class="form-label">File Bukti Data Capaian :</label>
+                            <i class="fas fa-file"></i> <a href="{{$filepath}}">{{$file->filename}}</a>
+                        </div>
+                        @endif
+
                         <!--<button></button>-->
                         @if($is_scored == 0 && $jmlTarget != 0)
                         <button class="btn btn-primary float-right button-loading" onclick="confirm('Make sure your input is correct before going to the submit process. Are you sure to submit this data?')">
