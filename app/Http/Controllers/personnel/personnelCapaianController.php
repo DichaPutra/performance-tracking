@@ -255,8 +255,8 @@ class personnelCapaianController extends Controller {
         //update file attachment
         //del existing file
         $existingfile = capaian_kpi_file::where('id_user', Auth::user()->id)
-                ->where('bulan', $bulan)
-                ->where('tahun', $tahun)
+                ->where('bulan', $request->bulan)
+                ->where('tahun', $request->tahun)
                 ->first();
         Storage::delete($existingfile->path); //hapus file
         capaian_kpi_file::where('id',$existingfile->id)->delete(); //hapus data

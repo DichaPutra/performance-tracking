@@ -289,8 +289,6 @@
     </div>
     @endif
 
-
-
     <div class="row">
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4 animated--grow-in">
@@ -365,7 +363,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
 
-                    <div class="text-center"><b>Overall Performance</b> <br>{{date('F', mktime(0, 0, 0, $month, 10))}} 2021</div>
+                    <div class="text-center"><b>Overall Performance</b> <br>{{date('F', mktime(0, 0, 0, $month, 10))}} {{$year}}</div>
                     <!--Performance Chart-->
                     <div class="d-flex justify-content-center">
                         <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900"
@@ -498,6 +496,13 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="col-md-12">
+                        File Capaian : 
+                        <i class="fas fa-file"></i> <a href="{{getFilePath($data->id,$month,$year)}}">
+                            {{getFileName($data->id,$month,$year)}}
+                        </a>
+                    </div>
+
                 </div>
                 @endif
             </div>

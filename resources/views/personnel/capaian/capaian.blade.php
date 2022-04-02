@@ -204,6 +204,11 @@
                             <label class="form-label">File Bukti Data Capaian</label>
                             <input name="file" class="form-control" type="file" accept=".doc,.docx,.xml,.pdf,.xlsx,.xls,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
                         </div>
+                        @elseif (getStatusApproval($bulan, $tahun) == 'not approved')
+                        <div class="mb-3">
+                            <label class="form-label">File Bukti Data Capaian</label>
+                            <input name="file" class="form-control" type="file" accept=".doc,.docx,.xml,.pdf,.xlsx,.xls,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+                        </div>
                         @else
                         <div class="mb-3">
                             <label class="form-label">File Bukti Data Capaian :</label>
