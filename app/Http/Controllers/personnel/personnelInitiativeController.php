@@ -119,6 +119,15 @@ class personnelInitiativeController extends Controller {
         }
     }
 
+    function editInitiative(Request $request)
+    {
+        //dd($request->idsi);
+        //update SI
+        target_si::where('id', $request->idsi)->update(['si' => $request->si,'approval' => 'waiting for approval','keterangan' => null]);
+
+        return redirect()->back()->with('success', 'Success ! Strategic Initiative has been approved');
+    }
+
     function deleteInitiative(Request $request)
     {
         //dd($request);

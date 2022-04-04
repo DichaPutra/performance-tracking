@@ -174,21 +174,21 @@
                                 <tr>
                                     <th style="text-align: center;">No</th>
                                     <th style="text-align: center;">Strategic Initiative</th>
+                                    <th style="text-align: center;">Keterangan</th>
                                     <th style="width: 10%;text-align: center;">Action Plan</th>
                                     <th style="width: 12%"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($datasi as $datasi)
-                                @if ($datasi->approval == 'waiting for approval')
+                                @if ($datasi->approval != 'approved')
                                 <tr style="background-color: #FFF3CD;">
                                     @else 
                                 <tr>
                                     @endif
-
-
                                     <td style="text-align: center;">{{ $loop->iteration }}</td>
                                     <td>{{$datasi->si}}</td>
+                                    <td>- <b>{{$datasi->approval}}</b> - {{$datasi->keterangan}}</td>
                                     <td style="text-align: center;">
                                         <a href="{{route('client.initiative.actionplan',['idpersonnel'=>$data->id, 'tahun'=>$tahun, 'idkpiselected'=>$datakpiselected->id, 'idsi'=>$datasi->id])}}" class="btn btn-secondary">
                                             {{getCountActionPlan($datasi->id, $tahun)}}
@@ -207,13 +207,36 @@
                                                 </form>
                                             </div>
                                             <div class="col-md-6">
-                                                <form method="post" action="{{route('client.initiative.deleteinitiative')}}">
-                                                    @csrf
-                                                    <input name="idsi" type="hidden" value="{{$datasi->id}}">
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('All Action Plan related data will be deleted, Are you sure you want to reject this Initiative ? ');">
-                                                        <i class="fas fa-times"></i>
-                                                    </button>
-                                                </form>
+
+                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalReject{{$datasi->id}}"">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+
+                                                <!--MODAL REJECT REASON-->
+                                                <div class="modal fade" id="modalReject{{$datasi->id}}" tabindex="-1" role="dialog"aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">Alasan Penolakan</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form method="post" action="{{route('client.initiative.rejectinitiative')}}">
+                                                                @csrf
+                                                                <div class="modal-body">
+                                                                    <input name="idsi" type="hidden" value="{{$datasi->id}}">
+                                                                    <textarea name="keterangan"class="form-control" rows="5"></textarea>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" class="btn btn-primary">OK</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--END OF MODAL-->
                                             </div>
                                         </div>
                                         @else 

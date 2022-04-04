@@ -163,6 +163,15 @@ class initiativeController extends Controller {
         return redirect()->back()->with('success', 'Success ! Strategic Initiative has been approved');
     }
 
+    function rejectInitiative(Request $request)
+    {
+        //dd($request);
+        //update SI
+        target_si::where('id', $request->idsi)->update(['keterangan' => $request->keterangan, 'approval'=> 'rejected']);
+
+        return redirect()->back()->with('success', 'Success ! Strategic Initiative has been rejected');
+    }
+
     function actionplan(Request $request)
     {
         // request idpersonnel, tahun, datakpiselected, idsi

@@ -260,32 +260,69 @@
                             <tr>
                                 <th style="text-align: center;">No</th>
                                 <th style="text-align: center;">Initiative</th>
-                                <th style="text-align: center;">Action Plan</th>
-                                <th style="width: 15%"></th>
+                                <th style="text-align: center;">Keterangan</th>
+                                <th style="width: 10%;text-align: center;">Action Plan</th>
+                                <th style="width: 12%"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($datasi as $datasi)
-                            @if ($datasi->approval == 'waiting for approval')
+                            @if ($datasi->approval != 'approved')
                             <tr style="background-color: #FFF3CD;">
                                 @else 
                             <tr>
                                 @endif
                                 <td style="text-align: center;">{{ $loop->iteration }}</td>
                                 <td>{{$datasi->si}}</td>
+                                <td>- <b>{{$datasi->approval}}</b> - {{$datasi->keterangan}}</td>
                                 <td style="text-align: center;">
-                                    {{getCountActionPlan($datasi->id, $tahun)}}
+                                    <a href="{{route('personnel.initiative.actionplan',['idpersonnel'=>$data->id, 'tahun'=>$tahun, 'idkpiselected'=>$datakpiselected->id, 'idsi'=>$datasi->id])}}" class="btn btn-secondary btn-sm">
+                                        {{getCountActionPlan($datasi->id, $tahun)}}
+                                    </a>
                                 </td>
                                 <!--<td>{{$datasi->approval}}</td>-->
                                 <td style="width: 15%; text-align: center;">
-                                    <form method="post" action="{{route('personnel.initiative.deleteinitiative')}}">
-                                        @csrf
-                                        <a href="{{route('personnel.initiative.actionplan',['idpersonnel'=>$data->id, 'tahun'=>$tahun, 'idkpiselected'=>$datakpiselected->id, 'idsi'=>$datasi->id])}}" class="btn btn-primary btn-sm">Details</a>
-                                        <input name="idsi" type="hidden" value="{{$datasi->id}}">
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('All Action Plan related data will be deleted, Are you sure you want to delete this Initiative ? ');">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-3">
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEditSI{{$datasi->id}}"">
+                                                <i class="fa fa-pen"></i>
+                                            </button>
+                                            <!--MODAL REJECT REASON-->
+                                            <div class="modal fade" id="modalEditSI{{$datasi->id}}" tabindex="-1" role="dialog"aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Edit Strategic Initiative</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form method="post" action="{{route('personnel.initiative.editinitiative')}}">
+                                                            @csrf
+                                                            <div class="modal-body">
+                                                                <input name="idsi" type="hidden" value="{{$datasi->id}}">
+                                                                <textarea name="si"class="form-control" rows="5">{{$datasi->si}}</textarea>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">OK</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--END OF MODAL-->
+                                        </div>
+                                        <div class="col-md-3">
+                                            <form method="post" action="{{route('personnel.initiative.deleteinitiative')}}">
+                                                @csrf
+                                                <input name="idsi" type="hidden" value="{{$datasi->id}}">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('All Action Plan related data will be deleted, Are you sure you want to delete this Initiative ? ');">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>                                
                                 </td>
                             </tr>
 
