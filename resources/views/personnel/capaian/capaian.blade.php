@@ -1,4 +1,4 @@
-@extends('layouts.app2')
+@extends('layouts.app3')
 
 @include('personnel.formula')<!--berisikan function di view-->
 
