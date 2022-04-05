@@ -450,6 +450,7 @@
                             </div>
 
                             <div class="col-md-4">
+                                @if (isTargetExist($data->id, $tahun))
                                 <div class="float-right">
                                     <a href="{{route('client.target')}}" class="btn btn-secondary ">Cancel</a>
                                     @if ($targetstatus == null)
@@ -466,6 +467,7 @@
                                     </button>
                                     @endif
                                 </div>
+                                @endif
                             </div>
 
                         </div>
