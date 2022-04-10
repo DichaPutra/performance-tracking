@@ -45,11 +45,11 @@
 <!-- Divider 
 <hr class="sidebar-divider d-none d-md-block">-->
 
-<li class="nav-item">
+<!--<li class="nav-item">
     <a class="nav-link" href="{{route('chatify')}}">
         <i class="fas fa-fw fa-comments"></i>
         <span>Messages</span></a>
-</li>
+</li>-->
 
 <!--Change Password-->
 <li class="nav-item @if($page=='changepass')active @endif">

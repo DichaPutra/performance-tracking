@@ -23,6 +23,26 @@
 
         <!-- Custom styles for this template-->
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <style>
+            .float{
+                position:fixed;
+                width:50px;
+                height:60px;
+                bottom:10%;
+                right:1px;
+                background-color:#4167D5;
+                color:#FFF;
+                border-radius:5px;
+                text-align:center;
+                font-size:30px;
+                box-shadow: 2px 2px 3px #999;
+                z-index:100;
+            }
+
+            .my-float{
+                margin-top:16px;
+            }
+        </style>
         @yield('head')
         @livewireStyles 
     </head>
@@ -95,10 +115,10 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {{ Auth::user()->email }}
                                 </a>
-<!--                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>-->
+                                <!--                                <a class="dropdown-item" href="#">
+                                                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                                    Profile
+                                                                </a>-->
                                 <a class="dropdown-item" href="{{route('change.password')}}">
                                     <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Change Password
@@ -147,6 +167,9 @@
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
+        <a href="{{route('chatify')}}" class="float" target="_blank">
+            <i class="fa fa-comments my-float"></i>
+        </a>
 
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
@@ -168,18 +191,18 @@
         <!--<script src="js/demo/chart-pie-demo.js"></script>-->
 
         <script>
-            //prevent submit & Loading spinner
-            $('.form-loading').on('submit', function () {
-                $('.button-loading').attr('disabled', 'true');
-                $('.spinner').show();
-            })
-            
-            if ($(window).width() > 514) {
-                $('#accordionSidebar').removeClass('toggled');
+                                       //prevent submit & Loading spinner
+                                       $('.form-loading').on('submit', function () {
+                                           $('.button-loading').attr('disabled', 'true');
+                                           $('.spinner').show();
+                                       })
 
-            } else {
-                $('#accordionSidebar').addClass('toggled');
-            }
+                                       if ($(window).width() > 514) {
+                                           $('#accordionSidebar').removeClass('toggled');
+
+                                       } else {
+                                           $('#accordionSidebar').addClass('toggled');
+                                       }
         </script>
         @yield('script')
         @livewireScripts 
