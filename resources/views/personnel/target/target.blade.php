@@ -152,10 +152,10 @@
                             <!--BUTTON REJECT APPROVE--> 
                             <div class="float-right">
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalReject">
-                                    Reject
+                                    Review
                                 </button>
                                 <a href="{{route('personnel.target.approve',['tahun'=>$tahun])}}" class="btn btn-success">
-                                    Approve
+                                    Agreed
                                 </a>
                             </div>
 
@@ -164,7 +164,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Alasan Penolakan</h5>
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Usulan Perbaikan & Alasan</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
