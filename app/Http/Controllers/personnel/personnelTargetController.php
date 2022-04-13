@@ -50,14 +50,14 @@ class personnelTargetController extends Controller {
 
             if ($targetstatus->status == 'waiting for approval' || 'approved')
             {
-                $datatarget = DB::select("SELECT b.so, a.kpi, a.target, a.unit, a.weight, a.timeframe_target, a.range_period "
+                $datatarget = DB::select("SELECT b.so, a.kpi, a.target, a.unit, a.weight, a.timeframe_target, a.range_period, a.polarization "
                                 . "FROM target_kpi a, target_so b "
                                 . "WHERE a.id_target_so = b.id AND a.id_user = $iduser AND a.periode_th = $tahun");
             }
             else
             {
 
-                $datatarget = active_target_kpi::groupby('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period', 'unit')->select('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period', 'unit')
+                $datatarget = active_target_kpi::groupby('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period', 'unit', 'polarization')->select('so', 'kpi', 'target', 'weight', 'timeframe_target', 'range_period', 'unit', 'polarization')
                                 ->where('id_user', $iduser)
                                 ->where('periode_th', date('Y'))->get();
             }

@@ -159,7 +159,7 @@ class performanceReportController extends Controller {
                 ->sum('weightedscore');
         if ($sumweight != 0)
         {
-            $overallMonthlyScore = $sumweightedscore / $sumweight;
+            $overallMonthlyScore = ($sumweightedscore / $sumweight)-100;
         }
         else
         {

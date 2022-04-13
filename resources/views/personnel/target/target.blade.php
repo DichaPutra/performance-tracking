@@ -118,11 +118,12 @@
                                     <th style="width: 8%; text-align: center;">No</th>
                                     <th>Strategic Objective</th>
                                     <th>KPI</th>
+                                    <th>Target</th>
+                                    <th>Aim to</th>
+                                    <th>Timeframe </th>
                                     @if (($targetstatus == null)||($targetstatus->status == 'Active'))
                                     <th>Weight</th>
                                     @endif
-                                    <th>Target</th>
-                                    <th>Timeframe </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -131,12 +132,13 @@
                                     <td style="text-align: center;">{{$loop->iteration}}</td>
                                     <td>{{$dat->so}}</td>
                                     <td>{{$dat->kpi}}</td>
-                                    @if (($targetstatus == null)||($targetstatus->status == 'Active'))
-                                    <td>{{$dat->weight}}%</td>
-                                    @endif
                                     <td>{{$dat->target}} {{$dat->unit}}</td>
+                                    <td>{{$dat->polarization}}</td>
                                     <td>{{$dat->timeframe_target}}</td>
                                     <!--<td>{{$dat->range_period}}</td>-->
+                                    @if (($targetstatus == null)||($targetstatus->status == 'Active'))
+                                    <td style="color: blue;">{{$dat->weight}}%</td>
+                                    @endif
                                 </tr>                       
                                 @endforeach
                             </tbody>

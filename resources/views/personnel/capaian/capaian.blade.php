@@ -128,8 +128,9 @@
                                         <th style="width: 8%; text-align: center;">No</th>
                                         <th style="text-align: center;">SO</th>
                                         <th style="text-align: center;">KPI</th>
-                                        <th style="text-align: center;">Timeframe</th>
+                                        <!--<th style="text-align: center;">Timeframe</th>-->
                                         <th>Target</th>
+                                        <th>Aim to</th>
                                         <th>Actual</th>
                                     </tr>
                                 </thead>
@@ -141,7 +142,7 @@
                                         <td style="text-align: center;">{{$loop->iteration}}</td>
                                         <td>{{$target->so}}</td>
                                         <td>{{$target->kpi}}</td>
-                                        <td>{{$target->timeframe_target}}</td>
+                                        <!--<td>{{$target->timeframe_target}}</td>-->
                                         <td>
                                             @if($target->unit == 'Rp')
                                             RP {{$target->target}},-
@@ -149,6 +150,7 @@
                                             {{$target->target}}{{$target->unit}}
                                             @endif
                                         </td>
+                                        <td>{{$target->polarization}}</td>
                                         <td> 
                                             @if($is_scored != 0 && getStatusApproval($bulan, $tahun) != 'not approved')
                                             <div class="input-group mb-3">
