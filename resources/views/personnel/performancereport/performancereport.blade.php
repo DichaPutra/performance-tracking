@@ -145,8 +145,8 @@
                             </div>
 
                             <!--                        <div class="chart-container" style="height:20%; width:100%">
-                                                                                <canvas id="yearlychart"></canvas>
-                                                                            </div>-->
+                                                                                    <canvas id="yearlychart"></canvas>
+                                                                                </div>-->
                             <div class="row">
                                 <div>
                                     <canvas id="yearlychart" height="350" width="700"></canvas>
@@ -349,8 +349,8 @@
                     type: "line",
                     backgroundColor: "rgba(0,0,0,0.0)",
                     pointStyle: 'circle',
-                    pointRadius: 5,
-                    pointHoverRadius: 8,
+                    pointRadius: 10,
+                    pointHoverRadius: 15,
                     borderColor: "rgba(135, 160, 206)",
                     data: <?php echo $capaianChart; ?>,
                     tension: 0.0,
