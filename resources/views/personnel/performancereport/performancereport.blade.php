@@ -349,6 +349,7 @@
                     type: "line",
                     backgroundColor: "rgba(0,0,0,0.0)",
                     pointStyle: 'circle',
+                    pointBackgroundColor: "rgba(135, 160, 206)",
                     pointRadius: 10,
                     pointHoverRadius: 15,
                     borderColor: "rgba(135, 160, 206)",
