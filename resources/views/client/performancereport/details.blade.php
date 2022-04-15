@@ -130,8 +130,8 @@
                         <div class="card-body">
 
                             <!--ambil data capaian_kpi dengan approval = waiting for acceptance
-                        - make function untuk details capaian di otherelements
-                        -->
+                                                            - make function untuk details capaian di otherelements
+                                                            -->
                             <div class="alert alert-warning">
                                 <div class="row">
                                     <div class="col-md-1" style="text-align: center;">
@@ -346,7 +346,7 @@
                         </div>
                         <div class="row">
                             <div>
-                                <canvas id="yearlychart" width="100%" height="35%"></canvas>
+                                <canvas id="yearlychart" height="350" width="700"></canvas>
                             </div>
                         </div>
                     </div>
@@ -405,13 +405,26 @@
                         <div class="card-body">
 
                             <div class="text-center"><b>Overall Performance</b>
-                                <br>{{ date('F', mktime(0, 0, 0, $month, 10)) }} {{ $year }}</div>
+                                <br>{{ date('F', mktime(0, 0, 0, $month, 10)) }} {{ $year }}
+                            </div>
                             <!--Performance Chart-->
                             <div class="d-flex justify-content-center">
                                 <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,800,900"
                                     rel="stylesheet" type="text/css">
                                 <div class="float-none" id="container"></div>
                             </div><br>
+                            @if ($bulanScore < 0)
+                                <center style="color: red"><b>Keterangan : </b>Capaian di bulan
+                                    {{ date('F', mktime(0, 0, 0, $month, 10)) }}
+                                    ini <b>{{ $bulanScore * 100 }}%</b> dari target atau masih belum mencapai target
+                                </center><br><br>
+                            @else
+                                <center style="color: green"><b>Keterangan : </b>Capaian di
+                                    {{ date('F', mktime(0, 0, 0, $month, 10)) }}
+                                    bulan ini <b>{{ $bulanScore * 100 }}%</b> dari target atau telah melampaui target
+                                </center><br><br>
+                            @endif
+                            <!--End Performance Chart-->
 
                             <!-- Content Row -->
                             <div class="table-responsive">
@@ -420,8 +433,6 @@
                                         <tr>
                                             <th style="width: 8%; text-align: center;">No</th>
                                             <th style="width: 52%; text-align: center;">SO & KPI</th>
-                                            <!--<th>Target</th>-->
-                                            <!--<th>Capaian</th>-->
                                             <th>Timeframe</th>
                                             <th>Weight</th>
                                             <th style="text-align: center;">Deviation from target</th>
@@ -436,32 +447,17 @@
                                                     <b>{{ $datacapaian->so }}</b><br>
                                                     {{ $datacapaian->kpi }}
                                                 </td>
-                                                <!--<td>
-                                            {{ $datacapaian->target }}
-                                            @if ($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
-                                            Rp {{ $datacapaian->target }},-
-                                        @else 
-                                            {{ $datacapaian->target }} {{ $datacapaian->unit }}
-                                            @endif
-
-                                        </td>
-                                        <td>
-                                            {{ $datacapaian->target }} {{ $datacapaian->target }}
-                                            @if ($datacapaian->unit == 'Rp' || $datacapaian->unit == 'rp' || $datacapaian->unit == 'RP')
-                                            Rp {{ $datacapaian->capaian }},-
-                                        @else 
-                                            {{ $datacapaian->capaian }} {{ $datacapaian->unit }}
-                                            @endif
-                                        </td>-->
                                                 <td>{{ $datacapaian->timeframe_target }}</td>
                                                 <td>
                                                     {{ $datacapaian->weight }} %
                                                 </td>
                                                 <td style="text-align: center;">
                                                     @if ($datacapaian->score - 100 >= 0)
-                                                        <span class="badge badge-success">+{{ $datacapaian->score - 100 }}%</span>
+                                                        <span
+                                                            class="badge badge-success">+{{ $datacapaian->score - 100 }}%</span>
                                                     @else
-                                                        <span class="badge badge-danger">{{ $datacapaian->score - 100 }}%</span>
+                                                        <span
+                                                            class="badge badge-danger">{{ $datacapaian->score - 100 }}%</span>
                                                     @endif
                                                     {{-- @if ($datacapaian->score > 100)
                                         <div class="progress">
@@ -532,7 +528,8 @@
                                                                 <div class="form-group col-md-6">
                                                                     <label for="inputEmail4">Polarization :</label>
                                                                     <input type="text" class="form-control"
-                                                                        value="{{ $datacapaian->polarization }}" readonly>
+                                                                        value="{{ $datacapaian->polarization }}"
+                                                                        readonly>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
                                                                     <label for="inputPassword4">Score :</label>
@@ -577,7 +574,7 @@
     <!--chart.JS-->
     <script>
         new Chart(document.getElementById("yearlychart"), {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: <?php echo $bulanChart; ?>,
                 datasets: [{
@@ -585,10 +582,11 @@
                     type: "line",
                     backgroundColor: "rgba(0,0,0,0.0)",
                     pointStyle: 'circle',
-                    pointRadius: 8,
-                    pointHoverRadius: 15,
+                    pointRadius: 5,
+                    pointHoverRadius: 8,
                     borderColor: "rgba(135, 160, 206)",
                     data: <?php echo $capaianChart; ?>,
+                    tension: 0.0,
                 }]
             },
             options: {

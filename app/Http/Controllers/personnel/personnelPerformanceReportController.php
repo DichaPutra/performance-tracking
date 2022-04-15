@@ -10,33 +10,28 @@ use App\Models\target_kpi;
 use App\Models\active_target_kpi;
 use Illuminate\Http\Request;
 
-class personnelPerformanceReportController extends Controller {
+class personnelPerformanceReportController extends Controller
+{
 
     function index(Request $request)
     {
         // data in request : tahun, idpersonnel
         // all tahun active untuk pilih  tahun periode
         $alltahun = active_target_kpi::groupby('periode_th')
-                ->select('periode_th')
-                ->where('id_user', Auth::user()->id)
-                ->get();
+            ->select('periode_th')
+            ->where('id_user', Auth::user()->id)
+            ->get();
 
 
-        if ($request->periode_th == null)
-        {
+        if ($request->periode_th == null) {
             //get periode today month and year
             $getperiode = active_target_kpi::where('tahun', date('Y'))->where('bulan', date('n'))->first();
-            if ($getperiode == null)
-            {
+            if ($getperiode == null) {
                 $periodeth = null;
-            }
-            else
-            {
+            } else {
                 $periodeth = $getperiode['periode_th'];
             }
-        }
-        else
-        {
+        } else {
             $periodeth = $request->periode_th;
         }
 
@@ -46,14 +41,11 @@ class personnelPerformanceReportController extends Controller {
 
         //data target dlm periode th
         $targetquery = target_kpi::where('id_user', Auth::user()->id)
-                        ->where('periode_th', $periodeth)->first();
-        if ($targetquery == null)
-        {
+            ->where('periode_th', $periodeth)->first();
+        if ($targetquery == null) {
             $startingbln = null;
             $rangeperiod = null;
-        }
-        else
-        {
+        } else {
             $startingbln = $targetquery['starting_bln'];
             $rangeperiod = $targetquery['range_period'];
         }
@@ -61,30 +53,27 @@ class personnelPerformanceReportController extends Controller {
 
         //data dropdown bulan
         $dropdownbln = capaian_kpi::groupby('bulan', 'tahun')
-                ->select('bulan', 'tahun')
-                ->where('id_user', Auth::user()->id)
-                ->where('periode_th', $periodeth)
-                ->where('approval', 'approved')
-                ->get();
+            ->select('bulan', 'tahun')
+            ->where('id_user', Auth::user()->id)
+            ->where('periode_th', $periodeth)
+            ->where('approval', 'approved')
+            ->get();
 
         // === DATA UNTUK MONTHLY DETAILS ===
-        if ($request->month == null)
-        {
+        if ($request->month == null) {
             $month = null;
             $year = null;
             $bulanScore = null;
             $datacapaian = null;
-        }
-        else
-        {
+        } else {
             $month = $request->month;
             list($month, $year) = explode('-', $request->month);
 
             $datacapaian = capaian_kpi::where('id_user', Auth::user()->id)
-                    ->where('tahun', $year)
-                    ->where('bulan', $month)
-                    ->where('approval', 'approved')
-                    ->get();
+                ->where('tahun', $year)
+                ->where('bulan', $month)
+                ->where('approval', 'approved')
+                ->get();
 
             $bulanScore = $this->getScoreBulanan(Auth::user()->id, $month, $year) / 100;
         }
@@ -94,11 +83,9 @@ class personnelPerformanceReportController extends Controller {
         // Data Labels Chart JS
         $bulanChart = array();
         $loopBlnChart = $startingbln;
-        for ($i = 0; $i < 12; $i++)
-        {
-            $bulanChart[] = date('F', mktime(0, 0, 0, $loopBlnChart, 10));
-            if ($loopBlnChart == 12)
-            {
+        for ($i = 0; $i < 12; $i++) {
+            $bulanChart[] = date('M', mktime(0, 0, 0, $loopBlnChart, 10));
+            if ($loopBlnChart == 12) {
                 $loopBlnChart = 1;
                 continue;
             }
@@ -110,11 +97,9 @@ class personnelPerformanceReportController extends Controller {
         $capaianChart = array();
         $loopBlnChart = $startingbln;
         $loopThChart = $periodeth;
-        for ($i = 0; $i < 12; $i++)
-        {
+        for ($i = 0; $i < 12; $i++) {
             $capaianChart[] = $this->getScoreBulanan($data->id, $loopBlnChart, $loopThChart);
-            if ($loopBlnChart == 12)
-            {
+            if ($loopBlnChart == 12) {
                 $loopBlnChart = 1;
                 $loopThChart++;
                 continue;
@@ -144,25 +129,22 @@ class personnelPerformanceReportController extends Controller {
     function getScoreBulanan($id_user, $bulan, $tahun)
     {
         $sumweight = capaian_kpi::where('id_user', $id_user)
-                ->where('bulan', $bulan)
-                ->where('tahun', $tahun)
-                ->where('approval', 'approved')
-                ->sum('weight');
+            ->where('bulan', $bulan)
+            ->where('tahun', $tahun)
+            ->where('approval', 'approved')
+            ->sum('weight');
         $sumweightedscore = capaian_kpi::where('id_user', $id_user)
-                ->where('bulan', $bulan)
-                ->where('tahun', $tahun)
-                ->where('approval', 'approved')
-                ->sum('weightedscore');
-        if ($sumweight != 0)
-        {
-            $overallMonthlyScore = $sumweightedscore / $sumweight;
-        }
-        else
-        {
-            $overallMonthlyScore = 0;
+            ->where('bulan', $bulan)
+            ->where('tahun', $tahun)
+            ->where('approval', 'approved')
+            ->sum('weightedscore');
+        if ($sumweight != 0) {
+            $overallMonthlyScore = ($sumweightedscore / $sumweight) - 100;
+            $overallMonthlyScore = round($overallMonthlyScore, 2);
+        } else {
+            $overallMonthlyScore = null;
         }
 
         return $overallMonthlyScore;
     }
-
 }

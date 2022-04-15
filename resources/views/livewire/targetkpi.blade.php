@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label><b>Polarization :</b></label>
+                    <label><b>Aim to :</b></label>
                     <select name="polarization" class="form-control">
                         <option value=" " hidden>select...</option>
                         <option value="maximize">Maximize</option>
@@ -108,7 +108,7 @@
                     <input name="measurement" value="{{$kpidata->measurement}}" type="hidden" class="form-control" required="" readonly="">
                 </div>
                 <div class="col-md-6">
-                    <label><b>Polarization :</b></label>
+                    <label><b>Aim to :</b></label>
                     <input name="" value="{{$kpidata->polarization}}" type="text" class="form-control" readonly="">
                     <input name="polarization" value="{{$kpidata->polarization}}" type="hidden" class="form-control" required="" readonly="">
                 </div>
