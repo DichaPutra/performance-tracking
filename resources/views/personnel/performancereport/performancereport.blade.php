@@ -223,7 +223,7 @@
                                                 <th style="width: 52%; text-align: center;">SO & KPI</th>
                                                 <th>Timeframe</th>
                                                 <th>Weight</th>
-                                                <th style="width: 40%; text-align: center;">Performance Score</th>
+                                                <th style="width: 40%; text-align: center;">Deviation from target</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -304,9 +304,9 @@
                                                                             readonly>
                                                                     </div>
                                                                     <div class="form-group col-md-6">
-                                                                        <label for="inputPassword4">Score :</label>
+                                                                        <label for="inputPassword4">Deviation from target :</label>
                                                                         <input type="text" class="form-control"
-                                                                            value="{{ $datacapaian->score }}" readonly>
+                                                                            value="{{ $datacapaian->score - 100 }}%" readonly>
                                                                     </div>
                                                                 </div>
                                                             </div>

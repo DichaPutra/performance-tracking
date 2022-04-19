@@ -460,22 +460,22 @@
                                                             class="badge badge-danger">{{ $datacapaian->score - 100 }}%</span>
                                                     @endif
                                                     {{-- @if ($datacapaian->score > 100)
-                                        <div class="progress">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
-                                        </div>
-                                        @elseif($datacapaian->score>=75)
-                                        <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
-                                        </div>
-                                        @elseif($datacapaian->score>=50)
-                                        <div class="progress">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
-                                        </div>
-                                        @elseif ($datacapaian->score<50)
-                                        <div class="progress">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
-                                        </div>
-                                        @endif --}}
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-info" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
+                                                    </div>
+                                                    @elseif($datacapaian->score>=75)
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-success" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
+                                                    </div>
+                                                    @elseif($datacapaian->score>=50)
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-warning" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
+                                                    </div>
+                                                    @elseif ($datacapaian->score<50)
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{$datacapaian->score}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{$datacapaian->score}}</div>
+                                                    </div>
+                                                    @endif --}}
                                                 </td>
                                                 <td style="text-align:center;">
                                                     <button type="button" class="btn btn-primary btn-sm"
@@ -532,9 +532,9 @@
                                                                         readonly>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label for="inputPassword4">Score :</label>
+                                                                    <label for="inputPassword4">Deviation from target :</label>
                                                                     <input type="text" class="form-control"
-                                                                        value="{{ $datacapaian->score }}" readonly>
+                                                                        value="{{ $datacapaian->score -100 }}%" readonly>
                                                                 </div>
                                                             </div>
                                                         </div>

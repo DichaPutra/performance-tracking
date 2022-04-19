@@ -79,6 +79,13 @@
                                     <td style="text-align:center;">
                                         @if (getPeriodePerformance($user->id, $tahun)=='n/a')
                                         n/a
+                                        @elseif(getPeriodePerformance($user->id, $tahun)-100 >= 100)
+                                        <span class="badge badge-success">+{{ getPeriodePerformance($user->id, $tahun) - 100 }}%</span>
+                                        @else
+                                        <span class="badge badge-danger">{{ getPeriodePerformance($user->id, $tahun) - 100 }}%</span>
+                                        @endif
+                                        {{-- @if (getPeriodePerformance($user->id, $tahun)=='n/a')
+                                        n/a
                                         @elseif(getPeriodePerformance($user->id, $tahun)>100)
                                         <div class="progress">
                                             <div class="progress-bar bg-info" role="progressbar" style="width: {{getPeriodePerformance($user->id, $tahun)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{getPeriodePerformance($user->id, $tahun)}}</div>
@@ -95,7 +102,7 @@
                                         <div class="progress">
                                             <div class="progress-bar bg-danger" role="progressbar" style="width: {{getPeriodePerformance($user->id, $tahun)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{getPeriodePerformance($user->id, $tahun)}}</div>
                                         </div>
-                                        @endif
+                                        @endif --}}
                                     </td>
                                     @if (isTargetExist($user->id, $tahun))
                                     <td style="text-align:center;"><a href="{{route('client.performancereport.details', ['user_id'=>$user->id, 'periode_th'=>$tahun])}}"><button class="btn btn-primary btn-sm">Details</button></a></td>
