@@ -145,8 +145,8 @@
                             </div>
 
                             <!--                        <div class="chart-container" style="height:20%; width:100%">
-                                                                                    <canvas id="yearlychart"></canvas>
-                                                                                </div>-->
+                                                                                        <canvas id="yearlychart"></canvas>
+                                                                                    </div>-->
                             <div class="row">
                                 <div>
                                     <canvas id="yearlychart" height="350" width="700"></canvas>
@@ -304,9 +304,11 @@
                                                                             readonly>
                                                                     </div>
                                                                     <div class="form-group col-md-6">
-                                                                        <label for="inputPassword4">Deviation from target :</label>
+                                                                        <label for="inputPassword4">Deviation from target
+                                                                            :</label>
                                                                         <input type="text" class="form-control"
-                                                                            value="{{ $datacapaian->score - 100 }}%" readonly>
+                                                                            value="{{ $datacapaian->score - 100 }}%"
+                                                                            readonly>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -358,6 +360,13 @@
                 }]
             },
             options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
                 title: {
                     display: true,
                     text: ''

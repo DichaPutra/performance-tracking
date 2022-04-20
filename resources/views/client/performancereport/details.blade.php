@@ -130,8 +130,8 @@
                         <div class="card-body">
 
                             <!--ambil data capaian_kpi dengan approval = waiting for acceptance
-                                                            - make function untuk details capaian di otherelements
-                                                            -->
+                                                                - make function untuk details capaian di otherelements
+                                                                -->
                             <div class="alert alert-warning">
                                 <div class="row">
                                     <div class="col-md-1" style="text-align: center;">
@@ -532,9 +532,10 @@
                                                                         readonly>
                                                                 </div>
                                                                 <div class="form-group col-md-6">
-                                                                    <label for="inputPassword4">Deviation from target :</label>
+                                                                    <label for="inputPassword4">Deviation from target
+                                                                        :</label>
                                                                     <input type="text" class="form-control"
-                                                                        value="{{ $datacapaian->score -100 }}%" readonly>
+                                                                        value="{{ $datacapaian->score - 100 }}%" readonly>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -591,13 +592,20 @@
                 }]
             },
             options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
                 title: {
                     display: true,
                     text: ''
                 },
                 legend: {
                     display: false
-                }
+                },
             }
         });
     </script>
