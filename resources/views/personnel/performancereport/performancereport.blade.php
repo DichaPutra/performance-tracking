@@ -145,8 +145,8 @@
                             </div>
 
                             <!--                        <div class="chart-container" style="height:20%; width:100%">
-                                                                                        <canvas id="yearlychart"></canvas>
-                                                                                    </div>-->
+                                                                                                            <canvas id="yearlychart"></canvas>
+                                                                                                        </div>-->
                             <div class="row">
                                 <div>
                                     <canvas id="yearlychart" height="350" width="700"></canvas>
@@ -212,6 +212,18 @@
                                         rel="stylesheet" type="text/css">
                                     <div class="float-none" id="container"></div>
                                 </div><br>
+                                @if ($bulanScore < 0)
+                                    <center style="color: red"><b>Keterangan : </b>Capaian di bulan
+                                        {{ date('F', mktime(0, 0, 0, $month, 10)) }}
+                                        ini <b>{{ $bulanScore * 100 }}%</b> dari target atau masih belum mencapai target
+                                    </center><br><br>
+                                @else
+                                    <center style="color: green"><b>Keterangan : </b>Capaian di
+                                        {{ date('F', mktime(0, 0, 0, $month, 10)) }}
+                                        bulan ini <b>{{ $bulanScore * 100 }}%</b> dari target atau telah melampaui target
+                                    </center><br><br>
+                                @endif
+
 
 
                                 <!-- Content Row -->
@@ -342,7 +354,8 @@
 @section('script')
     <!--chart.JS-->
     <script>
-        new Chart(document.getElementById("yearlychart"), {
+        var ctx = document.getElementById("yearlychart").getContext("2d");
+        new Chart(ctx, {
             type: 'line',
             data: {
                 labels: <?php echo $bulanChart; ?>,
@@ -367,6 +380,7 @@
                         }
                     }]
                 },
+
                 title: {
                     display: true,
                     text: ''
@@ -409,10 +423,11 @@
                 if (value === 0) {
                     bar.setText('0');
                 } else if (value > 100) {
-                    bar.setText(value);
+                    // bar.setText(value);
+                    bar.setText(value + ' %');
                 } else {
-                    bar.setText(value);
-                    //bar.setText(value + ' %');
+                    // bar.setText(value);
+                    bar.setText(value + ' %');
                 }
 
                 if (bar.value() > 1) {

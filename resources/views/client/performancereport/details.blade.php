@@ -641,7 +641,8 @@
                 if (value === 0) {
                     bar.setText('0');
                 } else if (value > 100) {
-                    bar.setText(value);
+                    // bar.setText(value);
+                    bar.setText(value + ' %');
                 } else {
                     // bar.setText(value);
                     bar.setText(value + ' %');
